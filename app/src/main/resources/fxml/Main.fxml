@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1500.0" stylesheets="fxml/Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.MainController">
+   <top>
+      <BorderPane prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <center>
+            <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <items>
+                  <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="55.0" prefWidth="55.0" />
+                  <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" />
+                  <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" />
+              </items>
+            </ToolBar>
+         </center>
+         <right>
+            <ToolBar prefHeight="65.0" prefWidth="186.0" BorderPane.alignment="CENTER" />
+         </right>
+         <top>
+            <MenuBar fx:id="mainMenu" BorderPane.alignment="CENTER">
+              <menus>
+                <Menu fx:id="fileMenu" mnemonicParsing="false" text="%menu.file.label">
+                  <items>
+                        <MenuItem fx:id="newMenuItem" mnemonicParsing="false" onAction="#handleCreateNewDocument" text="%menu.file.new">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="N" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="openMenuItem" mnemonicParsing="false" onAction="#handleOpenDocument" text="%menu.file.open">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="O" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="saveMenuItem" mnemonicParsing="false" onAction="#handleSaveDocument" text="%menu.file.save">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="preferencesMenuItem" mnemonicParsing="false" onAction="#handleOpenPreferencesDialog" text="%menu.file.preferences">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="COMMA" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                        </MenuItem>
+                        <MenuItem fx:id="quitMenuItem" mnemonicParsing="false" onAction="#handleApplicationExit" text="%menu.file.quit">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="F4" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="%menu.edit.title">
+                    <items>
+                        <MenuItem id="editUndoMenuItem" fx:id="editUndoMenuItem" mnemonicParsing="false" text="%menu.edit.undo">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="Z" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem id="editCutMenuItem" fx:id="editCutMenuItem" mnemonicParsing="false" text="%menu.edit.cut">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="X" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem id="editCopyMenuItem" fx:id="editCopyMenuItem" mnemonicParsing="false" text="%menu.edit.copy">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="C" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                            </accelerator>
+                        </MenuItem>
+                        <MenuItem id="editPasteMenu" fx:id="editPasteMenu" mnemonicParsing="false" text="%menu.edit.paste">
+                            <accelerator>
+                                <KeyCodeCombination alt="UP" code="V" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                            </accelerator>
+                        </MenuItem>
+                    </items>
+                </Menu>
+                <Menu fx:id="helpMenu" mnemonicParsing="false" text="%menu.help.title">
+                  <items>
+                    <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#handleOpenAboutDialog" text="%menu.help.about">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="SLASH" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator>
+                    </MenuItem>
+                    <MenuItem fx:id="viewHelpMenuItem" mnemonicParsing="false" onAction="#handleViewHelp" text="%menu.help.view">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="H" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator>
+                    </MenuItem>
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+      </BorderPane>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.14485981308411214, 0.8297730307076101" prefHeight="708.0" prefWidth="244.0" BorderPane.alignment="CENTER">
+         <items>
+            <BorderPane maxWidth="500.0" minWidth="200.0" prefHeight="706.0" prefWidth="469.0">
+               <top>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                    <items>
+                      <Button fx:id="addProjectToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                           <styleClass>
+                              <String fx:value="iconButton" />
+                              <String fx:value="smallIcon" />
+                              <String fx:value="addButton" />
+                           </styleClass></Button>
+                        <Button fx:id="removeProjectToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                           <styleClass>
+                              <String fx:value="iconButton" />
+                              <String fx:value="smallIcon" />
+                              <String fx:value="removeButton" />
+                           </styleClass></Button>
+                        <Button fx:id="editProjectToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                           <styleClass>
+                              <String fx:value="iconButton" />
+                              <String fx:value="smallIcon" />
+                              <String fx:value="editButton" />
+                           </styleClass></Button>
+                    </items>
+                  </ToolBar>
+               </top>
+               <center>
+                  <TableView fx:id="projectTableView" prefHeight="666.0" prefWidth="410.0" BorderPane.alignment="CENTER">
+                    <columns>
+                      <TableColumn prefWidth="124.0" text="Epic" />
+                        <TableColumn prefWidth="71.0" text="Estimate" />
+                    </columns>
+                  </TableView>
+               </center>
+            </BorderPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" />
+            <VBox minWidth="252.0" prefHeight="200.0" prefWidth="252.0">
+               <children>
+                  <Label text="Judgement:">
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ComboBox prefHeight="25.0" prefWidth="241.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <Label text="Notes:">
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextArea prefHeight="110.0" prefWidth="232.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" />
+                     </VBox.margin>
+                  </TextArea>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+            </VBox>
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>

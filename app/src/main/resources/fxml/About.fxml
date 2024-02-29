@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="298.0" prefWidth="354.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <VBox alignment="CENTER" prefHeight="313.0" prefWidth="406.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView id="AboutIconImage" fx:id="AboutIconImage" fitHeight="128.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/timeline.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <Label id="AboutAppNameLabel" fx:id="AboutAppNameLabel" text="%application.name">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label id="AboutAppDescriptionLabel" fx:id="AboutAppDescriptionLabel" text="%application.description">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+            <Label id="AboutAppVersionLabel" fx:id="AboutAppVersionLabel" text="%application.version" />
+            <Label id="AboutAppCopyrightLabel" fx:id="AboutAppCopyrightLabel" text="%application.copyright" />
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+
+dist_bucket="apps.biggerconcept.com"
+dist_acl="public-read"
+app_id="timeline"
+app_name="Timeline"
+installer_name="Timeline"
+installer_version="1.0.0"
+
+source "$PWD/.env"
+
+_help() {
+  echo
+  echo "$app_name Release"
+  echo
+  echo "Publishes latest build to the distribution bucket"
+  echo
+  echo "Usage:"
+  echo "release [command]"
+  echo
+  echo "Available Commands:"
+  echo "  jars                      Publishes application jars to $dist_bucket"
+  echo ""
+  echo "  dmg                       Pushes macos dmg to $dist_bucket"
+  echo "  pkg                       Pushes macos pkg to $dist_bucket"
+  echo "  deb                       Pushes deb package to $dist_bucket"
+  echo "  msi                       Pushes msi package to $dist_bucket"
+  echo ""
+  echo "  version                   Prints release utility version"
+  echo "  help                      Prints help text"
+  echo
+}
+
+_jars() {
+  echo "Publishing jars to $dist_bucket"
+
+  for file in $PWD/app/target/app/*
+  do
+    echo $file
+    aws s3 cp "$file" "s3://$dist_bucket/release/$app_id/$(basename $file)" --acl $dist_acl
+  done
+}
+
+_dmg() {
+  echo "Publishing dmg for macos to $dist_bucket"
+
+  src="$PWD/app/target/installer/bundles/$installer_name-$installer_version.dmg"
+  dst="s3://$dist_bucket/dist/$app_id/$installer_name-$installer_version.dmg"
+
+  aws s3 cp $src  $dst --acl $dist_acl
+}
+
+_pkg() {
+  echo "Publishing pkg for macos to $dist_bucket"
+
+  src="$PWD/app/target/installer/bundles/$installer_name-$installer_version.pkg"
+  dst="s3://$dist_bucket/dist/$app_id/$installer_name-$installer_version.pkg"
+
+  aws s3 cp $src $dst --acl $dist_acl
+}
+
+_deb() {
+  echo "Publishing deb for debian linux to $dist_bucket"
+
+  src="$PWD/app/target/installer/bundles/$installer_name-$installer_version.deb"
+  dst="s3://$dist_bucket/dist/$app_id/$installer_name-$installer_version.deb"
+
+  aws s3 cp $src $dst --acl $dist_acl
+}
+
+_msi() {
+  echo "Publishing msi for windows to $dist_bucket"
+
+  src="$PWD/app/target/installer/bundles/$installer_name-$installer_version.msi"
+  dst="s3://$dist_bucket/dist/$app_id/$installer_name-$installer_version.msi"
+
+  aws s3 cp $src $dst --acl $dist_acl
+}
+
+_version() {
+  echo "1.0.0"
+}
+
+case "$1" in
+jars) _jars;;
+dmg) _dmg;;
+pkg) _pkg;;
+deb) _deb;;
+msi) _msi;;
+version) _version;;
+help) _help;;
+*) _help;;
+esac

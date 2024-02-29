@@ -1,0 +1,256 @@
+---
+title: "Timeline"
+parts:
+- translation:
+    key: "application.name"
+    title: "Name of application"
+    value: "Timeline"
+    variants: {}
+- translation:
+    key: "application.description"
+    title: "Description of application"
+    value: "Project planning scenario modelling tool"
+    variants: {}
+- translation:
+    key: "application.copyright"
+    title: "Copyright information"
+    value: "© 2024"
+    variants: {}
+- translation:
+    key: "application.version"
+    title: "Version number for application"
+    value: "1.0.0"
+    variants: {}
+- translation:
+    key: "menu.file.label"
+    title: "Title of File menu"
+    value: "File"
+    variants: {}
+- translation:
+    key: "menu.file.new"
+    title: "Label for new file menu item"
+    value: "New"
+    variants: {}
+- translation:
+    key: "menu.file.open"
+    title: "Label for open file menu item"
+    value: "Open"
+    variants: {}
+- translation:
+    key: "menu.file.save"
+    title: "Label for save file menu item"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "menu.file.preferences"
+    title: "Label for preferences file menu item"
+    value: "Preferences"
+    variants: {}
+- translation:
+    key: "menu.file.quit"
+    title: "Label for quit file menu item"
+    value: "Exit"
+    variants: {}
+- translation:
+    key: "menu.edit.title"
+    title: "Title of edit menu"
+    value: "Edit"
+    variants: {}
+- translation:
+    key: "menu.edit.undo"
+    title: "Title of help undo menu item"
+    value: "Undo"
+    variants: {}
+- translation:
+    key: "menu.edit.cut"
+    title: "Title of help cut menu item"
+    value: "Cut"
+    variants: {}
+- translation:
+    key: "menu.edit.copy"
+    title: "Title of help copy menu item"
+    value: "Copy"
+    variants: {}
+- translation:
+    key: "menu.edit.paste"
+    title: "Title of help paste menu item"
+    value: "Paste"
+    variants: {}
+- translation:
+    key: "menu.help.title"
+    title: "Title of help menu"
+    value: "Help"
+    variants: {}
+- translation:
+    key: "menu.help.about"
+    title: "About menu item"
+    value: "About Timeline"
+    variants: {}
+- translation:
+    key: "menu.help.view"
+    title: "View menu item"
+    value: "View Help"
+    variants: {}
+- translation:
+    key: "toolbar.new.tooltip"
+    title: "Tooltip for new toolbar button"
+    value: "Creates a new and blank file"
+    variants: {}
+- translation:
+    key: "toolbar.open.tooltip"
+    title: "Tooltip for open file button"
+    value: "Open a file"
+    variants: {}
+- translation:
+    key: "toolbar.save.tooltip"
+    title: "Tooltip for save file toolbar button"
+    value: "Save to file"
+    variants: {}
+- translation:
+    key: "application.about.windowTitle"
+    title: "Title of about dialog"
+    value: "About Timeline"
+    variants: {}
+- translation:
+    key: "dialogs.open.title"
+    title: "Open dialog title"
+    value: "Open File"
+    variants: {}
+- translation:
+    key: "dialogs.save.title"
+    title: "Save file title"
+    value: "Save File"
+    variants: {}
+- translation:
+    key: "dialogs.preferences.title"
+    title: "Content of the preference window title"
+    value: "Preferences"
+    variants: {}
+- translation:
+    key: "dialogs.preferences.actions.cancel.tooltip"
+    title: "Cancel preferences button tooltip"
+    value: "Close preferences window without applying changes"
+    variants: {}
+- translation:
+    key: "dialogs.preferences.actions.save.tooltip"
+    title: "Save preferences button tooltip"
+    value: "Apply changes to preferences and close window"
+    variants: {}
+- translation:
+    key: "errors.new"
+    title: "Error message when unable to create a new file"
+    value: "Unable to create new file"
+    variants: {}
+- translation:
+    key: "errors.open"
+    title: "Error message when unable to open file"
+    value: "Unable to open file"
+    variants: {}
+- translation:
+    key: "errors.saveFile"
+    title: "Error message when unable to save file"
+    value: "Unable to save file"
+    variants: {}
+- translation:
+    key: "errors.generic"
+    title: "Generic error message"
+    value: "Something went wrong"
+    variants: {}
+- translation:
+    key: "errors.alert.title"
+    title: "Title of error alert dialog"
+    value: "An error occurred"
+    variants: {}
+- translation:
+    key: "errors.preferences.cancel"
+    title: "Content of the cancel preference window error"
+    value: "Unable to close preference window"
+    variants: {}
+- translation:
+    key: "errors.preferences.save"
+    title: "Content of the save preference error dialog"
+    value: "Unable to save preferences"
+    variants: {}
+- translation:
+    key: "preferences.tasks.title"
+    title: "Preferences task tab label"
+    value: "Tasks"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.title"
+    title: "Header for task sizing preferences"
+    value: "Task sizing"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.description"
+    title: "Description for task sizing preferences"
+    value: "Estimate values for task t-shirt sizes"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.xs"
+    title: "Label for xs size preference"
+    value: "XS"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.s"
+    title: "Label for small task size preference"
+    value: "S"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.m"
+    title: "Label for medium task size preference"
+    value: "M"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.l"
+    title: "Label for large task preference label"
+    value: "L"
+    variants: {}
+- translation:
+    key: "preferences.tasks.sizing.xl"
+    title: "Label for extra large task size preference "
+    value: "XL"
+    variants: {}
+- translation:
+    key: "actions.save"
+    title: "Label for a save action"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "actions.cancel"
+    title: "Label for cancel action"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "actions.apply"
+    title: "Label for apply action"
+    value: "Apply"
+    variants: {}
+- translation:
+    key: "preferences.estimates.title"
+    title: "Label for estimates preferences tab"
+    value: "Estimates"
+    variants: {}
+- translation:
+    key: "preferences.estimates.referenceSprints.title"
+    title: "Title for reference sprints preference tab"
+    value: "Reference Sprints"
+    variants: {}
+- translation:
+    key: "preferences.estimates.referenceSprints.description"
+    title: "Description for reference sprints preferences"
+    value: "Please provide sprint data for default delivery velocity estimates"
+    variants: {}
+- translation:
+    key: "preferences.estimates.referenceSprints.table.name"
+    title: "Label for sprint name"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "preferences.estimates.referenceSprints.table.completedPoints"
+    title: "Label for completed points column in reference sprint table"
+    value: "Completed Points"
+    variants: {}
+sourceLanguage: "en"
+targetLanguages:
+- "fr"

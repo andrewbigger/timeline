@@ -1,0 +1,59 @@
+.main-toolbar-button {
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+.iconButton {
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+.smallIcon {
+  -fx-background-size: 25px 25px;
+}
+
+.addButton {
+  -fx-background-image: url('../icons/AddIcon.png');
+}
+
+.removeButton {
+  -fx-background-image: url('../icons/RemoveIcon.png');
+}
+
+.moveUpButton {
+  -fx-background-image: url('../icons/MoveUpIcon.png');
+}
+
+.moveDownButton {
+  -fx-background-image: url('../icons/MoveDownIcon.png');
+}
+
+.editButton {
+  -fx-background-image: url('../icons/EditIcon.png');
+}
+
+.moveButton {
+  -fx-background-image: url('../icons/MoveIcon.png')
+}
+
+#openFileButton {
+  -fx-background-image:url('../icons/OpenFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#saveFileButton {
+  -fx-background-image: url('../icons/SaveFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#newFileButton {
+  -fx-background-image: url('../icons/NewFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}

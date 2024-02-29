@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="svg9461"
+   width="45"
+   height="45"
+   viewBox="0 0 45 45"
+   sodipodi:docname="RemoveIcon.svg"
+   inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
+   inkscape:export-filename="/Users/abigger/Code/andrewbigger/projectus/app/src/main/resources/icons/RemoveIcon16x16.png"
+   inkscape:export-xdpi="34.130001"
+   inkscape:export-ydpi="34.130001">
+  <metadata
+     id="metadata9467">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs9465">
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask1214">
+      <rect
+         style="fill:#ffffff;stroke-width:4"
+         id="rect1216"
+         width="14.263841"
+         height="12.532392"
+         x="54.994114"
+         y="-20.117786" />
+    </mask>
+    <mask
+       maskUnits="userSpaceOnUse"
+       id="mask1214-3">
+      <rect
+         style="fill:#ffffff;stroke-width:4"
+         id="rect1216-8"
+         width="14.263841"
+         height="12.532392"
+         x="54.994114"
+         y="-20.117786" />
+    </mask>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2020"
+     inkscape:window-height="1017"
+     id="namedview9463"
+     showgrid="false"
+     inkscape:zoom="13.407258"
+     inkscape:cx="6.2148187"
+     inkscape:cy="23.728472"
+     inkscape:window-x="139"
+     inkscape:window-y="44"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg9461"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-rotation="0" />
+  <path
+     style="fill:none;stroke:#cc3340;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+     d="M 12.293968,22.344511 H 33.561635"
+     id="path851" />
+</svg>
