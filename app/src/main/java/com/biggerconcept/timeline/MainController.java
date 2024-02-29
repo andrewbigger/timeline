@@ -514,7 +514,8 @@ public class MainController implements Initializable {
 
                 currentDocument.setFile(f);
             }
-
+            
+            mapWindowToDocument();
             currentDocument.save();
 
         } catch (NoChoiceMadeException ncm) {
@@ -558,6 +559,7 @@ public class MainController implements Initializable {
             stage.resizableProperty().setValue(false);
             
             stage.showAndWait();
+            mapDocumentToWindow();
         } catch (IOException e) {
             ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
         }

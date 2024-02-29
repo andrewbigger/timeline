@@ -279,14 +279,12 @@ public class PreferencesController implements Initializable {
      * 
      * @return 
      */
-    private Preferences mapWindowToPreferences() {
-        Preferences p = new Preferences();
-        
+    private void mapWindowToPreferences() {
         mapWindowToTaskPreferences();
         mapWindowToEstimatePreferences();
         mapWindowToSprintPreferences();
         
-        return p;
+        currentDocument.setPreferences(currentPreferences);
     }
     
     /**
@@ -374,7 +372,7 @@ public class PreferencesController implements Initializable {
     @FXML
     private void handleSavePreferences() {
         try {
-            currentDocument.setPreferences(mapWindowToPreferences());
+            mapWindowToPreferences();
             window().close();
         } catch (Exception e) {
             ErrorAlert.show(
