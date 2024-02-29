@@ -12,6 +12,11 @@ import com.biggerconcept.projectus.domain.Size;
  */
 public class Preferences {
     /**
+     * Default sprint size number.
+     */
+    private static final int DEFAULT_SPRINT_LENGTH = 2;
+    
+    /**
      * Example sprint for reference sprint one
      */
     private static final Sprint DEFAULT_REF_SPRINT_ONE = new Sprint("1", 20);
@@ -84,6 +89,12 @@ public class Preferences {
      */
     @JsonInclude(Include.NON_NULL)
     private Sprint refSprintFour;
+    
+    /**
+     * Size of sprint in weeks.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private int sprintLength;
 
     /**
     * Returns estimate for given task size.
@@ -226,6 +237,15 @@ public class Preferences {
         }
         
         return refSprintFour;
+    }
+    
+    /**
+     * Getter for sprint length.
+     * 
+     * @return sprint length
+     */
+    public int getSprintLength() {
+        return sprintLength;
     }
     
     /**
@@ -374,6 +394,20 @@ public class Preferences {
         refSprintFour = value;
     }
     
+    /**
+     * Setter for sprint length.
+     * 
+     * @param value integer value to set as sprint length
+     */
+    public void setSprintLength(int value) {
+        sprintLength = value;
+    }
+    
+    /**
+     * Converts preferences to projectus preferences.
+     * 
+     * @return projectus preferences
+     */
     public com.biggerconcept.projectus.domain.Preferences 
         asProjectusPreferences() {
         com.biggerconcept.projectus.domain.Preferences p = 
@@ -388,6 +422,7 @@ public class Preferences {
         p.setRefSprintTwo(getRefSprintTwo());
         p.setRefSprintThree(getRefSprintThree());
         p.setRefSprintFour(getRefSprintFour());
+        p.setSprintLength(getSprintLength());
 
         return p;
     }

@@ -29,6 +29,14 @@
   -fx-background-image: url('../icons/MoveDownIcon.png');
 }
 
+.moveLeftButton {
+  -fx-background-image: url('../icons/MoveLeftIcon.png');
+}
+
+.moveRightButton {
+  -fx-background-image: url('../icons/MoveRightIcon.png');
+}
+
 .editButton {
   -fx-background-image: url('../icons/EditIcon.png');
 }

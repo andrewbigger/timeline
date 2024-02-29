@@ -2,6 +2,7 @@ package com.biggerconcept.timeline;
 
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
+import com.biggerconcept.timeline.domain.Year;
 import com.biggerconcept.timeline.exceptions.NoChoiceMadeException;
 import com.biggerconcept.timeline.platform.OperatingSystem;
 import com.biggerconcept.timeline.ui.dialogs.ErrorAlert;
@@ -22,6 +23,7 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
@@ -39,6 +41,11 @@ public class MainController implements Initializable {
      * The document being edited in the main window.
      */
     private Document currentDocument;
+    
+    /**
+     * View year.
+     */
+    private Year viewYear;
     
     /**
      * Extension filter for files.
@@ -61,6 +68,12 @@ public class MainController implements Initializable {
      */
     @FXML
     public MenuItem quitMenuItem;
+    
+    /**
+     * View year label
+     */
+    @FXML
+    public Label currentYearLabel;
     
     /**
      * Adds epic to shelf.
@@ -152,6 +165,7 @@ public class MainController implements Initializable {
         bundle = rb;
 
         currentDocument = new Document();
+        viewYear = Year.DEFAULT;
         fileExtFilter = new ExtensionFilter(
                 "JSON File",
                 Arrays.asList("json")
@@ -163,6 +177,7 @@ public class MainController implements Initializable {
         }
 
         applyTooltips();
+        mapDocumentToWindow();
     }
 
     /**
@@ -198,12 +213,20 @@ public class MainController implements Initializable {
      * 
      * @param doc 
      */
-    private void mapDocumentToWindow(Document doc) {
+    private void mapDocumentToWindow() {
         applyPreferencesToWindow();
+        mapYearToWindow();
         mapShelfToWindow();
         mapEpicsToWindow();
         mapAssessmentsToWindow();
         mapNotesToWindow();
+    }
+    
+    /**
+     * Maps year to window
+     */
+    private void mapYearToWindow() {
+        currentYearLabel.setText(viewYear.getName());
     }
     
     /**
@@ -328,6 +351,32 @@ public class MainController implements Initializable {
     }
     
     /**
+     * Handles show previous year
+     */
+    @FXML
+    private void handleShowPrevYear() {
+        try {
+            viewYear = viewYear.previous();
+            mapDocumentToWindow();
+        } catch (Exception e) {
+             ErrorAlert.show(bundle, bundle.getString("errors.viewYear"), e);
+        }
+    }
+    
+    /**
+     * Handles show next year
+     */
+    @FXML
+    private void handleShowNextYear() {
+        try {
+            viewYear = viewYear.next();
+            mapDocumentToWindow();
+        } catch (Exception e) {
+             ErrorAlert.show(bundle, bundle.getString("errors.viewYear"), e);
+        }
+    }
+    
+    /**
      * Creates a new document.
      * 
      * This will replace the currentDocument with a new one, having the effect
@@ -337,7 +386,7 @@ public class MainController implements Initializable {
     private void handleCreateNewDocument() {
         try {
             currentDocument = new Document();
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
         } catch (Exception e) {
             ErrorAlert.show(bundle, bundle.getString("errors.new"), e);
         }
@@ -366,7 +415,7 @@ public class MainController implements Initializable {
             );
 
             currentDocument = Document.load(documentFile);
-            mapDocumentToWindow(currentDocument);
+            mapDocumentToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (IOException e) {

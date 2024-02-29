@@ -155,6 +155,12 @@ public class PreferencesController implements Initializable {
     public TextField refSprintFourCompletedPointsTextField;
     
     /**
+     * Sprint length field
+     */
+    @FXML
+    public TextField sprintSizeTextField;
+    
+    /**
      * Cancel preferences button.
      */
     @FXML
@@ -187,8 +193,12 @@ public class PreferencesController implements Initializable {
     private void mapPreferencesToWindow() {
         mapTaskPreferencesToWindow();
         mapEstimatePreferencesToWindow();
+        mapSprintPreferencesToWindow();
     }
     
+    /**
+     * Maps task preferences to window
+     */
     private void mapTaskPreferencesToWindow() {
         extraSmallSizeTextField.setText(
                 String.valueOf(currentPreferences.getExtraSmallTaskSize())
@@ -207,6 +217,9 @@ public class PreferencesController implements Initializable {
         );
     }
     
+    /**
+     * Maps estimate preferences to window
+     */
     private void mapEstimatePreferencesToWindow() {
         refSprintOneNameTextField.setText(
                 currentPreferences.getRefSprintOne().getName()
@@ -251,6 +264,17 @@ public class PreferencesController implements Initializable {
     }
     
     /**
+     * Maps sprint preferences to window
+     */
+    private void mapSprintPreferencesToWindow() {
+        sprintSizeTextField.setText(
+                String.valueOf(
+                    currentPreferences.getSprintLength()
+                )
+        );
+    }
+    
+    /**
      * Maps window content to new document object for serialization.
      * 
      * @return 
@@ -260,10 +284,14 @@ public class PreferencesController implements Initializable {
         
         mapWindowToTaskPreferences();
         mapWindowToEstimatePreferences();
+        mapWindowToSprintPreferences();
         
         return p;
     }
     
+    /**
+     * Maps window to task preferences.
+     */
     private void mapWindowToTaskPreferences() {
         currentPreferences.setExtraSmallSize(extraSmallSizeTextField.getText());
         currentPreferences.setSmallSize(smallSizeTextField.getText());
@@ -272,6 +300,9 @@ public class PreferencesController implements Initializable {
         currentPreferences.setExtraLargeSize(extraLargeSizeTextField.getText());
     }
     
+    /**
+     * Maps window to estimate preferences
+     */
     private void mapWindowToEstimatePreferences() {
         currentPreferences.setRefSprintOne(
                 new Sprint(
@@ -306,6 +337,17 @@ public class PreferencesController implements Initializable {
                         Integer.valueOf(
                                 refSprintFourCompletedPointsTextField.getText()
                         )
+                )
+        );
+    }
+    
+    /**
+     * Maps window to sprint preferences
+     */
+    private void mapWindowToSprintPreferences() {
+        currentPreferences.setSprintLength(
+                Integer.parseInt(
+                        sprintSizeTextField.getText()
                 )
         );
     }

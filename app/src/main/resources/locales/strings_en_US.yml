@@ -336,6 +336,24 @@ parts:
     title: "Label for available sprints"
     value: "Available sprints"
     variants: {}
+- translation:
+    key: "preferences.sprint.title"
+    title: "Label for sprint tab"
+    value: "Sprint"
+    variants: {}
+- translation:
+    key: "preferences.sprint.size.title"
+    title: "Label for sprint length preference pane "
+    value: "Length"
+    variants: {}
+- translation:
+    key: "preferences.sprint.size.description"
+    title: "Description for sprint length"
+    value: "Please provide the number of weeks per sprint"
+    variants: {}
+- translation:
+    key: "errors.viewYear"
+    title: "Error when unable to change view year"
+    value: "Unable to change view year"
+    variants: {}
 sourceLanguage: "en"
-targetLanguages:
-- "fr"
