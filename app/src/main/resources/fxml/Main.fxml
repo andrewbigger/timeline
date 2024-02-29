@@ -139,14 +139,14 @@
                      <children>
                         <ToolBar prefHeight="40.0" prefWidth="200.0">
                           <items>
-                            <Button fx:id="addEpicToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                            <Button fx:id="addEpicToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddEpicToShelf" prefWidth="25.0">
                                  <styleClass>
                                     <String fx:value="iconButton" />
                                     <String fx:value="smallIcon" />
                                     <String fx:value="addButton" />
                                  </styleClass>
                               </Button>
-                              <Button fx:id="removeEpicFromShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                              <Button fx:id="removeEpicFromShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleRemoveEpicFromShelf" prefWidth="25.0">
                                  <styleClass>
                                     <String fx:value="iconButton" />
                                     <String fx:value="smallIcon" />
@@ -167,21 +167,21 @@
                   </VBox>
                   <ToolBar prefHeight="40.0" prefWidth="200.0">
                      <items>
-                        <Button fx:id="moveEpicFromShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                        <Button fx:id="moveEpicFromShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveEpicFromShelf" prefWidth="25.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
                               <String fx:value="moveDownButton" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="moveEpicToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                        <Button fx:id="moveEpicToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveEpicToShelf" prefWidth="25.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
                               <String fx:value="moveUpButton" />
                            </styleClass>
                         </Button>
-                        <Button fx:id="editEpicButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                        <Button fx:id="editEpicButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleEditEpic" prefWidth="25.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />

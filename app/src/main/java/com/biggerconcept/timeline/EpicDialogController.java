@@ -5,6 +5,7 @@ import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.ui.tables.TasksTable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,6 +38,16 @@ public class EpicDialogController implements Initializable {
     private Epic currentEpic;
     
     /**
+     * Target set of epics
+     */
+    private ArrayList<Epic> targetSet;
+    
+    /**
+     * Main window controller
+     */
+    private MainController parent;
+    
+    /**
      * Initializer for the dialog window
      * 
      * @param url
@@ -47,15 +58,21 @@ public class EpicDialogController implements Initializable {
         bundle = rb;
     }
 
-    
     /**
      * Sets document pointer for the dialog window.
      * 
      * @param doc 
      */
-    public void setEpic(Document doc, Epic epic) {
+    public void setEpic(
+            Document doc,
+            Epic epic,
+            MainController parent,
+            ArrayList<Epic> targetSet
+    ) {
         this.currentDocument = doc;
         this.currentEpic = epic;
+        this.parent = parent;
+        this.targetSet = targetSet;
         mapEpicToWindow();
     }
     

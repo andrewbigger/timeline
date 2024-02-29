@@ -356,4 +356,9 @@ parts:
     title: "Error when unable to change view year"
     value: "Unable to change view year"
     variants: {}
+- translation:
+    key: "dialogs.epic.new"
+    title: "Name for new epic"
+    value: "Add Epic"
+    variants: {}
 sourceLanguage: "en"

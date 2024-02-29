@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -245,7 +246,7 @@ public class MainController implements Initializable {
      * 
      * @param doc 
      */
-    private void mapDocumentToWindow() {
+    public void mapDocumentToWindow() {
         applyPreferencesToWindow();
         mapYearToWindow();
         mapOutlookToWindow();
@@ -403,12 +404,41 @@ public class MainController implements Initializable {
         );
     }
     
+    private void openEpicDialog(Epic epic, ArrayList<Epic> targetSet) {
+        try {
+            URL location = getClass().getResource("/fxml/EpicDialog.fxml");
+            FXMLLoader loader = new FXMLLoader();
+        
+            loader.setLocation(location);
+            loader.setResources(bundle);
+            loader.setBuilderFactory(new JavaFXBuilderFactory());
+        
+            Parent epicWindow = (Parent) loader.load();
+        
+            EpicDialogController controller = (EpicDialogController) loader
+                .getController();
+        
+            controller.setEpic(currentDocument, epic, this, targetSet);
+        
+            Stage stage = new Stage();
+        
+            stage.setScene(new Scene(epicWindow));
+            stage.setTitle(epic.getName(bundle));
+            stage.initStyle(StageStyle.DECORATED);
+            stage.resizableProperty().setValue(false);
+            
+            stage.show();
+        } catch (IOException e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
     /**
      * Handles adding an epic to the shelf.
      */
     @FXML
     private void handleAddEpicToShelf() {
-        
+        openEpicDialog(new Epic(), currentDocument.getShelf());
     }
     
     /**
@@ -432,6 +462,22 @@ public class MainController implements Initializable {
      */
     @FXML
     private void handleEditEpic() {
+        
+    }
+    
+    /**
+     * Handles moving epic from shelf to commitment
+     */
+    @FXML
+    private void handleMoveEpicFromShelf() {
+        
+    }
+    
+    /**
+     * Handles moving epic from commitment to shelf
+     */
+    @FXML
+    private void handleMoveEpicToShelf() {
         
     }
     
