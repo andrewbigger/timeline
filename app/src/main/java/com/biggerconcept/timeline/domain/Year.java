@@ -122,6 +122,10 @@ public class Year {
     * @return number of sprints.
     */
    public int calculateSprints(int sprintLength) {
+       if (sprintLength == 0) {
+           return 0;
+       }
+       
        return calculateWeeks() / sprintLength;
    }
    

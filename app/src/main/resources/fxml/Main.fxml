@@ -212,7 +212,11 @@
                         </Label>
                         <HBox prefHeight="5.0" prefWidth="232.0">
                            <children>
-                              <Label text="{{velocity_points}}" />
+                              <Label fx:id="velocityPointsLabel" text="{{velocity_points}}">
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </Label>
                               <Label text="%project.velocity.pointsPerSprint" />
                            </children>
                            <VBox.margin>
@@ -224,7 +228,7 @@
                               <Insets bottom="3.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="{{sprints}}">
+                        <Label fx:id="totalSprintsLabel" text="{{sprints}}">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>

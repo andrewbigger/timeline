@@ -139,6 +139,8 @@ public class Preferences {
         p.refSprintThree = DEFAULT_REF_SPRINT_THREE;
         p.refSprintFour = DEFAULT_REF_SPRINT_FOUR;
         
+        p.sprintLength = DEFAULT_SPRINT_LENGTH;
+        
         return p;
     }
     
@@ -401,6 +403,36 @@ public class Preferences {
      */
     public void setSprintLength(int value) {
         sprintLength = value;
+    }
+    
+    /**
+     * Calculates average points per sprint.
+     * 
+     * @return average of reference sprints
+     */
+    public int calculateAveragePointsPerSprint() {
+        int totalPoints = refSprintOne.getCompletedPoints() +
+                refSprintTwo.getCompletedPoints() +
+                refSprintThree.getCompletedPoints() +
+                refSprintFour.getCompletedPoints();
+        
+        if (totalPoints == 0) {
+            return 0;
+        }
+        
+        return totalPoints / 4;
+    }
+    
+    /**
+     * Calculates the number of available points based on
+     * average points.
+     * 
+     * @param sprints number of sprints available
+     * 
+     * @return available points
+     */
+    public int calculateAvailablePointsIn(int sprints) {
+        return calculateAveragePointsPerSprint() * sprints;
     }
     
     /**

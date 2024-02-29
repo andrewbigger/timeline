@@ -24,6 +24,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
@@ -74,6 +75,36 @@ public class MainController implements Initializable {
      */
     @FXML
     public Label currentYearLabel;
+    
+    /**
+     * Velocity points label
+     */
+    @FXML
+    public Label velocityPointsLabel;
+    
+    /**
+     * Total sprints label.
+     */
+    @FXML
+    public Label totalSprintsLabel;
+    
+    /**
+     * Committed points total
+     */
+    @FXML
+    public Label commitmentPointsLabel;
+    
+    /**
+     * Commitment indicator progress bar
+     */
+    @FXML
+    public ProgressBar commitmentProgress;
+    
+    /**
+     * Available points total
+     */
+    @FXML
+    public Label availableCommitmentLabel;
     
     /**
      * Adds epic to shelf.
@@ -216,6 +247,7 @@ public class MainController implements Initializable {
     private void mapDocumentToWindow() {
         applyPreferencesToWindow();
         mapYearToWindow();
+        mapOutlookToWindow();
         mapShelfToWindow();
         mapEpicsToWindow();
         mapAssessmentsToWindow();
@@ -227,6 +259,41 @@ public class MainController implements Initializable {
      */
     private void mapYearToWindow() {
         currentYearLabel.setText(viewYear.getName());
+    }
+    
+    /**
+     * Maps velocity, available sprints and commitment to window.
+     */
+    private void mapOutlookToWindow() {
+        velocityPointsLabel.setText(
+                String.valueOf(
+                    currentDocument
+                            .getPreferences()
+                            .calculateAveragePointsPerSprint()
+                )
+        );
+        
+        int availableSprints = viewYear.calculateSprints(
+                                currentDocument
+                                    .getPreferences()
+                                    .getSprintLength()
+                        );
+        
+        totalSprintsLabel.setText(
+                String.valueOf(
+                     availableSprints   
+                )
+        );
+        
+        // TODO: committed points
+        
+        availableCommitmentLabel.setText(
+                String.valueOf(
+                        currentDocument
+                                .getPreferences()
+                                .calculateAvailablePointsIn(availableSprints)
+                )
+        );
     }
     
     /**
