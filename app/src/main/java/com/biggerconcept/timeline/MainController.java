@@ -1,5 +1,6 @@
 package com.biggerconcept.timeline;
 
+import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
 import com.biggerconcept.timeline.domain.Year;
@@ -285,13 +286,30 @@ public class MainController implements Initializable {
                 )
         );
         
-        // TODO: committed points
+        commitmentPointsLabel.setText(
+                String.valueOf(
+                        currentDocument.calculateCommittedPoints(
+                                currentDocument
+                                        .getPreferences()
+                                        .asProjectusPreferences()
+                        )
+                )
+        );
         
+        int availablePoints = currentDocument
+                                .getPreferences()
+                                .calculateAvailablePointsIn(availableSprints);
+        
+        commitmentProgress.setProgress(
+                currentDocument.calculateCommitmentProgress(
+                        currentDocument.getPreferences().asProjectusPreferences(),
+                        availablePoints
+                )
+        );
+
         availableCommitmentLabel.setText(
                 String.valueOf(
-                        currentDocument
-                                .getPreferences()
-                                .calculateAvailablePointsIn(availableSprints)
+                        availablePoints
                 )
         );
     }

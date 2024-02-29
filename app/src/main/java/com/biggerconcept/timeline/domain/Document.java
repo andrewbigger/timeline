@@ -216,5 +216,55 @@ public class Document {
     public void setNotes(String value) {
         notes = value;
     }
-
+    
+    /**
+     * Calculates total number of points that are committed.
+     * 
+     * @param prefs projectus preferences
+     * @return total number of points in committed epics.
+     */
+    public int calculateCommittedPoints(
+            com.biggerconcept.projectus.domain.Preferences prefs
+    ) {
+        int count = 0;
+        
+        for (Epic e : getEpics()) {
+            count += e.calculateTotalPoints(prefs);
+        }
+        
+        return count;
+    }
+    
+    /**
+     * Expresses committed points as a proportion of given number
+     * of available points.
+     * 
+     * @param prefs projectus preferences
+     * @param availablePoints total number of available points
+     * @return progress of committed points
+     */
+    public double calculateCommitmentProgress(
+            com.biggerconcept.projectus.domain.Preferences prefs,
+            int availablePoints
+    ) {
+        return (double) calculateCommittedPoints(prefs) / availablePoints;
+    }
+    
+    /**
+     * Calculates total number of points on the shelf.
+     * 
+     * @param prefs projectus preferences
+     * @return total number of points on the shelf.
+     */
+    public int calculateShelfPoints(
+            com.biggerconcept.projectus.domain.Preferences prefs
+    ) {
+        int count = 0;
+        
+        for (Epic e : getShelf()) {
+            count += e.calculateTotalPoints(prefs);
+        }
+        
+        return count;
+    }
 }
