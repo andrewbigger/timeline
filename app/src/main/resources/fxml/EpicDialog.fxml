@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.EpicDialogController">
+   <bottom>
+      <BorderPane prefHeight="38.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <left>
+            <Button fx:id="cancelEpicButton" mnemonicParsing="false" onAction="#handleCancelEpic" text="%actions.cancel" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Button fx:id="saveEpicButton" defaultButton="true" mnemonicParsing="false" onAction="#handlSaveEpic" text="%actions.save" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </bottom>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="%dialogs.epic.name">
+               <VBox.margin>
+                  <Insets bottom="3.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="epicName">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="%dialogs.epic.summary">
+               <VBox.margin>
+                  <Insets bottom="3.0" />
+               </VBox.margin>
+            </Label>
+            <TextArea fx:id="epicSummary" prefHeight="123.0" prefWidth="580.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextArea>
+            <Label text="%dialogs.epic.tasks">
+               <VBox.margin>
+                  <Insets bottom="3.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="25.0" prefWidth="580.0">
+               <children>
+                  <Button fx:id="addTaskButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="addButton" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets right="3.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="removeTaskButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="removeButton" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets right="3.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="editTaskButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="editButton" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets right="3.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </HBox>
+            <TableView fx:id="tasksTable" prefHeight="231.0" prefWidth="580.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TableView>
+            <VBox prefHeight="47.0" prefWidth="580.0">
+               <children>
+                  <Label text="%dialogs.epics.outlook">
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="outlookLabel" text="{{outlook}}">
+                           <HBox.margin>
+                              <Insets right="3.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="%dialogs.epic.weeks" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>

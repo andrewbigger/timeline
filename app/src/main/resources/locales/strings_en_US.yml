@@ -251,6 +251,91 @@ parts:
     title: "Label for completed points column in reference sprint table"
     value: "Completed Points"
     variants: {}
+- translation:
+    key: "dialogs.epic.name"
+    title: "Label for epic name field"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "dialogs.epic.summary"
+    title: "Label for epic summary field"
+    value: "Summary"
+    variants: {}
+- translation:
+    key: "dialogs.epic.tasks"
+    title: "Label for the epic task controls"
+    value: "Tasks"
+    variants: {}
+- translation:
+    key: "dialogs.epic.outlook"
+    title: "Text for epic outlook"
+    value: "Outlook"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.id"
+    title: "Label for task number column"
+    value: "#"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.name"
+    title: "Label for epic name column"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.size"
+    title: "Label for epic size column"
+    value: "Size"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.estimate"
+    title: "Label for task estimate column"
+    value: "Estimate"
+    variants: {}
+- translation:
+    key: "dialogs.epic.weeks"
+    title: "Label for outlook weeks"
+    value: "weeks"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.status"
+    title: "Label for status column"
+    value: "Status"
+    variants: {}
+- translation:
+    key: "project.velocity.label"
+    title: "Label for velocity data"
+    value: "Velocity"
+    variants: {}
+- translation:
+    key: "project.velocity.pointsPerSprint"
+    title: "Label for points per sprint"
+    value: "points per sprint"
+    variants: {}
+- translation:
+    key: "project.commitment.title"
+    title: "Label for commitment"
+    value: "Commitment"
+    variants: {}
+- translation:
+    key: "project.commitment.qualifier"
+    title: "Qualifier string for commitment summary"
+    value: "points committed of"
+    variants: {}
+- translation:
+    key: "project.judgement"
+    title: "Label for judgement dropdown"
+    value: "Judgement"
+    variants: {}
+- translation:
+    key: "project.notes"
+    title: "Label for notes field"
+    value: "Notes"
+    variants: {}
+- translation:
+    key: "project.availableSprints.label"
+    title: "Label for available sprints"
+    value: "Available sprints"
+    variants: {}
 sourceLanguage: "en"
 targetLanguages:
 - "fr"

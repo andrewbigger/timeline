@@ -1,11 +1,14 @@
 package com.biggerconcept.timeline.domain;
 
+import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.timeline.domain.Judgement.Assessment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * In memory representation of file.
@@ -24,6 +27,30 @@ public class Document {
      */
     @JsonInclude(Include.NON_NULL)
     private Preferences preferences;
+    
+    /**
+     * Epic shelf
+     */
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Epic> shelf;
+    
+    /**
+     * Document epics.
+     */
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Epic> epics;
+    
+    /**
+     * Timeline judgement
+     */
+    @JsonInclude(Include.NON_NULL)
+    private Assessment judgement;
+    
+    /**
+     * Timeline notes
+     */
+    @JsonInclude(Include.NON_NULL)
+    private String notes;
     
     /**
      * Loads file from disk.
@@ -78,7 +105,7 @@ public class Document {
     /**
      * Getter for preferences.
      * 
-     * @return
+     * @return document preferences.
      */
     public Preferences getPreferences() {
         if (preferences == null) {
@@ -87,11 +114,59 @@ public class Document {
 
         return preferences;
     }
+    
+    /**
+     * Getter for epic shelf.
+     * 
+     * @return shelved epics
+     */
+    public ArrayList<Epic> getShelf() {
+        if (shelf == null) {
+            shelf = new ArrayList<>();
+        }
+        
+        return shelf;
+    }
+    
+    /**
+     * Getter for epics.
+     * 
+     * @return timeline epics
+     */
+    public ArrayList<Epic> getEpics() {
+        if (epics == null) {
+            epics = new ArrayList<>();
+        }
+        
+        return epics;
+    }
+    
+    /**
+     * Getter for judgement.
+     * 
+     * @return assessment
+     */
+    public Assessment getJudgement() {
+        if (judgement == null) {
+            judgement = Judgement.DEFAULT_ASSESSMENT;
+        }
+        
+        return judgement;
+    }
+    
+    /**
+     * Getter for notes.
+     * 
+     * @return notes
+     */
+    public String getNotes() {
+        return notes;
+    }
 
     /**
      * Setter for file.
      * 
-     * @param value 
+     * @param value new file
      */
     public void setFile(File value) {
         file = value;
@@ -100,10 +175,46 @@ public class Document {
     /**
      * Setter for preferences.
      * 
-     * @param value
+     * @param value new preferences
      */
     public void setPreferences(Preferences value) {
         preferences = value;
+    }
+    
+    /**
+     * Setter for shelf.
+     * 
+     * @param value new set of shelved epics
+     */
+    public void setShelf(ArrayList<Epic> value) {
+        shelf = value;
+    }
+    
+    /**
+     * Setter for epics.
+     * 
+     * @param value new set of epics
+     */
+    public void setEpics(ArrayList<Epic> value) {
+        epics = value;
+    }
+    
+    /**
+     * Setter for judgement.
+     * 
+     * @param value new judgement.
+     */
+    public void setJudgement(Assessment value) {
+        judgement = value;
+    }
+    
+    /**
+     * Setter for notes.
+     * 
+     * @param value timeline notes.
+     */
+    public void setNotes(String value) {
+        notes = value;
     }
 
 }

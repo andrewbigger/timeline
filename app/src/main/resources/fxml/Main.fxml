@@ -8,14 +8,16 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1500.0" stylesheets="fxml/Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.MainController">
    <top>
@@ -108,70 +110,168 @@
       </BorderPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.14485981308411214, 0.8297730307076101" prefHeight="708.0" prefWidth="244.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.16889185580774366, 0.6061415220293725" prefHeight="708.0" prefWidth="244.0" BorderPane.alignment="CENTER">
          <items>
-            <BorderPane maxWidth="500.0" minWidth="200.0" prefHeight="706.0" prefWidth="469.0">
-               <top>
-                  <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <items>
-                      <Button fx:id="addProjectToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+            <SplitPane dividerPositions="0.5, 0.5" maxWidth="800.0" minWidth="300.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="450.0">
+               <items>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ToolBar prefHeight="40.0" prefWidth="200.0">
+                          <items>
+                            <Button fx:id="addEpicToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="addButton" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="removeEpicFromShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="removeButton" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="editEpicOnShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="editButton" />
+                                 </styleClass>
+                              </Button>
+                          </items>
+                        </ToolBar>
+                        <TableView fx:id="shelfTableView" prefHeight="666.0" prefWidth="410.0" />
+                     </children>
+                  </VBox>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                     <items>
+                        <Button fx:id="moveEpicFromShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
-                              <String fx:value="addButton" />
-                           </styleClass></Button>
-                        <Button fx:id="removeProjectToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                              <String fx:value="moveDownButton" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="moveEpicToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
-                              <String fx:value="removeButton" />
-                           </styleClass></Button>
-                        <Button fx:id="editProjectToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
+                              <String fx:value="moveUpButton" />
+                           </styleClass>
+                        </Button>
+                        <Button fx:id="editEpicButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" prefWidth="25.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
                               <String fx:value="editButton" />
-                           </styleClass></Button>
-                    </items>
+                           </styleClass>
+                        </Button>
+                     </items>
                   </ToolBar>
-               </top>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <TableView fx:id="epicTableView" prefHeight="666.0" prefWidth="410.0" />
+                     </children>
+                  </VBox>
+               </items>
+            </SplitPane>
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <TableView fx:id="projectTableView" prefHeight="666.0" prefWidth="410.0" BorderPane.alignment="CENTER">
-                    <columns>
-                      <TableColumn prefWidth="124.0" text="Epic" />
-                        <TableColumn prefWidth="71.0" text="Estimate" />
-                    </columns>
-                  </TableView>
-               </center>
+                  <WebView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center></BorderPane>
+            <BorderPane maxWidth="800.0" minWidth="300.0" prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <VBox minWidth="252.0" prefHeight="240.0" prefWidth="284.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="%project.velocity.label">
+                           <VBox.margin>
+                              <Insets bottom="3.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox prefHeight="5.0" prefWidth="232.0">
+                           <children>
+                              <Label text="{{velocity_points}}" />
+                              <Label text="%project.velocity.pointsPerSprint" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label text="%project.availableSprints.label">
+                           <VBox.margin>
+                              <Insets bottom="3.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="{{sprints}}">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <VBox fx:id="commitmentPanel" prefHeight="62.0" prefWidth="180.0">
+                           <children>
+                              <Label text="%project.commitment.title">
+                                 <VBox.margin>
+                                    <Insets bottom="3.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ProgressBar id="commitmentProgress" fx:id="commitmentProgress" maxWidth="1.7976931348623157E308" prefWidth="250.0" progress="0.0" />
+                              <HBox prefHeight="12.0" prefWidth="180.0">
+                                 <children>
+                                    <Label fx:id="commitmentPointsLabel" text="0">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label text="%project.commitment.qualifier">
+                                       <HBox.margin>
+                                          <Insets right="5.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="availableCommitmentLabel" text="0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <Label text="%project.judgement">
+                           <VBox.margin>
+                              <Insets bottom="3.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ComboBox fx:id="judgementComboBox" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="241.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </ComboBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </top>
+               <bottom>
+                  <VBox prefHeight="266.0" prefWidth="194.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="%project.notes">
+                           <VBox.margin>
+                              <Insets bottom="3.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextArea fx:id="notesTextArea" prefHeight="251.0" prefWidth="194.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </TextArea>
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </bottom>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" />
-            <VBox minWidth="252.0" prefHeight="200.0" prefWidth="252.0">
-               <children>
-                  <Label text="Judgement:">
-                     <VBox.margin>
-                        <Insets bottom="3.0" />
-                     </VBox.margin>
-                  </Label>
-                  <ComboBox prefHeight="25.0" prefWidth="241.0">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </ComboBox>
-                  <Label text="Notes:">
-                     <VBox.margin>
-                        <Insets bottom="3.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextArea prefHeight="110.0" prefWidth="232.0">
-                     <VBox.margin>
-                        <Insets bottom="5.0" />
-                     </VBox.margin>
-                  </TextArea>
-               </children>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-            </VBox>
          </items>
       </SplitPane>
    </center>

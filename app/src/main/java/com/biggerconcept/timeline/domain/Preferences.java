@@ -374,4 +374,22 @@ public class Preferences {
         refSprintFour = value;
     }
     
+    public com.biggerconcept.projectus.domain.Preferences 
+        asProjectusPreferences() {
+        com.biggerconcept.projectus.domain.Preferences p = 
+                new com.biggerconcept.projectus.domain.Preferences();
+        
+        p.setExtraSmallSize(getExtraSmallTaskSize());
+        p.setSmallSize(getSmallTaskSize());
+        p.setMediumSize(getMediumTaskSize());
+        p.setLargeSize(getLargeTaskSize());
+        p.setExtraLargeSize(getExtraLargeTaskSize());
+        p.setRefSprintOne(getRefSprintOne());
+        p.setRefSprintTwo(getRefSprintTwo());
+        p.setRefSprintThree(getRefSprintThree());
+        p.setRefSprintFour(getRefSprintFour());
+
+        return p;
+    }
+    
 }

@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline;
 
 import com.biggerconcept.timeline.domain.Document;
+import com.biggerconcept.timeline.domain.Judgement.Assessment;
 import com.biggerconcept.timeline.exceptions.NoChoiceMadeException;
 import com.biggerconcept.timeline.platform.OperatingSystem;
 import com.biggerconcept.timeline.ui.dialogs.ErrorAlert;
@@ -20,6 +21,9 @@ import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -57,6 +61,60 @@ public class MainController implements Initializable {
      */
     @FXML
     public MenuItem quitMenuItem;
+    
+    /**
+     * Adds epic to shelf.
+     */
+    @FXML
+    public Button addEpicToShelfButton;
+    
+    /**
+     * Button to remove epic from shelf
+     */
+    @FXML
+    public Button removeEpicFromShelfButton;
+    
+    /**
+     * Button to edit epic on shelf.
+     */
+    @FXML
+    public Button editEpicOnShelfButton;
+    
+    /**
+     * Button to move epic from shelf.
+     */
+    @FXML
+    public Button moveEpicFromShelfButton;
+    
+    /**
+     * Button to move epic to shelf
+     */
+    @FXML
+    public Button moveEpicToShelfButton;
+    
+    /**
+     * Shelf epics table view
+     */
+    @FXML
+    public TableView shelfTableView;
+    
+    /**
+     * Selected epics table view
+     */
+    @FXML
+    public TableView epicTableView;
+    
+    /**
+     * Judgement combo box
+     */
+    @FXML
+    public ComboBox judgementComboBox;
+    
+    /**
+     * Notes text area.
+     */
+    @FXML
+    public TextArea notesTextArea;
     
     /**
      * Open file toolbar button.
@@ -142,7 +200,46 @@ public class MainController implements Initializable {
      */
     private void mapDocumentToWindow(Document doc) {
         applyPreferencesToWindow();
-        // TODO: map document to window
+        mapShelfToWindow();
+        mapEpicsToWindow();
+        mapAssessmentsToWindow();
+        mapNotesToWindow();
+    }
+    
+    /**
+     * Maps shelf epics to window
+     */
+    private void mapShelfToWindow() {
+        
+    }
+    
+    /**
+     * Maps selected epics to window
+     */
+    private void mapEpicsToWindow() {
+        
+    }
+    
+    /**
+     * Maps assessment options and selection to window
+     */
+    private void mapAssessmentsToWindow() {
+        judgementComboBox.getItems().clear();
+        
+        for (Assessment a : Assessment.values()) {
+            judgementComboBox.getItems().add(a);
+        }
+        
+        judgementComboBox
+                .getSelectionModel()
+                .select(currentDocument.getJudgement());
+    }
+    
+    /**
+     * Maps notes to window
+     */
+    private void mapNotesToWindow() {
+        notesTextArea.setText(currentDocument.getNotes());
     }
     
     /**
@@ -157,9 +254,77 @@ public class MainController implements Initializable {
      * 
      * @return 
      */
-    private Document mapWindowToDocument() {
-        // TODO: map window to document
-        return new Document();
+    private void mapWindowToDocument() {
+        mapWindowToShelf();
+        mapWindowToEpics();
+        mapWindowToJudgement();
+        mapWindowToNotes();
+    }
+    
+    /**
+     * Maps shelf epics to document
+     */
+    private void mapWindowToShelf() {
+        
+    }
+    
+    /**
+     * Maps selected epics to document
+     */
+    private void mapWindowToEpics() {
+        
+    }
+    
+    /**
+     * Maps judgement selection to document
+     */
+    private void mapWindowToJudgement() {
+        currentDocument.setJudgement(
+                (Assessment) judgementComboBox
+                        .getSelectionModel()
+                        .getSelectedItem()
+        );
+    }
+    
+    /**
+     * Maps window notes to document.
+     */
+    private void mapWindowToNotes() {
+        currentDocument.setNotes(
+                notesTextArea.getText()
+        );
+    }
+    
+    /**
+     * Handles adding an epic to the shelf.
+     */
+    @FXML
+    private void handleAddEpicToShelf() {
+        
+    }
+    
+    /**
+     * Handles removing an epic from the shelf
+     */
+    @FXML
+    private void handleRemoveEpicFromShelf() {
+        
+    }
+    
+    /**
+     * Handles editing a shelf epic
+     */
+    @FXML
+    private void handleEditEpicOnShelf() {
+        
+    }
+    
+    /**
+     * Handles editing a selected epic
+     */
+    @FXML
+    private void handleEditEpic() {
+        
     }
     
     /**
