@@ -361,4 +361,77 @@ parts:
     title: "Name for new epic"
     value: "Add Epic"
     variants: {}
+- translation:
+    key: "errors.epic.tasks.add"
+    title: "Error when unable to add a task"
+    value: "Unable to add task"
+    variants: {}
+- translation:
+    key: "errors.epic.tasks.edit"
+    title: "Error when unable to edit task"
+    value: "Unable to edit task"
+    variants: {}
+- translation:
+    key: "errors.epic.tasks.remove"
+    title: "Error when unable to remove task"
+    value: "Unable to remove task"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.remove.title"
+    title: "Title for remove task dialog"
+    value: "Remove task"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.remove.description"
+    title: "Message when deleting a task"
+    value: "Are you sure you want to remove the selected task? This cannot be undone."
+    variants: {}
+- translation:
+    key: "errors.moveTask"
+    title: "Error when unable to move task"
+    value: "Unable to move task"
+    variants: {}
+- translation:
+    key: "epic.tasks.table.empty"
+    title: "Empty task table placeholder"
+    value: "No tasks defined"
+    variants: {}
+- translation:
+    key: "dialogs.nav.previous"
+    title: "Label for previous nav button"
+    value: "Previous"
+    variants: {}
+- translation:
+    key: "dialogs.nav.next"
+    title: "Label for next button"
+    value: "Next"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.name"
+    title: "Name of manage task dialog"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.size"
+    title: "Label for task size"
+    value: "Size"
+    variants: {}
+- translation:
+    key: "epic.dialogs.manage."
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.actions.save"
+    title: "Save action for task dialog"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.actions.cancel"
+    title: "Cancel action for epic dialog"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "epic.tasks.dialogs.manage.title"
+    title: "Title for manage task dialog"
+    value: "Manage task"
+    variants: {}
 sourceLanguage: "en"

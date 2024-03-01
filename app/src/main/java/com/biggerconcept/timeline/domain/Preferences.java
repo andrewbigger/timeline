@@ -424,6 +424,27 @@ public class Preferences {
     }
     
     /**
+     * Calculates average points per week.
+     * 
+     * @return average points per week
+     */
+    public int calculateAveragePointsPerWeek() {
+        int sprintAve = calculateAveragePointsPerSprint();
+        int sprintLength = getSprintLength();
+        
+        if (sprintLength == 0) {
+            return 0;
+        }
+        
+        if (sprintAve == 0) {
+            return 0;
+        }
+        
+        
+        return sprintAve / sprintLength;
+    }
+    
+    /**
      * Calculates the number of available points based on
      * average points.
      * 

@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.domain;
 
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -51,6 +52,9 @@ public class Document {
      */
     @JsonInclude(Include.NON_NULL)
     private String notes;
+    
+    @JsonIgnore
+    private int lastEpicIdentifier = 0;
     
     /**
      * Loads file from disk.
@@ -162,6 +166,16 @@ public class Document {
     public String getNotes() {
         return notes;
     }
+    
+    /**
+     * Getter for last epic identifier.
+     * 
+     * @return identifier for last epic
+     */
+    @JsonIgnore
+    public int getLastEpicIdentifier() {
+        return lastEpicIdentifier;
+    }
 
     /**
      * Setter for file.
@@ -218,6 +232,44 @@ public class Document {
     }
     
     /**
+     * Rebuilds identifiers for epics and their tasks.
+     */
+    public void rebuildIdentifiers() {
+        identifyEpics();
+    }
+    
+    /**
+     * Sets identifiers on all epics and tasks
+     */
+    private void identifyEpics() {
+        int idx = 1;
+        
+        for (Epic e : getEpics()) {
+            e.setIdentifier(idx);
+            idx += 1;
+            
+            int tidx = 0;
+            for (Task t : e.getTasks()) {
+                tidx += 1;
+                t.setIdentifier(tidx);
+            }
+        }
+        
+        for (Epic e : getShelf()) {
+            e.setIdentifier(idx);
+            idx += 1;
+            
+            int tidx = 0;
+            for (Task t : e.getTasks()) {
+                tidx += 1;
+                t.setIdentifier(tidx);
+            }
+        }
+        
+        lastEpicIdentifier = idx;
+    }
+    
+    /**
      * Calculates total number of points that are committed.
      * 
      * @param prefs projectus preferences
@@ -267,4 +319,5 @@ public class Document {
         
         return count;
     }
+    
 }

@@ -4,11 +4,11 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
 import com.biggerconcept.timeline.domain.Year;
-import com.biggerconcept.timeline.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.timeline.platform.OperatingSystem;
-import com.biggerconcept.timeline.ui.dialogs.ErrorAlert;
-import com.biggerconcept.timeline.ui.dialogs.OpenFileDialog;
-import com.biggerconcept.timeline.ui.dialogs.SaveFileDialog;
+import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
+import com.biggerconcept.appengine.ui.dialogs.SaveFileDialog;
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.control.Button;
@@ -247,6 +247,8 @@ public class MainController implements Initializable {
      * @param doc 
      */
     public void mapDocumentToWindow() {
+        currentDocument.rebuildIdentifiers();
+        
         applyPreferencesToWindow();
         mapYearToWindow();
         mapOutlookToWindow();
@@ -404,7 +406,11 @@ public class MainController implements Initializable {
         );
     }
     
-    private void openEpicDialog(Epic epic, ArrayList<Epic> targetSet) {
+    private void openEpicDialog(
+            Epic epic,
+            ArrayList<Epic> targetSet,
+            boolean isNew
+    ) {
         try {
             URL location = getClass().getResource("/fxml/EpicDialog.fxml");
             FXMLLoader loader = new FXMLLoader();
@@ -418,7 +424,7 @@ public class MainController implements Initializable {
             EpicDialogController controller = (EpicDialogController) loader
                 .getController();
         
-            controller.setEpic(currentDocument, epic, this, targetSet);
+            controller.setEpic(currentDocument, epic, this, targetSet, isNew);
         
             Stage stage = new Stage();
         
@@ -438,7 +444,13 @@ public class MainController implements Initializable {
      */
     @FXML
     private void handleAddEpicToShelf() {
-        openEpicDialog(new Epic(), currentDocument.getShelf());
+        openEpicDialog(
+                new Epic(
+                        currentDocument.getLastEpicIdentifier()
+                ), 
+                currentDocument.getShelf(), 
+                true
+        );
     }
     
     /**
