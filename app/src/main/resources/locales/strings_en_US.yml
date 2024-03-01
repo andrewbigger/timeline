@@ -434,4 +434,30 @@ parts:
     title: "Title for manage task dialog"
     value: "Manage task"
     variants: {}
+- translation:
+    key: "project.table.empty"
+    title: "Empty project table"
+    value: "No projects"
+    variants: {}
+- translation:
+    key: "project.table.name"
+    title: "Project name column label"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "project.table.estimate"
+    title: "Project estimate column label"
+    value: "Estimate"
+    variants: {}
+- translation:
+    key: "project.dialogs.removeEpic.title"
+    title: "Remove epic message title"
+    value: "Remove Epic"
+    variants: {}
+- translation:
+    key: "project.dialogs.removeEpic.description"
+    title: "Confirmation message for removing an epic"
+    value: "Are you sure you want to remove this epic from the shelf? This cannot\
+      \ be undone."
+    variants: {}
 sourceLanguage: "en"

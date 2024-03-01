@@ -214,6 +214,35 @@ public class Document {
     }
     
     /**
+     * Removes a target epic from the shelf.
+     * 
+     * @param target epic to remove.
+     */
+    public void removeFromShelf(Epic target) {
+        shelf.remove(target);
+    }
+    
+    /**
+     * Moves an epic from shelf to commitment.
+     * 
+     * @param target epic to move
+     */
+    public void commitToEpic(Epic target) {
+        epics.add(target);
+        shelf.remove(target);
+    }
+    
+    /**
+     * Moves an epic from commitment to shelf.
+     * 
+     * @param target epic to move
+     */
+    public void unCommitToEpic(Epic target) {
+        shelf.add(target);
+        epics.remove(target);
+    }
+    
+    /**
      * Setter for judgement.
      * 
      * @param value new judgement.
@@ -272,19 +301,39 @@ public class Document {
     /**
      * Calculates total number of points that are committed.
      * 
-     * @param prefs projectus preferences
      * @return total number of points in committed epics.
      */
-    public int calculateCommittedPoints(
-            com.biggerconcept.projectus.domain.Preferences prefs
-    ) {
+    public int calculateCommittedPoints() {
         int count = 0;
         
         for (Epic e : getEpics()) {
-            count += e.calculateTotalPoints(prefs);
+            count += e.calculateTotalPoints(
+                    getPreferences().asProjectusPreferences()
+            );
         }
         
         return count;
+    }
+    
+    /**
+     * Calculates committed sprints.
+     * 
+     * @return committed number of sprints
+     */
+    public int calculateCommittedSprints() {
+        int pointsPerSprint = getPreferences().calculateAveragePointsPerSprint();
+        int points = calculateCommittedPoints();
+        
+        
+        if (points == 0) {
+            return 0;
+        }
+        
+        if (pointsPerSprint == 0) {
+            return 1;
+        }
+
+        return points / pointsPerSprint;
     }
     
     /**
@@ -296,10 +345,9 @@ public class Document {
      * @return progress of committed points
      */
     public double calculateCommitmentProgress(
-            com.biggerconcept.projectus.domain.Preferences prefs,
             int availablePoints
     ) {
-        return (double) calculateCommittedPoints(prefs) / availablePoints;
+        return (double) calculateCommittedPoints() / availablePoints;
     }
     
     /**

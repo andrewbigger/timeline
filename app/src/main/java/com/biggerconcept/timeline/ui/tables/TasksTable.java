@@ -107,7 +107,6 @@ public class TasksTable {
                bundle.getString("epic.tasks.table.empty"),
                FXCollections.observableArrayList(currentTasks),
                Arrays.asList(
-                    idCol(), 
                     nameCol(), 
                     sizeCol(), 
                     estimateCol()

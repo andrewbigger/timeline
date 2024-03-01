@@ -45,6 +45,14 @@
   -fx-background-image: url('../icons/MoveIcon.png')
 }
 
+.tickButton {
+  -fx-background-image: url('../icons/TickIcon16x16.png');
+}
+
+.crossButton {
+  -fx-background-image: url('../icons/CrossIcon16x16.png')
+}
+
 #openFileButton {
   -fx-background-image:url('../icons/OpenFileIcon.png');
   -fx-background-position: center center;

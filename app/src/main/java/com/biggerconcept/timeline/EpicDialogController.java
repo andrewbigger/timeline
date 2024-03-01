@@ -91,6 +91,7 @@ public class EpicDialogController implements Initializable {
         this.currentEpic = epic;
         this.parent = parent;
         this.targetSet = targetSet;
+        this.isNew = isNew;
         mapEpicToWindow();
     }
     
@@ -149,9 +150,19 @@ public class EpicDialogController implements Initializable {
      * @param doc 
      */
     private void mapEpicToWindow() {
+        mapDetailsToWindow();
+        mapTasksToWindow();
+        mapOutlookToWindow();
+        
+        parent.mapDocumentToWindow();
+    }
+    
+    private void mapDetailsToWindow() {
         epicName.setText(currentEpic.getName());
         epicSummary.setText(currentEpic.getSummary());
-        
+    }
+    
+    private void mapTasksToWindow() {
         TasksTable tasksTable = new TasksTable(
             bundle,
             currentEpic.getTasks(),
@@ -159,14 +170,14 @@ public class EpicDialogController implements Initializable {
             currentEpic.getIdentifier()
         );
         tasksTable.bind(tasksTableView);
-        
-        outlookLabel.setText(
+    }
+    
+    private void mapOutlookToWindow() {
+         outlookLabel.setText(
                 String.valueOf(
                         calculateWeeks()
                 )
         );
-        
-        parent.mapDocumentToWindow();
     }
     
     /**
@@ -200,7 +211,8 @@ public class EpicDialogController implements Initializable {
             );
             
             addTask.show(window());
-            mapEpicToWindow();
+            mapTasksToWindow();
+            mapOutlookToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
                     bundle,
@@ -236,7 +248,8 @@ public class EpicDialogController implements Initializable {
                 }
             }
             
-            mapEpicToWindow();
+            mapTasksToWindow();
+            mapOutlookToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
                     bundle,
@@ -276,7 +289,8 @@ public class EpicDialogController implements Initializable {
                     targetIndex
             );
             
-            mapEpicToWindow();
+            mapTasksToWindow();
+            mapOutlookToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -318,7 +332,8 @@ public class EpicDialogController implements Initializable {
                     targetIndex
             );
 
-            mapEpicToWindow();
+            mapTasksToWindow();
+            mapOutlookToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
@@ -349,7 +364,8 @@ public class EpicDialogController implements Initializable {
             
             manageTask.show(window());
             
-            mapEpicToWindow();
+            mapTasksToWindow();
+            mapOutlookToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
                     bundle,
@@ -410,6 +426,8 @@ public class EpicDialogController implements Initializable {
         
         if (totalPoints > 0 && pointsPerWeek > 0) {
             weeks = totalPoints / pointsPerWeek;
+        } else if (totalPoints > 0) {
+            weeks = 1;
         }
         
         return weeks;

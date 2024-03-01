@@ -15,14 +15,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.EpicDialogController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="582.0" prefWidth="639.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.EpicDialogController">
    <bottom>
       <BorderPane prefHeight="38.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
-            <Button fx:id="cancelEpicButton" mnemonicParsing="false" onAction="#handleCancelEpic" text="%actions.cancel" BorderPane.alignment="CENTER" />
+            <Button fx:id="cancelEpicButton" mnemonicParsing="false" onAction="#handleCancelEpic" prefWidth="100.0" text="%actions.cancel" BorderPane.alignment="CENTER" />
          </left>
          <right>
-            <Button fx:id="saveEpicButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSaveEpic" text="%actions.save" BorderPane.alignment="CENTER" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="234.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="saveEpicButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSaveEpic" prefWidth="100.0" text="%actions.save" />
+               </children>
+            </HBox>
          </right>
       </BorderPane>
    </bottom>

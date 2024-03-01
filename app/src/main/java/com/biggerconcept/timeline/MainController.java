@@ -9,6 +9,8 @@ import com.biggerconcept.timeline.platform.OperatingSystem;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.appengine.ui.dialogs.SaveFileDialog;
+import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;
+import com.biggerconcept.timeline.ui.tables.EpicsTable;
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.control.Button;
@@ -17,13 +19,17 @@ import javafx.scene.control.MenuItem;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -83,6 +89,12 @@ public class MainController implements Initializable {
      */
     @FXML
     public Label velocityPointsLabel;
+    
+    /**
+     * Used sprints label
+     */
+    @FXML
+    public Label usedSprintsLabel;
     
     /**
      * Total sprints label.
@@ -283,6 +295,13 @@ public class MainController implements Initializable {
                                     .getSprintLength()
                         );
         
+        usedSprintsLabel.setText(
+                String.valueOf(
+                        availableSprints - 
+                                currentDocument.calculateCommittedSprints()
+                )
+        );
+        
         totalSprintsLabel.setText(
                 String.valueOf(
                      availableSprints   
@@ -291,11 +310,7 @@ public class MainController implements Initializable {
         
         commitmentPointsLabel.setText(
                 String.valueOf(
-                        currentDocument.calculateCommittedPoints(
-                                currentDocument
-                                        .getPreferences()
-                                        .asProjectusPreferences()
-                        )
+                        currentDocument.calculateCommittedPoints()
                 )
         );
         
@@ -305,7 +320,6 @@ public class MainController implements Initializable {
         
         commitmentProgress.setProgress(
                 currentDocument.calculateCommitmentProgress(
-                        currentDocument.getPreferences().asProjectusPreferences(),
                         availablePoints
                 )
         );
@@ -321,14 +335,26 @@ public class MainController implements Initializable {
      * Maps shelf epics to window
      */
     private void mapShelfToWindow() {
+        EpicsTable epicsTable = new EpicsTable(
+                bundle,
+                currentDocument.getPreferences().asProjectusPreferences(),
+                currentDocument.getShelf()
+        );
         
+        epicsTable.bind(shelfTableView);
     }
     
     /**
      * Maps selected epics to window
      */
     private void mapEpicsToWindow() {
+        EpicsTable epicsTable = new EpicsTable(
+                bundle,
+                currentDocument.getPreferences().asProjectusPreferences(),
+                currentDocument.getEpics()
+        );
         
+        epicsTable.bind(epicTableView);
     }
     
     /**
@@ -366,24 +392,8 @@ public class MainController implements Initializable {
      * @return 
      */
     private void mapWindowToDocument() {
-        mapWindowToShelf();
-        mapWindowToEpics();
         mapWindowToJudgement();
         mapWindowToNotes();
-    }
-    
-    /**
-     * Maps shelf epics to document
-     */
-    private void mapWindowToShelf() {
-        
-    }
-    
-    /**
-     * Maps selected epics to document
-     */
-    private void mapWindowToEpics() {
-        
     }
     
     /**
@@ -458,39 +468,307 @@ public class MainController implements Initializable {
      */
     @FXML
     private void handleRemoveEpicFromShelf() {
-        
+        try {
+            ObservableList<Epic> items = shelfTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            ButtonType answer = YesNoPrompt.show(
+                    Alert.AlertType.CONFIRMATION,
+                    bundle.getString("project.dialogs.removeEpic.title"),
+                    bundle.getString("project.dialogs.removeEpic.description")
+            );
+            
+            if (answer == ButtonType.YES) {
+                for (Epic e : items) {
+                    currentDocument.removeFromShelf(e);
+                }
+            }
+            
+            mapDocumentToWindow();
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    /**
+     * Handles moving a shelf epic up
+     */
+    @FXML
+    private void handleMoveShelfEpicUp() {
+        try {
+            ObservableList<Epic> items = shelfTableView
+                        .getSelectionModel()
+                        .getSelectedItems();
+
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = shelfTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex - 1;
+            
+            if (targetIndex < 0) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentDocument.getShelf(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    /**
+     * Handles moving a shelf epic down
+     */
+    @FXML
+    private void handleMoveShelfEpicDown() {
+        try {
+            ObservableList<Epic> items = shelfTableView
+                        .getSelectionModel()
+                        .getSelectedItems();
+
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = shelfTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex + 1;
+            
+            if (targetIndex > shelfTableView.getItems().size() - 1) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentDocument.getShelf(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
     }
     
     /**
      * Handles editing a shelf epic
      */
     @FXML
-    private void handleEditEpicOnShelf() {
-        
+    private void handleEditShelfEpic() {
+        try {
+            ObservableList<Epic> items = shelfTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            openEpicDialog(
+                items.get(0),
+                currentDocument.getShelf(), 
+                false
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
+        }
     }
     
     /**
-     * Handles editing a selected epic
+     * Handles commitment to an epic
+     */
+    @FXML
+    private void handleCommitToEpic() {
+        try {
+            ObservableList<Epic> items = shelfTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+           for (Epic e : items) {
+               currentDocument.commitToEpic(e);
+           }
+            
+           mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles moving a shelf epic up
+     */
+    @FXML
+    private void handleMoveEpicUp() {
+        try {
+            ObservableList<Epic> items = epicTableView
+                        .getSelectionModel()
+                        .getSelectedItems();
+
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = epicTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex - 1;
+            
+            if (targetIndex < 0) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentDocument.getEpics(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    /**
+     * Handles moving a shelf epic down
+     */
+    @FXML
+    private void handleMoveEpicDown() {
+        try {
+            ObservableList<Epic> items = epicTableView
+                        .getSelectionModel()
+                        .getSelectedItems();
+
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = epicTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            int targetIndex = selectedIndex + 1;
+            
+            if (targetIndex > epicTableView.getItems().size() - 1) {
+                throw new NoChoiceMadeException();
+            }
+            
+            Collections.swap(
+                    currentDocument.getEpics(),
+                    selectedIndex,
+                    targetIndex
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    /**
+     * Handles editing a shelf epic
      */
     @FXML
     private void handleEditEpic() {
-        
+        try {
+            ObservableList<Epic> items = epicTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            openEpicDialog(
+                items.get(0),
+                currentDocument.getEpics(), 
+                false
+            );
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
+        }
     }
     
     /**
-     * Handles moving epic from shelf to commitment
+     * Handles un commitment to an epic
      */
     @FXML
-    private void handleMoveEpicFromShelf() {
-        
-    }
-    
-    /**
-     * Handles moving epic from commitment to shelf
-     */
-    @FXML
-    private void handleMoveEpicToShelf() {
-        
+    private void handleUnCommit() {
+        try {
+            ObservableList<Epic> items = epicTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+           for (Epic e : items) {
+               currentDocument.unCommitToEpic(e);
+           }
+            
+           mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
+        }
     }
     
     /**
