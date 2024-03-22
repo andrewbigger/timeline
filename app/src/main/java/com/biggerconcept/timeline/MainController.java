@@ -11,7 +11,8 @@ import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.appengine.ui.dialogs.SaveFileDialog;
 import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;
 import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
-import com.biggerconcept.timeline.ui.tables.EpicsTable;
+import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
+import com.biggerconcept.timeline.ui.tables.ShelfEpicsTable;
 import com.biggerconcept.timeline.ui.tables.TimelineTable;
 import java.io.File;
 import java.io.IOException;
@@ -243,7 +244,7 @@ public class MainController implements Initializable {
      * @return title for window
      */
     private String buildWindowTitle() {
-        String title = currentDocument.getTitle();
+        String title = currentDocument.title();
         
         if (title == null || title.trim() == "") {
             title = bundle.getString("application.name");
@@ -380,7 +381,7 @@ public class MainController implements Initializable {
      * Maps shelf epics to window
      */
     private void mapShelfToWindow() {
-        EpicsTable epicsTable = new EpicsTable(
+        ShelfEpicsTable epicsTable = new ShelfEpicsTable(
                 bundle,
                 currentDocument.getPreferences().asProjectusPreferences(),
                 currentDocument.getShelf()
@@ -393,7 +394,7 @@ public class MainController implements Initializable {
      * Maps selected epics to window
      */
     private void mapEpicsToWindow() {
-        EpicsTable epicsTable = new EpicsTable(
+        EpicsTimelineTable epicsTable = new EpicsTimelineTable(
                 bundle,
                 currentDocument.getPreferences().asProjectusPreferences(),
                 currentDocument.getEpics()

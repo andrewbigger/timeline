@@ -105,19 +105,7 @@ public class Document {
     public File getFile() {
         return file;
     }
-    
-    /**
-     * Getter for file name.
-     * 
-     * @return project title
-     */
-    public String getTitle() {
-        if (file == null) {
-            return "";
-        }
 
-        return file.getName();
-    }
     
     /**
      * Getter for preferences.
@@ -271,6 +259,20 @@ public class Document {
      */
     public void setNotes(String value) {
         notes = value;
+    }
+
+    /**
+     * Returns document title which is the file name if it's saved
+     * empty string if it is not.
+     * 
+     * @return project title
+     */
+    public String title() {
+        if (file == null) {
+            return "";
+        }
+
+        return file.getName();
     }
     
     /**

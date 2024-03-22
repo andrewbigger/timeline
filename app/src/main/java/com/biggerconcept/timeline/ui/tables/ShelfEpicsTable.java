@@ -18,7 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * 
  * @author Andrew Bigger
  */
-public class EpicsTable {
+public class ShelfEpicsTable {
     /**
      * Sortable constant.
      * 
@@ -59,7 +59,7 @@ public class EpicsTable {
      * @param preferences document documentPreferences
      * @param epics epic list
      */
-    public EpicsTable(
+    public ShelfEpicsTable(
             ResourceBundle rb, 
             Preferences preferences, 
             ArrayList<Epic> epics
