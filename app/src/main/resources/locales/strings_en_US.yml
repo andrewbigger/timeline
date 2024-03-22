@@ -480,4 +480,14 @@ parts:
     title: "Description for epic chooser dialog"
     value: "Choose an epic from the epics below"
     variants: {}
+- translation:
+    key: "preferences.estimates.startDate.title"
+    title: "Title for start date picker"
+    value: "Start Date"
+    variants: {}
+- translation:
+    key: "preferences.estimates.startDate.description"
+    title: "Description for start date"
+    value: "Please choose a start date for the timeline"
+    variants: {}
 sourceLanguage: "en"

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -30,63 +31,28 @@
    <center>
       <TabPane fx:id="preferenceTabs" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-            <Tab fx:id="generalPreferenceTab" text="%preferences.tasks.title">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <Label fx:id="exammpleSettingLabel" text="%preferences.tasks.sizing.title">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="5.0" />
-                                 </padding>
-                              </Label>
-                              <Label fx:id="exampleSettingDescriptionLabel" text="%preferences.tasks.sizing.description">
-                                 <padding>
-                                    <Insets bottom="5.0" />
-                                 </padding>
-                              </Label>
-                              <GridPane>
-                                 <columnConstraints>
-                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="61.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="519.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Label text="%preferences.tasks.sizing.xs" />
-                                    <Label text="%preferences.tasks.sizing.s" GridPane.rowIndex="1" />
-                                    <Label text="%preferences.tasks.sizing.m" GridPane.rowIndex="2" />
-                                    <Label text="%preferences.tasks.sizing.l" GridPane.rowIndex="3" />
-                                    <Label text="%preferences.tasks.sizing.xl" GridPane.rowIndex="4" />
-                                    <TextField fx:id="extraSmallSizeTextField" GridPane.columnIndex="1" />
-                                    <TextField fx:id="smallSizeTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="mediumSizeTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="largeSizeTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="extraLargeSizeTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                 </children>
-                              </GridPane>
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                     </center>
-                  </BorderPane>
-               </content>
-            </Tab>
             <Tab text="%preferences.estimates.title">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
+                        <Label text="%preferences.estimates.startDate.title">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                        </Label>
+                        <Label text="%preferences.estimates.startDate.description">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <DatePicker fx:id="startDatePicker">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </DatePicker>
                         <Label text="%preferences.estimates.referenceSprints.title">
                            <font>
                               <Font size="14.0" />
@@ -203,6 +169,59 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
+               </content>
+            </Tab>
+            <Tab fx:id="generalPreferenceTab" text="%preferences.tasks.title">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <Label fx:id="exammpleSettingLabel" text="%preferences.tasks.sizing.title">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="exampleSettingDescriptionLabel" text="%preferences.tasks.sizing.description">
+                                 <padding>
+                                    <Insets bottom="5.0" />
+                                 </padding>
+                              </Label>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="61.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="519.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <Label text="%preferences.tasks.sizing.xs" />
+                                    <Label text="%preferences.tasks.sizing.s" GridPane.rowIndex="1" />
+                                    <Label text="%preferences.tasks.sizing.m" GridPane.rowIndex="2" />
+                                    <Label text="%preferences.tasks.sizing.l" GridPane.rowIndex="3" />
+                                    <Label text="%preferences.tasks.sizing.xl" GridPane.rowIndex="4" />
+                                    <TextField fx:id="extraSmallSizeTextField" GridPane.columnIndex="1" />
+                                    <TextField fx:id="smallSizeTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="mediumSizeTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="largeSizeTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="extraLargeSizeTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </center>
+                  </BorderPane>
                </content>
             </Tab>
             <Tab text="%preferences.sprint.title">

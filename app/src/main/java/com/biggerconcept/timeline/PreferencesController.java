@@ -3,12 +3,14 @@ package com.biggerconcept.timeline;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.appengine.ui.helpers.Date;
 import com.biggerconcept.projectus.domain.Sprint;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
@@ -105,6 +107,12 @@ public class PreferencesController implements Initializable {
      */
     @FXML
     public TextField extraLargeSizeTextField;
+    
+    /**
+     * Start date picker field.
+     */
+    @FXML
+    public DatePicker startDatePicker;
     
     /**
      * Reference sprint 1 name text field
@@ -221,6 +229,8 @@ public class PreferencesController implements Initializable {
      * Maps estimate preferences to window
      */
     private void mapEstimatePreferencesToWindow() {
+        startDatePicker.setValue(Date.fromEpoch(currentPreferences.getStart()));
+        
         refSprintOneNameTextField.setText(
                 currentPreferences.getRefSprintOne().getName()
         );
@@ -302,6 +312,10 @@ public class PreferencesController implements Initializable {
      * Maps window to estimate preferences
      */
     private void mapWindowToEstimatePreferences() {
+        currentPreferences.setStart(
+                Date.toEpoch(startDatePicker.getValue())
+        );
+        
         currentPreferences.setRefSprintOne(
                 new Sprint(
                         refSprintOneNameTextField.getText(),

@@ -1,9 +1,11 @@
 package com.biggerconcept.timeline.domain;
 
+import com.biggerconcept.appengine.ui.helpers.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.biggerconcept.projectus.domain.Sprint;
 import com.biggerconcept.projectus.domain.Size;
+import java.time.LocalDate;
 
 /**
  * Application preferences.
@@ -65,6 +67,12 @@ public class Preferences {
      */
     @JsonInclude(Include.NON_NULL)
     private int extraLargeTaskSize;
+    
+    /**
+     * Start date
+     */
+    @JsonInclude(Include.NON_NULL)
+    private long start;
     
      /**
      * Reference sprint one
@@ -187,6 +195,19 @@ public class Preferences {
      */
     public int getExtraLargeTaskSize() {
         return extraLargeTaskSize;
+    }
+    
+    /**
+     * Getter for start date as epoch days.
+     * 
+     * @return project start date
+     */
+    public long getStart() {
+        if (start == 0) {
+            start = Date.toEpoch(LocalDate.now());
+        }
+        
+        return start;
     }
     
     /**
@@ -358,6 +379,15 @@ public class Preferences {
      */
     public void setExtraLargeSize(int value) {
         extraLargeTaskSize = value;
+    }
+    
+    /**
+     * Seter for start date.
+     * 
+     * @param value date to set as start date
+     */
+    public void setStart(long value) {
+        start = value;
     }
     
     /**

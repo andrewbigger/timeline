@@ -130,9 +130,9 @@
       </BorderPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.19653824678950307, 0.367392518146287, 0.830820770519263" prefHeight="708.0" prefWidth="244.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.16359575656058067, 0.7632607481853713" prefHeight="708.0" prefWidth="244.0" BorderPane.alignment="CENTER">
          <items>
-            <BorderPane maxWidth="800.0" minWidth="200.0" prefHeight="200.0" prefWidth="300.0">
+            <BorderPane maxWidth="450.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0">
                <top>
                   <BorderPane prefHeight="0.0" BorderPane.alignment="CENTER">
                      <center>
@@ -202,7 +202,7 @@
                   <TableView fx:id="shelfTableView" prefHeight="666.0" prefWidth="410.0" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
-            <BorderPane maxWidth="800.0" minWidth="300.0" prefHeight="200.0" prefWidth="200.0">
+            <BorderPane minWidth="250.0" prefHeight="200.0" prefWidth="250.0">
                <top>
                   <BorderPane prefHeight="8.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                      <center>
@@ -251,7 +251,6 @@
                   <TableView fx:id="epicTableView" prefHeight="666.0" prefWidth="410.0" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" />
             <BorderPane maxWidth="800.0" minWidth="300.0" prefHeight="200.0" prefWidth="200.0">
                <top>
                   <VBox minWidth="252.0" prefHeight="240.0" prefWidth="284.0" BorderPane.alignment="CENTER">
