@@ -126,7 +126,9 @@ public class Year {
            return 0;
        }
        
-       return calculateWeeks() / sprintLength;
+       int total = calculateWeeks() / sprintLength;
+       
+       return (total / 4) * 4;
    }
    
    /**

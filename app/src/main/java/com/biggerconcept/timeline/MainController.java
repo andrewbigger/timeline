@@ -10,7 +10,9 @@ import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.appengine.ui.dialogs.SaveFileDialog;
 import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;
+import com.biggerconcept.appengine.ui.helpers.Date;
 import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
+import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ShelfEpicsTable;
 import com.biggerconcept.timeline.ui.tables.TimelineTable;
@@ -394,10 +396,29 @@ public class MainController implements Initializable {
      * Maps selected epics to window
      */
     private void mapEpicsToWindow() {
+        int availableSprints = viewYear.calculateSprints(
+                                currentDocument
+                                    .getPreferences()
+                                    .getSprintLength()
+                        );
+        
+        Timeline tl = new Timeline(
+                viewYear,
+                currentDocument.getEpics(),
+                Date.fromEpoch(currentDocument.getPreferences().getStart()),
+                currentDocument.getPreferences(),
+                availableSprints
+        );
+        
+        tl.calculate(currentDocument.getPreferences(), availableSprints);
+        
         EpicsTimelineTable epicsTable = new EpicsTimelineTable(
                 bundle,
                 currentDocument.getPreferences().asProjectusPreferences(),
-                currentDocument.getEpics()
+                tl.getEpics(),
+                viewYear.getFirstDay(),
+                availableSprints,
+                viewYear
         );
         
         epicsTable.bind(epicTableView);

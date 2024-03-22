@@ -2,16 +2,19 @@ package com.biggerconcept.timeline.ui.tables;
 
 import com.biggerconcept.appengine.ui.tables.StandardTable;
 import com.biggerconcept.appengine.ui.tables.StandardTableColumn;
-import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Preferences;
+import com.biggerconcept.timeline.domain.Year;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import com.biggerconcept.timeline.ui.domain.TimelineEpic;
 
 /**
  * View model for epic timeline table.
@@ -50,7 +53,22 @@ public class EpicsTimelineTable {
     /**
      * List of currentEpics for the table.
      */
-    private final ArrayList<Epic> currentEpics;
+    private final ArrayList<TimelineEpic> currentEpics;
+    
+    /**
+     * Start date
+     */
+    private final LocalDate start;
+    
+    /**
+     * Total number of sprints
+     */
+    private final int numberOfSprints;
+    
+    /**
+     * View year
+     */
+    private final Year viewYear;
     
     /**
      * Constructor for currentEpics table view model.
@@ -58,15 +76,25 @@ public class EpicsTimelineTable {
      * @param rb application resource bundle
      * @param preferences document documentPreferences
      * @param epics epic list
+     * @param start start date
+     * @param sprints total number of sprints
+     * @param viewYear view year for table
      */
     public EpicsTimelineTable(
             ResourceBundle rb, 
             Preferences preferences, 
-            ArrayList<Epic> epics
+            ArrayList<TimelineEpic> epics,
+            LocalDate start,
+            int sprints,
+            Year viewYear
      ) {
         bundle = rb;
         documentPreferences = preferences;
         currentEpics = epics;
+        this.start = start;
+        numberOfSprints = sprints;
+        this.viewYear = viewYear;
+        
     }
     
     /**
@@ -82,15 +110,103 @@ public class EpicsTimelineTable {
      * @param view table view for currentEpics
      */
     public void bind(TableView view) {
+        List<TableColumn> cols = new ArrayList<>();
+        
+        cols.add(nameCol());
+        cols.add(estimateCol());
+            
+        for (TableColumn col : dateCols()) {
+            cols.add(col);
+        }
+        
         StandardTable.bind(
                 view,
                 bundle.getString("project.table.empty"),
                 FXCollections.observableArrayList(currentEpics),
-                Arrays.asList(
-                        nameCol(), 
-                        estimateCol()
-                )
+                cols
         );
+    }
+    
+    private List<TableColumn> dateCols() {
+        TableColumn<String, String> q1 = new TableColumn<>(
+                "Q1"
+        );
+        
+        q1.setSortable(false);
+        q1.setResizable(false);
+        
+        TableColumn<String, String> q2 = new TableColumn<>(
+                "Q2"
+        );
+        
+        q2.setSortable(false);
+        q2.setResizable(false);
+        
+        TableColumn<String, String> q3 = new TableColumn<>(
+                "Q3"
+        );
+        
+        q3.setSortable(false);
+        q3.setResizable(false);
+        
+        TableColumn<String, String> q4 = new TableColumn<>(
+                "Q4"
+        );
+        
+        q4.setSortable(false);
+        q4.setResizable(false);
+        
+        int sprintsPerQuarter = numberOfSprints / 4;
+        for (int i = 1; i < sprintsPerQuarter + 1; i++) {
+            q1.getColumns().add(sprintCol(1, i, sprintsPerQuarter));
+            q2.getColumns().add(sprintCol(2, i, sprintsPerQuarter));
+            q3.getColumns().add(sprintCol(3, i, sprintsPerQuarter));
+            q4.getColumns().add(sprintCol(4, i, sprintsPerQuarter));
+        }
+
+        return Arrays.asList(
+                q1,
+                q2,
+                q3,
+                q4
+        );
+    }
+    
+    private TableColumn sprintCol(int quarter, int number, int sprintsPerQuarter) {
+        int sprintNumber = number;
+        
+        if (quarter > 1) {
+            sprintNumber = number + ((quarter - 1) * sprintsPerQuarter);
+        }
+        
+        TableColumn<TimelineEpic, String> col = new TableColumn(
+                String.valueOf(sprintNumber)
+        );
+        
+        col.setSortable(false);
+        col.setResizable(false);
+        col.setMinWidth(30);
+        col.setMaxWidth(30);
+
+        col.setCellValueFactory(data -> {
+            String value = "";
+            
+            int columnNumber = number;
+            
+            if (quarter > 1) {
+                columnNumber = number + ((quarter - 1) * sprintsPerQuarter);
+            }
+            
+            if (data.getValue().hasSprint(viewYear, columnNumber)) {
+                value = "X";
+            }
+            
+            return new SimpleStringProperty(
+                    value
+            );
+        });
+        
+        return col;
     }
     
     /**
@@ -104,7 +220,7 @@ public class EpicsTimelineTable {
      * @return name column
      */
     private TableColumn nameCol() {
-        TableColumn<Epic, String> nameCol = new TableColumn<>(
+        TableColumn<TimelineEpic, String> nameCol = new TableColumn<>(
                 bundle.getString("project.table.name")
         );
         
@@ -123,7 +239,7 @@ public class EpicsTimelineTable {
      * @return estimate column
      */
     private TableColumn estimateCol() {
-        TableColumn<Epic, String> estimateCol = new TableColumn<>(
+        TableColumn<TimelineEpic, String> estimateCol = new TableColumn<>(
                 bundle.getString("project.table.estimate")
         );
         
@@ -131,7 +247,7 @@ public class EpicsTimelineTable {
         
         estimateCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
-                    String.valueOf(data.getValue().getSize(documentPreferences))
+                    String.valueOf(data.getValue().getEpic().getSize(documentPreferences))
             );
         });
         
