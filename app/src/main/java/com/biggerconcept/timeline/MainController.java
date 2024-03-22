@@ -10,7 +10,9 @@ import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.appengine.ui.dialogs.SaveFileDialog;
 import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;
+import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
 import com.biggerconcept.timeline.ui.tables.EpicsTable;
+import com.biggerconcept.timeline.ui.tables.TimelineTable;
 import java.io.File;
 import java.io.IOException;
 import javafx.scene.control.Button;
@@ -36,6 +38,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -156,11 +160,20 @@ public class MainController implements Initializable {
     @FXML
     public TableView shelfTableView;
     
+    @FXML
+    public TableView timelineTableView;
+    
     /**
      * Selected epics table view
      */
     @FXML
     public TableView epicTableView;
+    
+    /**
+     * Chart web view
+     */
+    @FXML
+    public WebView chartWebView;
     
     /**
      * Judgement combo box
@@ -248,7 +261,7 @@ public class MainController implements Initializable {
      * 
      * @return 
      */
-    private Stage mainStage() {
+    private Stage window() {
         Stage stage = (Stage) newFileButton.getScene().getWindow();
         return stage;
     }
@@ -355,6 +368,19 @@ public class MainController implements Initializable {
         );
         
         epicsTable.bind(epicTableView);
+    }
+    
+    /**
+     * Maps chart to web view
+     */
+    private void mapChartToWindow() {
+        TimelineTable timeline = new TimelineTable(
+                bundle,
+                currentDocument.getPreferences(),
+                viewYear
+        );
+        
+        timeline.bind(timelineTableView);
     }
     
     /**
@@ -798,6 +824,39 @@ public class MainController implements Initializable {
     }
     
     /**
+     * Handles import epic
+     */
+    @FXML
+    private void handleImportEpic() {
+        try {
+            File documentFile = OpenFileDialog.show(bundle.getString("dialogs.open.title"),
+                    window(),
+                    fileExtFilter
+            );
+            
+            com.biggerconcept.projectus.domain.Document doc = 
+                    com.biggerconcept.projectus.domain.Document.load(
+                            documentFile
+                    );
+            
+            EpicChooserDialog chooser = new EpicChooserDialog(
+                    bundle,
+                    doc.getEpics()
+            );
+            
+            Epic chosen = chooser.show(window());
+            
+            currentDocument.getShelf().add(chosen);
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+             ErrorAlert.show(bundle, bundle.getString("errors.generic"), e);
+        }
+    }
+    
+    /**
      * Creates a new document.
      * 
      * This will replace the currentDocument with a new one, having the effect
@@ -829,9 +888,8 @@ public class MainController implements Initializable {
     @FXML
     private void handleOpenDocument() {
         try {
-            File documentFile = OpenFileDialog.show(
-                    bundle.getString("dialogs.open.title"),
-                    mainStage(),
+            File documentFile = OpenFileDialog.show(bundle.getString("dialogs.open.title"),
+                    window(),
                     fileExtFilter
             );
 
@@ -856,9 +914,8 @@ public class MainController implements Initializable {
     private void handleSaveDocument() {
         try {
             if (currentDocument.getFile() == null) {
-                File f = SaveFileDialog.show(
-                        bundle.getString("dialogs.save.title"),
-                        mainStage(),
+                File f = SaveFileDialog.show(bundle.getString("dialogs.save.title"),
+                        window(),
                         fileExtFilter
                 );
 

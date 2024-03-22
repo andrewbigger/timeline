@@ -460,4 +460,24 @@ parts:
     value: "Are you sure you want to remove this epic from the shelf? This cannot\
       \ be undone."
     variants: {}
+- translation:
+    key: "dialogs.epicChooser.actions.choose"
+    title: "Label for epic chooser choose button"
+    value: "Choose"
+    variants: {}
+- translation:
+    key: "dialogs.epicChooser.actions.cancel"
+    title: "Label for epic chooser cancel button"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "dialogs.epicChooser.title"
+    title: "Title for epic chooser dialog"
+    value: "Choose Epic"
+    variants: {}
+- translation:
+    key: "dialogs.epicChooser.description"
+    title: "Description for epic chooser dialog"
+    value: "Choose an epic from the epics below"
+    variants: {}
 sourceLanguage: "en"

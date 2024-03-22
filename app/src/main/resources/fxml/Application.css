@@ -53,6 +53,10 @@
   -fx-background-image: url('../icons/CrossIcon16x16.png')
 }
 
+.importButton {
+  -fx-background-image: url('../icons/ImportIcon.png')
+}
+
 #openFileButton {
   -fx-background-image:url('../icons/OpenFileIcon.png');
   -fx-background-position: center center;
