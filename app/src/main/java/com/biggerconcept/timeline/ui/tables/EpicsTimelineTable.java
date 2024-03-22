@@ -15,6 +15,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.biggerconcept.timeline.ui.domain.TimelineEpic;
+import javafx.scene.control.TableCell;
 
 /**
  * View model for epic timeline table.
@@ -187,7 +188,8 @@ public class EpicsTimelineTable {
         col.setResizable(false);
         col.setMinWidth(30);
         col.setMaxWidth(30);
-
+        col.setStyle("-fx-alignment: CENTER;");
+        
         col.setCellValueFactory(data -> {
             String value = "";
             
@@ -198,7 +200,7 @@ public class EpicsTimelineTable {
             }
             
             if (data.getValue().hasSprint(viewYear, columnNumber)) {
-                value = "X";
+                value = "■";
             }
             
             return new SimpleStringProperty(

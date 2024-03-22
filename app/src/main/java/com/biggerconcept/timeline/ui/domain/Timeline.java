@@ -60,7 +60,13 @@ public class Timeline {
             
             te.calculateSprints(sprints, s.getYear(), s.getNumber(), maxSprints);
             
-            s = te.nextSprint(maxSprints);
+            int remainder = points % pointsPerSprint;
+            
+            if (remainder > (pointsPerSprint / 2)) {
+                s = te.nextSprint(maxSprints);
+            } else {
+                s = te.getLastSprint();
+            }
         }
     }
 }
