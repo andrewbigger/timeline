@@ -38,7 +38,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -237,6 +236,32 @@ public class MainController implements Initializable {
         applyTooltips();
         mapDocumentToWindow();
     }
+    
+    /**
+     * Assembles window title
+     * 
+     * @return title for window
+     */
+    private String buildWindowTitle() {
+        String title = currentDocument.getTitle();
+        
+        if (title == null || title.trim() == "") {
+            title = bundle.getString("application.name");
+        }
+        
+        return title + " - " + bundle.getString("application.name");
+    }
+    
+    /**
+     * Sets window title on main stage
+     */
+    private void setWindowTitle() {
+        Stage window = window();
+        
+        if (window != null) {
+            window.setTitle(buildWindowTitle());
+        }
+    }
 
     /**
      * Creates and adds tool tips to UI controls.
@@ -262,8 +287,14 @@ public class MainController implements Initializable {
      * @return 
      */
     private Stage window() {
-        Stage stage = (Stage) newFileButton.getScene().getWindow();
-        return stage;
+        Scene scene = (Scene) newFileButton.getScene();
+        
+        if (scene != null) {
+            Stage stage = (Stage) scene.getWindow();
+            return stage;
+        }
+        
+        return null;
     }
     
     /**
@@ -274,6 +305,7 @@ public class MainController implements Initializable {
     public void mapDocumentToWindow() {
         currentDocument.rebuildIdentifiers();
         
+        setWindowTitle();
         applyPreferencesToWindow();
         mapYearToWindow();
         mapOutlookToWindow();

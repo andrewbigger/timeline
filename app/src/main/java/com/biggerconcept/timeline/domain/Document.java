@@ -107,6 +107,19 @@ public class Document {
     }
     
     /**
+     * Getter for file name.
+     * 
+     * @return project title
+     */
+    public String getTitle() {
+        if (file == null) {
+            return "";
+        }
+
+        return file.getName();
+    }
+    
+    /**
      * Getter for preferences.
      * 
      * @return document preferences.
