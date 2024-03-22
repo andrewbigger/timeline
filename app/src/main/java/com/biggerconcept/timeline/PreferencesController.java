@@ -39,8 +39,8 @@ public class PreferencesController implements Initializable {
     /**
      * Initializer for the preference window
      * 
-     * @param url
-     * @param rb
+     * @param url preference fxml
+     * @param rb application resource bundle
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -70,7 +70,7 @@ public class PreferencesController implements Initializable {
     /**
      * Sets document pointer for the preference window.
      * 
-     * @param doc 
+     * @param doc current document
      */
     public void setDocument(Document doc) {
         this.currentDocument = doc;

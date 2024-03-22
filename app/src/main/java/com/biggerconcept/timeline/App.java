@@ -35,8 +35,8 @@ public class App extends Application {
      * 
      * Then the stage will be shown.
      * 
-     * @param stage
-     * @throws IOException 
+     * @param stage main window
+     * @throws IOException when unable to load fxml
      */
     @Override
     public void start(Stage stage) throws IOException {

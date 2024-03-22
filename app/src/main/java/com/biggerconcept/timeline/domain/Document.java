@@ -67,9 +67,9 @@ public class Document {
      * 
      * The deserialized Locale will then be returned to the caller.
      * 
-     * @param f
-     * @return 
-     * @throws IOException
+     * @param f file to load
+     * @return loaded document
+     * @throws IOException when unable to read document
      */
     public static Document load(File f) throws IOException {
         ObjectMapper oMap = new ObjectMapper();
@@ -86,7 +86,7 @@ public class Document {
     /**
      * Saves document to disk.
      * 
-     * @throws IOException 
+     * @throws IOException when unable to save document
      */
     public void save() throws IOException {       
         ObjectMapper oMap = new ObjectMapper();
@@ -100,7 +100,7 @@ public class Document {
     /**
      * Getter for file.
      * 
-     * @return 
+     * @return pointer to on disk file
      */
     public File getFile() {
         return file;
@@ -355,7 +355,6 @@ public class Document {
      * Expresses committed points as a proportion of given number
      * of available points.
      * 
-     * @param prefs projectus preferences
      * @param availablePoints total number of available points
      * @return progress of committed points
      */

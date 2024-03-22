@@ -5,7 +5,7 @@ import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
 import com.biggerconcept.timeline.domain.Year;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
-import com.biggerconcept.timeline.platform.OperatingSystem;
+import com.biggerconcept.appengine.platform.OperatingSystem;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.appengine.ui.dialogs.SaveFileDialog;
@@ -217,8 +217,8 @@ public class MainController implements Initializable {
     /**
      * Initializes the main window.
      * 
-     * @param url
-     * @param rb 
+     * @param url main window fxml
+     * @param rb application resource bundle
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -302,8 +302,6 @@ public class MainController implements Initializable {
     
     /**
      * Maps given document to window.
-     * 
-     * @param doc 
      */
     public void mapDocumentToWindow() {
         currentDocument.rebuildIdentifiers();

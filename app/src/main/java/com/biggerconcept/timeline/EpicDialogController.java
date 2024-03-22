@@ -63,8 +63,8 @@ public class EpicDialogController implements Initializable {
     /**
      * Initializer for the dialog window
      * 
-     * @param url
-     * @param rb
+     * @param url url for dialog window
+     * @param rb application resource bundle
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {

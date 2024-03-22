@@ -131,7 +131,7 @@ public class Preferences {
     /**
      * Builds a set of default preferences.
      * 
-     * @return 
+     * @return default preferences
      */
     public static Preferences defaultPreferences() {
         Preferences p = new Preferences();
