@@ -6,8 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 /**
  * Timeline application
@@ -26,6 +28,14 @@ public class App extends Application {
      * Application help and support website.
      */
     public static final String HELP_URL = "https://docs.biggerconcept.com";
+    
+    /**
+     * File extension filter
+     */
+    public static final ExtensionFilter EXTENSION_FILTER = new ExtensionFilter(
+            "JSON File",
+             Arrays.asList("json")
+    );
     
     /**
      * Starts Timeline

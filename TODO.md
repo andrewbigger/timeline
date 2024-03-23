@@ -9,3 +9,6 @@
 - [] Style cells
 - [] Add menu to story manager
 - [] Add menu to risk manager
+- [] Export to Projectus
+- [] Feature summaries
+- [] Milestone support
