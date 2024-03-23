@@ -2,20 +2,15 @@ package com.biggerconcept.timeline;
 
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
-import com.biggerconcept.appengine.platform.OperatingSystem;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.helpers.Date;
 import com.biggerconcept.timeline.actions.Action;
 import com.biggerconcept.timeline.actions.document.CreateDocument;
-import com.biggerconcept.timeline.actions.epic.EditEpic;
-import com.biggerconcept.timeline.actions.epic.EpicUnCommit;
-import com.biggerconcept.timeline.actions.application.ExitApplication;
-import com.biggerconcept.timeline.actions.epic.ImportEpic;
 import com.biggerconcept.timeline.actions.document.OpenDocument;
 import com.biggerconcept.timeline.actions.document.SaveDocument;
-import com.biggerconcept.timeline.actions.application.OpenAboutDialog;
-import com.biggerconcept.timeline.actions.application.OpenHelpPage;
-import com.biggerconcept.timeline.actions.application.OpenPreferences;
+import com.biggerconcept.timeline.actions.epic.EditEpic;
+import com.biggerconcept.timeline.actions.epic.EpicUnCommit;
+import com.biggerconcept.timeline.actions.epic.ImportEpic;
 import com.biggerconcept.timeline.actions.document.ViewNextYear;
 import com.biggerconcept.timeline.actions.document.ViewPreviousYear;
 import com.biggerconcept.timeline.actions.epic.AddEpic;
@@ -30,8 +25,6 @@ import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ShelfEpicsTable;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -43,7 +36,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
-import javafx.scene.web.WebView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -57,17 +50,8 @@ public class MainController implements Initializable {
      */
     private State state;
     
-    /**
-     * Application menu.
-     */
     @FXML
-    public MenuBar mainMenu;
-    
-    /**
-     * Application exit menu item.
-     */
-    @FXML
-    public MenuItem quitMenuItem;
+    public BorderPane toolbarBorderPane;
     
     /**
      * View year label
@@ -160,12 +144,6 @@ public class MainController implements Initializable {
     public TableView epicTableView;
     
     /**
-     * Chart web view
-     */
-    @FXML
-    public WebView chartWebView;
-    
-    /**
      * Judgement combo box
      */
     @FXML
@@ -212,11 +190,8 @@ public class MainController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         state = new State(this, rb);
 
-        if (OperatingSystem.isMac()) {
-            mainMenu.useSystemMenuBarProperty().set(true);
-            quitMenuItem.visibleProperty().set(false);
-        }
-
+        MenuController.loadMenu(this, state, window(), toolbarBorderPane);
+        
         applyTooltips();
         mapDocumentToWindow();
     }
@@ -692,25 +667,7 @@ public class MainController implements Initializable {
              );
         }
     }
-    
-    /**
-     * Creates a new document.
-     * 
-     * This will replace the currentDocument with a new one, having the effect
-     * of creating a new locale file.
-     */
-    @FXML
-    private void handleCreateNewDocument() {
-        try {
-            perform(CreateDocument.class);
-        } catch (Exception e) {
-            ErrorAlert.show(
-                    state.bundle(),
-                    state.bundle().getString("errors.new"),
-                    e
-            );
-        }
-    }
+
     
     /**
      * Opens a document.
@@ -764,71 +721,19 @@ public class MainController implements Initializable {
     }
     
     /**
-     * Shows preference dialog.The contents of the dialog are loaded from the 
-     * pane FXML.
+     * Creates a new document.
      * 
-     * A call to setup dialog ensures that the dialog is configured 
-     * appropriately before it is shown.
-     * 
+     * This will replace the currentDocument with a new one, having the effect
+     * of creating a new locale file.
      */
     @FXML
-    private void handleOpenPreferencesDialog() {
+    private void handleCreateNewDocument() {
         try {
-            perform(OpenPreferences.class);
+            perform(CreateDocument.class);
         } catch (Exception e) {
             ErrorAlert.show(
                     state.bundle(),
-                    state.bundle().getString("errors.generic"),
-                    e
-            );
-        }
-    }
-    
-    /**
-     * Opens about application dialog box.
-     */
-    @FXML
-    private void handleOpenAboutDialog() {
-        try {
-            perform(OpenAboutDialog.class);
-        } catch (Exception e) {
-            ErrorAlert.show(
-                    state.bundle(),
-                    state.bundle().getString("errors.generic"),
-                    e
-            );
-        }
-    }
-    
-    /**
-     * Opens help website in default browser.
-     */
-    @FXML
-    private void handleViewHelp() {
-        try {
-            perform(OpenHelpPage.class);
-        } catch (Exception e) {
-            ErrorAlert.show(
-                    state.bundle(),
-                    state.bundle().getString("errors.generic"),
-                    e
-            );
-        }
-    }
-    
-    /**
-     * Exits application.
-     * 
-     * @param event
-     */
-    @FXML
-    private void handleApplicationExit() {
-        try {
-            perform(ExitApplication.class);
-        } catch (Exception e) {
-            ErrorAlert.show(
-                    state.bundle(),
-                    state.bundle().getString("errors.generic"),
+                    state.bundle().getString("errors.new"),
                     e
             );
         }

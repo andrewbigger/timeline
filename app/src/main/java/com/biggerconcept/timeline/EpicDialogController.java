@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -61,39 +62,10 @@ public class EpicDialogController implements Initializable {
     private boolean isNew;
     
     /**
-     * Initializer for the dialog window
-     * 
-     * @param url url for dialog window
-     * @param rb application resource bundle
+     * Epic dialog border pane
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        bundle = rb;
-    }
-
-    /**
-     * Sets document pointer for the dialog window.
-     * 
-     * @param doc open document
-     * @param epic open epic
-     * @param parent parent window
-     * @param targetSet target set on save
-     * @param isNew whether the epic should be added on save
-     */
-    public void setEpic(
-            Document doc,
-            Epic epic,
-            MainController parent,
-            ArrayList<Epic> targetSet,
-            boolean isNew
-    ) {
-        this.currentDocument = doc;
-        this.currentEpic = epic;
-        this.parent = parent;
-        this.targetSet = targetSet;
-        this.isNew = isNew;
-        mapEpicToWindow();
-    }
+    @FXML
+    public BorderPane epicEditorBorderPane;
     
     /**
      * Epic name field
@@ -130,6 +102,42 @@ public class EpicDialogController implements Initializable {
      */
     @FXML
     public Label outlookLabel;
+    
+    /**
+     * Initializer for the dialog window
+     * 
+     * @param url url for dialog window
+     * @param rb application resource bundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        bundle = rb;
+        MenuController.loadMenu(this, rb, epicEditorBorderPane);
+    }
+
+    /**
+     * Sets document pointer for the dialog window.
+     * 
+     * @param doc open document
+     * @param epic open epic
+     * @param parent parent window
+     * @param targetSet target set on save
+     * @param isNew whether the epic should be added on save
+     */
+    public void setEpic(
+            Document doc,
+            Epic epic,
+            MainController parent,
+            ArrayList<Epic> targetSet,
+            boolean isNew
+    ) {
+        this.currentDocument = doc;
+        this.currentEpic = epic;
+        this.parent = parent;
+        this.targetSet = targetSet;
+        this.isNew = isNew;
+        mapEpicToWindow();
+    }
     
     /**
      * Returns the preference window stage.

@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -37,46 +38,10 @@ public class PreferencesController implements Initializable {
     private Preferences currentPreferences;
     
     /**
-     * Initializer for the preference window
-     * 
-     * @param url preference fxml
-     * @param rb application resource bundle
+     * Preferences border pane
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        bundle = rb;
-
-        applyTooltips();
-    }
-    
-    /**
-     * Applies tool tips to the controls of the preferences window.
-     */
-    private void applyTooltips() {
-        cancelPreferencesButton.setTooltip(
-            new Tooltip(bundle.getString(
-                    "dialogs.preferences.actions.cancel.tooltip"
-                )
-            )
-        );
-        savePreferencesButton.setTooltip(
-            new Tooltip(bundle.getString(
-                    "dialogs.preferences.actions.save.tooltip"
-                )
-            )
-        );
-    }
-    
-    /**
-     * Sets document pointer for the preference window.
-     * 
-     * @param doc current document
-     */
-    public void setDocument(Document doc) {
-        this.currentDocument = doc;
-        this.currentPreferences = currentDocument.getPreferences();
-        mapPreferencesToWindow();
-    }
+    @FXML
+    public BorderPane preferencesBorderPane;
     
     /**
      * Extra small size text field.
@@ -179,6 +144,48 @@ public class PreferencesController implements Initializable {
      */
     @FXML
     public Button savePreferencesButton;
+    
+    /**
+     * Initializer for the preference window
+     * 
+     * @param url preference fxml
+     * @param rb application resource bundle
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        bundle = rb;
+        MenuController.loadMenu(this, rb, preferencesBorderPane);
+        applyTooltips();
+    }
+    
+    /**
+     * Applies tool tips to the controls of the preferences window.
+     */
+    private void applyTooltips() {
+        cancelPreferencesButton.setTooltip(
+            new Tooltip(bundle.getString(
+                    "dialogs.preferences.actions.cancel.tooltip"
+                )
+            )
+        );
+        savePreferencesButton.setTooltip(
+            new Tooltip(bundle.getString(
+                    "dialogs.preferences.actions.save.tooltip"
+                )
+            )
+        );
+    }
+    
+    /**
+     * Sets document pointer for the preference window.
+     * 
+     * @param doc current document
+     */
+    public void setDocument(Document doc) {
+        this.currentDocument = doc;
+        this.currentPreferences = currentDocument.getPreferences();
+        mapPreferencesToWindow();
+    }
     
     /**
      * Returns the preference window stage.
