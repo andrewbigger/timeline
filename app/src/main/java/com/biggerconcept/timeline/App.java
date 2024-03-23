@@ -72,7 +72,7 @@ public class App extends Application {
      * 
      * Launches Timeline FX application
      * 
-     * @param args 
+     * @param args start args
      */
     public static void main(String[] args) {
         launch();

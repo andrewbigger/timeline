@@ -413,8 +413,6 @@ public class MainController implements Initializable {
     
     /**
      * Maps window content to new document object for serialization.
-     * 
-     * @return 
      */
     public void mapWindowToDocument() {
         mapWindowToJudgement();
