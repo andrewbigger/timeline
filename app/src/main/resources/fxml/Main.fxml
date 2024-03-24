@@ -156,8 +156,15 @@
                         </ToolBar>
                      </center>
                      <right>
-                        <ToolBar prefHeight="35.0" prefWidth="39.0" BorderPane.alignment="CENTER">
+                        <ToolBar prefHeight="35.0" prefWidth="68.0" BorderPane.alignment="CENTER">
                            <items>
+                              <Button fx:id="exportToProjectusButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleExportEpic" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="projectusButton" />
+                                 </styleClass>
+                              </Button>
                               <Button fx:id="unCommitToEpicButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleUnCommit" prefWidth="25.0">
                                  <styleClass>
                                     <String fx:value="iconButton" />

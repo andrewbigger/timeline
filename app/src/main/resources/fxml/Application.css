@@ -42,7 +42,7 @@
 }
 
 .moveButton {
-  -fx-background-image: url('../icons/MoveIcon.png')
+  -fx-background-image: url('../icons/MoveIcon.png');
 }
 
 .tickButton {
@@ -54,7 +54,11 @@
 }
 
 .importButton {
-  -fx-background-image: url('../icons/ImportIcon.png')
+  -fx-background-image: url('../icons/ImportIcon.png');
+}
+
+.projectusButton {
+  -fx-background-image: url('../icons/projectusIcon.png');
 }
 
 #openFileButton {

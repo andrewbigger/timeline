@@ -16,6 +16,7 @@ import com.biggerconcept.timeline.actions.document.ViewPreviousYear;
 import com.biggerconcept.timeline.actions.epic.AddEpic;
 import com.biggerconcept.timeline.actions.epic.EditShelfEpic;
 import com.biggerconcept.timeline.actions.epic.EpicCommit;
+import com.biggerconcept.timeline.actions.epic.ExportEpic;
 import com.biggerconcept.timeline.actions.epic.MoveEpicDown;
 import com.biggerconcept.timeline.actions.epic.MoveEpicUp;
 import com.biggerconcept.timeline.actions.epic.MoveShelfEpicDown;
@@ -672,8 +673,25 @@ public class MainController implements Initializable {
              );
         }
     }
-
     
+    /**
+     * Handles export epic
+     */
+    @FXML
+    private void handleExportEpic() {
+        try {
+            perform(ExportEpic.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+             ErrorAlert.show(
+                     state.bundle(),
+                     state.bundle().getString("errors.generic"),
+                     e
+             );
+        }
+    }
+
     /**
      * Opens a document.
      * 
