@@ -360,6 +360,12 @@ public class MainController implements Initializable {
                                     .getSprintLength()
                         );
         
+        int selected = state
+                .mainController()
+                .epicTableView
+                .getSelectionModel()
+                .getSelectedIndex();
+        
         Timeline tl = new Timeline(
                 state.getViewYear(),
                 state.getOpenDocument().getEpics(),
@@ -380,6 +386,7 @@ public class MainController implements Initializable {
         );
         
         epicsTable.bind(epicTableView);
+        epicTableView.getSelectionModel().select(selected);
     }
     
     /**

@@ -45,5 +45,7 @@ public class MoveEpicDown implements Action {
         );
 
         state.mapDocumentToWindow();
+        
+        state.mainController().epicTableView.getSelectionModel().select(targetIndex);
     }
 }

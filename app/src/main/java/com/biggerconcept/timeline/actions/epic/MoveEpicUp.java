@@ -41,5 +41,7 @@ public class MoveEpicUp implements Action {
         );
 
         state.mapDocumentToWindow();
+        
+        state.mainController().epicTableView.getSelectionModel().select(targetIndex);
     }
 }
