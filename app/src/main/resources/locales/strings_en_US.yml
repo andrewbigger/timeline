@@ -490,4 +490,89 @@ parts:
     title: "Description for start date"
     value: "Please choose a start date for the timeline"
     variants: {}
+- translation:
+    key: "menu.shelf.label"
+    title: "Title for shelf menu"
+    value: "Shelf"
+    variants: {}
+- translation:
+    key: "menu.shelf.add"
+    title: "Add shelf epic menu"
+    value: "Add New Epic"
+    variants: {}
+- translation:
+    key: "menu.shelf.remove"
+    title: "Label for remove epic"
+    value: "Remove Epic"
+    variants: {}
+- translation:
+    key: "menu.shelf.edit"
+    title: "Label for edit epic menu item"
+    value: "Edit Epic"
+    variants: {}
+- translation:
+    key: "menu.shelf.moveUp"
+    title: "Label for move up menu item"
+    value: "Move Up"
+    variants: {}
+- translation:
+    key: "menu.shelf.moveDown"
+    title: "Label for move selected epic down"
+    value: "Move Down"
+    variants: {}
+- translation:
+    key: "menu.shelf.import"
+    title: "Label for import epic menu item"
+    value: "Import Epic"
+    variants: {}
+- translation:
+    key: "menu.shelf.commit"
+    title: "Label for commit to epic"
+    value: "Commit"
+    variants: {}
+- translation:
+    key: "menu.view.label"
+    title: "Label for view menu"
+    value: "View"
+    variants: {}
+- translation:
+    key: "menu.view.nextYear"
+    title: "Label for next year menu item"
+    value: "Next Year"
+    variants: {}
+- translation:
+    key: "menu.view.prevYear"
+    title: "Label for previous year menu"
+    value: "Previous Year"
+    variants: {}
+- translation:
+    key: "menu.timeline.label"
+    title: "Label for timeline menu"
+    value: "Timeline"
+    variants: {}
+- translation:
+    key: "menu.timeline.moveUp"
+    title: "Label for move up timeline menu item"
+    value: "Move Up"
+    variants: {}
+- translation:
+    key: "menu.timeline.moveDown"
+    title: "Label for timeline move down menu item"
+    value: "Move Down"
+    variants: {}
+- translation:
+    key: "menu.timeline.edit"
+    title: "Label for edit timeline epic menu item"
+    value: "Edit Epic"
+    variants: {}
+- translation:
+    key: "menu.timeline.removeCommitment"
+    title: "Label for remove commitment menu item"
+    value: "Remove Commitment"
+    variants: {}
+- translation:
+    key: "menu.timeline.export"
+    title: "Label for export epic menu item"
+    value: "Export"
+    variants: {}
 sourceLanguage: "en"

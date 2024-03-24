@@ -11,6 +11,20 @@ import com.biggerconcept.timeline.actions.application.OpenPreferences;
 import com.biggerconcept.timeline.actions.document.CreateDocument;
 import com.biggerconcept.timeline.actions.document.OpenDocument;
 import com.biggerconcept.timeline.actions.document.SaveDocument;
+import com.biggerconcept.timeline.actions.document.ViewNextYear;
+import com.biggerconcept.timeline.actions.document.ViewPreviousYear;
+import com.biggerconcept.timeline.actions.epic.AddEpic;
+import com.biggerconcept.timeline.actions.epic.EditEpic;
+import com.biggerconcept.timeline.actions.epic.EditShelfEpic;
+import com.biggerconcept.timeline.actions.epic.EpicCommit;
+import com.biggerconcept.timeline.actions.epic.EpicUnCommit;
+import com.biggerconcept.timeline.actions.epic.ExportEpic;
+import com.biggerconcept.timeline.actions.epic.ImportEpic;
+import com.biggerconcept.timeline.actions.epic.MoveEpicDown;
+import com.biggerconcept.timeline.actions.epic.MoveEpicUp;
+import com.biggerconcept.timeline.actions.epic.MoveShelfEpicDown;
+import com.biggerconcept.timeline.actions.epic.MoveShelfEpicUp;
+import com.biggerconcept.timeline.actions.epic.RemoveShelfEpic;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -263,6 +277,250 @@ public class MenuController implements Initializable {
                     state.bundle().getString("errors.generic"),
                     e
             );
+        }
+    }
+    
+    /**
+     * Handles show previous year
+     */
+    @FXML
+    private void handleShowPrevYear() {
+        try {
+            perform(ViewPreviousYear.class);
+        } catch (Exception e) {
+             ErrorAlert.show(
+                     state.bundle(),
+                     state.bundle().getString("errors.viewYear"),
+                     e
+             );
+        }
+    }
+    
+    /**
+     * Handles show next year
+     */
+    @FXML
+    private void handleShowNextYear() {
+        try {
+            perform(ViewNextYear.class);
+        } catch (Exception e) {
+             ErrorAlert.show(
+                     state.bundle(),
+                     state.bundle().getString("errors.viewYear"),
+                     e
+             );
+        }
+    }
+    
+    /**
+     * Handles adding an epic to the shelf.
+     */
+    @FXML
+    private void handleAddEpicToShelf() {
+        try {
+            perform(AddEpic.class);
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles removing an epic from the shelf
+     */
+    @FXML
+    private void handleRemoveEpicFromShelf() {
+        try {
+            perform(RemoveShelfEpic.class);
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles moving a shelf epic up
+     */
+    @FXML
+    private void handleMoveShelfEpicUp() {
+        try {
+           perform(MoveShelfEpicUp.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles moving a shelf epic down
+     */
+    @FXML
+    private void handleMoveShelfEpicDown() {
+        try {
+            perform(MoveShelfEpicDown.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles editing a shelf epic
+     */
+    @FXML
+    private void handleEditShelfEpic() {
+        try {
+            perform(EditShelfEpic.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles commitment to an epic
+     */
+    @FXML
+    private void handleCommitToEpic() {
+        try {
+            perform(EpicCommit.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles import epic
+     */
+    @FXML
+    private void handleImportEpic() {
+        try {
+            perform(ImportEpic.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+             ErrorAlert.show(
+                     state.bundle(),
+                     state.bundle().getString("errors.generic"),
+                     e
+             );
+        }
+    }
+    
+    /**
+     * Handles moving a timeline epic up
+     */
+    @FXML
+    private void handleMoveEpicUp() {
+        try {
+            perform(MoveEpicUp.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles moving a timeline epic down
+     */
+    @FXML
+    private void handleMoveEpicDown() {
+        try {
+            perform(MoveEpicDown.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles editing a timeline epic
+     */
+    @FXML
+    private void handleEditEpic() {
+        try {
+            perform(EditEpic.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles removal of commitment to an epic
+     */
+    @FXML
+    private void handleUnCommit() {
+        try {
+            perform(EpicUnCommit.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles export epic
+     */
+    @FXML
+    private void handleExportEpic() {
+        try {
+            perform(ExportEpic.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+             ErrorAlert.show(
+                     state.bundle(),
+                     state.bundle().getString("errors.generic"),
+                     e
+             );
         }
     }
     

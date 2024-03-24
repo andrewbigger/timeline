@@ -447,7 +447,6 @@ public class MainController implements Initializable {
         );
     }
     
-    
     /**
      * Handles adding an epic to the shelf.
      */
@@ -553,7 +552,7 @@ public class MainController implements Initializable {
     }
     
     /**
-     * Handles moving a shelf epic up
+     * Handles moving a timeline epic up
      */
     @FXML
     private void handleMoveEpicUp() {
@@ -571,7 +570,7 @@ public class MainController implements Initializable {
     }
     
     /**
-     * Handles moving a shelf epic down
+     * Handles moving a timeline epic down
      */
     @FXML
     private void handleMoveEpicDown() {
@@ -589,7 +588,7 @@ public class MainController implements Initializable {
     }
     
     /**
-     * Handles editing a shelf epic
+     * Handles editing a timeline epic
      */
     @FXML
     private void handleEditEpic() {

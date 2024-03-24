@@ -60,6 +60,88 @@
             </MenuItem>
          </items>
       </Menu>
+      <Menu mnemonicParsing="false" text="%menu.view.label">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#handleShowNextYear" text="%menu.view.nextYear">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="CLOSE_BRACKET" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleShowPrevYear" text="%menu.view.prevYear">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="OPEN_BRACKET" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+        </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="%menu.shelf.label">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#handleAddEpicToShelf" text="%menu.shelf.add">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="A" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleRemoveEpicFromShelf" text="%menu.shelf.remove">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="R" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleEditShelfEpic" text="%menu.shelf.edit">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="E" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleMoveShelfEpicUp" text="%menu.shelf.moveUp">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="U" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleMoveShelfEpicDown" text="%menu.shelf.moveDown">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="D" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleImportEpic" text="%menu.shelf.import">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="I" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleCommitToEpic" text="%menu.shelf.commit">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="Y" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+        </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="%menu.timeline.label">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#handleMoveEpicUp" text="%menu.timeline.moveUp">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="U" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleMoveEpicDown" text="%menu.timeline.moveDown">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="D" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleEditEpic" text="%menu.timeline.edit">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="E" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleUnCommit" text="%menu.timeline.removeCommitment">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="R" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleExportEpic" text="%menu.timeline.export">
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="X" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+        </items>
+      </Menu>
       <Menu fx:id="helpMenu" mnemonicParsing="false" text="%menu.help.title">
          <items>
             <MenuItem fx:id="aboutMenuItem" mnemonicParsing="false" onAction="#handleOpenAboutDialog" text="%menu.help.about">
