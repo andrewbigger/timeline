@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -98,6 +99,36 @@ public class EpicDialogController implements Initializable {
     public Button saveEpicButton;
     
     /**
+     * Add task button
+     */
+    @FXML
+    public Button addTaskButton;
+    
+    /**
+     * Remove task button
+     */
+    @FXML
+    public Button removeTaskButton;
+    
+    /**
+     * Move task up button
+     */
+    @FXML
+    public Button moveTaskUpButton;
+    
+    /**
+     * Move task down button
+     */
+    @FXML
+    public Button moveTaskDownButton;
+    
+    /**
+     * Edit task button
+     */
+    @FXML
+    public Button editTaskButton;
+    
+    /**
      * Outlook label
      */
     @FXML
@@ -113,6 +144,28 @@ public class EpicDialogController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         bundle = rb;
         MenuController.loadMenu(this, rb, epicEditorBorderPane);
+        applyTooltips();
+    }
+    
+    /**
+     * Creates and adds tool tips to UI controls.
+     */
+    private void applyTooltips() {
+        addTaskButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tasks.add.tooltip"))
+        );
+        removeTaskButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tasks.remove.tooltip"))
+        );
+        moveTaskUpButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tasks.moveUp.tooltip"))
+        );
+        moveTaskDownButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tasks.moveDown.tooltip"))
+        );
+        editTaskButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tasks.edit.tooltip"))
+        );
     }
 
     /**

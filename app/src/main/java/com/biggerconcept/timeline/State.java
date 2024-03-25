@@ -1,5 +1,6 @@
 package com.biggerconcept.timeline;
 
+import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Year;
 import java.util.ResourceBundle;
@@ -12,6 +13,7 @@ import java.util.ResourceBundle;
 public class State {
     private MainController mainController;
     private Document openDocument;
+    private Epic openEpic;
     private Year viewYear;
     private ResourceBundle bundle;
     
@@ -26,12 +28,20 @@ public class State {
         return openDocument;
     }
     
+    public Epic getOpenEpic() {
+        return openEpic;
+    }
+    
     public Year getViewYear() {
         return viewYear;
     }
     
     public void setOpenDocument(Document value) {
         openDocument = value;
+    }
+    
+    public void setOpenEpic(Epic value) {
+        openEpic = value;
     }
     
     public void setViewYear(Year value) {

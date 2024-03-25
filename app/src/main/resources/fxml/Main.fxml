@@ -109,7 +109,7 @@
                      <right>
                         <ToolBar prefHeight="39.0" prefWidth="39.0" BorderPane.alignment="CENTER">
                            <items>
-                              <Button fx:id="commitToEpic" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleCommitToEpic" prefWidth="25.0">
+                              <Button fx:id="commitToEpicButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleCommitToEpic" prefWidth="25.0">
                                  <styleClass>
                                     <String fx:value="iconButton" />
                                     <String fx:value="smallIcon" />

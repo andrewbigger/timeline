@@ -97,6 +97,18 @@ public class MainController implements Initializable {
     public Label availableCommitmentLabel;
     
     /**
+     * Go to previous year button
+     */
+    @FXML
+    public Button prevYearButton;
+    
+    /**
+     * Go to next year button
+     */
+    @FXML
+    public Button nextYearButton;
+    
+    /**
      * Adds epic to shelf.
      */
     @FXML
@@ -107,6 +119,60 @@ public class MainController implements Initializable {
      */
     @FXML
     public Button removeEpicFromShelfButton;
+    
+    /**
+     * Button to move shelf epic up
+     */
+    @FXML
+    public Button moveShelfEpicUpButton;
+    
+    /**
+     * Button to move shelf epic down
+     */
+    @FXML
+    public Button moveShelfEpicDownButton;
+    
+    /**
+     * Button to import epic from projectus
+     */
+    @FXML
+    public Button importEpicButton;
+    
+    /**
+     * Button to commit to epic
+     */
+    @FXML
+    public Button commitToEpicButton;
+    
+    /**
+     * Button to move epic up
+     */
+    @FXML
+    public Button moveEpicUpButton;
+    
+    /**
+     * Button to move epic down
+     */
+    @FXML
+    public Button moveEpicDownButton;
+    
+    /**
+     * Button to edit epic
+     */
+    @FXML
+    public Button editEpicButton;
+    
+    /**
+     * Button to export epic to projectus
+     */
+    @FXML
+    public Button exportToProjectusButton;
+    
+    /**
+     * Button to remove commitment to epic
+     */
+    @FXML
+    public Button unCommitToEpicButton;
     
     /**
      * Button to edit epic on shelf.
@@ -235,6 +301,51 @@ public class MainController implements Initializable {
         );
         newFileButton.setTooltip(
                 new Tooltip(state.bundle().getString("toolbar.new.tooltip"))
+        );
+        prevYearButton.setTooltip(
+                new Tooltip(state.bundle().getString("toolbar.prevYear.tooltip"))
+        );
+        nextYearButton.setTooltip(
+                new Tooltip(state.bundle().getString("toolbar.nextYear.tooltip"))
+        );
+        addEpicToShelfButton.setTooltip(
+                new Tooltip(state.bundle().getString("shelf.addEpic.tooltip"))
+        );
+        removeEpicFromShelfButton.setTooltip(
+                new Tooltip(state.bundle().getString("shelf.removeEpic.tooltip"))
+        );
+        moveShelfEpicUpButton.setTooltip(
+                new Tooltip(state.bundle().getString("shelf.moveUp.tooltip"))
+        );
+        moveShelfEpicDownButton.setTooltip(
+                new Tooltip(state.bundle().getString("shelf.moveDown.tooltip"))
+        );
+        editEpicOnShelfButton.setTooltip(
+                new Tooltip(state.bundle().getString("shelf.editEpic.tooltip"))
+        );
+        importEpicButton.setTooltip(
+                new Tooltip(state.bundle().getString("shelf.import.tooltip"))
+        );
+        commitToEpicButton.setTooltip(
+                new Tooltip(state.bundle().getString("shelf.commit.tooltip"))
+        );
+        moveEpicUpButton.setTooltip(
+                new Tooltip(state.bundle().getString("timeline.moveUp.tooltip"))
+        );
+        moveEpicDownButton.setTooltip(
+                new Tooltip(state.bundle().getString("timeline.moveDown.tooltip"))
+        );
+        editEpicButton.setTooltip(
+                new Tooltip(state.bundle().getString("timeline.edit.tooltip"))
+        );
+        exportToProjectusButton.setTooltip(
+                new Tooltip(state.bundle().getString("timeline.projectus.tooltip"))
+        );
+        unCommitToEpicButton.setTooltip(
+                new Tooltip(state.bundle().getString("timeline.uncommit.tooltip"))
+        );
+        judgementComboBox.setTooltip(
+                new Tooltip(state.bundle().getString("judgement.tooltip"))
         );
     }
     
@@ -470,6 +581,8 @@ public class MainController implements Initializable {
     private void handleRemoveEpicFromShelf() {
         try {
             perform(RemoveShelfEpic.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
         } catch (Exception e) {
             ErrorAlert.show(
                     state.bundle(),

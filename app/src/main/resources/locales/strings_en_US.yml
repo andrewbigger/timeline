@@ -575,4 +575,103 @@ parts:
     title: "Label for export epic menu item"
     value: "Export"
     variants: {}
+- translation:
+    key: "toolbar.prevYear.tooltip"
+    title: "Tooltip for previous year button"
+    value: "Show previous year"
+    variants: {}
+- translation:
+    key: "toolbar.nextYear.tooltip"
+    title: "Next year button tooltip"
+    value: "Show following year"
+    variants: {}
+- translation:
+    key: "shelf.addEpic.tooltip"
+    title: "Tooltip for add epic"
+    value: "Add a new epic to the shelf"
+    variants: {}
+- translation:
+    key: "shelf.removeEpic.tooltip"
+    title: "Tooltip for remove epic button"
+    value: "Remove selected epic from the shelf"
+    variants: {}
+- translation:
+    key: "shelf.moveUp.tooltip"
+    title: "Move up button tooltip"
+    value: "Moves the selected epic up"
+    variants: {}
+- translation:
+    key: "shelf.moveDown.tooltip"
+    title: "Move down button tooltip"
+    value: "Moves the selected epic down"
+    variants: {}
+- translation:
+    key: "shelf.editEpic.tooltip"
+    title: "Edit shelf epic tooltip"
+    value: "Edit the selected shelf epic"
+    variants: {}
+- translation:
+    key: "shelf.import.tooltip"
+    title: "Import button tooltip"
+    value: "Import epic from a Projectus document"
+    variants: {}
+- translation:
+    key: "shelf.commit.tooltip"
+    title: "Commit button tooltip"
+    value: "Commit to selected epic (adds epic to timeline)"
+    variants: {}
+- translation:
+    key: "timeline.moveUp.tooltip"
+    title: "Move up tooltip for timeline"
+    value: "Moves selected epic up in priority on the timeline"
+    variants: {}
+- translation:
+    key: "timeline.moveDown.tooltip"
+    title: "Move down button tooltip"
+    value: "Moves selected epic down in priority on the timeline"
+    variants: {}
+- translation:
+    key: "timeline.edit.tooltip"
+    title: "Tooltip for edit epic button"
+    value: "Opens the selected epic in the epic window for editing"
+    variants: {}
+- translation:
+    key: "timeline.projectus.tooltip"
+    title: "Projectus button tooltip"
+    value: "Export selected epic to Projectus document"
+    variants: {}
+- translation:
+    key: "timeline.uncommit.tooltip"
+    value: "Removes commitment to selected epic (moves epic back to shelf)"
+    variants: {}
+- translation:
+    key: "judgement.tooltip"
+    title: "Tooltip for judgement combo box"
+    value: "Applies a decision about the document timeline"
+    variants: {}
+- translation:
+    key: "epic.tasks.add.tooltip"
+    title: "Tooltip for add task button"
+    value: "Add task to epic"
+    variants: {}
+- translation:
+    key: "epic.tasks.remove.tooltip"
+    title: "Tooltip for remove task button"
+    value: "Remove task from epic"
+    variants: {}
+- translation:
+    key: "epic.tasks.moveUp.tooltip"
+    title: "Move up button tooltip"
+    value: "Moves the selected task up one position in the list"
+    variants: {}
+- translation:
+    key: "epic.tasks.moveDown.tooltip"
+    title: "Tooltip for move down button"
+    value: "Moves the selected task down one position in the list"
+    variants: {}
+- translation:
+    key: "epic.tasks.edit.tooltip"
+    title: "Edit task button tooltip"
+    value: "Opens the edit task dialog to modify the task"
+    variants: {}
 sourceLanguage: "en"
