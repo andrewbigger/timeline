@@ -4,6 +4,7 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Year;
 import java.util.ResourceBundle;
+import javafx.stage.Stage;
 
 /**
  * Application State
@@ -75,5 +76,9 @@ public class State {
     
     public void mapWindowToDocument() {
         mainController().mapWindowToDocument();
+    }
+    
+    public void releaseOpenEpic() {
+        openEpic = null;
     }
 }

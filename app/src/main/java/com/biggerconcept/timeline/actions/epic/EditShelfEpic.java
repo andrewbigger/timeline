@@ -2,7 +2,7 @@ package com.biggerconcept.timeline.actions.epic;
 
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.projectus.domain.Epic;
-import com.biggerconcept.timeline.Dialogs;
+import com.biggerconcept.timeline.ui.dialogs.EpicDialog;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.actions.Action;
 import javafx.collections.ObservableList;
@@ -25,7 +25,7 @@ public class EditShelfEpic implements Action {
             throw new NoChoiceMadeException();
         }
 
-        Dialogs.openEpicDialog(
+        EpicDialog.open(
             state,
             items.get(0),
             state.getOpenDocument().getShelf(), 

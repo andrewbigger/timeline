@@ -2,7 +2,6 @@
 
 - [] Rich menu for epic window
 - [] Add selectors to actions when nothing is selected
-- [] Add tooltips
 - [] Stop the movement of columns
 - [] Style cells
 - [] Feature summaries
@@ -11,6 +10,7 @@
 - [] Add overview document generator
 - [] Add menu to story manager
 - [] Add menu to risk manager
+- [x] Add tooltips
 - [x] Rich menu for main window
 - [x] Fix un commit
 - [x] Fix remove action

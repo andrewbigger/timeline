@@ -1,11 +1,11 @@
 package com.biggerconcept.timeline;
 
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
-import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Task;
+import com.biggerconcept.timeline.actions.Action;
 import com.biggerconcept.timeline.ui.dialogs.TaskDialog;
 import com.biggerconcept.timeline.ui.tables.TasksTable;
 import java.net.URL;
@@ -33,29 +33,19 @@ import javafx.stage.Stage;
  */
 public class EpicDialogController implements Initializable {
     /**
-     * Resource bundle for preferences window.
+     * Application state
+     */
+    private State state;
+    
+    /**
+     * Application resource bundle
      */
     private ResourceBundle bundle;
-    
-    /**
-     * Document domain model.
-     */
-    private Document currentDocument;
-    
-    /**
-     * Epic to show
-     */
-    private Epic currentEpic;
     
     /**
      * Target set of epics
      */
     private ArrayList<Epic> targetSet;
-    
-    /**
-     * Main window controller
-     */
-    private MainController parent;
     
     /**
      * Whether the epic is a new epic
@@ -178,18 +168,18 @@ public class EpicDialogController implements Initializable {
      * @param isNew whether the epic should be added on save
      */
     public void setEpic(
-            Document doc,
+            State state,
             Epic epic,
             MainController parent,
             ArrayList<Epic> targetSet,
             boolean isNew
     ) {
-        this.currentDocument = doc;
-        this.currentEpic = epic;
-        this.parent = parent;
+        this.state = state;
+        this.state.setOpenEpic(epic);
         this.targetSet = targetSet;
         this.isNew = isNew;
-        mapEpicToWindow();
+        
+        mapDocumentToWindow();
     }
     
     /**
@@ -210,25 +200,25 @@ public class EpicDialogController implements Initializable {
      * 
      * @param doc 
      */
-    private void mapEpicToWindow() {
+    private void mapDocumentToWindow() {
         mapDetailsToWindow();
         mapTasksToWindow();
         mapOutlookToWindow();
         
-        parent.mapDocumentToWindow();
+        state.mainController().mapDocumentToWindow();
     }
     
     private void mapDetailsToWindow() {
-        epicName.setText(currentEpic.getName());
-        epicSummary.setText(currentEpic.getSummary());
+        epicName.setText(state.getOpenEpic().getName());
+        epicSummary.setText(state.getOpenEpic().getSummary());
     }
     
     private void mapTasksToWindow() {
         TasksTable tasksTable = new TasksTable(
-            bundle,
-            currentEpic.getTasks(),
-            currentDocument.getPreferences().asProjectusPreferences(),
-            currentEpic.getIdentifier()
+            state.bundle(),
+            state.getOpenEpic().getTasks(),
+            state.getOpenDocument().getPreferences().asProjectusPreferences(),
+            state.getOpenEpic().getIdentifier()
         );
         tasksTable.bind(tasksTableView);
     }
@@ -246,11 +236,11 @@ public class EpicDialogController implements Initializable {
      * 
      * @return 
      */
-    private void mapWindowToEpic() {
-        currentDocument.rebuildIdentifiers();
+    private void mapWindowToDocument() {
+        state.getOpenDocument().rebuildIdentifiers();
         
-        currentEpic.setName(epicName.getText());
-        currentEpic.setSummary(epicSummary.getText());
+        state.getOpenEpic().setName(epicName.getText());
+        state.getOpenEpic().setSummary(epicSummary.getText());
     }
     
     /**
@@ -261,12 +251,12 @@ public class EpicDialogController implements Initializable {
         try {
             ArrayList<Task> empty = new ArrayList<>();
             Task newTask = new Task();
-            newTask.setIdentifier(currentEpic.getStories().size() + 1);
+            newTask.setIdentifier(state.getOpenEpic().getStories().size() + 1);
             empty.add(newTask);
             
             TaskDialog addTask = new TaskDialog(
-                    bundle,
-                    currentEpic,
+                    state.bundle(),
+                    state.getOpenEpic(),
                     empty,
                     false
             );
@@ -276,8 +266,8 @@ public class EpicDialogController implements Initializable {
             mapOutlookToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.epic.tasks.add"),
+                    state.bundle(),
+                    state.bundle().getString("errors.epic.tasks.add"),
                     e
             );
         }
@@ -299,13 +289,13 @@ public class EpicDialogController implements Initializable {
             
             ButtonType answer = YesNoPrompt.show(
                     Alert.AlertType.CONFIRMATION,
-                    bundle.getString("epic.tasks.dialogs.remove.title"),
-                    bundle.getString("epic.tasks.dialogs.remove.description")
+                    state.bundle().getString("epic.tasks.dialogs.remove.title"),
+                    state.bundle().getString("epic.tasks.dialogs.remove.description")
             );
             
             if (answer == ButtonType.YES) {
                 for (Task t: items) {
-                    currentEpic.removeTask(t);
+                    state.getOpenEpic().removeTask(t);
                 }
             }
             
@@ -313,8 +303,8 @@ public class EpicDialogController implements Initializable {
             mapOutlookToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.epic.tasks.remove"),
+                    state.bundle(),
+                    state.bundle().getString("errors.epic.tasks.remove"),
                     e
             );
         }
@@ -345,7 +335,7 @@ public class EpicDialogController implements Initializable {
             }
             
             Collections.swap(
-                    currentEpic.getTasks(),
+                    state.getOpenEpic().getTasks(),
                     selectedIndex,
                     targetIndex
             );
@@ -355,7 +345,11 @@ public class EpicDialogController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveTask"), e);
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.moveTask"),
+                    e
+            );
         }
     }
     
@@ -388,7 +382,7 @@ public class EpicDialogController implements Initializable {
             }
             
             Collections.swap(
-                    currentEpic.getTasks(),
+                    state.getOpenEpic().getTasks(),
                     selectedIndex,
                     targetIndex
             );
@@ -398,7 +392,11 @@ public class EpicDialogController implements Initializable {
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
-            ErrorAlert.show(bundle, bundle.getString("errors.moveTask"), e);
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.moveTask"), 
+                    e
+            );
         }
     }
     
@@ -417,8 +415,8 @@ public class EpicDialogController implements Initializable {
             }
             
             TaskDialog manageTask = new TaskDialog(
-                    bundle,
-                    currentEpic,
+                    state.bundle(),
+                    state.getOpenEpic(),
                     items,
                     items.size() > 1
             );
@@ -429,8 +427,8 @@ public class EpicDialogController implements Initializable {
             mapOutlookToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.epic.tasks.edit"),
+                    state.bundle(),
+                    state.bundle().getString("errors.epic.tasks.edit"),
                     e
             );
         }
@@ -442,11 +440,12 @@ public class EpicDialogController implements Initializable {
     @FXML
     private void handleCancelEpic() {
         try {
+            state.releaseOpenEpic();
             window().close();
         } catch (Exception e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.epic.cancel"),
+                    state.bundle(),
+                    state.bundle().getString("errors.epic.cancel"),
                     e
             );
         }
@@ -459,27 +458,28 @@ public class EpicDialogController implements Initializable {
     private void handleSaveEpic() {
         try {
             if (isNew == true) {
-                targetSet.add(currentEpic);
+                targetSet.add(state.getOpenEpic());
             }
             
-            mapWindowToEpic();
-            parent.mapDocumentToWindow();
+            mapWindowToDocument();
+            state.mainController().mapDocumentToWindow();
+            state.releaseOpenEpic();
             window().close();
         } catch (Exception e) {
             ErrorAlert.show(
-                    bundle,
-                    bundle.getString("errors.epic.save"),
+                    state.bundle(),
+                    state.bundle().getString("errors.epic.save"),
                     e
             );
         }
     }
-    
+
     private int calculateWeeks() {
-        int totalPoints = currentEpic.calculateTotalPoints(
-                currentDocument.getPreferences().asProjectusPreferences()
+        int totalPoints = state.getOpenEpic().calculateTotalPoints(
+                state.getOpenDocument().getPreferences().asProjectusPreferences()
         );
         
-        int pointsPerWeek = currentDocument
+        int pointsPerWeek = state.getOpenDocument()
                 .getPreferences()
                 .calculateAveragePointsPerWeek();
         

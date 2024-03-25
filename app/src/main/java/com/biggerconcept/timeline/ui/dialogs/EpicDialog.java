@@ -1,7 +1,9 @@
-package com.biggerconcept.timeline;
+package com.biggerconcept.timeline.ui.dialogs;
 
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.timeline.EpicDialogController;
+import com.biggerconcept.timeline.State;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,18 +15,20 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 /**
- * Dialog open methods
+ * Epic editor dialog
  * 
  * @author Andrew Bigger
  */
-public class Dialogs {
-    public static void openEpicDialog(
+public class EpicDialog {
+    public static void open(
             State state,
             Epic epic,
             ArrayList<Epic> targetSet,
             boolean isNew
     ) {
         try {
+            state.setOpenEpic(epic);
+            
             URL location = state
                     .mainController()
                     .getClass()
@@ -42,7 +46,7 @@ public class Dialogs {
                 .getController();
         
             controller.setEpic(
-                    state.getOpenDocument(),
+                    state,
                     epic,
                     state.mainController(),
                     targetSet,

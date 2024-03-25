@@ -880,5 +880,4 @@ public class MainController implements Initializable {
         act.perform(state, window());
         mapDocumentToWindow();
     }
-
 }
