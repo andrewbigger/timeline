@@ -134,6 +134,12 @@ public class PreferencesController implements Initializable {
     public TextField sprintSizeTextField;
     
     /**
+     * Start sprint number field
+     */
+    @FXML
+    public TextField startSprintNumberTextField;
+    
+    /**
      * Cancel preferences button.
      */
     @FXML
@@ -237,6 +243,11 @@ public class PreferencesController implements Initializable {
      */
     private void mapEstimatePreferencesToWindow() {
         startDatePicker.setValue(Date.fromEpoch(currentPreferences.getStart()));
+        startSprintNumberTextField.setText(
+                String.valueOf(
+                        currentPreferences.getStartSprintNumber()
+                )
+        );
         
         refSprintOneNameTextField.setText(
                 currentPreferences.getRefSprintOne().getName()
@@ -321,6 +332,12 @@ public class PreferencesController implements Initializable {
     private void mapWindowToEstimatePreferences() {
         currentPreferences.setStart(
                 Date.toEpoch(startDatePicker.getValue())
+        );
+        
+        currentPreferences.setStartSprintNumber(
+                Integer.valueOf(
+                        startSprintNumberTextField.getText()
+                )
         );
         
         currentPreferences.setRefSprintOne(

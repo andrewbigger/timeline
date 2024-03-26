@@ -31,7 +31,7 @@
                <items>
                   <HBox alignment="CENTER" prefHeight="55.0" prefWidth="172.0" spacing="5.0">
                      <children>
-                        <Button fx:id="prevYearButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleShowPrevYear" prefWidth="25.0">
+                        <Button fx:id="prevYearButton" disable="true" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleShowPrevYear" prefWidth="25.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />
@@ -39,7 +39,7 @@
                            </styleClass>
                         </Button>
                         <Label fx:id="currentYearLabel" alignment="CENTER" maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="95.0" style="-fx-border-color: #B5B5B5; -fx-border-radius: 3;" text="{{year}}" />
-                        <Button fx:id="nextYearButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleShowNextYear" prefWidth="25.0">
+                        <Button fx:id="nextYearButton" disable="true" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleShowNextYear" prefWidth="25.0">
                            <styleClass>
                               <String fx:value="iconButton" />
                               <String fx:value="smallIcon" />

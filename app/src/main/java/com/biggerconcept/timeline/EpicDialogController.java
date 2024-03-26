@@ -161,7 +161,7 @@ public class EpicDialogController implements Initializable {
     /**
      * Sets document pointer for the dialog window.
      * 
-     * @param doc open document
+     * @param state application state
      * @param epic open epic
      * @param parent parent window
      * @param targetSet target set on save

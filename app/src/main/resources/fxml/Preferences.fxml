@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="preferencesBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="fxml/Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.PreferencesController">
+<BorderPane fx:id="preferencesBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="600.0" stylesheets="fxml/Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.PreferencesController">
    <bottom>
       <BorderPane prefHeight="33.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
@@ -53,6 +53,24 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </DatePicker>
+                        <Label text="%preferences.estimates.startSprint.title">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="5.0" />
+                           </padding>
+                        </Label>
+                        <Label text="%preferences.estimates.startSprint.description">
+                           <VBox.margin>
+                              <Insets bottom="3.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="startSprintNumberTextField">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </TextField>
                         <Label text="%preferences.estimates.referenceSprints.title">
                            <font>
                               <Font size="14.0" />

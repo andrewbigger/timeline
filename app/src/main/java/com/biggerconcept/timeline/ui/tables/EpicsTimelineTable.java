@@ -174,10 +174,11 @@ public class EpicsTimelineTable {
     }
     
     private TableColumn sprintCol(int quarter, int number, int sprintsPerQuarter) {
-        int sprintNumber = number;
+        int start = documentPreferences.getStartSprintNumber() - 1;
+        int sprintNumber = start + number;
         
         if (quarter > 1) {
-            sprintNumber = number + ((quarter - 1) * sprintsPerQuarter);
+            sprintNumber = start + number + ((quarter - 1) * sprintsPerQuarter);
         }
         
         TableColumn<TimelineEpic, String> col = new TableColumn(

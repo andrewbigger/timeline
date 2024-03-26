@@ -1,5 +1,6 @@
 # TODO
 
+- [] Fix date ranges
 - [] Rich menu for epic window
 - [] Add selectors to actions when nothing is selected
 - [] Stop the movement of columns

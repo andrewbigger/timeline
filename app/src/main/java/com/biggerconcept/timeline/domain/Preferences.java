@@ -39,6 +39,11 @@ public class Preferences {
     private static final Sprint DEFAULT_REF_SPRINT_FOUR = new Sprint("4", 12);
     
     /**
+     * Default start sprint number
+     */
+    private static final int DEFAULT_START_SPRINT_NUMBER = 1;
+    
+    /**
      * Set size for an extra small task.
      */
     @JsonInclude(Include.NON_NULL)
@@ -103,6 +108,9 @@ public class Preferences {
      */
     @JsonInclude(Include.NON_NULL)
     private int sprintLength;
+    
+    @JsonInclude(Include.NON_NULL)
+    private int startSprintNumber;
 
     /**
     * Returns estimate for given task size.
@@ -148,6 +156,7 @@ public class Preferences {
         p.refSprintFour = DEFAULT_REF_SPRINT_FOUR;
         
         p.sprintLength = DEFAULT_SPRINT_LENGTH;
+        p.startSprintNumber = DEFAULT_START_SPRINT_NUMBER;
         
         return p;
     }
@@ -208,6 +217,19 @@ public class Preferences {
         }
         
         return start;
+    }
+    
+    /**
+     * Getter for start sprint number.
+     * 
+     * @return start sprint number
+     */
+    public int getStartSprintNumber() {
+        if (startSprintNumber == 0) {
+            startSprintNumber = DEFAULT_START_SPRINT_NUMBER;
+        }
+        
+        return startSprintNumber;
     }
     
     /**
@@ -388,6 +410,15 @@ public class Preferences {
      */
     public void setStart(long value) {
         start = value;
+    }
+    
+    /**
+     * Setter for start sprint number.
+     * 
+     * @param value number to set start sprint to
+     */
+    public void setStartSprintNumber(int value) {
+        startSprintNumber = value;
     }
     
     /**

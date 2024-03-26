@@ -63,12 +63,12 @@
       </Menu>
       <Menu mnemonicParsing="false" text="%menu.view.label">
         <items>
-          <MenuItem mnemonicParsing="false" onAction="#handleShowNextYear" text="%menu.view.nextYear">
+          <MenuItem disable="true" mnemonicParsing="false" onAction="#handleShowNextYear" text="%menu.view.nextYear">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="CLOSE_BRACKET" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                </accelerator>
             </MenuItem>
-            <MenuItem mnemonicParsing="false" onAction="#handleShowPrevYear" text="%menu.view.prevYear">
+            <MenuItem disable="true" mnemonicParsing="false" onAction="#handleShowPrevYear" text="%menu.view.prevYear">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="OPEN_BRACKET" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                </accelerator>

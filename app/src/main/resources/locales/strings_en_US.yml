@@ -548,7 +548,7 @@ parts:
 - translation:
     key: "menu.timeline.label"
     title: "Label for timeline menu"
-    value: "Timeline"
+    value: "Plan"
     variants: {}
 - translation:
     key: "menu.timeline.moveUp"
@@ -673,5 +673,76 @@ parts:
     key: "epic.tasks.edit.tooltip"
     title: "Edit task button tooltip"
     value: "Opens the edit task dialog to modify the task"
+    variants: {}
+- translation:
+    key: "menu.tasks.label"
+    title: "Label for tasks menu"
+    value: "Tasks"
+    variants: {}
+- translation:
+    key: "menu.tasks.add"
+    title: "Label for add task menu item"
+    value: "Add Task"
+    variants: {}
+- translation:
+    key: "menu.tasks.remove"
+    title: "Label for remove task menu item"
+    value: "Remove Task"
+    variants: {}
+- translation:
+    key: "menu.tasks.moveUp"
+    title: "Label for move task up menu item"
+    value: "Move Task Up"
+    variants: {}
+- translation:
+    key: "menu.tasks.moveDown"
+    title: "Label for move task down menu item"
+    value: "Move Task Down"
+    variants: {}
+- translation:
+    key: "menu.tasks.edit"
+    title: "Label for edit task menu item"
+    value: "Edit Task"
+    variants: {}
+- translation:
+    key: "tabs.shelf.label"
+    title: "Label for shelf tab"
+    value: "Shelf"
+    variants: {}
+- translation:
+    key: "tabs.shelf.tooltip"
+    title: "Shelf tab tooltip"
+    value: "Shelf"
+    variants: {}
+- translation:
+    key: "tabs.features.label"
+    title: "Label for features tab"
+    value: "Features"
+    variants: {}
+- translation:
+    key: "tabs.features.tooltip"
+    title: "Tooltip for features tab"
+    value: "Features"
+    variants: {}
+- translation:
+    key: "tabs.releases.label"
+    title: "Label for releases tab"
+    value: "Releases"
+    variants: {}
+- translation:
+    key: "tabs.releases.tooltip"
+    title: "Tooltip for releases tab"
+    value: "Releases"
+    variants: {}
+- translation:
+    key: "preferences.estimates.startSprint.title"
+    title: "Title for start sprint preference"
+    value: "Start Sprint Number"
+    variants: {}
+- translation:
+    key: "preferences.estimates.startSprint.description"
+    title: "Text for start sprint description"
+    value: "Please provide the number of the sprint in progress at the start date\
+      \ (default 1)."
     variants: {}
 sourceLanguage: "en"
