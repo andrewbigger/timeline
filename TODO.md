@@ -11,6 +11,7 @@
 - [] Add overview document generator
 - [] Add menu to story manager
 - [] Add menu to risk manager
+- [x] Add months to timeline
 - [x] Add tooltips
 - [x] Rich menu for main window
 - [x] Fix un commit

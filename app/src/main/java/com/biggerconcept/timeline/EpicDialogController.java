@@ -4,8 +4,10 @@ import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.projectus.domain.Scope;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
+import com.biggerconcept.projectus.ui.dialogs.ScopeDialog;
 import com.biggerconcept.timeline.actions.Action;
 import com.biggerconcept.timeline.ui.dialogs.TaskDialog;
 import com.biggerconcept.timeline.ui.tables.TasksTable;
@@ -20,6 +22,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -132,6 +135,24 @@ public class EpicDialogController implements Initializable {
     public Label outlookLabel;
     
     /**
+     * Add scope button
+     */
+    @FXML
+    public Button addScopeButton;
+    
+    /**
+     * Remove scope button
+     */
+    @FXML
+    public Button removeScopeButton;
+    
+    /**
+     * Scope list view
+     */
+    @FXML
+    public ListView scopeListView;
+    
+    /**
      * Initializer for the dialog window
      * 
      * @param url url for dialog window
@@ -165,6 +186,12 @@ public class EpicDialogController implements Initializable {
         );
         moveTaskButton.setTooltip(
                 new Tooltip(bundle.getString("epic.tasks.move.tooltip"))
+        );
+        addScopeButton.setTooltip(
+                new Tooltip(bundle.getString("epic.scope.add.tooltip"))
+        );
+        removeScopeButton.setTooltip(
+                new Tooltip(bundle.getString("epic.scope.remove.tooltip"))
         );
     }
 
@@ -212,17 +239,34 @@ public class EpicDialogController implements Initializable {
      */
     private void mapDocumentToWindow() {
         mapDetailsToWindow();
+        mapScopeToWindow();
         mapTasksToWindow();
         mapOutlookToWindow();
         
         state.mainController().mapDocumentToWindow();
     }
     
+    /**
+     * Maps epic details to the window
+     */
     private void mapDetailsToWindow() {
         epicName.setText(state.getOpenEpic().getName());
         epicSummary.setText(state.getOpenEpic().getSummary());
     }
     
+    /**
+     * Maps scope items to window
+     */
+    private void mapScopeToWindow() {
+        scopeListView.getItems().clear();
+        for (String scope : state.getOpenEpic().getScope().getIncluded()) {
+            scopeListView.getItems().add(scope);
+        }
+    }
+    
+    /**
+     * Maps tasks to tasks table view
+     */
     private void mapTasksToWindow() {
         TasksTable tasksTable = new TasksTable(
             state.bundle(),
@@ -477,6 +521,69 @@ public class EpicDialogController implements Initializable {
             ErrorAlert.show(
                     state.bundle(),
                     state.bundle().getString("errors.epic.tasks.edit"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Adds scope to epic
+     */
+    @FXML
+    private void handleAddScope() {
+        try {
+            ScopeDialog addScope = new ScopeDialog(
+                    bundle,
+                    state.getOpenEpic().getScope().getIncluded(),
+                    ""
+            );
+            
+            addScope.show(window());
+            mapDocumentToWindow();
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.scope.add"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Removes scope from epic.
+     */
+    @FXML
+    private void handleRemoveScope() {
+        try {
+            String item = (String) scopeListView
+                    .getSelectionModel()
+                    .getSelectedItem();
+            
+            if (item == null) {
+                throw new NoChoiceMadeException();
+            }
+            
+            ButtonType answer = YesNoPrompt.show(
+                    Alert.AlertType.CONFIRMATION,
+                    bundle.getString(
+                            "epic.dialogs.scope.included.remove.title"
+                    ),
+                    bundle.getString(
+                            "epic.dialogs.scope.included.remove.description"
+                    )
+            );
+            
+            if (answer == ButtonType.YES) {
+                state.getOpenEpic().getScope().getIncluded().remove(item);
+            }
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.scope.remove"),
                     e
             );
         }

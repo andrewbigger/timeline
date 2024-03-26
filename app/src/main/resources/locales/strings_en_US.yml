@@ -830,4 +830,40 @@ parts:
     title: "December label"
     value: "Dec"
     variants: {}
+- translation:
+    key: "epic.scope.add.tooltip"
+    title: "Tooltip for add scope button"
+    value: "Add scope"
+    variants: {}
+- translation:
+    key: "epic.scope.remove.tooltip"
+    title: "Remove scope tooltip"
+    value: "Remove Scope"
+    variants: {}
+- translation:
+    key: "dialogs.epic.scope"
+    title: "Label for scope tab"
+    value: "Scope"
+    variants: {}
+- translation:
+    key: "errors.scope.add"
+    title: "Error when unable to add scope"
+    value: "Unable to add scope"
+    variants: {}
+- translation:
+    key: "errors.scope.remove"
+    title: "Error when unable to remove scope"
+    value: "Unable to remove scope"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.included.remove.title"
+    title: "Title for remove scope confirmation"
+    value: "Remove scope"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.included.remove.description"
+    title: "Confirmation dialog message for removing scope"
+    value: "Are you sure you want to remove the selected scope from this project?\
+      \ This cannot be undone."
+    variants: {}
 sourceLanguage: "en"
