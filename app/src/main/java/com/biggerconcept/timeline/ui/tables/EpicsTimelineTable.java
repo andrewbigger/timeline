@@ -2,7 +2,7 @@ package com.biggerconcept.timeline.ui.tables;
 
 import com.biggerconcept.appengine.ui.tables.StandardTable;
 import com.biggerconcept.appengine.ui.tables.StandardTableColumn;
-import com.biggerconcept.projectus.domain.Preferences;
+import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -203,6 +203,16 @@ public class EpicsTimelineTable {
                 value = "■";
             }
             
+            if (data.getValue().isCurrentSprint(
+                    viewYear,
+                    columnNumber,
+                    documentPreferences
+            )) {
+                data.getTableColumn().setStyle(
+                        "-fx-background-color: #cee2f2; -fx-alignment: CENTER;"
+                );
+            }
+            
             return new SimpleStringProperty(
                     value
             );
@@ -249,7 +259,12 @@ public class EpicsTimelineTable {
         
         estimateCol.setCellValueFactory(data -> {
             return new SimpleStringProperty(
-                    String.valueOf(data.getValue().getEpic().getSize(documentPreferences))
+                    String.valueOf(
+                            data
+                                    .getValue()
+                                    .getEpic()
+                                    .getSize(documentPreferences.asProjectusPreferences())
+                    )
             );
         });
         

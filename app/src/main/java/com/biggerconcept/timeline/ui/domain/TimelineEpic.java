@@ -3,7 +3,11 @@ package com.biggerconcept.timeline.ui.domain;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
+import java.time.LocalDate;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Timeline epic
@@ -94,6 +98,26 @@ public class TimelineEpic {
             }
 
             if (s.getNumber() == number) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    public boolean isCurrentSprint(Year year, int number, Preferences prefs) {
+        LocalDate now = LocalDate.now();
+        TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
+        int weekNumber = now.get(woy);
+        
+        int sprintNumber = weekNumber / prefs.getSprintLength();
+        
+        for (Sprint s : getSprints()) {
+            if (!s.getYear().getName().equals(year.getName())) {
+                return false;
+            }
+            
+            if (number == sprintNumber) {
                 return true;
             }
         }

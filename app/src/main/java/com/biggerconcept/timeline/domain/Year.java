@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.domain;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 /**
  * Represents a year.
@@ -33,6 +34,12 @@ public class Year {
    public Year(LocalDate firstDay) {
        this.name = String.valueOf(firstDay.getYear());
        this.firstDay = firstDay;
+       this.lastDay = lastDayFrom(firstDay);
+   }
+   
+   public Year(int year) {
+       this.name = String.valueOf(year);
+       this.firstDay = LocalDate.of(year, 1, 1);
        this.lastDay = lastDayFrom(firstDay);
    }
    

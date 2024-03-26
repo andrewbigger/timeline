@@ -490,7 +490,7 @@ public class MainController implements Initializable {
         
         EpicsTimelineTable epicsTable = new EpicsTimelineTable(
                 state.bundle(),
-                state.getOpenDocument().getPreferences().asProjectusPreferences(),
+                state.getOpenDocument().getPreferences(),
                 tl.getEpics(),
                 state.getViewYear().getFirstDay(),
                 availableSprints,
