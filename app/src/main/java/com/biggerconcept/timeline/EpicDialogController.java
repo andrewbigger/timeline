@@ -334,10 +334,6 @@ public class EpicDialogController implements Initializable {
                 throw new NoChoiceMadeException();
             }
             
-            int selectedIndex = tasksTableView
-                    .getItems()
-                    .indexOf(items.get(0));
-            
             EpicChooserDialog pickEpic = new EpicChooserDialog(
                     bundle,
                     state.getOpenDocument().getEpics()

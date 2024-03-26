@@ -15,7 +15,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.biggerconcept.timeline.ui.domain.TimelineEpic;
-import javafx.scene.control.TableCell;
 
 /**
  * View model for epic timeline table.
@@ -30,6 +29,14 @@ public class EpicsTimelineTable {
      * view.
      */
     public static final boolean SORTABLE = false;
+    
+    /**
+     * Resizable constant.
+     * 
+     * This should be false as we're not supporting resizing of columns in 
+     * this view.
+     */
+    public static final boolean RESIZABLE = false;
 
     /**
      * Width of name column in currentEpics table.
@@ -40,6 +47,22 @@ public class EpicsTimelineTable {
      * Width of estimate column.
      */
     public static final int ESTIMATE_COL_MIN_WIDTH = 80;
+    
+    /**
+     * Width of sprint cell.
+     */
+    public static final int SPRINT_CELL_WIDTH = 30;
+    
+    /**
+     * Style for sprint column.
+     */
+    public static final String SPRINT_COL_STYLE = "-fx-alignment: CENTER;";
+   
+    /**
+     * Style for current sprint column.
+     */
+    public static final String CURRENT_SPRINT_COL_STYLE = 
+            "-fx-background-color: #cee2f2; -fx-alignment: CENTER;";
     
     /**
      * Application resource bundle.
@@ -67,6 +90,16 @@ public class EpicsTimelineTable {
     private final int numberOfSprints;
     
     /**
+     * Number of sprints in a quarter
+     */
+    private final int sprintsPerQuarter;
+    
+    /**
+     * Number of sprints in a month
+     */
+    private final int sprintsPerMonth;
+    
+    /**
      * View year
      */
     private final Year viewYear;
@@ -89,13 +122,15 @@ public class EpicsTimelineTable {
             int sprints,
             Year viewYear
      ) {
-        bundle = rb;
-        documentPreferences = preferences;
-        currentEpics = epics;
+        this.bundle = rb;
+        this.documentPreferences = preferences;
+        this.currentEpics = epics;
         this.start = start;
-        numberOfSprints = sprints;
         this.viewYear = viewYear;
         
+        this.numberOfSprints = sprints;
+        this.sprintsPerQuarter = numberOfSprints / 4;
+        this.sprintsPerMonth = sprintsPerQuarter / 3;
     }
     
     /**
@@ -127,91 +162,98 @@ public class EpicsTimelineTable {
                 cols
         );
     }
-    
-    private List<TableColumn> dateCols() {
-        TableColumn<String, String> q1 = new TableColumn<>(
-                "Q1"
-        );
-        
-        q1.setSortable(false);
-        q1.setResizable(false);
-        
-        TableColumn<String, String> q2 = new TableColumn<>(
-                "Q2"
-        );
-        
-        q2.setSortable(false);
-        q2.setResizable(false);
-        
-        TableColumn<String, String> q3 = new TableColumn<>(
-                "Q3"
-        );
-        
-        q3.setSortable(false);
-        q3.setResizable(false);
-        
-        TableColumn<String, String> q4 = new TableColumn<>(
-                "Q4"
-        );
-        
-        q4.setSortable(false);
-        q4.setResizable(false);
-        
-        int sprintsPerQuarter = numberOfSprints / 4;
-        for (int i = 1; i < sprintsPerQuarter + 1; i++) {
-            q1.getColumns().add(sprintCol(1, i, sprintsPerQuarter));
-            q2.getColumns().add(sprintCol(2, i, sprintsPerQuarter));
-            q3.getColumns().add(sprintCol(3, i, sprintsPerQuarter));
-            q4.getColumns().add(sprintCol(4, i, sprintsPerQuarter));
-        }
 
-        return Arrays.asList(
-                q1,
-                q2,
-                q3,
-                q4
-        );
+    /**
+     * Builds date columns to be added to the timeline table.
+     * 
+     * @return date columns
+     */
+    private List<TableColumn> dateCols() {
+        ArrayList<TableColumn> cols = new ArrayList<>();
+        
+        int monthCounter = 0;
+        int sprintCounter = documentPreferences.getStartSprintNumber();
+        
+        for (String quarter : quarters()) {
+            TableColumn<String, String> q = new TableColumn<>(
+                    quarter
+            );
+            
+            q.setSortable(SORTABLE);
+            q.setResizable(RESIZABLE);
+            
+            // months
+            for (int i = 0; i < 3; i++) {
+                q.getColumns().add(monthCol(monthCounter, sprintCounter));
+                monthCounter += 1;
+                sprintCounter += sprintsPerMonth;
+            }
+
+            cols.add(q);
+        }
+        
+        return cols;
     }
     
-    private TableColumn sprintCol(int quarter, int number, int sprintsPerQuarter) {
-        int start = documentPreferences.getStartSprintNumber() - 1;
-        int sprintNumber = start + number;
-        
-        if (quarter > 1) {
-            sprintNumber = start + number + ((quarter - 1) * sprintsPerQuarter);
-        }
-        
-        TableColumn<TimelineEpic, String> col = new TableColumn(
-                String.valueOf(sprintNumber)
+    /**
+     * Builds a month column with columns for each sprint in the 
+     * month.
+     * 
+     * @param month to build column for
+     * @param startSprintNumber starting sprint number for the month
+     * 
+     * @return month columns
+     */
+    private TableColumn monthCol(int month, int startSprintNumber) {
+        TableColumn<String, String> m = new TableColumn(
+                months().get(month)
         );
         
-        col.setSortable(false);
-        col.setResizable(false);
-        col.setMinWidth(30);
-        col.setMaxWidth(30);
-        col.setStyle("-fx-alignment: CENTER;");
+        m.setSortable(SORTABLE);
+        m.setResizable(RESIZABLE);
         
-        col.setCellValueFactory(data -> {
+        int sprintCounter = startSprintNumber;
+        for (int i = 0; i < sprintsPerMonth; i++) {
+            m.getColumns().add(sprintCol(sprintCounter));
+            sprintCounter += 1;
+        }
+        
+        return m;
+    }
+    
+    /**
+     * Builds a column for a specific sprint
+     * 
+     * @param number sprint number
+     * 
+     * @return column for the sprint
+     */
+    private TableColumn sprintCol(int number) {
+        TableColumn<TimelineEpic, String> s = new TableColumn(
+                String.valueOf(number)
+        );
+        
+        s.setSortable(SORTABLE);
+        s.setResizable(RESIZABLE);
+        s.setMinWidth(SPRINT_CELL_WIDTH);
+        s.setMaxWidth(SPRINT_CELL_WIDTH);
+        s.setStyle(SPRINT_COL_STYLE);
+        
+        s.setCellValueFactory(data -> {
             String value = "";
             
-            int columnNumber = number;
+            int sprintNumber = (number + 1) - documentPreferences.getStartSprintNumber();
             
-            if (quarter > 1) {
-                columnNumber = number + ((quarter - 1) * sprintsPerQuarter);
-            }
-            
-            if (data.getValue().hasSprint(viewYear, columnNumber)) {
+            if (data.getValue().hasSprint(viewYear, sprintNumber)) {
                 value = "■";
             }
             
             if (data.getValue().isCurrentSprint(
                     viewYear,
-                    columnNumber,
+                    sprintNumber,
                     documentPreferences
             )) {
-                data.getTableColumn().setStyle(
-                        "-fx-background-color: #cee2f2; -fx-alignment: CENTER;"
-                );
+                data.getTableColumn().setStyle(CURRENT_SPRINT_COL_STYLE);
             }
             
             return new SimpleStringProperty(
@@ -219,7 +261,7 @@ public class EpicsTimelineTable {
             );
         });
         
-        return col;
+        return s;
     }
     
     /**
@@ -270,6 +312,42 @@ public class EpicsTimelineTable {
         });
         
         return estimateCol;
+    }
+    
+    /**
+     * List of quarters
+     * 
+     * @return quarter labels
+     */
+    private List<String> quarters() {
+        return Arrays.asList(
+            bundle.getString("dates.quarter.q1"),
+            bundle.getString("dates.quarter.q2"),
+            bundle.getString("dates.quarter.q3"),
+            bundle.getString("dates.quarter.q4")
+        );
+    }
+    
+    /**
+     * List of months
+     * 
+     * @return month labels
+     */
+    private List<String> months() {
+        return Arrays.asList(
+            bundle.getString("dates.months.jan"),
+            bundle.getString("dates.months.feb"),
+            bundle.getString("dates.months.mar"),
+            bundle.getString("dates.months.apr"),
+            bundle.getString("dates.months.may"),
+            bundle.getString("dates.months.jun"),
+            bundle.getString("dates.months.jul"),
+            bundle.getString("dates.months.aug"),
+            bundle.getString("dates.months.sep"),
+            bundle.getString("dates.months.oct"),
+            bundle.getString("dates.months.nov"),
+            bundle.getString("dates.months.dec")
+        );
     }
 
 }

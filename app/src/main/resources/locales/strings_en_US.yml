@@ -750,4 +750,84 @@ parts:
     title: "Tooltip for move task button"
     value: "Moves task into another epic"
     variants: {}
+- translation:
+    key: "dates.quarter.q1"
+    title: "Quarter 1 label"
+    value: "Q1"
+    variants: {}
+- translation:
+    key: "dates.quarter.q2"
+    title: "Quarter 2 label"
+    value: "Q2"
+    variants: {}
+- translation:
+    key: "dates.quarter.q3"
+    title: "Quarter 3 label"
+    value: "Q3"
+    variants: {}
+- translation:
+    key: "dates.quarter.q4"
+    title: "Quarter 4 label"
+    value: "Q4"
+    variants: {}
+- translation:
+    key: "dates.months.jan"
+    title: "January label"
+    value: "Jan"
+    variants: {}
+- translation:
+    key: "dates.months.feb"
+    title: "February label"
+    value: "Feb"
+    variants: {}
+- translation:
+    key: "dates.months.mar"
+    title: "March month label"
+    value: "Mar"
+    variants: {}
+- translation:
+    key: "dates.months.apr"
+    title: "April label"
+    value: "Apr"
+    variants: {}
+- translation:
+    key: "dates.months.may"
+    title: "May label"
+    value: "May"
+    variants: {}
+- translation:
+    key: "dates.months.jun"
+    title: "June label"
+    value: "Jun"
+    variants: {}
+- translation:
+    key: "dates.months.jul"
+    title: "July label"
+    value: "Jul"
+    variants: {}
+- translation:
+    key: "dates.months.aug"
+    title: "August label"
+    value: "Aug"
+    variants: {}
+- translation:
+    key: "dates.months.sep"
+    title: "September label"
+    value: "Sep"
+    variants: {}
+- translation:
+    key: "dates.months.oct"
+    title: "October Label"
+    value: "Oct"
+    variants: {}
+- translation:
+    key: "dates.months.nov"
+    title: "November label"
+    value: "Nov"
+    variants: {}
+- translation:
+    key: "dates.months.dec"
+    title: "December label"
+    value: "Dec"
+    variants: {}
 sourceLanguage: "en"
