@@ -745,4 +745,9 @@ parts:
     value: "Please provide the number of the sprint in progress at the start date\
       \ (default 1)."
     variants: {}
+- translation:
+    key: "epic.tasks.move.tooltip"
+    title: "Tooltip for move task button"
+    value: "Moves task into another epic"
+    variants: {}
 sourceLanguage: "en"

@@ -5,6 +5,7 @@ import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Task;
+import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
 import com.biggerconcept.timeline.actions.Action;
 import com.biggerconcept.timeline.ui.dialogs.TaskDialog;
 import com.biggerconcept.timeline.ui.tables.TasksTable;
@@ -119,6 +120,12 @@ public class EpicDialogController implements Initializable {
     public Button editTaskButton;
     
     /**
+     * Move task button
+     */
+    @FXML
+    public Button moveTaskButton;
+    
+    /**
      * Outlook label
      */
     @FXML
@@ -155,6 +162,9 @@ public class EpicDialogController implements Initializable {
         );
         editTaskButton.setTooltip(
                 new Tooltip(bundle.getString("epic.tasks.edit.tooltip"))
+        );
+        moveTaskButton.setTooltip(
+                new Tooltip(bundle.getString("epic.tasks.move.tooltip"))
         );
     }
 
@@ -305,6 +315,48 @@ public class EpicDialogController implements Initializable {
             ErrorAlert.show(
                     state.bundle(),
                     state.bundle().getString("errors.epic.tasks.remove"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Moves task to another epic
+     */
+    @FXML
+    private void handleMoveTask() {
+        try {
+             ObservableList<Task> items = tasksTableView
+                    .getSelectionModel()
+                    .getSelectedItems();
+            
+            if (items.isEmpty()) {
+                throw new NoChoiceMadeException();
+            }
+            
+            int selectedIndex = tasksTableView
+                    .getItems()
+                    .indexOf(items.get(0));
+            
+            EpicChooserDialog pickEpic = new EpicChooserDialog(
+                    bundle,
+                    state.getOpenDocument().getEpics()
+            );
+            
+            Epic chosenEpic = pickEpic.show(window());
+            
+            for (Task t : items) {
+                state.getOpenEpic().removeTask(t);
+                chosenEpic.addTask(t);
+            }
+            
+            mapDocumentToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.moveTask"),
                     e
             );
         }
