@@ -5,8 +5,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToolBar?>
@@ -55,76 +58,133 @@
    <center>
       <SplitPane dividerPositions="0.16359575656058067, 0.7632607481853713" prefHeight="708.0" prefWidth="244.0" BorderPane.alignment="CENTER">
          <items>
-            <BorderPane maxWidth="450.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0">
-               <top>
-                  <BorderPane prefHeight="0.0" BorderPane.alignment="CENTER">
-                     <center>
-                        <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                          <items>
-                            <Button fx:id="addEpicToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddEpicToShelf" prefWidth="25.0">
-                                 <styleClass>
-                                    <String fx:value="iconButton" />
-                                    <String fx:value="smallIcon" />
-                                    <String fx:value="addButton" />
-                                 </styleClass>
-                              </Button>
-                              <Button fx:id="removeEpicFromShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleRemoveEpicFromShelf" prefWidth="25.0">
-                                 <styleClass>
-                                    <String fx:value="iconButton" />
-                                    <String fx:value="smallIcon" />
-                                    <String fx:value="removeButton" />
-                                 </styleClass>
-                              </Button>
-                              <Button fx:id="moveShelfEpicUpButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveShelfEpicUp" prefWidth="25.0">
-                                 <styleClass>
-                                    <String fx:value="iconButton" />
-                                    <String fx:value="smallIcon" />
-                                    <String fx:value="moveUpButton" />
-                                 </styleClass>
-                              </Button>
-                              <Button fx:id="moveShelfEpicDownButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveShelfEpicDown" prefWidth="25.0">
-                                 <styleClass>
-                                    <String fx:value="iconButton" />
-                                    <String fx:value="smallIcon" />
-                                    <String fx:value="moveDownButton" />
-                                 </styleClass>
-                              </Button>
-                              <Button fx:id="editEpicOnShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleEditShelfEpic" prefWidth="25.0">
-                                 <styleClass>
-                                    <String fx:value="iconButton" />
-                                    <String fx:value="smallIcon" />
-                                    <String fx:value="editButton" />
-                                 </styleClass>
-                              </Button>
-                              <Button fx:id="importEpicButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleImportEpic" prefWidth="25.0">
-                                 <styleClass>
-                                    <String fx:value="iconButton" />
-                                    <String fx:value="smallIcon" />
-                                    <String fx:value="importButton" />
-                                 </styleClass>
-                              </Button>
-                          </items>
-                        </ToolBar>
-                     </center>
-                     <right>
-                        <ToolBar prefHeight="39.0" prefWidth="39.0" BorderPane.alignment="CENTER">
-                           <items>
-                              <Button fx:id="commitToEpicButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleCommitToEpic" prefWidth="25.0">
-                                 <styleClass>
-                                    <String fx:value="iconButton" />
-                                    <String fx:value="smallIcon" />
-                                    <String fx:value="tickButton" />
-                                 </styleClass>
-                              </Button>
-                           </items>
-                        </ToolBar>
-                     </right>
-                  </BorderPane>
-               </top>
-               <center>
-                  <TableView fx:id="shelfTableView" prefHeight="666.0" prefWidth="410.0" BorderPane.alignment="CENTER" />
-               </center>
-            </BorderPane>
+            <TabPane maxWidth="450.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="%tabs.shelf.label">
+                     <content>
+                        <BorderPane maxWidth="450.0" minWidth="300.0" prefHeight="200.0" prefWidth="300.0">
+                           <top>
+                              <BorderPane prefHeight="0.0" BorderPane.alignment="CENTER">
+                                 <center>
+                                    <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                      <items>
+                                        <Button fx:id="addEpicToShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddEpicToShelf" prefWidth="25.0">
+                                             <styleClass>
+                                                <String fx:value="iconButton" />
+                                                <String fx:value="smallIcon" />
+                                                <String fx:value="addButton" />
+                                             </styleClass>
+                                          </Button>
+                                          <Button fx:id="removeEpicFromShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleRemoveEpicFromShelf" prefWidth="25.0">
+                                             <styleClass>
+                                                <String fx:value="iconButton" />
+                                                <String fx:value="smallIcon" />
+                                                <String fx:value="removeButton" />
+                                             </styleClass>
+                                          </Button>
+                                          <Button fx:id="moveShelfEpicUpButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveShelfEpicUp" prefWidth="25.0">
+                                             <styleClass>
+                                                <String fx:value="iconButton" />
+                                                <String fx:value="smallIcon" />
+                                                <String fx:value="moveUpButton" />
+                                             </styleClass>
+                                          </Button>
+                                          <Button fx:id="moveShelfEpicDownButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveShelfEpicDown" prefWidth="25.0">
+                                             <styleClass>
+                                                <String fx:value="iconButton" />
+                                                <String fx:value="smallIcon" />
+                                                <String fx:value="moveDownButton" />
+                                             </styleClass>
+                                          </Button>
+                                          <Button fx:id="editEpicOnShelfButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleEditShelfEpic" prefWidth="25.0">
+                                             <styleClass>
+                                                <String fx:value="iconButton" />
+                                                <String fx:value="smallIcon" />
+                                                <String fx:value="editButton" />
+                                             </styleClass>
+                                          </Button>
+                                          <Button fx:id="importEpicButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleImportEpic" prefWidth="25.0">
+                                             <styleClass>
+                                                <String fx:value="iconButton" />
+                                                <String fx:value="smallIcon" />
+                                                <String fx:value="importButton" />
+                                             </styleClass>
+                                          </Button>
+                                      </items>
+                                    </ToolBar>
+                                 </center>
+                                 <right>
+                                    <ToolBar prefHeight="39.0" prefWidth="39.0" BorderPane.alignment="CENTER">
+                                       <items>
+                                          <Button fx:id="commitToEpicButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleCommitToEpic" prefWidth="25.0">
+                                             <styleClass>
+                                                <String fx:value="iconButton" />
+                                                <String fx:value="smallIcon" />
+                                                <String fx:value="tickButton" />
+                                             </styleClass>
+                                          </Button>
+                                       </items>
+                                    </ToolBar>
+                                 </right>
+                              </BorderPane>
+                           </top>
+                           <center>
+                              <TableView fx:id="shelfTableView" prefHeight="666.0" prefWidth="410.0" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </Tab>
+                <Tab text="%tabs.releases.label">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <ToolBar prefHeight="27.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+                                 <items>
+                                    <Button fx:id="addReleaseButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddRelease" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="addButton" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="removeReleaseButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleRemoveRelease" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="removeButton" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="moveReleaseUpButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveReleaseUp" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveUpButton" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="moveReleaseDownButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveReleaseDown" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveDownButton" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="editReleaseButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleEditRelease" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="editButton" />
+                                       </styleClass>
+                                    </Button>
+                                 </items>
+                              </ToolBar>
+                           </top>
+                           <center>
+                              <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                     </content></Tab>
+              </tabs>
+            </TabPane>
             <BorderPane minWidth="250.0" prefHeight="200.0" prefWidth="250.0">
                <top>
                   <BorderPane prefHeight="8.0" prefWidth="100.0" BorderPane.alignment="CENTER">
