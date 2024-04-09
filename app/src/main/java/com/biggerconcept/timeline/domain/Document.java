@@ -53,6 +53,15 @@ public class Document {
     @JsonInclude(Include.NON_NULL)
     private String notes;
     
+    /**
+     * Releases
+     */
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Release> releases;
+    
+    /**
+     * Last epic number
+     */
     @JsonIgnore
     private int lastEpicIdentifier = 0;
     
@@ -169,6 +178,19 @@ public class Document {
     }
     
     /**
+     * Getter for releases.
+     * 
+     * @return releases
+     */
+    public ArrayList<Release> getReleases() {
+        if (releases == null) {
+            releases = new ArrayList<Release>();
+        }
+        
+        return releases;
+    }
+    
+    /**
      * Getter for last epic identifier.
      * 
      * @return identifier for last epic
@@ -260,6 +282,15 @@ public class Document {
     public void setNotes(String value) {
         notes = value;
     }
+    
+    /**
+     * Setter for releases
+     * 
+     * @param value releases
+     */
+    public void setReleases(ArrayList<Release> value) {
+        releases = value;
+    }
 
     /**
      * Returns document title which is the file name if it's saved
@@ -338,7 +369,6 @@ public class Document {
     public int calculateCommittedSprints() {
         int pointsPerSprint = getPreferences().calculateAveragePointsPerSprint();
         int points = calculateCommittedPoints();
-        
         
         if (points == 0) {
             return 0;

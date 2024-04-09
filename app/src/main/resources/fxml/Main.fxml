@@ -240,6 +240,13 @@
                <center>
                   <TableView fx:id="epicTableView" prefHeight="666.0" prefWidth="410.0" BorderPane.alignment="CENTER" />
                </center>
+               <bottom>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <top>
+                        <TableView fx:id="releasesTableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                     </top>
+                  </BorderPane>
+               </bottom>
             </BorderPane>
             <BorderPane maxWidth="800.0" minWidth="300.0" prefHeight="200.0" prefWidth="200.0">
                <top>

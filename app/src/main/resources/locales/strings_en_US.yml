@@ -866,4 +866,14 @@ parts:
     value: "Are you sure you want to remove the selected scope from this project?\
       \ This cannot be undone."
     variants: {}
+- translation:
+    key: "release.table.empty"
+    title: "Empty release table message"
+    value: "No releases"
+    variants: {}
+- translation:
+    key: "release.table.name"
+    title: "Name column label"
+    value: "Name"
+    variants: {}
 sourceLanguage: "en"

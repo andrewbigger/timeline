@@ -24,6 +24,7 @@ import com.biggerconcept.timeline.actions.epic.MoveShelfEpicUp;
 import com.biggerconcept.timeline.actions.epic.RemoveShelfEpic;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
+import com.biggerconcept.timeline.ui.tables.ReleasesTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ShelfEpicsTable;
 import javafx.scene.control.Button;
 import java.net.URL;
@@ -197,6 +198,12 @@ public class MainController implements Initializable {
      */
     @FXML
     public TableView shelfTableView;
+    
+    /**
+     * Releases table view
+     */
+    @FXML
+    public TableView releasesTableView;
     
     /**
      * Timeline table view
@@ -498,6 +505,18 @@ public class MainController implements Initializable {
         );
         
         epicsTable.bind(epicTableView);
+        
+        ReleasesTimelineTable releasesTable = new ReleasesTimelineTable(
+                state.bundle(),
+                state.getOpenDocument().getPreferences(),
+                state.getOpenDocument().getReleases(),
+                Date.fromEpoch(state.getOpenDocument().getPreferences().getStart()),
+                availableSprints,
+                state.getViewYear()
+        );
+        
+        releasesTable.bind(releasesTableView);
+        
         epicTableView.getSelectionModel().select(selected);
     }
     
@@ -662,6 +681,46 @@ public class MainController implements Initializable {
                     e
             );
         }
+    }
+    
+    /**
+     * Handles the creation of a release
+     */
+    @FXML
+    private void handleAddRelease() {
+        
+    }
+    
+    /**
+     * Handles the removal of a release
+     */
+    @FXML
+    private void handleRemoveRelease() {
+        
+    }
+    
+    /**
+     * Handles the editing of a release
+     */
+    @FXML
+    private void handleEditRelease() {
+        
+    }
+    
+    /**
+     * Handles the moving of a release up
+     */
+    @FXML
+    private void handleMoveReleaseUp() {
+        
+    }
+    
+    /**
+     * Handles the moving of a release down
+     */
+    @FXML
+    private void handleMoveReleaseDown() {
+        
     }
     
     /**
