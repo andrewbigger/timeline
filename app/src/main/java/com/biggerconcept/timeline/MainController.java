@@ -502,7 +502,7 @@ public class MainController implements Initializable {
                 availableSprints
         );
         
-        tl.calculate(state.getOpenDocument().getPreferences(), availableSprints);
+        tl.calculate(state.getOpenDocument().getPreferences());
         
         EpicsTimelineTable epicsTable = new EpicsTimelineTable(
                 state.bundle(),

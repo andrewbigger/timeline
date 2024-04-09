@@ -24,7 +24,10 @@ public class OpenDocument implements Action {
                     App.EXTENSION_FILTER
             );
 
-            state.setOpenDocument(Document.load(documentFile));
-            state.mapDocumentToWindow();
+        Document doc = Document.load(documentFile);
+        
+        state.setOpenDocument(doc);
+        state.getViewYear().setStartSprint(doc.getPreferences().getStartSprintNumber());
+        state.mapDocumentToWindow();
     }
 }

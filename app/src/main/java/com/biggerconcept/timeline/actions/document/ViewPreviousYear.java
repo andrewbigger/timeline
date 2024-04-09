@@ -11,7 +11,7 @@ import javafx.stage.Stage;
  */
 public class ViewPreviousYear implements Action {
     public void perform(State state, Stage window) {
-        state.prevYear();
+        state.prevYear(state.getOpenDocument().getPreferences());
         state.mapDocumentToWindow();
     }
 }

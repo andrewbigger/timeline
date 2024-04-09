@@ -2,7 +2,6 @@ package com.biggerconcept.timeline.ui.domain;
 
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Preferences;
-import com.biggerconcept.timeline.domain.Year;
 import java.time.LocalDate;
 import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
@@ -111,66 +110,48 @@ public class TimelineEpic {
     /**
      * Builds a set of occupied sprints based on epic data.
      * 
-     * @param length length of epic in sprints
-     * @param year year to associate epic with
-     * @param sprint first sprint to start epic
-     * @param maxSprints maximum number of sprints in the year
+     * @param prefs document preferences
+     * @param startSprint first sprint to start epic
      */
-    public void calculateSprints(int length, Year year, int sprint, int maxSprints) {
-        Year currentYear = year;
-        int currentSprint = sprint;
+    public void calculateSprints(
+            Preferences prefs,
+            int startSprint
+    ) {
+        int points = getEpic().calculateTotalPoints(
+                prefs.asProjectusPreferences()
+        );
         
-        if (length == 0) {
-            Sprint s = new Sprint(currentYear, currentSprint);
-            addSprint(s);
-        } else {
-            for (int i = 0; i < length + 1; i++) {
-                int sprintNumber = currentSprint + i;
+        int pointsPerSprint = prefs.calculateAveragePointsPerSprint();
+        int sprints = (int) points / pointsPerSprint;
+        int sprintCounter = startSprint;
 
-                if (sprintNumber > maxSprints) {
-                    currentYear = currentYear.next();
-                    currentSprint = 1;
-                }
-
-                Sprint s = new Sprint(currentYear, sprintNumber);
-                addSprint(s);
-            }
+        for (int i = 0; i < sprints + 1; i++) {
+            addSprint(new Sprint(sprintCounter));
+            sprintCounter++;
         }
     }
     
     /**
-     * Builds next sprint. Takes into account the maximum number of sprints
-     * that can fit in a year.
-     * 
-     * @param maxSprints maximum number of sprints for year.
+     * Builds next sprint.
      * 
      * @return next sprint
      */
-    public Sprint nextSprint(int maxSprints) {
+    public Sprint nextSprint() {
         Sprint last = getLastSprint();
         
-        if (last.getNumber() == maxSprints) {
-            return new Sprint(last.getYear().next(), 1);
-        }
-        
-        return new Sprint(last.getYear(), last.getNumber() + 1);
+        return new Sprint(last.getNumber() + 1);
     }
     
     /**
      * Returns true if described sprint is occupied by the underlying
      * epic.
      * 
-     * @param year view year
      * @param number sprint number
      * 
      * @return whether epic occupies sprint
      */
-    public boolean hasSprint(Year year, int number) {
+    public boolean hasSprint(int number) {
         for (Sprint s : getSprints()) {
-            if (!s.getYear().getName().equals(year.getName())) {
-                return false;
-            }
-
             if (s.getNumber() == number) {
                 return true;
             }
@@ -182,23 +163,18 @@ public class TimelineEpic {
     /**
      * Returns true if given sprint is the current sprint.
      * 
-     * @param year view year
      * @param number sprint number
      * @param prefs document preferences
      * @return whether sprint is current sprint
      */
-    public boolean isCurrentSprint(Year year, int number, Preferences prefs) {
+    public boolean isCurrentSprint(int number, Preferences prefs) {
         LocalDate now = LocalDate.now();
         TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
         int weekNumber = now.get(woy);
         
-        int sprintNumber = weekNumber / prefs.getSprintLength();
+        int sprintNumber = weekNumber / prefs.getSprintLength() + prefs.getStartSprintNumber();
         
         for (Sprint s : getSprints()) {
-            if (!s.getYear().getName().equals(year.getName())) {
-                return false;
-            }
-            
             if (number == sprintNumber) {
                 return true;
             }

@@ -3,9 +3,9 @@ package com.biggerconcept.timeline;
 import com.biggerconcept.appengine.ui.helpers.Date;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
+import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
 import java.util.ResourceBundle;
-import javafx.stage.Stage;
 
 /**
  * Application State
@@ -26,7 +26,8 @@ public class State {
         openDocument = new Document();
         viewYear = Year.DEFAULT;
         startYear = new Year(
-                Date.fromEpoch(openDocument.getPreferences().getStart())
+                Date.fromEpoch(openDocument.getPreferences().getStart()),
+                openDocument.getPreferences().getStartSprintNumber()
         );
     }
     
@@ -71,12 +72,12 @@ public class State {
         viewYear = Year.DEFAULT;
     }
     
-    public void nextYear() {
-        viewYear = viewYear.next();
+    public void nextYear(Preferences prefs) {
+        viewYear = viewYear.next(prefs);
     }
     
-    public void prevYear() {
-        viewYear = viewYear.previous();
+    public void prevYear(Preferences prefs) {
+        viewYear = viewYear.previous(prefs);
     }
     
     public void mapDocumentToWindow() {

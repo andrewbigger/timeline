@@ -527,6 +527,17 @@ public class Preferences {
     }
     
     /**
+     * Builds start year
+     * 
+     * @return start year
+     */
+    public Year calculateStartYear() {
+        LocalDate startDate = Date.fromEpoch(getStart());
+        
+        return new Year(startDate.getYear());
+    }
+    
+    /**
      * Converts preferences to projectus preferences.
      * 
      * @return projectus preferences

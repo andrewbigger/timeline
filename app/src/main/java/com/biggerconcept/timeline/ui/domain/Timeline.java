@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author Andrew Bigger
  */
 public class Timeline {
+    private Year viewYear;
     private ArrayList<TimelineEpic> timelineEpics;
     private LocalDate start;
     
@@ -21,6 +22,7 @@ public class Timeline {
             Preferences prefs,
             int maxSprints
     ) {
+        this.viewYear = viewYear;
         timelineEpics = new ArrayList<>();
         
         for (Epic e : epics) {
@@ -48,25 +50,20 @@ public class Timeline {
         timelineEpics.add(new TimelineEpic(e));
     }
     
-    public void calculate(Preferences prefs, int maxSprints) {
-        Sprint s = new Sprint(new Year(getStart()), 1);
+    public void calculate(Preferences prefs) {
+        int startSprint = prefs.getStartSprintNumber();
+        
+        Sprint s = new Sprint(startSprint);
         
         for (TimelineEpic te : getEpics()) {
-            Epic e = te.getEpic();
+            int sprints = te.getLength();
             
-            int points = e.calculateTotalPoints(prefs.asProjectusPreferences());
-            int pointsPerSprint = prefs.calculateAveragePointsPerSprint();
-            int sprints = points / pointsPerSprint;
+            te.calculateSprints(
+                    prefs, 
+                    s.getNumber()
+            );
             
-            te.calculateSprints(sprints, s.getYear(), s.getNumber(), maxSprints);
-            
-            int remainder = points % pointsPerSprint;
-            
-            if (remainder > (pointsPerSprint / 2)) {
-                s = te.nextSprint(maxSprints);
-            } else {
-                s = te.getLastSprint();
-            }
+            s = te.getLastSprint();
         }
     }
 }

@@ -172,7 +172,7 @@ public class EpicsTimelineTable {
         ArrayList<TableColumn> cols = new ArrayList<>();
         
         int monthCounter = 0;
-        int sprintCounter = documentPreferences.getStartSprintNumber();
+        int sprintCounter = viewYear.getStartSprint();
         
         for (String quarter : quarters()) {
             TableColumn<String, String> q = new TableColumn<>(
@@ -242,14 +242,13 @@ public class EpicsTimelineTable {
         s.setCellValueFactory(data -> {
             String value = "";
             
-            int sprintNumber = (number + 1) - documentPreferences.getStartSprintNumber();
+            int sprintNumber = number;
             
-            if (data.getValue().hasSprint(viewYear, sprintNumber)) {
+            if (data.getValue().hasSprint(sprintNumber)) {
                 value = "■";
             }
             
             if (data.getValue().isCurrentSprint(
-                    viewYear,
                     sprintNumber,
                     documentPreferences
             )) {

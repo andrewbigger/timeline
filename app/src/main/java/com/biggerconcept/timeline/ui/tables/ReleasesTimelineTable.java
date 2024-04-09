@@ -7,14 +7,12 @@ import com.biggerconcept.timeline.domain.Release;
 import com.biggerconcept.timeline.domain.Year;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import com.biggerconcept.timeline.ui.domain.TimelineEpic;
 
 /**
@@ -158,7 +156,7 @@ public class ReleasesTimelineTable {
     private List<TableColumn> sprintCols() {
         ArrayList<TableColumn> cols = new ArrayList<>();
         
-        int sprintCounter = documentPreferences.getStartSprintNumber();
+        int sprintCounter = viewYear.getStartSprint();
         for (int i = 0; i < numberOfSprints; i++) {
             cols.add(sprintCol(sprintCounter));
             sprintCounter += 1;
@@ -191,12 +189,11 @@ public class ReleasesTimelineTable {
             int sprintNumber = (number + 1) - 
                     documentPreferences.getStartSprintNumber();
             
-            if (data.getValue().hasSprint(viewYear, sprintNumber)) {
+            if (data.getValue().hasSprint(sprintNumber)) {
                 value = "★";
             }
             
             if (data.getValue().isCurrentSprint(
-                    viewYear,
                     sprintNumber,
                     documentPreferences
             )) {

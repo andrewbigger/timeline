@@ -1,9 +1,6 @@
 package com.biggerconcept.timeline.domain;
 
 import java.time.LocalDate;
-import java.time.Month;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 
 /**
  * Represents a year.
@@ -22,6 +19,11 @@ public class Year {
    private LocalDate lastDay;
    
    /**
+    * Start sprint
+    */
+   private int startSprint;
+   
+   /**
     * Name of year for presentation
     */
    private String name;
@@ -30,13 +32,15 @@ public class Year {
     * Builds default year which is the current year.
     */
    public static Year DEFAULT = new Year(
-           firstDayThisYear()
+           firstDayThisYear(),
+           1
    );
    
-   public Year(LocalDate firstDay) {
+   public Year(LocalDate firstDay, int startSprint) {
        this.name = String.valueOf(firstDay.getYear());
        this.firstDay = firstDay;
        this.lastDay = lastDayFrom(firstDay);
+       this.startSprint = startSprint;
    }
    
    public Year(int year) {
@@ -63,6 +67,15 @@ public class Year {
        return firstDay;
    }
    
+   /**
+    * Getter for start sprint number.
+    * 
+    * @return start sprint
+    */
+   public int getStartSprint() {
+       return startSprint;
+   }
+  
    /**
     * Getter for last day
     * 
@@ -97,6 +110,15 @@ public class Year {
     */
    public void setLastDay(LocalDate value) {
        lastDay = value;
+   }
+   
+   /**
+    * Sets start sprint
+    * 
+    * @param value new start sprint value
+    */
+   public void setStartSprint(int value) {
+       startSprint = value;
    }
    
    /**
@@ -135,9 +157,21 @@ public class Year {
            return 0;
        }
        
-       int total = calculateWeeks() / sprintLength;
+       if (sprintLength == 2) {
+           return 24;
+       }
        
-       return (total / 4) * 4;
+       return 52 / sprintLength;
+   }
+   
+   /**
+    * Calculates last sprint
+    * 
+    * @param prefs document preferences
+    * @return last sprint number
+    */
+   public int lastSprint(Preferences prefs) {
+       return startSprint + calculateSprints(prefs.getSprintLength());
    }
    
    /**
@@ -145,9 +179,10 @@ public class Year {
     * 
     * @return next year.
     */
-   public Year next() {
+   public Year next(Preferences prefs) {
        return new Year(
-               firstDayFrom(firstDay.getYear() + 1)
+               firstDayFrom(firstDay.getYear() + 1),
+               lastSprint(prefs)
        );
    }
    
@@ -156,9 +191,16 @@ public class Year {
     * 
     * @return previous year.
     */
-   public Year previous() {
+   public Year previous(Preferences prefs) {
+       int yearSprints = calculateSprints(prefs.getSprintLength());
+       
+       if ((getStartSprint() - yearSprints) < prefs.getStartSprintNumber()) {
+           return this;
+       }
+       
        return new Year(
-               firstDayFrom(firstDay.getYear() - 1)
+               firstDayFrom(firstDay.getYear() - 1),
+               getStartSprint() - yearSprints
        );
    }
    
