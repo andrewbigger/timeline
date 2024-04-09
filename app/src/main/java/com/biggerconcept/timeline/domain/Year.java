@@ -2,6 +2,8 @@ package com.biggerconcept.timeline.domain;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 
 /**
  * Represents a year.
@@ -161,6 +163,17 @@ public class Year {
    }
    
    /**
+    * Returns number of years since given year
+    * 
+    * @param year start year
+    * 
+    * @return years between
+    */
+   public int yearsSince(Year year) {
+       return getFirstDay().getYear() - year.getFirstDay().getYear();
+   }
+   
+   /**
     * Builds the first day of a given year.
     * 
     * @param year year to build first day.
@@ -198,4 +211,5 @@ public class Year {
        
        return firstDay.plusDays(days);
    }
+  
 }

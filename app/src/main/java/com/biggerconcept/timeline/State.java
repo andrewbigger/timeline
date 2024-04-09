@@ -1,5 +1,6 @@
 package com.biggerconcept.timeline;
 
+import com.biggerconcept.appengine.ui.helpers.Date;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Year;
@@ -16,6 +17,7 @@ public class State {
     private Document openDocument;
     private Epic openEpic;
     private Year viewYear;
+    private Year startYear;
     private ResourceBundle bundle;
     
     public State(MainController controller, ResourceBundle rb) {
@@ -23,6 +25,9 @@ public class State {
         bundle = rb;
         openDocument = new Document();
         viewYear = Year.DEFAULT;
+        startYear = new Year(
+                Date.fromEpoch(openDocument.getPreferences().getStart())
+        );
     }
     
     public Document getOpenDocument() {
@@ -35,6 +40,10 @@ public class State {
     
     public Year getViewYear() {
         return viewYear;
+    }
+    
+    public Year getStartYear() {
+        return startYear;
     }
     
     public void setOpenDocument(Document value) {

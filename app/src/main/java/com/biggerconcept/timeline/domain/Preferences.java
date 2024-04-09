@@ -518,6 +518,15 @@ public class Preferences {
     }
     
     /**
+     * Calculates the number of available points in a year.
+     * 
+     * @return available annual points
+     */
+    public int calculateAvailablePointsInYear() {
+        return calculateAveragePointsPerWeek() * 52;
+    }
+    
+    /**
      * Converts preferences to projectus preferences.
      * 
      * @return projectus preferences

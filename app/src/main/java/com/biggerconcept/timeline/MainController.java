@@ -22,6 +22,7 @@ import com.biggerconcept.timeline.actions.epic.MoveEpicUp;
 import com.biggerconcept.timeline.actions.epic.MoveShelfEpicDown;
 import com.biggerconcept.timeline.actions.epic.MoveShelfEpicUp;
 import com.biggerconcept.timeline.actions.epic.RemoveShelfEpic;
+import com.biggerconcept.timeline.domain.Year;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ReleasesTimelineTable;
@@ -423,7 +424,10 @@ public class MainController implements Initializable {
                         availableSprints - 
                                 state
                                     .getOpenDocument()
-                                    .calculateCommittedSprints()
+                                    .calculateCommittedSprints(
+                                            state.getStartYear(),
+                                            state.getViewYear()
+                                    )
                 )
         );
         
@@ -435,7 +439,10 @@ public class MainController implements Initializable {
         
         commitmentPointsLabel.setText(
                 String.valueOf(
-                        state.getOpenDocument().calculateCommittedPoints()
+                        state.getOpenDocument().calculateCommittedPoints(
+                                state.getStartYear(),
+                                state.getViewYear()
+                        )
                 )
         );
         
@@ -445,7 +452,9 @@ public class MainController implements Initializable {
         
         commitmentProgress.setProgress(
                 state.getOpenDocument().calculateCommitmentProgress(
-                        availablePoints
+                        availablePoints,
+                        state.getStartYear(),
+                        state.getViewYear()
                 )
         );
 
