@@ -2,9 +2,11 @@ package com.biggerconcept.timeline.ui.tables;
 
 import com.biggerconcept.appengine.ui.tables.StandardTable;
 import com.biggerconcept.appengine.ui.tables.StandardTableColumn;
+import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
-import java.time.LocalDate;
+import com.biggerconcept.timeline.ui.domain.Sprint;
+import com.biggerconcept.timeline.ui.domain.Timeline;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -70,19 +72,19 @@ public class EpicsTimelineTable {
     private final ResourceBundle bundle;
     
     /**
+     * Application state
+     */
+    private final State state;
+    
+    /**
      * Document documentPreferences.
      */
     private final Preferences documentPreferences;
     
     /**
-     * List of currentEpics for the table.
+     * Timeline for table.
      */
-    private final ArrayList<TimelineEpic> currentEpics;
-    
-    /**
-     * Start date
-     */
-    private final LocalDate start;
+    private final Timeline timeline;
     
     /**
      * Total number of sprints
@@ -107,28 +109,25 @@ public class EpicsTimelineTable {
     /**
      * Constructor for currentEpics table view model.
      * 
-     * @param rb application resource bundle
-     * @param preferences document documentPreferences
-     * @param epics epic list
-     * @param start start date
-     * @param sprints total number of sprints
+     * @param state application state
+     * @param timeline view timeline
      * @param viewYear view year for table
+     * @param sprints total number of sprints
+
      */
     public EpicsTimelineTable(
-            ResourceBundle rb, 
-            Preferences preferences, 
-            ArrayList<TimelineEpic> epics,
-            LocalDate start,
-            int sprints,
-            Year viewYear
+            State state,
+            Timeline timeline,
+            Year viewYear,
+            int sprints
      ) {
-        this.bundle = rb;
-        this.documentPreferences = preferences;
-        this.currentEpics = epics;
-        this.start = start;
+        this.state = state;
+        this.timeline = timeline;
         this.viewYear = viewYear;
-        
         this.numberOfSprints = sprints;
+        
+        this.bundle = state.bundle();
+        this.documentPreferences = state.getOpenDocument().getPreferences();
         this.sprintsPerQuarter = numberOfSprints / 4;
         this.sprintsPerMonth = sprintsPerQuarter / 3;
     }
@@ -154,11 +153,13 @@ public class EpicsTimelineTable {
         for (TableColumn col : dateCols()) {
             cols.add(col);
         }
-        
+
         StandardTable.bind(
                 view,
                 bundle.getString("project.table.empty"),
-                FXCollections.observableArrayList(currentEpics),
+                FXCollections.observableArrayList(
+                        timeline.getEpicsInYear(viewYear)
+                ),
                 cols
         );
     }
@@ -245,7 +246,14 @@ public class EpicsTimelineTable {
             int sprintNumber = number;
             
             if (data.getValue().hasSprint(sprintNumber)) {
-                value = "■";
+                Sprint sprint = data.getValue().getSprint(sprintNumber);
+                
+                if (state.getShowCounts() == true) {
+                    value = String.valueOf(sprint.getPoints());
+                } else {
+                    value = "■";
+                }
+ 
             }
             
             if (data.getValue().isCurrentSprint(

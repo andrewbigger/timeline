@@ -22,7 +22,7 @@ import com.biggerconcept.timeline.actions.epic.MoveEpicUp;
 import com.biggerconcept.timeline.actions.epic.MoveShelfEpicDown;
 import com.biggerconcept.timeline.actions.epic.MoveShelfEpicUp;
 import com.biggerconcept.timeline.actions.epic.RemoveShelfEpic;
-import com.biggerconcept.timeline.domain.Year;
+import com.biggerconcept.timeline.actions.epic.ToggleCounts;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ReleasesTimelineTable;
@@ -382,12 +382,17 @@ public class MainController implements Initializable {
     public void mapDocumentToWindow() {
         state.getOpenDocument().rebuildIdentifiers();
         
+        Timeline timeline = new Timeline(
+                state.getOpenDocument().getEpics(),
+                state.getOpenDocument().getPreferences()
+        );
+        
         setWindowTitle();
         applyPreferencesToWindow();
         mapYearToWindow();
-        mapOutlookToWindow();
         mapShelfToWindow();
-        mapEpicsToWindow();
+        mapEpicsToWindow(timeline);
+        mapOutlookToWindow(timeline);
         mapAssessmentsToWindow();
         mapNotesToWindow();
     }
@@ -402,7 +407,7 @@ public class MainController implements Initializable {
     /**
      * Maps velocity, available sprints and commitment to window.
      */
-    private void mapOutlookToWindow() {
+    private void mapOutlookToWindow(Timeline timeline) {
         velocityPointsLabel.setText(
                 String.valueOf(
                     state
@@ -412,57 +417,36 @@ public class MainController implements Initializable {
                 )
         );
         
-        int availableSprints = state.getViewYear().calculateSprints(
-                                state
-                                    .getOpenDocument()
-                                    .getPreferences()
-                                    .getSprintLength()
-                        );
+        int availableSprints = state.getViewYear().countAvailableSprints(
+                state.getOpenDocument().getPreferences()
+        );
         
         usedSprintsLabel.setText(
                 String.valueOf(
-                        availableSprints - 
-                                state
-                                    .getOpenDocument()
-                                    .calculateCommittedSprints(
-                                            state.getStartYear(),
-                                            state.getViewYear()
-                                    )
-                )
+                        timeline.countUsedSprintsInYear(state.getViewYear()))
         );
         
         totalSprintsLabel.setText(
                 String.valueOf(
-                     availableSprints   
+                     availableSprints
                 )
         );
+        
+        int committedPoints = timeline.countUsedPointsInYear(state.getViewYear());
+        
+        int availablePoints = state.getViewYear().countAvailablePoints(
+                state.getOpenDocument().getPreferences()
+        );
+        
+        double progress = (double) committedPoints / availablePoints;
         
         commitmentPointsLabel.setText(
-                String.valueOf(
-                        state.getOpenDocument().calculateCommittedPoints(
-                                state.getStartYear(),
-                                state.getViewYear()
-                        )
-                )
-        );
+                String.valueOf(committedPoints));
         
-        int availablePoints = state.getOpenDocument()
-                                .getPreferences()
-                                .calculateAvailablePointsIn(availableSprints);
-        
-        commitmentProgress.setProgress(
-                state.getOpenDocument().calculateCommitmentProgress(
-                        availablePoints,
-                        state.getStartYear(),
-                        state.getViewYear()
-                )
-        );
+        commitmentProgress.setProgress(progress);
 
         availableCommitmentLabel.setText(
-                String.valueOf(
-                        availablePoints
-                )
-        );
+                String.valueOf(availablePoints));
     }
     
     /**
@@ -481,7 +465,7 @@ public class MainController implements Initializable {
     /**
      * Maps selected epics to window
      */
-    private void mapEpicsToWindow() {
+    private void mapEpicsToWindow(Timeline timeline) {
         int availableSprints = state.getViewYear().calculateSprints(
                                 state.getOpenDocument()
                                     .getPreferences()
@@ -494,23 +478,11 @@ public class MainController implements Initializable {
                 .getSelectionModel()
                 .getSelectedIndex();
         
-        Timeline tl = new Timeline(
-                state.getViewYear(),
-                state.getOpenDocument().getEpics(),
-                Date.fromEpoch(state.getOpenDocument().getPreferences().getStart()),
-                state.getOpenDocument().getPreferences(),
-                availableSprints
-        );
-        
-        tl.calculate(state.getOpenDocument().getPreferences());
-        
         EpicsTimelineTable epicsTable = new EpicsTimelineTable(
-                state.bundle(),
-                state.getOpenDocument().getPreferences(),
-                tl.getEpics(),
-                state.getViewYear().getFirstDay(),
-                availableSprints,
-                state.getViewYear()
+                state,
+                timeline,
+                state.getViewYear(),
+                availableSprints
         );
         
         epicsTable.bind(epicTableView);
@@ -833,6 +805,22 @@ public class MainController implements Initializable {
                      state.bundle().getString("errors.viewYear"),
                      e
              );
+        }
+    }
+    
+    /**
+     * Toggles count view
+     */
+    @FXML
+    private void handleToggleCounts() {
+        try {
+            perform(ToggleCounts.class);
+        } catch (Exception e) {
+            ErrorAlert.show(
+                state.bundle(),
+                state.bundle().getString("errors.generic"),
+                e
+            );
         }
     }
     

@@ -61,6 +61,11 @@
   -fx-background-image: url('../icons/projectusIcon.png');
 }
 
+.hashButton {
+  -fx-background-image: url('../icons/HashIcon.png');
+}
+
+
 #openFileButton {
   -fx-background-image:url('../icons/OpenFileIcon.png');
   -fx-background-position: center center;

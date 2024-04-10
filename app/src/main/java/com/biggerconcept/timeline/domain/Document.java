@@ -3,6 +3,8 @@ package com.biggerconcept.timeline.domain;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
+import com.biggerconcept.timeline.ui.domain.Timeline;
+import com.biggerconcept.timeline.ui.domain.TimelineEpic;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -342,87 +344,6 @@ public class Document {
         }
         
         lastEpicIdentifier = idx;
-    }
-    
-    /**
-     * Calculates total number of points that are committed.
-     * 
-     * When the number of available points is greater than
-     * a year, then we return the number of available points in
-     * a year.
-     * 
-     * When there are a positive number of years between the start
-     * point and view point, the previous years points are removed 
-     * to show the number of committed points in that year.
-     * 
-     * When the view year is before the start year, 0 is returned.
-     * 
-     * @return total number of points in committed epics.
-     */
-    public int calculateCommittedPoints(Year startYear, Year viewYear) {
-        int count = 0;
-        
-        for (Epic e : getEpics()) {
-            count += e.calculateTotalPoints(
-                    getPreferences().asProjectusPreferences()
-            );
-        }
-        
-        int annualPoints = getPreferences().calculateAvailablePointsInYear();
-        int yearsBetween = viewYear.yearsSince(startYear);
-        
-        if (count > annualPoints) {
-            if (yearsBetween == 0) {
-                return annualPoints;
-            } else if (yearsBetween < 0) {
-                return 0;
-            }
-            
-            for (int i = 0; i < yearsBetween; i++) {
-                count -= annualPoints;
-                if (count < 0) {
-                    count = 0;
-                }
-            }
-        }
-        
-        return count;
-    }
-    
-    /**
-     * Calculates committed sprints.
-     * 
-     * @return committed number of sprints
-     */
-    public int calculateCommittedSprints(Year startYear, Year viewYear) {
-        int pointsPerSprint = getPreferences().calculateAveragePointsPerSprint();
-        int points = calculateCommittedPoints(startYear, viewYear);
-        
-        if (points == 0) {
-            return 0;
-        }
-        
-        if (pointsPerSprint == 0) {
-            return 1;
-        }
-
-        return points / pointsPerSprint;
-    }
-    
-    /**
-     * Expresses committed points as a proportion of given number
-     * of available points.
-     * 
-     * @param availablePoints total number of available points
-     * @return progress of committed points
-     */
-    public double calculateCommitmentProgress(
-            int availablePoints,
-            Year startYear,
-            Year viewYear
-    ) {
-        return (double) calculateCommittedPoints(startYear, viewYear) / 
-                availablePoints;
     }
     
     /**

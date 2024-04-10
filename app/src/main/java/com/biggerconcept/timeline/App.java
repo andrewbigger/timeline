@@ -63,7 +63,7 @@ public class App extends Application {
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
         stage.setMinHeight(600);
-        stage.setMinWidth(901);
+        stage.setMinWidth(1500);
         stage.show();
     }
 

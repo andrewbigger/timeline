@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Represents a year.
@@ -172,6 +173,45 @@ public class Year {
     */
    public int lastSprint(Preferences prefs) {
        return startSprint + calculateSprints(prefs.getSprintLength());
+   }
+   
+   /**
+    * Builds list of sprint numbers
+    * 
+    * @param prefs document preferences
+    * @return list of sprints
+    */
+   public ArrayList<Integer> sprintNumbers(Preferences prefs) {
+       int startSprint = getStartSprint();
+       int endSprint = lastSprint(prefs);
+       
+       ArrayList<Integer> sprints = new ArrayList<>();
+       
+       for (int i = startSprint; i < endSprint; i++) {
+           sprints.add(i);
+       }
+       
+       return sprints;
+   }
+   
+   /**
+    * Returns number of sprints in the year.
+    * 
+    * @param prefs document preferences
+    * @return sprint count
+    */
+   public int countAvailableSprints(Preferences prefs) {
+       return sprintNumbers(prefs).size();
+   }
+   
+   /**
+    * Returns number of available points in the year.
+    * 
+    * @param prefs document preferences
+    * @return available points
+    */
+   public int countAvailablePoints(Preferences prefs) {
+       return prefs.calculateAvailablePointsIn(countAvailableSprints(prefs));
    }
    
    /**

@@ -2,6 +2,7 @@ package com.biggerconcept.timeline.ui.domain;
 
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Preferences;
+import com.biggerconcept.timeline.domain.Year;
 import java.time.LocalDate;
 import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
@@ -14,6 +15,46 @@ import java.util.Locale;
  * @author Andrew Bigger
  */
 public class TimelineEpic {
+    /**
+     * Returns timeline epics that fit in given year.
+     * 
+     * @param year year
+     * @param epics epics
+     * @return timeline epics that fit in year
+     */
+    public static ArrayList<TimelineEpic> inYear(
+            Year year,
+            ArrayList<TimelineEpic> epics
+    ) {
+        ArrayList<TimelineEpic> yearEpics = new ArrayList<>();
+        
+        for (TimelineEpic te : epics) {
+            if (te.hasSprintInYear(year)) {
+                yearEpics.add(te);
+            }
+        }
+        
+        return yearEpics;
+    }
+    
+    /**
+     * Converts a set of epics to timeline epics.
+     * 
+     * @param epics epics
+     * @return timeline epics
+     */
+    public static ArrayList<TimelineEpic> toTimelineEpics(
+            ArrayList<Epic> epics
+    ) {
+        ArrayList<TimelineEpic> timelineEpics = new ArrayList<>();
+        
+        for (Epic e : epics) {
+            timelineEpics.add(new TimelineEpic(e));
+        }
+        
+        return timelineEpics;
+    }
+    
     /**
      * Epic definition
      */
@@ -50,6 +91,22 @@ public class TimelineEpic {
         
         return sprints;
     }
+    
+    /**
+     * Getter for a specific sprint
+     * 
+     * @param number sprint number
+     * @return sprint if found
+     */
+     public Sprint getSprint(int number) {
+         for (Sprint s : getSprints()) {
+             if (s.getNumber() == number) {
+                 return s;
+             }
+         }
+         
+         return null;
+     }
     
     /**
      * Retrieves the epic name from underlying epic
@@ -101,34 +158,74 @@ public class TimelineEpic {
     /**
      * Adds a sprint to the occupied sprints array.
      * 
-     * @param s sprint to add
+     * @param sprint sprint to add
      */
-    public void addSprint(Sprint s) {
-        getSprints().add(s);
+    public void addSprint(Sprint sprint) {
+        getSprints().add(sprint);
+    }
+    
+    public void addSprints(ArrayList<Sprint> sprints) {
+        getSprints().addAll(sprints);
     }
     
     /**
      * Builds a set of occupied sprints based on epic data.
      * 
      * @param prefs document preferences
-     * @param startSprint first sprint to start epic
+     * @param startSprintNumber first sprint to start epic
+     * @param startSprintCommitment amount of points already committed in start sprint
      */
     public void calculateSprints(
             Preferences prefs,
-            int startSprint
+            int startSprintNumber,
+            int startSprintCommitment
     ) {
+        // epic points
         int points = getEpic().calculateTotalPoints(
                 prefs.asProjectusPreferences()
         );
-        
+        // maximum number of points in each sprint
         int pointsPerSprint = prefs.calculateAveragePointsPerSprint();
-        int sprints = (int) points / pointsPerSprint;
-        int sprintCounter = startSprint;
-
-        for (int i = 0; i < sprints + 1; i++) {
-            addSprint(new Sprint(sprintCounter));
+        
+        ArrayList<Sprint> sprints = new ArrayList<Sprint>();
+        
+        int pointsAfterFirst = points;
+        Sprint startSprint = new Sprint(startSprintNumber, startSprintCommitment);
+        int availableFirstSprintPoints = startSprint
+                .availablePoints(pointsPerSprint);
+        
+        if (points < availableFirstSprintPoints) {
+            // add the whole epic to the start sprint if it fits
+            startSprint.addPoints(points);
+            addSprint(startSprint);
+            return;
+        } else if (availableFirstSprintPoints > 0) {
+            // otherwise we need to add the available points
+            startSprint.setPoints(availableFirstSprintPoints);
+            pointsAfterFirst = points - availableFirstSprintPoints;
+            addSprint(startSprint);
+        } else {
+            // last sprint is full, we'll start this on the
+            // next one
+        }
+ 
+        int sprintCount = (int) pointsAfterFirst / pointsPerSprint;
+        int remainder = (int) pointsAfterFirst % pointsPerSprint;
+        int sprintCounter = startSprintNumber + 1;
+        
+        // add sprints that didn't fit into the first sprint
+        for (int i = 0; i < sprintCount; i++) {
+            sprints.add(new Sprint(sprintCounter, pointsPerSprint));
             sprintCounter++;
         }
+        
+        // finally add a sprint for the remainder if there is any
+        if (remainder > 0) {
+            sprints.add(new Sprint(sprintCounter, remainder));
+        }
+        
+        // add all generated sprints to epic
+        addSprints(sprints);
     }
     
     /**
@@ -158,6 +255,27 @@ public class TimelineEpic {
         }
         
         return false;
+    }
+    
+    /**
+     * Returns true if there are any sprints in the given year
+     * 
+     * @param year year
+     * 
+     * @return whether there are any sprints in the year.
+     */
+    public boolean hasSprintInYear(Year year) {
+        boolean result = true;
+        
+        for (Sprint s : getSprints()) {
+            if (s.getNumber() < year.getStartSprint()) {
+                result = false;
+            } else {
+                result = true;
+            }
+        }
+        
+        return result;
     }
     
     /**

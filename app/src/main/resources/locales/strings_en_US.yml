@@ -334,7 +334,7 @@ parts:
 - translation:
     key: "project.availableSprints.label"
     title: "Label for available sprints"
-    value: "Available sprints"
+    value: "Used sprints"
     variants: {}
 - translation:
     key: "preferences.sprint.title"

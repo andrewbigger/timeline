@@ -19,6 +19,7 @@ public class State {
     private Year viewYear;
     private Year startYear;
     private ResourceBundle bundle;
+    private boolean showCounts;
     
     public State(MainController controller, ResourceBundle rb) {
         mainController = controller;
@@ -47,6 +48,10 @@ public class State {
         return startYear;
     }
     
+    public boolean getShowCounts() {
+        return showCounts;
+    }
+    
     public void setOpenDocument(Document value) {
         openDocument = value;
     }
@@ -57,6 +62,10 @@ public class State {
     
     public void setViewYear(Year value) {
         viewYear = value;
+    }
+    
+    public void setShowCounts(boolean value) {
+        showCounts = value;
     }
     
     public MainController mainController() {
@@ -90,5 +99,9 @@ public class State {
     
     public void releaseOpenEpic() {
         openEpic = null;
+    }
+    
+    public void toggleCounts() {
+        showCounts = !showCounts;
     }
 }
