@@ -2,6 +2,7 @@ package com.biggerconcept.timeline.ui.domain;
 
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Preferences;
+import com.biggerconcept.timeline.domain.Release;
 import com.biggerconcept.timeline.domain.Year;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,20 +14,28 @@ import java.util.ArrayList;
  */
 public class Timeline {
     private ArrayList<TimelineEpic> timelineEpics;
+    private ArrayList<TimelineRelease> timelineReleases;
     private ArrayList<Sprint> sprints;
     private Preferences prefs;
     private LocalDate start;
     
     public Timeline(
             ArrayList<Epic> epics,
+            ArrayList<Release> releases,
             Preferences prefs
     ) {
         this.timelineEpics = new ArrayList<>();
+        this.timelineReleases = new ArrayList<>();
         this.sprints = new ArrayList<>();
         this.prefs = prefs;
         
         for (Epic e : epics) {
             addEpic(e);
+        }
+        
+        for (Release r : releases) {
+            TimelineRelease release = new TimelineRelease(r);
+            timelineReleases.add(release);
         }
         
         build();
@@ -38,6 +47,10 @@ public class Timeline {
         }
         
         return timelineEpics;
+    }
+    
+    public ArrayList<TimelineRelease> getReleases() {
+        return timelineReleases;
     }
     
     public LocalDate getStart() {
@@ -63,6 +76,19 @@ public class Timeline {
         for (TimelineEpic te : all) {
             if (hasAnySprintInYear(year, te.getSprints()) == true) {
                 inYear.add(te);
+            }
+        }
+        
+        return inYear;
+    }
+    
+    public ArrayList<TimelineRelease> getReleasesInYear(Year year) {
+        ArrayList<TimelineRelease> all = getReleases();
+        ArrayList<TimelineRelease> inYear = new ArrayList<>();
+        
+        for (TimelineRelease tr : all) {
+            if (hasSprintInYear(year, tr.getSprintNumber())) {
+                inYear.add(tr);
             }
         }
         
@@ -174,9 +200,30 @@ public class Timeline {
         
         return false;
     }
+    
+    public boolean hasRelease(TimelineEpic e) {
+        TimelineRelease found = findRelease(e);
+        
+        return found != null;
+    }
+    
+    public TimelineRelease findRelease(TimelineEpic e) {
+        for (TimelineRelease r : getReleases()) {
+            if (r.lastEpicId().equals(e.getEpic().getId())) {
+                return r;
+            }
+        }
+        
+        return null;
+    }
 
     public void addEpic(Epic e) {
-        timelineEpics.add(new TimelineEpic(e));
+        getEpics().add(new TimelineEpic(e));
+    }
+    
+    public void addRelease(Release r) {
+        TimelineRelease release = new TimelineRelease(r);
+        timelineReleases.add(release);
     }
     
     public void addSprint(Sprint s) {
@@ -193,6 +240,13 @@ public class Timeline {
     public void addSprints(ArrayList<Sprint> sprints) {
         for (Sprint s : sprints) {
             addSprint(s);
+        }
+    }
+    
+    public void addReleases(TimelineEpic epic, Sprint lastSprint) {
+        if (hasRelease(epic)) {
+            TimelineRelease r = findRelease(epic);
+            r.setSprintNumber(lastSprint);
         }
     }
     
@@ -217,6 +271,7 @@ public class Timeline {
             );
             
             addSprints(te.getSprints());
+            addReleases(te, te.getLastSprint());
             s = te.getLastSprint();
         }
     }

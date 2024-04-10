@@ -3,8 +3,6 @@ package com.biggerconcept.timeline.domain;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
-import com.biggerconcept.timeline.ui.domain.Timeline;
-import com.biggerconcept.timeline.ui.domain.TimelineEpic;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -12,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * In memory representation of file.
@@ -313,6 +312,23 @@ public class Document {
      */
     public void rebuildIdentifiers() {
         identifyEpics();
+        Release.numberReleases(getReleases());
+    }
+    
+    /**
+     * Find epic by ID
+     * 
+     * @param id id to search for
+     * @return found epic
+     */
+    public Epic findEpicById(UUID id) {
+        for (Epic e : getEpics()) {
+            if (e.getId().equals(id)) {
+                return e;
+            }
+        }
+        
+        return null;
     }
     
     /**
@@ -362,6 +378,48 @@ public class Document {
         }
         
         return count;
+    }
+    
+    /**
+     * Returns list of available epics for releases.
+     * 
+     * @return available epics
+     */
+    public ArrayList<Epic> availableEpicsForRelease() {
+        ArrayList<Epic> all = getEpics();
+        ArrayList<Release> allReleases = getReleases();
+        ArrayList<Epic> releaseEpics = new ArrayList<>();
+        
+        for (Release r : allReleases) {
+            releaseEpics.addAll(r.epics(this));
+        }
+        
+        ArrayList<Epic> available = new ArrayList<>();
+        
+        for (Epic e : all) {
+            if (hasEpic(releaseEpics, e) == false) {
+                available.add(e);
+            }
+        }
+        
+        return available;
+    }
+    
+    /**
+     * Returns true if given epic is in the set.
+     * 
+     * @param set set of epics to search through
+     * @param epic epic to search for
+     * @return whether epic is in the set
+     */
+    private boolean hasEpic(ArrayList<Epic> set, Epic epic) {
+        for (Epic e : set) {
+            if (epic.getId().equals(e.getId())) {
+                return true;
+            }
+        }
+        
+        return false;
     }
     
 }

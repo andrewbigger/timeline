@@ -2,10 +2,10 @@ package com.biggerconcept.timeline.ui.tables;
 
 import com.biggerconcept.appengine.ui.tables.StandardTable;
 import com.biggerconcept.appengine.ui.tables.StandardTableColumn;
+import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Preferences;
-import com.biggerconcept.timeline.domain.Release;
 import com.biggerconcept.timeline.domain.Year;
-import java.time.LocalDate;
+import com.biggerconcept.timeline.ui.domain.Timeline;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -13,7 +13,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import com.biggerconcept.timeline.ui.domain.TimelineEpic;
+import com.biggerconcept.timeline.ui.domain.TimelineRelease;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * View model for epic timeline table.
@@ -64,24 +65,24 @@ public class ReleasesTimelineTable {
             "-fx-background-color: #cee2f2; -fx-alignment: CENTER;";
     
     /**
-     * Application resource bundle.
+     * Application resource bundle
      */
     private final ResourceBundle bundle;
+    
+    /**
+     * Application state.
+     */
+    private final State state;
+    
+    /**
+     * Timeline
+     */
+    private final Timeline timeline;
     
     /**
      * Document documentPreferences.
      */
     private final Preferences documentPreferences;
-    
-    /**
-     * List of currentReleases for the table.
-     */
-    private final ArrayList<Release> currentReleases;
-    
-    /**
-     * Start date
-     */
-    private final LocalDate start;
     
     /**
      * Total number of sprints
@@ -94,30 +95,26 @@ public class ReleasesTimelineTable {
     private final Year viewYear;
     
     /**
-     * Constructor for currentReleases table view model.
+     * Constructor for releases table view model.
      * 
-     * @param rb application resource bundle
-     * @param preferences document documentPreferences
-     * @param releases release list
-     * @param start start date
-     * @param sprints total number of sprints
+     * @param state application state
+     * @param timeline view timeline
      * @param viewYear view year for table
+     * @param sprints total number of sprints
      */
     public ReleasesTimelineTable(
-            ResourceBundle rb, 
-            Preferences preferences, 
-            ArrayList<Release> releases,
-            LocalDate start,
-            int sprints,
-            Year viewYear
+            State state,
+            Timeline timeline,
+            Year viewYear,
+            int sprints
      ) {
-        this.bundle = rb;
-        this.documentPreferences = preferences;
-        this.currentReleases = releases;
-        this.start = start;
+        this.state = state;
+        this.timeline = timeline;
         this.viewYear = viewYear;
-        
         this.numberOfSprints = sprints;
+        
+        this.bundle = state.bundle();
+        this.documentPreferences = state.getOpenDocument().getPreferences();
     }
     
     /**
@@ -143,7 +140,9 @@ public class ReleasesTimelineTable {
         
         StandardTable.bind(view,
                 bundle.getString("release.table.empty"),
-                FXCollections.observableArrayList(currentReleases),
+                FXCollections.observableArrayList(
+                        timeline.getReleasesInYear(viewYear)
+                ),
                 cols
         );
     }
@@ -173,7 +172,7 @@ public class ReleasesTimelineTable {
      * @return column for the sprint
      */
     private TableColumn sprintCol(int number) {
-        TableColumn<TimelineEpic, String> s = new TableColumn(
+        TableColumn<TimelineRelease, String> s = new TableColumn(
                 String.valueOf(number)
         );
         
@@ -186,18 +185,10 @@ public class ReleasesTimelineTable {
         s.setCellValueFactory(data -> {
             String value = "";
             
-            int sprintNumber = (number + 1) - 
-                    documentPreferences.getStartSprintNumber();
+            int sprintNumber = number + 1;
             
-            if (data.getValue().hasSprint(sprintNumber)) {
+            if (data.getValue().getSprintNumber() == sprintNumber) {
                 value = "★";
-            }
-            
-            if (data.getValue().isCurrentSprint(
-                    sprintNumber,
-                    documentPreferences
-            )) {
-                data.getTableColumn().setStyle(CURRENT_SPRINT_COL_STYLE);
             }
             
             return new SimpleStringProperty(
@@ -217,7 +208,7 @@ public class ReleasesTimelineTable {
      * @return name column
      */
     private TableColumn nameCol() {
-        TableColumn<TimelineEpic, String> nameCol = new TableColumn<>(
+        TableColumn<TimelineRelease, String> nameCol = new TableColumn<>(
                 bundle.getString("release.table.name")
         );
         
@@ -227,25 +218,9 @@ public class ReleasesTimelineTable {
                         ESTIMATE_COL_MIN_WIDTH
         );
         
-        return nameCol;
-    }
-    
-    /**
-     * Estimate column placeholder
-     * 
-     * Constructs a blank column so sprints line up with 
-     * timeline table.
-     * 
-     * @return estimate column
-     */
-    private TableColumn estimateCol() {
-        TableColumn<TimelineEpic, String> estimateCol = new TableColumn<>(
-                ""
-        );
+        nameCol.setCellValueFactory(new PropertyValueFactory("name"));
         
-        StandardTableColumn.apply(estimateCol, ESTIMATE_COL_MIN_WIDTH);
-
-        return estimateCol;
+        return nameCol;
     }
 
 }

@@ -113,7 +113,6 @@ public class EpicsTimelineTable {
      * @param timeline view timeline
      * @param viewYear view year for table
      * @param sprints total number of sprints
-
      */
     public EpicsTimelineTable(
             State state,

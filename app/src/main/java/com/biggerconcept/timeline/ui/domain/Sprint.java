@@ -40,7 +40,6 @@ public class Sprint {
     
     public void merge(Sprint sprint) {
         addPoints(sprint.getPoints());
-        System.out.println("MERGE POINTS: " + points);
     }
 
     public int availablePoints(int max) {

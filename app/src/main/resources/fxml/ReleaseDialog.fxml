@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane fx:id="releaseEditorBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.ReleaseDialogController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="%dialogs.releases.name">
+               <VBox.margin>
+                  <Insets bottom="3.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="releaseNameTextField">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Label text="%dialogs.releases.description">
+               <VBox.margin>
+                  <Insets bottom="3.0" />
+               </VBox.margin>
+            </Label>
+            <TextArea fx:id="releaseDescriptionTextArea" prefHeight="106.0" prefWidth="600.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </TextArea>
+            <Label text="%dialogs.releases.epics">
+               <VBox.margin>
+                  <Insets bottom="3.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="32.0" prefWidth="580.0">
+               <children>
+                  <ComboBox fx:id="epicChooserComboBox" prefWidth="150.0">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                <Button fx:id="addEpicButton" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddEpicToRelease" prefWidth="25.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="addButton" />
+                     </styleClass>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="removeEpicButton" minWidth="25.0" mnemonicParsing="false" onAction="#handleRemoveEpicFromRelease" prefWidth="25.0">
+                     <styleClass>
+                        <String fx:value="iconButton" />
+                        <String fx:value="smallIcon" />
+                        <String fx:value="removeButton" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="3.0" />
+               </VBox.margin>
+            </HBox>
+            <ListView fx:id="epicsListView" prefHeight="200.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </ListView>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <BorderPane prefHeight="29.0" prefWidth="580.0" BorderPane.alignment="CENTER">
+         <left>
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelRelease" prefWidth="100.0" text="%actions.cancel" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSaveRelease" prefWidth="100.0" text="%actions.save" BorderPane.alignment="CENTER" />
+         </right>
+         <padding>
+            <Insets bottom="5.0" top="5.0" />
+         </padding>
+      </BorderPane>
+   </bottom>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</BorderPane>

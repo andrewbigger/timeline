@@ -14,6 +14,7 @@ import com.biggerconcept.timeline.actions.epic.ImportEpic;
 import com.biggerconcept.timeline.actions.document.ViewNextYear;
 import com.biggerconcept.timeline.actions.document.ViewPreviousYear;
 import com.biggerconcept.timeline.actions.epic.AddEpic;
+import com.biggerconcept.timeline.actions.epic.EditRelease;
 import com.biggerconcept.timeline.actions.epic.EditShelfEpic;
 import com.biggerconcept.timeline.actions.epic.EpicCommit;
 import com.biggerconcept.timeline.actions.epic.ExportEpic;
@@ -23,8 +24,11 @@ import com.biggerconcept.timeline.actions.epic.MoveShelfEpicDown;
 import com.biggerconcept.timeline.actions.epic.MoveShelfEpicUp;
 import com.biggerconcept.timeline.actions.epic.RemoveShelfEpic;
 import com.biggerconcept.timeline.actions.epic.ToggleCounts;
+import com.biggerconcept.timeline.actions.release.AddRelease;
+import com.biggerconcept.timeline.actions.release.RemoveRelease;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
+import com.biggerconcept.timeline.ui.tables.ReleasesTable;
 import com.biggerconcept.timeline.ui.tables.ReleasesTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ShelfEpicsTable;
 import javafx.scene.control.Button;
@@ -207,6 +211,12 @@ public class MainController implements Initializable {
     public TableView releasesTableView;
     
     /**
+     * Releases timeline table view
+     */
+    @FXML
+    public TableView releasesTimelineTableView;
+    
+    /**
      * Timeline table view
      */
     @FXML
@@ -384,6 +394,7 @@ public class MainController implements Initializable {
         
         Timeline timeline = new Timeline(
                 state.getOpenDocument().getEpics(),
+                state.getOpenDocument().getReleases(),
                 state.getOpenDocument().getPreferences()
         );
         
@@ -392,6 +403,7 @@ public class MainController implements Initializable {
         mapYearToWindow();
         mapShelfToWindow();
         mapEpicsToWindow(timeline);
+        mapReleasesToWindow(timeline);
         mapOutlookToWindow(timeline);
         mapAssessmentsToWindow();
         mapNotesToWindow();
@@ -487,18 +499,28 @@ public class MainController implements Initializable {
         
         epicsTable.bind(epicTableView);
         
-        ReleasesTimelineTable releasesTable = new ReleasesTimelineTable(
-                state.bundle(),
-                state.getOpenDocument().getPreferences(),
-                state.getOpenDocument().getReleases(),
-                Date.fromEpoch(state.getOpenDocument().getPreferences().getStart()),
-                availableSprints,
-                state.getViewYear()
-        );
+        epicTableView.getSelectionModel().select(selected);
+    }
+    
+    private void mapReleasesToWindow(Timeline timeline) {
+        int availableSprints = state.getViewYear().calculateSprints(
+                                state.getOpenDocument()
+                                    .getPreferences()
+                                    .getSprintLength()
+                        );
+        
+        ReleasesTable releasesTable = new ReleasesTable(state);
         
         releasesTable.bind(releasesTableView);
         
-        epicTableView.getSelectionModel().select(selected);
+        ReleasesTimelineTable releasesTimelineTable = new ReleasesTimelineTable(
+                state,
+                timeline,
+                state.getViewYear(),
+                availableSprints
+        );
+        
+        releasesTimelineTable.bind(releasesTimelineTableView);
     }
     
     /**
@@ -669,7 +691,17 @@ public class MainController implements Initializable {
      */
     @FXML
     private void handleAddRelease() {
-        
+        try {
+            perform(AddRelease.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
     }
     
     /**
@@ -677,7 +709,17 @@ public class MainController implements Initializable {
      */
     @FXML
     private void handleRemoveRelease() {
-        
+        try {
+            perform(RemoveRelease.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
     }
     
     /**
@@ -685,23 +727,17 @@ public class MainController implements Initializable {
      */
     @FXML
     private void handleEditRelease() {
-        
-    }
-    
-    /**
-     * Handles the moving of a release up
-     */
-    @FXML
-    private void handleMoveReleaseUp() {
-        
-    }
-    
-    /**
-     * Handles the moving of a release down
-     */
-    @FXML
-    private void handleMoveReleaseDown() {
-        
+        try {
+            perform(EditRelease.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
     }
     
     /**
@@ -710,7 +746,7 @@ public class MainController implements Initializable {
     @FXML
     private void handleMoveEpicUp() {
         try {
-            perform(MoveEpicUp.class);
+            perform(EditRelease.class);
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {

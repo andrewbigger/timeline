@@ -874,6 +874,51 @@ parts:
 - translation:
     key: "release.table.name"
     title: "Name column label"
+    value: "Release"
+    variants: {}
+- translation:
+    key: "releases.table.name"
+    title: "Name column label for release"
     value: "Name"
+    variants: {}
+- translation:
+    key: "releases.table.number"
+    title: "Release attribute column header"
+    value: "#"
+    variants: {}
+- translation:
+    key: "releases.table.description"
+    title: "Release description label"
+    value: "Description"
+    variants: {}
+- translation:
+    key: "releases.table.empty"
+    title: "Empty table label"
+    value: "No Releases"
+    variants: {}
+- translation:
+    key: "dialogs.releases.name"
+    title: "Release name label"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "dialogs.releases.description"
+    title: "Release description label"
+    value: "Description"
+    variants: {}
+- translation:
+    key: "dialogs.releases.epics"
+    title: "Epics section label"
+    value: "Epics"
+    variants: {}
+- translation:
+    key: "releases.dialogs.remove.title"
+    title: "Title for remove release dialog"
+    value: "Delete Release"
+    variants: {}
+- translation:
+    key: "releases.dialogs.remove.description"
+    title: "Confirmation prompt for deleting a release"
+    value: "Are you sure you want to remove the selected release?"
     variants: {}
 sourceLanguage: "en"

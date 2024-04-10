@@ -164,6 +164,11 @@ public class TimelineEpic {
         getSprints().add(sprint);
     }
     
+    /**
+     * Adds multiple sprints to the sprints array.
+     * 
+     * @param sprints sprints to add
+     */
     public void addSprints(ArrayList<Sprint> sprints) {
         getSprints().addAll(sprints);
     }
