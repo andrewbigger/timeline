@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class EpicUnCommit implements Action {
     public void perform(State state, Stage window) 
-            throws NoChoiceMadeException {
+            throws NoChoiceMadeException, CloneNotSupportedException {
         ObservableList<TimelineEpic> items = state.mainController().epicTableView
                 .getSelectionModel()
                 .getSelectedItems();

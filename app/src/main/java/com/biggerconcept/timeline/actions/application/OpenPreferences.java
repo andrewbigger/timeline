@@ -44,7 +44,6 @@ public class OpenPreferences implements Action {
 
         Stage stage = new Stage();
 
-        stage.setAlwaysOnTop(true);
         stage.setScene(new Scene(preferencePane));
         stage.setTitle(
                 state.bundle().getString("dialogs.preferences.title")

@@ -1,0 +1,42 @@
+.main-toolbar-button {
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+.iconButton {
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+.smallIcon {
+  -fx-background-size: 25px 25px;
+}
+
+.moveUpButton {
+  -fx-background-image: url('../icons/MoveUpIcon.png');
+}
+
+.moveDownButton {
+  -fx-background-image: url('../icons/MoveDownIcon.png');
+}
+
+.moveLeftButton {
+  -fx-background-image: url('../icons/MoveLeftIcon.png');
+}
+
+.moveRightButton {
+  -fx-background-image: url('../icons/MoveRightIcon.png');
+}
+
+.removeButton {
+  -fx-background-image: url('../icons/RemoveIcon.png');
+}
+
+.addButton {
+  -fx-background-image: url('../icons/AddIcon.png');
+}
+
+.editButton {
+  -fx-background-image: url('../icons/EditIcon.png');
+}

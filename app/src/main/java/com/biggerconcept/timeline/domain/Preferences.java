@@ -1,11 +1,13 @@
 package com.biggerconcept.timeline.domain;
 
+import com.biggerconcept.appengine.reportbuilder.Report;
 import com.biggerconcept.appengine.ui.helpers.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.biggerconcept.projectus.domain.Sprint;
 import com.biggerconcept.projectus.domain.Size;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Application preferences.
@@ -109,8 +111,17 @@ public class Preferences {
     @JsonInclude(Include.NON_NULL)
     private int sprintLength;
     
+    /**
+     * Start sprint number
+     */
     @JsonInclude(Include.NON_NULL)
     private int startSprintNumber;
+    
+    /**
+     * Configured reports
+     */
+    @JsonInclude(Include.NON_NULL)
+    private ArrayList<Report> reports;
 
     /**
     * Returns estimate for given task size.
@@ -294,6 +305,19 @@ public class Preferences {
     }
     
     /**
+     * Getter for reports
+     * 
+     * @return reports
+     */
+    public ArrayList<Report> getReports() {
+        if (reports == null) {
+            reports = new ArrayList<>();
+        }
+        
+        return reports;
+    }
+    
+    /**
      * String setter for extra small task size setting.
      * 
      * Parses string to integer before calling the integer based setter.
@@ -464,6 +488,15 @@ public class Preferences {
      */
     public void setSprintLength(int value) {
         sprintLength = value;
+    }
+    
+    /**
+     * Setter for reports
+     * 
+     * @param value new reports array
+     */
+    public void setReports(ArrayList<Report> value) {
+        reports = value;
     }
     
     /**

@@ -33,7 +33,7 @@ public class EpicDialog {
             Epic epic,
             ArrayList<Epic> targetSet,
             boolean isNew
-    ) {
+    ) throws CloneNotSupportedException {
         try {
             state.setOpenEpic(epic);
             

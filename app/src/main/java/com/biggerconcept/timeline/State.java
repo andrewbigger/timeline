@@ -89,7 +89,7 @@ public class State {
         viewYear = viewYear.previous(prefs);
     }
     
-    public void mapDocumentToWindow() {
+    public void mapDocumentToWindow() throws CloneNotSupportedException {
         mainController().mapDocumentToWindow();
     }
     

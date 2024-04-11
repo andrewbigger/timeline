@@ -130,6 +130,7 @@ public class ReleaseDialogController implements Initializable {
      * @param parent parent window
      * @param targetSet target set on save
      * @param isNew whether the epic should be added on save
+     * @throws java.lang.CloneNotSupportedException
      */
     public void setRelease(
             State state,
@@ -137,7 +138,7 @@ public class ReleaseDialogController implements Initializable {
             MainController parent,
             ArrayList<Release> targetSet,
             boolean isNew
-    ) {
+    ) throws CloneNotSupportedException {
         this.state = state;
         this.targetSet = targetSet;
         this.isNew = isNew;
@@ -164,7 +165,7 @@ public class ReleaseDialogController implements Initializable {
      * 
      * @param doc 
      */
-    private void mapDocumentToWindow() {
+    private void mapDocumentToWindow() throws CloneNotSupportedException {
         mapDetailsToWindow();
         mapEpicOptionsToWindow();
         mapEpicsToWindow();

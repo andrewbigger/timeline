@@ -27,13 +27,14 @@ public class ReleaseDialog {
      * @param release release to edit
      * @param targetSet target set to add release to
      * @param isNew whether release is new or existing
+     * @throws java.lang.CloneNotSupportedException when unable to clone sprint
      */
     public static void open(
             State state,
             Release release,
             ArrayList<Release> targetSet,
             boolean isNew
-    ) {
+    ) throws CloneNotSupportedException {
         try {           
             URL location = state
                     .mainController()

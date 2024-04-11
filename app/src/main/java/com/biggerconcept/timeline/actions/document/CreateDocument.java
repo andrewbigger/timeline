@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  * @author Andrew Bigger
  */
 public class CreateDocument implements Action {
-    public void perform(State state, Stage window) {
+    public void perform(State state, Stage window) throws CloneNotSupportedException {
         state.reset();
         state.mapDocumentToWindow();
     }

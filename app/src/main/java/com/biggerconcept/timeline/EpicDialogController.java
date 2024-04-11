@@ -4,11 +4,9 @@ import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.dialogs.YesNoPrompt;
 import com.biggerconcept.projectus.domain.Epic;
-import com.biggerconcept.projectus.domain.Scope;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.projectus.ui.dialogs.EpicChooserDialog;
 import com.biggerconcept.projectus.ui.dialogs.ScopeDialog;
-import com.biggerconcept.timeline.actions.Action;
 import com.biggerconcept.timeline.ui.dialogs.TaskDialog;
 import com.biggerconcept.timeline.ui.tables.TasksTable;
 import java.net.URL;
@@ -203,6 +201,7 @@ public class EpicDialogController implements Initializable {
      * @param parent parent window
      * @param targetSet target set on save
      * @param isNew whether the epic should be added on save
+     * @throws java.lang.CloneNotSupportedException when unable to clone sprint
      */
     public void setEpic(
             State state,
@@ -210,7 +209,7 @@ public class EpicDialogController implements Initializable {
             MainController parent,
             ArrayList<Epic> targetSet,
             boolean isNew
-    ) {
+    ) throws CloneNotSupportedException {
         this.state = state;
         this.state.setOpenEpic(epic);
         this.targetSet = targetSet;
@@ -237,7 +236,7 @@ public class EpicDialogController implements Initializable {
      * 
      * @param doc 
      */
-    private void mapDocumentToWindow() {
+    private void mapDocumentToWindow() throws CloneNotSupportedException {
         mapDetailsToWindow();
         mapScopeToWindow();
         mapTasksToWindow();

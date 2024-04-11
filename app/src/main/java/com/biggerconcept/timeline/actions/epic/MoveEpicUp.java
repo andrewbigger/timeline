@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  */
 public class MoveEpicUp implements Action {
     public void perform(State state, Stage window) 
-            throws NoChoiceMadeException {
+            throws NoChoiceMadeException, CloneNotSupportedException {
         ObservableList<Epic> items = state.mainController().epicTableView
                     .getSelectionModel()
                     .getSelectedItems();

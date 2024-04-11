@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -261,6 +264,64 @@
                            </VBox.margin>
                         </Label>
                         <ComboBox fx:id="sprintSizeComboBox" prefWidth="150.0" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Reports">
+               <content>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Reports">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="These are your configured reports">
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin></Label>
+                        <HBox prefHeight="30.0" prefWidth="580.0">
+                           <children>
+                              <Button fx:id="addReportButton" mnemonicParsing="false" onAction="#handleAddReport" prefWidth="25.0">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="addButton" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="removeReportButton" mnemonicParsing="false" onAction="#handleRemoveReport" prefWidth="25.0">
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="removeButton" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="editReportButton" mnemonicParsing="false" onAction="#handleEditReport" prefWidth="25.0">
+                                 <styleClass>
+                                    <String fx:value="iconButton" />
+                                    <String fx:value="smallIcon" />
+                                    <String fx:value="editButton" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ListView fx:id="reportsListView" prefHeight="400.0" prefWidth="580.0" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

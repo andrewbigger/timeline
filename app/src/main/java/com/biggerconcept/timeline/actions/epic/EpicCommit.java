@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  */
 public class EpicCommit implements Action {
     public void perform(State state, Stage window) 
-            throws NoChoiceMadeException {
+            throws NoChoiceMadeException, CloneNotSupportedException {
         ObservableList<Epic> items = state.mainController().shelfTableView
                 .getSelectionModel()
                 .getSelectedItems();

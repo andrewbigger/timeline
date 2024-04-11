@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  * @author Andrew Bigger
  */
 public class AddRelease implements Action {
-    public void perform(State state, Stage window) {
+    public void perform(State state, Stage window) throws CloneNotSupportedException {
         ReleaseDialog.open(
                 state, 
                 new Release(), 

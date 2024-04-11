@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  * @author Andrew Bigger
  */
 public class ViewPreviousYear implements Action {
-    public void perform(State state, Stage window) {
+    public void perform(State state, Stage window) throws CloneNotSupportedException {
         state.prevYear(state.getOpenDocument().getPreferences());
         state.mapDocumentToWindow();
     }

@@ -17,7 +17,7 @@ import javafx.stage.Stage;
  */
 public class OpenDocument implements Action {
     public void perform(State state, Stage window)
-        throws NoChoiceMadeException, IOException {
+        throws NoChoiceMadeException, IOException, CloneNotSupportedException {
         File documentFile = OpenFileDialog.show(
                     state.bundle().getString("dialogs.open.title"),
                     window,

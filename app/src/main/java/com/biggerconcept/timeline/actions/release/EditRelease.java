@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  */
 public class EditRelease implements Action {
     public void perform(State state, Stage window) 
-            throws NoChoiceMadeException {
+            throws NoChoiceMadeException, CloneNotSupportedException {
 
         ObservableList<Release> items = state.mainController().releasesTableView
                 .getSelectionModel()

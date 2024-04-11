@@ -1,5 +1,9 @@
 package com.biggerconcept.timeline;
 
+import com.biggerconcept.appengine.IPreferencesController;
+import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.reportbuilder.Report;
+import com.biggerconcept.appengine.reportbuilder.dialogs.ReportBuilderDialog;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
@@ -12,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
@@ -22,7 +27,8 @@ import javafx.stage.Stage;
  * 
  * @author Andrew Bigger
  */
-public class PreferencesController implements Initializable {
+public class PreferencesController 
+        implements Initializable, IPreferencesController {
     /**
      * Resource bundle for preferences window.
      */
@@ -141,6 +147,30 @@ public class PreferencesController implements Initializable {
     public TextField startSprintNumberTextField;
     
     /**
+     * Add report button
+     */
+    @FXML
+    public Button addReportButton;
+    
+    /**
+     * Remove report button
+     */
+    @FXML
+    public Button removeReportButton;
+    
+    /**
+     * Edit report button
+     */
+    @FXML
+    public Button editReportButton;
+    
+    /**
+     * Reports list view
+     */
+    @FXML
+    public ListView reportsListView;
+    
+    /**
      * Cancel preferences button.
      */
     @FXML
@@ -212,14 +242,13 @@ public class PreferencesController implements Initializable {
     }
     
     /**
-     * Maps given document to window.
-     * 
-     * @param doc 
+     * Maps given document to window. 
      */
-    private void mapPreferencesToWindow() {
+    public void mapPreferencesToWindow() {
         mapTaskPreferencesToWindow();
         mapEstimatePreferencesToWindow();
         mapSprintPreferencesToWindow();
+        mapReportsToWindow();
     }
     
     /**
@@ -306,11 +335,21 @@ public class PreferencesController implements Initializable {
     }
     
     /**
-     * Maps window content to new document object for serialization.
-     * 
-     * @return 
+     * Maps reports to window
      */
-    private void mapWindowToPreferences() {
+    private void mapReportsToWindow() {
+        reportsListView.getItems().clear();
+        
+        for (Report r : currentPreferences.getReports()) {
+            reportsListView.getItems().add(r);
+        }
+    }
+    
+    /**
+     * Maps window content to new document object for serialization.
+     */
+    @Override
+    public void mapWindowToPreferences() {
         mapWindowToTaskPreferences();
         mapWindowToEstimatePreferences();
         mapWindowToSprintPreferences();
@@ -385,8 +424,107 @@ public class PreferencesController implements Initializable {
      */
     private void mapWindowToSprintPreferences() {
         currentPreferences.setSprintLength(
-                (int) sprintSizeComboBox.getSelectionModel().getSelectedItem()
+                Integer.valueOf(
+                        sprintSizeComboBox
+                                .getSelectionModel()
+                                .getSelectedItem()
+                                .toString()
+                )
         );
+    }
+    
+    /**
+     * Returns application resources
+     * @return application resources
+     */
+    public ResourceBundle bundle() {
+        return bundle;
+    }
+    
+    /**
+     * Opens report builder dialog to add a new report
+     */
+    @FXML
+    private void handleAddReport() {
+        try {
+            ReportBuilderDialog.open(
+                    this, 
+                    new Report("New Report"), 
+                    currentPreferences.getReports(),
+                    true,
+                    this.getClass().getResource("/fxml/ReportBuilder.fxml")
+            );
+            
+            mapPreferencesToWindow();
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Opens report builder dialog to add a new report
+     */
+    @FXML
+    private void handleRemoveReport() {
+        try {
+            Report selected = (Report) reportsListView
+                    .getSelectionModel()
+                    .getSelectedItem();
+            
+            if (selected == null) {
+                throw new NoChoiceMadeException();
+            }
+            
+            // TODO confirm
+            
+            currentPreferences.getReports().remove(selected);
+            
+            mapPreferencesToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Opens report builder dialog to edit an existing report
+     */
+    @FXML
+    private void handleEditReport() {
+        try {
+             Report selected = (Report) reportsListView
+                    .getSelectionModel()
+                    .getSelectedItem();
+            
+            if (selected == null) {
+                throw new NoChoiceMadeException();
+            }
+            
+            ReportBuilderDialog.open(
+                    this, 
+                    selected, 
+                    currentPreferences.getReports(),
+                    false,
+                    this.getClass().getResource("/fxml/ReportBuilder.fxml")
+            );
+            
+            mapPreferencesToWindow();
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    bundle,
+                    bundle.getString("errors.generic"),
+                    e
+            );
+        }
     }
     
     /**
