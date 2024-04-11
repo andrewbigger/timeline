@@ -20,6 +20,14 @@ import javafx.stage.StageStyle;
  * @author Andrew Bigger
  */
 public class EpicDialog {
+    /**
+     * Opens the epic dialog
+     * 
+     * @param state application state
+     * @param epic epic to modify
+     * @param targetSet target set to apply epic to
+     * @param isNew whether epic is new or existing
+     */
     public static void open(
             State state,
             Epic epic,

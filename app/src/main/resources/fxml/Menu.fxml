@@ -63,12 +63,12 @@
       </Menu>
       <Menu mnemonicParsing="false" text="%menu.view.label">
         <items>
-          <MenuItem disable="true" mnemonicParsing="false" onAction="#handleShowNextYear" text="%menu.view.nextYear">
+          <MenuItem mnemonicParsing="false" onAction="#handleShowNextYear" text="%menu.view.nextYear">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="CLOSE_BRACKET" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                </accelerator>
             </MenuItem>
-            <MenuItem disable="true" mnemonicParsing="false" onAction="#handleShowPrevYear" text="%menu.view.prevYear">
+            <MenuItem mnemonicParsing="false" onAction="#handleShowPrevYear" text="%menu.view.prevYear">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="OPEN_BRACKET" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                </accelerator>
@@ -112,6 +112,25 @@
             <MenuItem mnemonicParsing="false" onAction="#handleCommitToEpic" text="%menu.shelf.commit">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="Y" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+        </items>
+      </Menu>
+      <Menu mnemonicParsing="false" text="%menu.release.label">
+        <items>
+            <MenuItem mnemonicParsing="false" onAction="#handleAddRelease" text="%menu.release.add">
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="A" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+          <MenuItem mnemonicParsing="false" onAction="#handleRemoveRelease" text="%menu.release.remove">
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="R" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleEditRelease" text="%menu.release.edit">
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="E" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                </accelerator>
             </MenuItem>
         </items>

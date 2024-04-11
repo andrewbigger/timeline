@@ -37,6 +37,12 @@ public class Year {
            1
    );
    
+   /**
+    * Full Constructor.
+    * 
+    * @param firstDay first day of year
+    * @param startSprint start sprint number
+    */
    public Year(LocalDate firstDay, int startSprint) {
        this.name = String.valueOf(firstDay.getYear());
        this.firstDay = firstDay;
@@ -217,6 +223,8 @@ public class Year {
    /**
     * Builds following year from the current year.
     * 
+    * @param prefs document preferences
+    * 
     * @return next year.
     */
    public Year next(Preferences prefs) {
@@ -228,6 +236,8 @@ public class Year {
    
    /**
     * Builds previous year from the current year.
+    * 
+    * @param prefs document preferences
     * 
     * @return previous year.
     */

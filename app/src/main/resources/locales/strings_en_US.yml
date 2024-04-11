@@ -921,4 +921,24 @@ parts:
     title: "Confirmation prompt for deleting a release"
     value: "Are you sure you want to remove the selected release?"
     variants: {}
+- translation:
+    key: "menu.release.label"
+    title: "Release menu label"
+    value: "Releases"
+    variants: {}
+- translation:
+    key: "menu.release.add"
+    title: "Add release menu item"
+    value: "Add Release"
+    variants: {}
+- translation:
+    key: "menu.release.remove"
+    title: "Remove release menu label"
+    value: "Remove Release"
+    variants: {}
+- translation:
+    key: "menu.release.edit"
+    title: "Edit release menu item"
+    value: "Edit Release"
+    variants: {}
 sourceLanguage: "en"

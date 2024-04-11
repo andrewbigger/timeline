@@ -13,7 +13,6 @@ import com.biggerconcept.timeline.actions.epic.ImportEpic;
 import com.biggerconcept.timeline.actions.document.ViewNextYear;
 import com.biggerconcept.timeline.actions.document.ViewPreviousYear;
 import com.biggerconcept.timeline.actions.epic.AddEpic;
-import com.biggerconcept.timeline.actions.epic.EditRelease;
 import com.biggerconcept.timeline.actions.epic.EditShelfEpic;
 import com.biggerconcept.timeline.actions.epic.EpicCommit;
 import com.biggerconcept.timeline.actions.epic.ExportEpic;
@@ -24,6 +23,7 @@ import com.biggerconcept.timeline.actions.epic.RemoveShelfEpic;
 import com.biggerconcept.timeline.actions.epic.ToggleCounts;
 import com.biggerconcept.timeline.actions.release.AddRelease;
 import com.biggerconcept.timeline.actions.release.RemoveRelease;
+import com.biggerconcept.timeline.actions.release.EditRelease;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ReleasesTable;
@@ -276,7 +276,18 @@ public class MainController implements Initializable {
         MenuController.loadMenu(this, state, window(), toolbarBorderPane);
         
         applyTooltips();
-        mapDocumentToWindow();
+        
+        try {
+            mapDocumentToWindow();
+        } catch (CloneNotSupportedException ex) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    ex
+            );
+            
+            System.exit(1);
+        }
     }
     
     /**
@@ -386,8 +397,9 @@ public class MainController implements Initializable {
     
     /**
      * Maps given document to window.
+     * @throws java.lang.CloneNotSupportedException when unable to clone sprint
      */
-    public void mapDocumentToWindow() {
+    public void mapDocumentToWindow() throws CloneNotSupportedException {
         state.getOpenDocument().rebuildIdentifiers();
         
         Timeline timeline = new Timeline(

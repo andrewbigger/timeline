@@ -21,12 +21,34 @@ public class Release {
        }
    }
    
+   /**
+    * Release identifier
+    */
    private UUID id;
+   
+   /**
+    * Release number
+    */
    private int number;
+   
+   /**
+    * Release name
+    */
    private String name;
+   
+   /**
+    * Release description
+    */
    private String description;
+   
+   /**
+    * IDs of included epics
+    */
    private ArrayList<UUID> epicIds;
    
+   /**
+    * Default constructor
+    */
    public Release() {
        id = UUID.randomUUID();
        number = 0;
@@ -149,6 +171,8 @@ public class Release {
    
    /**
     * Retrieves epics by ID
+    * 
+    * @param doc open document
     * 
     * @return set of epics
     */

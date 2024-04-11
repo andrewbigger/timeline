@@ -20,6 +20,14 @@ import javafx.stage.StageStyle;
  * @author Andrew Bigger
  */
 public class ReleaseDialog {
+    /**
+     * Opens the release dialog
+     * 
+     * @param state application state
+     * @param release release to edit
+     * @param targetSet target set to add release to
+     * @param isNew whether release is new or existing
+     */
     public static void open(
             State state,
             Release release,

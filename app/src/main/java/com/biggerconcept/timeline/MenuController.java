@@ -25,6 +25,9 @@ import com.biggerconcept.timeline.actions.epic.MoveEpicUp;
 import com.biggerconcept.timeline.actions.epic.MoveShelfEpicDown;
 import com.biggerconcept.timeline.actions.epic.MoveShelfEpicUp;
 import com.biggerconcept.timeline.actions.epic.RemoveShelfEpic;
+import com.biggerconcept.timeline.actions.release.AddRelease;
+import com.biggerconcept.timeline.actions.release.RemoveRelease;
+import com.biggerconcept.timeline.actions.release.EditRelease;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -507,6 +510,60 @@ public class MenuController implements Initializable {
     }
     
     /**
+     * Adds a new release
+     */
+    @FXML
+    private void handleAddRelease() {
+        try {
+            perform(AddRelease.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Removes selected release
+     */
+    @FXML
+    private void handleRemoveRelease() {
+        try {
+            perform(RemoveRelease.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Opens edit release dialog when a release is selected
+     */
+    @FXML
+    private void handleEditRelease() {
+        try {
+            perform(EditRelease.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
      * Handles export epic
      */
     @FXML
@@ -584,5 +641,6 @@ public class MenuController implements Initializable {
             throws Exception {
         Action act = (Action) action.newInstance();
         act.perform(state, window);
+        state.mainController().mapDocumentToWindow();
     }
 }

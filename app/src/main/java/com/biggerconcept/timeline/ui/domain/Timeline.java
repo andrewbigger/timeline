@@ -9,17 +9,44 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Timeline of epics
+ * In memory representation of a timeline for presentation.
  * 
  * @author Andrew Bigger
  */
 public class Timeline {
+    /**
+     * Timeline epics
+     */
     private ArrayList<TimelineEpic> timelineEpics;
+    
+    /**
+     * Timeline releases
+     */
     private ArrayList<TimelineRelease> timelineReleases;
+    
+    /**
+     * All sprints
+     */
     private ArrayList<Sprint> sprints;
+    
+    /**
+     * Document preferences
+     */
     private Preferences prefs;
+    
+    /**
+     * Timeline start date
+     */
     private LocalDate start;
     
+    /**
+     * Full constructor for timeline
+     * 
+     * @param epics epics to present on timeline
+     * @param releases releases to present on timeline
+     * @param prefs document preferences
+     * @throws CloneNotSupportedException when unable to clone sprints
+     */
     public Timeline(
             ArrayList<Epic> epics,
             ArrayList<Release> releases,
@@ -42,6 +69,11 @@ public class Timeline {
         build();
     }
     
+    /**
+     * Getter for epics
+     * 
+     * @return timeline epics
+     */
     public ArrayList<TimelineEpic> getEpics() {
         if (timelineEpics == null) {
             timelineEpics = new ArrayList<>();
@@ -50,10 +82,20 @@ public class Timeline {
         return timelineEpics;
     }
     
+    /**
+     * Getter for releases
+     * 
+     * @return timeline releases
+     */
     public ArrayList<TimelineRelease> getReleases() {
         return timelineReleases;
     }
     
+    /**
+     * Getter for start date
+     * 
+     * @return timeline start date
+     */
     public LocalDate getStart() {
         if (start == null) {
             start = LocalDate.now();
@@ -62,6 +104,20 @@ public class Timeline {
         return start;
     }
     
+    /**
+     * Getter for sprints.
+     * 
+     * There might be multiple instances
+     * referring to the same sprint as they are
+     * required for ensuring that sprints belonging
+     * to different epics can position 
+     * themselves correctly.
+     * 
+     * For a list of unique sprints, please use
+     * getUniqueSprints.
+     * 
+     * @return all sprints
+     */
     public ArrayList<Sprint> getSprints() {
         if (sprints == null) {
             sprints = new ArrayList<>();
@@ -70,7 +126,25 @@ public class Timeline {
         return sprints;
     }
     
-    public HashMap<Integer, Sprint> getUniqueSprints() throws CloneNotSupportedException {
+    /**
+     * Returns a hash map of sprints being presented
+     * on the timeline.
+     * 
+     * There is a single entry on the map for each
+     * sprint to be presented in the timeline. The index
+     * of the hash map is the sprint number, and the value
+     * is a pointer to the sprint.
+     * 
+     * Sprints are cloned for size calculation, when it
+     * is not possible to clone a sprint, a 
+     * CloneNotSupportedException will be raised.
+     * 
+     * @return unique sprints
+     * 
+     * @throws CloneNotSupportedException when unable to clone sprint
+     */
+    public HashMap<Integer, Sprint> getUniqueSprints() 
+            throws CloneNotSupportedException {
         HashMap<Integer, Sprint> sprints = new HashMap<>();
         
         for (Sprint s : getSprints()) {
@@ -86,6 +160,17 @@ public class Timeline {
         return sprints;
     }
     
+    /**
+     * Returns timeline epics that belong in the
+     * given year.
+     * 
+     * This is for building a collection for presentation
+     * in the timeline table view.
+     * 
+     * @param year year to limit epics to
+     * 
+     * @return timeline epics to be scheduled in the given year
+     */
     public ArrayList<TimelineEpic> getEpicsInYear(Year year) {
         ArrayList<TimelineEpic> all = getEpics();
         ArrayList<TimelineEpic> inYear = new ArrayList<>();
@@ -99,6 +184,17 @@ public class Timeline {
         return inYear;
     }
     
+    /**
+     * Returns timeline releases that belong in the 
+     * given year.
+     * 
+     * This is for building a collection of releases for
+     * presentation in the timeline table view.
+     * 
+     * @param year presentation year
+     * 
+     * @return timeline releases for the year
+     */
     public ArrayList<TimelineRelease> getReleasesInYear(Year year) {
         ArrayList<TimelineRelease> all = getReleases();
         ArrayList<TimelineRelease> inYear = new ArrayList<>();
@@ -112,6 +208,19 @@ public class Timeline {
         return inYear;
     }
     
+    /**
+     * Returns all sprints scheduled in the given year.
+     * 
+     * Please note that there is one sprint for each
+     * timeline epic in the set. This is so that we can
+     * schedule multiple epics in a single sprint when
+     * that's appropriate. For a list of unique sprints
+     * please use getUniqueSprintsInYear.
+     * 
+     * @param year year to limit sprints to
+     * 
+     * @return sprints
+     */
     public ArrayList<Sprint> getSprintsInYear(Year year) {
         ArrayList<Sprint> all = getSprints();
         ArrayList<Sprint> sprints = new ArrayList<>();
@@ -135,6 +244,19 @@ public class Timeline {
         return sprints;
     }
     
+    /**
+     * This returns a hash map of sprints to be scheduled
+     * in the given year.
+     * 
+     * The hash map has the sprint number as a key and a
+     * pointer to the sprint as the value. Sprints from
+     * all epics are merged into a single set, for scheduling
+     * please use getSprintsInYear.
+     * 
+     * @param year year to limit sprints to
+     * 
+     * @return sprints for the year.
+     */
     public HashMap<Integer, Sprint> getUniqueSprintsInYear(Year year) {
         HashMap<Integer, Sprint> sprints = new HashMap<>();
         
@@ -151,11 +273,28 @@ public class Timeline {
         return sprints;
     }
     
+    /**
+     * Counts used sprints in given year.
+     * 
+     * @param year view year
+     * 
+     * @return total number of sprints used in the year.
+     */
     public int countUsedSprintsInYear(Year year) {
         HashMap<Integer, Sprint> yearSprints = getUniqueSprintsInYear(year);
         return yearSprints.size();
     }
     
+    /**
+     * Find sprint by sprint number.
+     * 
+     * When the sprint is found it is returned to the
+     * caller. When it is not, null will be returned.
+     * 
+     * @param number query value
+     * 
+     * @return matching sprint.
+     */
     public Sprint findSprint(int number) {
         for (Sprint s : getSprints()) {
             if (s.getNumber() == number) {
@@ -166,31 +305,54 @@ public class Timeline {
         return null;
     }
     
-    public int countUsedPointsInYear(Year year) {
-        int count = 0;
-        ArrayList<Sprint> all = getSprintsInYear(year);
-        
-        for (Sprint s : all) {
-            count += s.getPoints();
-        }
-        
-        return count;
+    /**
+     * Find sprint in set.
+     * 
+     * This retrieves the sprint number from the given
+     * sprint and calls findSprint with the sprint number.
+     * 
+     * When the sprint is found, it is returned to the caller.
+     * When it is not, null will be returned.
+     * 
+     * @param sprint sprint to search for.
+     * 
+     * @return found sprint
+     */
+    public Sprint findSprint(Sprint sprint) {
+        return findSprint(sprint.getNumber());
     }
     
-    public Sprint findSprint(Sprint s) {
-        return findSprint(s.getNumber());
-    }
-    
+    /**
+     * Returns true if the sprint exists in the timeline.
+     * 
+     * @param number number of sprint to look for
+     * 
+     * @return whether the sprint exists in the timeline
+     */
     public boolean hasSprint(int number) {
         Sprint s = findSprint(number);
         
         return s != null;
     }
     
-    public boolean hasSprint(Sprint s) {
-        return hasSprint(s.getNumber());
+    /**
+     * Returns true if the sprint exists in the timeline.
+     * 
+     * @param sprint sprint to look for
+     * @return whether sprint has been added to the timeline
+     */
+    public boolean hasSprint(Sprint sprint) {
+        return hasSprint(sprint.getNumber());
     }
     
+    /**
+     * Returns true if sprint is scheduled in the given year.
+     * 
+     * @param year year to limit search to
+     * @param number sprint number to look for.
+     * 
+     * @return whether sprint is scheduled in year
+     */
     public boolean hasSprintInYear(Year year, int number) {
         ArrayList<Integer> sprints = year.sprintNumbers(prefs);
         
@@ -203,8 +365,16 @@ public class Timeline {
         return false;
     }
     
-    public boolean hasSprintInYear(Year year, Sprint s) {
-        return hasSprintInYear(year, s.getNumber());
+    /**
+     * Returns true if sprint is scheduled in the given year.
+     * 
+     * @param year year to limit search to
+     * @param sprint sprint to look for
+     * 
+     * @return whether sprint is scheduled in given year.
+     */
+    public boolean hasSprintInYear(Year year, Sprint sprint) {
+        return hasSprintInYear(year, sprint.getNumber());
     }
     
     public boolean hasAnySprintNumberInYear(
@@ -220,6 +390,20 @@ public class Timeline {
         return false;
     }
     
+    /**
+     * Returns true if any of the sprints are scheduled in the
+     * current year.
+     * 
+     * This iterates over the list and does a sprint check in
+     * the year. When it exists, true is returned, otherwise
+     * false will be returned when none of the given sprints
+     * are found in the year.
+     * 
+     * @param year year to limit search to
+     * @param sprints sprints to search for in the year
+     * 
+     * @return whether any sprint exists in the year.
+     */
     public boolean hasAnySprintInYear(
             Year year,
             ArrayList<Sprint> sprints
@@ -233,41 +417,103 @@ public class Timeline {
         return false;
     }
     
-    public boolean hasRelease(TimelineEpic e) {
-        TimelineRelease found = findRelease(e);
+    /**
+     * Returns true if the timeline epic has a release milestone
+     * at the end.
+     * 
+     * @param epic epic to check
+     * 
+     * @return whether there is a release milestone at the end
+     */
+    public boolean hasRelease(TimelineEpic epic) {
+        TimelineRelease found = findRelease(epic);
         
         return found != null;
     }
     
-    public TimelineRelease findRelease(TimelineEpic e) {
+    /**
+     * Finds a release for a given epic.
+     * 
+     * If a release has a pointer to the given epic, then 
+     * that release will be returned to the caller. When no release
+     * is found, null is returned.
+     * 
+     * @param epic epic to match to release
+     * 
+     * @return relevant release milestone
+     */
+    public TimelineRelease findRelease(TimelineEpic epic) {
         for (TimelineRelease r : getReleases()) {
-            if (r.lastEpicId().equals(e.getEpic().getId())) {
+            if (r.lastEpicId().equals(epic.getEpic().getId())) {
                 return r;
             }
         }
         
         return null;
     }
+    
+    /**
+     * Calculates number of used points in the given year.
+     * 
+     * @param year year to limit count to
+     * 
+     * @return total number of points used in year.
+     */
+    public int countUsedPointsInYear(Year year) {
+        int count = 0;
+        ArrayList<Sprint> all = getSprintsInYear(year);
+        
+        for (Sprint s : all) {
+            count += s.getPoints();
+        }
+        
+        return count;
+    }
 
-    public void addEpic(Epic e) {
-        getEpics().add(new TimelineEpic(e));
+    /**
+     * Adds a timeline epic to the timeline.
+     * 
+     * @param epic epic to add
+     */
+    public void addEpic(Epic epic) {
+        getEpics().add(new TimelineEpic(epic));
     }
     
-    public void addRelease(Release r) {
-        TimelineRelease release = new TimelineRelease(r);
-        timelineReleases.add(release);
+    /**
+     * Adds a release milestone to the timeline.
+     * 
+     * @param release release milestone to add
+     */
+    public void addRelease(Release release) {
+        timelineReleases.add(new TimelineRelease(release));
     }
     
-    public void addSprint(Sprint s) {
-        sprints.add(s);
+    /**
+     * Adds a sprint to the timeline.
+     * 
+     * @param sprint sprint to add to timeline
+     */
+    public void addSprint(Sprint sprint) {
+        sprints.add(sprint);
     }
     
+    /**
+     * Adds all given sprints to the timeline.
+     * 
+     * @param sprints sprints to add to timeline
+     */
     public void addSprints(ArrayList<Sprint> sprints) {
         for (Sprint s : sprints) {
             addSprint(s);
         }
     }
     
+    /**
+     * Adds all given releases to the timeline.
+     * 
+     * @param epic epic to add the milestone to
+     * @param lastSprint final sprint in epic to place the milestone.
+     */
     public void addReleases(TimelineEpic epic, Sprint lastSprint) {
         if (hasRelease(epic)) {
             TimelineRelease r = findRelease(epic);
@@ -275,6 +521,16 @@ public class Timeline {
         }
     }
     
+    /**
+     * Returns the last known sprint.
+     * 
+     * This sprint will include points for the last
+     * epic taking into account any points for the same
+     * sprint that are scheduled for another epic. Please note
+     * that this might not be full.
+     * 
+     * @return last sprint
+     */
     public Sprint getLastSprint() {
         if (getSprints().size() == 0) {
             return null;
@@ -283,6 +539,12 @@ public class Timeline {
         return getSprints().get(getSprints().size() - 1);
     }
 
+    /**
+     * Calculates and positions sprints and milestones
+     * for the epic.
+     * 
+     * @throws CloneNotSupportedException when unable to clone a sprint
+     */
     private void build() throws CloneNotSupportedException {
         int startSprint = prefs.getStartSprintNumber();
         

@@ -86,6 +86,11 @@ public class TimelineRelease {
         return release.lastEpicId();
     }
     
+    /**
+     * Setter for the sprint number
+     * 
+     * @param value new sprint number
+     */
     public void setSprintNumber(int value) {
         sprintNumber = value;
     }
@@ -99,6 +104,14 @@ public class TimelineRelease {
         sprintNumber = value.getNumber();
     }
     
+    /**
+     * Returns true if sprint is scheduled in the given year.
+     * 
+     * @param prefs document preferences
+     * @param year year to limit search to
+     * 
+     * @return whether release sprint is in given year.
+     */
     public boolean isSprintInYear(Preferences prefs, Year year) {
         if (getSprintNumber() == 0) {
             return false;
