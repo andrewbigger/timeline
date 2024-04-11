@@ -4,7 +4,7 @@ package com.biggerconcept.timeline.ui.domain;
  *
  * @author Andrew Bigger
  */
-public class Sprint {
+public class Sprint implements Cloneable {
     private int number;
     private int points;
     
@@ -44,5 +44,9 @@ public class Sprint {
 
     public int availablePoints(int max) {
         return max - points;
+    }
+    
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

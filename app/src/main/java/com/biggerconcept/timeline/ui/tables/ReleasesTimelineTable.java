@@ -185,7 +185,7 @@ public class ReleasesTimelineTable {
         s.setCellValueFactory(data -> {
             String value = "";
             
-            int sprintNumber = number + 1;
+            int sprintNumber = number;
             
             if (data.getValue().getSprintNumber() == sprintNumber) {
                 value = "★";

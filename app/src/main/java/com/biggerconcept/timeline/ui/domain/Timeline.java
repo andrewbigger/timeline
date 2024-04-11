@@ -6,6 +6,7 @@ import com.biggerconcept.timeline.domain.Release;
 import com.biggerconcept.timeline.domain.Year;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Timeline of epics
@@ -23,7 +24,7 @@ public class Timeline {
             ArrayList<Epic> epics,
             ArrayList<Release> releases,
             Preferences prefs
-    ) {
+    ) throws CloneNotSupportedException {
         this.timelineEpics = new ArrayList<>();
         this.timelineReleases = new ArrayList<>();
         this.sprints = new ArrayList<>();
@@ -64,6 +65,22 @@ public class Timeline {
     public ArrayList<Sprint> getSprints() {
         if (sprints == null) {
             sprints = new ArrayList<>();
+        }
+        
+        return sprints;
+    }
+    
+    public HashMap<Integer, Sprint> getUniqueSprints() throws CloneNotSupportedException {
+        HashMap<Integer, Sprint> sprints = new HashMap<>();
+        
+        for (Sprint s : getSprints()) {
+            int number = s.getNumber();
+            
+            if (sprints.containsKey(number)) {
+                sprints.get(number).merge(s);
+            } else {
+                sprints.put(number, (Sprint) s.clone());
+            }
         }
         
         return sprints;
@@ -118,9 +135,24 @@ public class Timeline {
         return sprints;
     }
     
+    public HashMap<Integer, Sprint> getUniqueSprintsInYear(Year year) {
+        HashMap<Integer, Sprint> sprints = new HashMap<>();
+        
+        for (Sprint s : getSprintsInYear(year)) {
+            int number = s.getNumber();
+            
+            if (sprints.containsKey(s)) {
+                sprints.get(number).merge(s);
+            } else {
+                sprints.put(number, s);
+            }
+        }
+        
+        return sprints;
+    }
+    
     public int countUsedSprintsInYear(Year year) {
-        ArrayList<Sprint> yearSprints = getSprintsInYear(year);
-
+        HashMap<Integer, Sprint> yearSprints = getUniqueSprintsInYear(year);
         return yearSprints.size();
     }
     
@@ -227,13 +259,6 @@ public class Timeline {
     }
     
     public void addSprint(Sprint s) {
-        Sprint target = findSprint(s);
-        
-        if (target != null) {
-            target.merge(s);
-            return;
-        }
-
         sprints.add(s);
     }
     
@@ -257,8 +282,8 @@ public class Timeline {
         
         return getSprints().get(getSprints().size() - 1);
     }
-    
-    private void build() {
+
+    private void build() throws CloneNotSupportedException {
         int startSprint = prefs.getStartSprintNumber();
         
         Sprint s = new Sprint(startSprint);
@@ -271,8 +296,9 @@ public class Timeline {
             );
             
             addSprints(te.getSprints());
-            addReleases(te, te.getLastSprint());
-            s = te.getLastSprint();
+            s = getUniqueSprints().get(te.getLastSprint().getNumber());
+            
+            addReleases(te, s);   
         }
     }
 }
