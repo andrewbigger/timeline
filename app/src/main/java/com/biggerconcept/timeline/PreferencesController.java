@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -128,10 +129,10 @@ public class PreferencesController implements Initializable {
     public TextField refSprintFourCompletedPointsTextField;
     
     /**
-     * Sprint length field
+     * Sprint size combo box field
      */
     @FXML
-    public TextField sprintSizeTextField;
+    public ComboBox sprintSizeComboBox;
     
     /**
      * Start sprint number field
@@ -162,6 +163,10 @@ public class PreferencesController implements Initializable {
         bundle = rb;
         MenuController.loadMenu(this, rb, preferencesBorderPane);
         applyTooltips();
+        
+        sprintSizeComboBox.getItems().add(1);
+        sprintSizeComboBox.getItems().add(2);
+        sprintSizeComboBox.getItems().add(4);
     }
     
     /**
@@ -294,11 +299,9 @@ public class PreferencesController implements Initializable {
     /**
      * Maps sprint preferences to window
      */
-    private void mapSprintPreferencesToWindow() {
-        sprintSizeTextField.setText(
-                String.valueOf(
-                    currentPreferences.getSprintLength()
-                )
+    private void mapSprintPreferencesToWindow() {        
+        sprintSizeComboBox.getSelectionModel().select(
+                String.valueOf(currentPreferences.getSprintLength())
         );
     }
     
@@ -382,9 +385,7 @@ public class PreferencesController implements Initializable {
      */
     private void mapWindowToSprintPreferences() {
         currentPreferences.setSprintLength(
-                Integer.parseInt(
-                        sprintSizeTextField.getText()
-                )
+                (int) sprintSizeComboBox.getSelectionModel().getSelectedItem()
         );
     }
     
