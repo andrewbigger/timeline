@@ -1,6 +1,6 @@
 package com.biggerconcept.timeline.domain;
 
-import com.biggerconcept.appengine.reportbuilder.Report;
+import com.biggerconcept.appengine.reports.Report;
 import com.biggerconcept.appengine.ui.helpers.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

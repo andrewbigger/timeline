@@ -130,7 +130,7 @@ public class ReleaseDialogController implements Initializable {
      * @param parent parent window
      * @param targetSet target set on save
      * @param isNew whether the epic should be added on save
-     * @throws java.lang.CloneNotSupportedException
+     * @throws java.lang.CloneNotSupportedException when unable to clone object
      */
     public void setRelease(
             State state,

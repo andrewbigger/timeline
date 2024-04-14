@@ -2,8 +2,8 @@ package com.biggerconcept.timeline;
 
 import com.biggerconcept.appengine.IPreferencesController;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
-import com.biggerconcept.appengine.reportbuilder.Report;
-import com.biggerconcept.appengine.reportbuilder.dialogs.ReportBuilderDialog;
+import com.biggerconcept.appengine.reports.Report;
+import com.biggerconcept.appengine.reports.ui.dialogs.ReportBuilderDialog;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
@@ -17,6 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
@@ -29,6 +31,11 @@ import javafx.stage.Stage;
  */
 public class PreferencesController 
         implements Initializable, IPreferencesController {
+    /**
+     * Application state
+     */
+    private State state;
+    
     /**
      * Resource bundle for preferences window.
      */
@@ -183,6 +190,19 @@ public class PreferencesController
     public Button savePreferencesButton;
     
     /**
+     * Preference tabs
+     */
+    @FXML
+    public TabPane preferenceTabs;
+    
+    /**
+     * Reports tab
+     */
+    @FXML
+    public Tab reportsTab;
+
+    
+    /**
      * Initializer for the preference window
      * 
      * @param url preference fxml
@@ -220,12 +240,22 @@ public class PreferencesController
     /**
      * Sets document pointer for the preference window.
      * 
-     * @param doc current document
+     * @param state application state
      */
-    public void setDocument(Document doc) {
-        this.currentDocument = doc;
+    public void setState(State state) {
+        this.state = state;
+        this.currentDocument = state.getOpenDocument();
         this.currentPreferences = currentDocument.getPreferences();
         mapPreferencesToWindow();
+    }
+    
+    /**
+     * Switch to selected tab
+     * 
+     * @param target target tab
+     */
+    public void focusTab(Tab target) {
+        preferenceTabs.getSelectionModel().select(target);
     }
     
     /**
@@ -550,6 +580,7 @@ public class PreferencesController
     private void handleSavePreferences() {
         try {
             mapWindowToPreferences();
+            state.mainController().mapDocumentToWindow();
             window().close();
         } catch (Exception e) {
             ErrorAlert.show(

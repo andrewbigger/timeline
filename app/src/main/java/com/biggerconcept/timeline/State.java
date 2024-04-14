@@ -6,6 +6,7 @@ import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
 import java.util.ResourceBundle;
+import javafx.scene.control.Tab;
 
 /**
  * Application State
@@ -19,6 +20,7 @@ public class State {
     private Year viewYear;
     private Year startYear;
     private ResourceBundle bundle;
+    private String selectedPreferenceTabName;
     private boolean showCounts;
     
     public State(MainController controller, ResourceBundle rb) {
@@ -52,6 +54,14 @@ public class State {
         return showCounts;
     }
     
+    public boolean hasSelectedPreferenceTab() {
+        return getSelectedPreferenceTabName() != "";
+    }
+    
+    public String getSelectedPreferenceTabName() {
+        return selectedPreferenceTabName;
+    }
+    
     public void setOpenDocument(Document value) {
         openDocument = value;
     }
@@ -66,6 +76,10 @@ public class State {
     
     public void setShowCounts(boolean value) {
         showCounts = value;
+    }
+    
+    public void setSelectedPreferenceTabName(String value) {
+        selectedPreferenceTabName = value;
     }
     
     public MainController mainController() {
@@ -99,6 +113,10 @@ public class State {
     
     public void releaseOpenEpic() {
         openEpic = null;
+    }
+    
+    public void releaseSelectedPreferenceTab() {
+        setSelectedPreferenceTabName("");
     }
     
     public void toggleCounts() {

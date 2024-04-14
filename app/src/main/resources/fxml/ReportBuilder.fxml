@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.appengine.reportbuilder.ReportBuilderController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.appengine.reports.ReportBuilderController">
    <center>
       <SplitPane dividerPositions="0.43727598566308246" prefHeight="188.0" prefWidth="722.0" style="-fx-border-width: 0px;" BorderPane.alignment="CENTER">
          <items>
@@ -44,11 +44,11 @@
                               <Insets top="-5.0" />
                            </opaqueInsets>
                       </TitledPane>
-                        <TitledPane fx:id="contentElementsPane" text="Content">
+                        <TitledPane fx:id="sectionElementsPane" text="Sections">
                            <content>
                               <BorderPane prefHeight="200.0" prefWidth="200.0">
                                  <center>
-                                    <ListView fx:id="contentElementsListView" prefHeight="292.0" prefWidth="229.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER" />
+                                    <ListView fx:id="sectionElementsListView" prefHeight="292.0" prefWidth="229.0" style="-fx-background-color: transparent;" BorderPane.alignment="CENTER" />
                                  </center>
                                  <opaqueInsets>
                                     <Insets />

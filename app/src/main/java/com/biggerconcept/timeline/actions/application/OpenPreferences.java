@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -40,7 +41,7 @@ public class OpenPreferences implements Action {
         PreferencesController prefsController = (PreferencesController) loader
             .getController();
 
-        prefsController.setDocument(state.getOpenDocument());
+        prefsController.setState(state);
 
         Stage stage = new Stage();
 
@@ -51,7 +52,17 @@ public class OpenPreferences implements Action {
         stage.initStyle(StageStyle.DECORATED);
         stage.resizableProperty().setValue(false);
 
-        stage.showAndWait();
+        stage.show();
+        
+        if (state.hasSelectedPreferenceTab()) {
+            Tab target;
+            
+            if (state.getSelectedPreferenceTabName() == "Reports") {
+                prefsController.focusTab(prefsController.reportsTab);
+            }
+            
+            state.releaseSelectedPreferenceTab();
+        }
     }
     
 }

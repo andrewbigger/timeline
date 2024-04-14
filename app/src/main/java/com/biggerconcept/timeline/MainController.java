@@ -2,8 +2,11 @@ package com.biggerconcept.timeline;
 
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.reports.Report;
+import com.biggerconcept.appengine.reports.ui.menus.ReportMenuBuilder;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.timeline.actions.Action;
+import com.biggerconcept.timeline.actions.application.OpenPreferences;
 import com.biggerconcept.timeline.actions.document.CreateDocument;
 import com.biggerconcept.timeline.actions.document.OpenDocument;
 import com.biggerconcept.timeline.actions.document.SaveDocument;
@@ -31,13 +34,16 @@ import com.biggerconcept.timeline.ui.tables.ReleasesTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ShelfEpicsTable;
 import javafx.scene.control.Button;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
@@ -263,6 +269,19 @@ public class MainController implements Initializable {
     @FXML
     public Button newFileButton;
     
+        
+    /**
+     * Report dropdown separator
+     */
+    @FXML
+    public SeparatorMenuItem reportMenuSeparator;
+    
+    /**
+     * Reports menu button
+     */
+    @FXML
+    public MenuButton reportsMenuButton;
+    
     /**
      * Initializes the main window.
      * 
@@ -410,6 +429,7 @@ public class MainController implements Initializable {
         
         setWindowTitle();
         applyPreferencesToWindow();
+        mapReportsToWindow();
         mapYearToWindow();
         mapShelfToWindow();
         mapEpicsToWindow(timeline);
@@ -417,6 +437,22 @@ public class MainController implements Initializable {
         mapOutlookToWindow(timeline);
         mapAssessmentsToWindow();
         mapNotesToWindow();
+    }
+    
+    /**
+     * Map reports to report menu
+     */
+    private void mapReportsToWindow() {
+        ArrayList<Report> reports = state
+                .getOpenDocument()
+                .getPreferences()
+                .getReports();
+        
+        if (reports.isEmpty()) {
+            reportMenuSeparator.setVisible(false);
+        }
+        
+        ReportMenuBuilder.build(state.bundle(), reportsMenuButton, reports);
     }
     
     /**
@@ -952,6 +988,29 @@ public class MainController implements Initializable {
             ErrorAlert.show(
                     state.bundle(),
                     state.bundle().getString("errors.saveFile"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Shows preference dialog on the reports tab.
+     * 
+     * The contents of the dialog are loaded from the pane FXML.
+     * 
+     * A call to setup dialog ensures that the dialog is configured 
+     * appropriately before it is shown.
+     * 
+     */
+    @FXML
+    private void handleOpenReportsConfig() {
+        try {
+            state.setSelectedPreferenceTabName("Reports");
+            perform(OpenPreferences.class);
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
                     e
             );
         }

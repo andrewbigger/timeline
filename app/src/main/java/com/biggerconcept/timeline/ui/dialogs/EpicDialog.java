@@ -27,6 +27,7 @@ public class EpicDialog {
      * @param epic epic to modify
      * @param targetSet target set to apply epic to
      * @param isNew whether epic is new or existing
+     * @throws java.lang.CloneNotSupportedException when unable to clone object
      */
     public static void open(
             State state,
