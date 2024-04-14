@@ -29,13 +29,13 @@
                   <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="55.0" prefWidth="55.0" />
                   <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" />
                   <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" />
-                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="7.0" />
-                  <MenuButton id="reportsMenuButton" fx:id="reportsMenuButton" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="55.0" text="Reports">
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="7.0" visible="false" />
+                  <MenuButton id="reportsMenuButton" fx:id="reportsMenuButton" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="55.0" text="Reports" visible="false">
                      <padding>
                         <Insets left="35.0" />
                      </padding>
                      <items>
-                        <MenuItem fx:id="configureReportsMenuItem" mnemonicParsing="false" onAction="#handleOpenReportsConfig" text="Configure New Report" />
+                        <MenuItem id="configure" fx:id="configureReportsMenuItem" mnemonicParsing="false" onAction="#handleOpenReportsConfig" text="Configure New Report" />
                         <SeparatorMenuItem fx:id="reportMenuSeparator" mnemonicParsing="false" />
                      </items>
                   </MenuButton>
@@ -165,6 +165,20 @@
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />
                                           <String fx:value="removeButton" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="moveReleaseUpButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveReleaseUp" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveUpButton" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="moveReleaseDownButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveReleaseDown" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveDownButton" />
                                        </styleClass>
                                     </Button>
                                     <Button fx:id="editReleaseButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleEditRelease" prefWidth="25.0">

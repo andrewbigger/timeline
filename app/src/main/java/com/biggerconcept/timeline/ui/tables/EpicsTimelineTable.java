@@ -64,7 +64,7 @@ public class EpicsTimelineTable {
      * Style for current sprint column.
      */
     public static final String CURRENT_SPRINT_COL_STYLE = 
-            "-fx-background-color: #cee2f2; -fx-alignment: CENTER;";
+            "-fx-background-color: #daeded; -fx-alignment: CENTER;";
     
     /**
      * Application resource bundle.
@@ -246,6 +246,12 @@ public class EpicsTimelineTable {
             
             if (data.getValue().hasSprint(sprintNumber)) {
                 Sprint sprint = data.getValue().getSprint(sprintNumber);
+                
+                if (data.getValue().isPastSprint(number, documentPreferences)) {
+                    data.getTableColumn().getStyleClass().add("pastSprint");
+                } else if (data.getValue().isFutureSprint(number, documentPreferences)) {
+                    data.getTableColumn().getStyleClass().add("futureSprint");
+                }
                 
                 if (state.getShowCounts() == true) {
                     value = String.valueOf(sprint.getPoints());

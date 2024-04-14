@@ -28,6 +28,8 @@ import com.biggerconcept.timeline.actions.epic.RemoveShelfEpic;
 import com.biggerconcept.timeline.actions.release.AddRelease;
 import com.biggerconcept.timeline.actions.release.RemoveRelease;
 import com.biggerconcept.timeline.actions.release.EditRelease;
+import com.biggerconcept.timeline.actions.release.MoveReleaseDown;
+import com.biggerconcept.timeline.actions.release.MoveReleaseUp;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -534,6 +536,42 @@ public class MenuController implements Initializable {
     private void handleRemoveRelease() {
         try {
             perform(RemoveRelease.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles movement of a release up
+     */
+    @FXML
+    private void handleMoveReleaseUp() {
+        try {
+            perform(MoveReleaseUp.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles movement of a release down
+     */
+    @FXML
+    private void handleMoveReleaseDown() {
+        try {
+            perform(MoveReleaseDown.class);
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {

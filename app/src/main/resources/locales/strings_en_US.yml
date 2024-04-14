@@ -941,4 +941,44 @@ parts:
     title: "Edit release menu item"
     value: "Edit Release"
     variants: {}
+- translation:
+    key: "menu.release.moveUp"
+    title: "Move release up label"
+    value: "Move Release Up"
+    variants: {}
+- translation:
+    key: "menu.release.moveDown"
+    title: "Move release down label"
+    value: "Move Release Down"
+    variants: {}
+- translation:
+    key: "releases.add.tooltip"
+    title: "Tooltip for add release button"
+    value: "Adds a release to the document"
+    variants: {}
+- translation:
+    key: "releases.remove.tooltip"
+    title: "Remove release tooltip"
+    value: "Removes the selected release from the document"
+    variants: {}
+- translation:
+    key: "releases.moveUp.tooltip"
+    title: "Move release up tooltip"
+    value: "Moves selected release up one position"
+    variants: {}
+- translation:
+    key: "releases.moveDown.tooltip"
+    title: "Move release down button tooltip"
+    value: "Moves the selected release down one position"
+    variants: {}
+- translation:
+    key: "releases.edit.tooltip"
+    title: "Edit release button tooltip"
+    value: "Opens the edit release dialog to modify the selected release."
+    variants: {}
+- translation:
+    key: "timeline.numberView.tooltip"
+    title: "Number view button tooltip"
+    value: "Toggles sprint count view on the timeline"
+    variants: {}
 sourceLanguage: "en"

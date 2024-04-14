@@ -133,6 +133,17 @@
                   <KeyCodeCombination alt="DOWN" code="E" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
                </accelerator>
             </MenuItem>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" onAction="#handleMoveReleaseUp" text="%menu.release.moveUp">
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="U" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleMoveReleaseDown" text="%menu.release.moveDown">
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="D" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
         </items>
       </Menu>
       <Menu mnemonicParsing="false" text="%menu.timeline.label">

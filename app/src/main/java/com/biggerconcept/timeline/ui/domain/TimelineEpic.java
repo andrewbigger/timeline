@@ -288,6 +288,7 @@ public class TimelineEpic {
      * 
      * @param number sprint number
      * @param prefs document preferences
+     * 
      * @return whether sprint is current sprint
      */
     public boolean isCurrentSprint(int number, Preferences prefs) {
@@ -304,6 +305,42 @@ public class TimelineEpic {
         }
         
         return false;
+    }
+    
+    /**
+     * Returns true if the sprint is in the past
+     * 
+     * @param number sprint number
+     * @param prefs document preferences
+     * 
+     * @return whether sprint is in the past
+     */
+    public boolean isPastSprint(int number, Preferences prefs) {
+        LocalDate now = LocalDate.now();
+        TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
+        int weekNumber = now.get(woy);
+        
+        int sprintNumber = weekNumber / prefs.getSprintLength() + prefs.getStartSprintNumber();
+        
+        for (Sprint s : getSprints()) {
+            if (number < sprintNumber) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
+    /**
+     * Returns whether the sprint is in the future
+     * 
+     * @param number sprint number
+     * @param prefs document preferences
+     * 
+     * @return whether the sprint is in the future
+     */
+    public boolean isFutureSprint(int number, Preferences prefs) {
+        return !isPastSprint(number, prefs);
     }
     
     /**

@@ -188,6 +188,7 @@ public class ReleasesTimelineTable {
             int sprintNumber = number;
             
             if (data.getValue().getSprintNumber() == sprintNumber) {
+                data.getTableColumn().getStyleClass().add("release");
                 value = "★";
             }
             

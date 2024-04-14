@@ -92,3 +92,15 @@
   -fx-background-position: left center;
   -fx-background-repeat: no-repeat;
 }
+
+.pastSprint {
+  -fx-text-fill: #17494d;
+}
+
+.futureSprint {
+  -fx-text-fill: #90bbbb;
+}
+
+.release {
+  -fx-text-fill: #f79a3e;
+}

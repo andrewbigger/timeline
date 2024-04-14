@@ -27,6 +27,8 @@ import com.biggerconcept.timeline.actions.epic.ToggleCounts;
 import com.biggerconcept.timeline.actions.release.AddRelease;
 import com.biggerconcept.timeline.actions.release.RemoveRelease;
 import com.biggerconcept.timeline.actions.release.EditRelease;
+import com.biggerconcept.timeline.actions.release.MoveReleaseDown;
+import com.biggerconcept.timeline.actions.release.MoveReleaseUp;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ReleasesTable;
@@ -201,6 +203,42 @@ public class MainController implements Initializable {
      */
     @FXML
     public Button moveEpicToShelfButton;
+    
+    /**
+     * Toggle count view button
+     */
+    @FXML
+    public Button toggleCountsButton;
+    
+    /**
+     * Add release button
+     */
+    @FXML
+    public Button addReleaseButton;
+    
+    /**
+     * Remove release button
+     */
+    @FXML
+    public Button removeReleaseButton;
+    
+    /**
+     * Move release up button
+     */
+    @FXML
+    public Button moveReleaseUpButton;
+    
+    /**
+     * Move release down button
+     */
+    @FXML
+    public Button moveReleaseDownButton;
+    
+    /**
+     * Edit release button
+     */
+    @FXML
+    public Button editReleaseButton;
     
     /**
      * Shelf epics table view
@@ -392,6 +430,24 @@ public class MainController implements Initializable {
         );
         judgementComboBox.setTooltip(
                 new Tooltip(state.bundle().getString("judgement.tooltip"))
+        );
+        toggleCountsButton.setTooltip(
+                new Tooltip(state.bundle().getString("timeline.numberView.tooltip"))
+        );
+        addReleaseButton.setTooltip(
+                new Tooltip(state.bundle().getString("releases.add.tooltip"))
+        );
+        removeReleaseButton.setTooltip(
+                new Tooltip(state.bundle().getString("releases.remove.tooltip"))
+        );
+        editReleaseButton.setTooltip(
+                new Tooltip(state.bundle().getString("releases.edit.tooltip"))
+        );
+        moveReleaseUpButton.setTooltip(
+                new Tooltip(state.bundle().getString("releases.moveUp.tooltip"))
+        );
+        moveReleaseDownButton.setTooltip(
+                new Tooltip(state.bundle().getString("releases.moveDown.tooltip"))
         );
     }
     
@@ -762,6 +818,42 @@ public class MainController implements Initializable {
     private void handleRemoveRelease() {
         try {
             perform(RemoveRelease.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles movement of a release up
+     */
+    @FXML
+    private void handleMoveReleaseUp() {
+        try {
+            perform(MoveReleaseUp.class);
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Handles movement of a release down
+     */
+    @FXML
+    private void handleMoveReleaseDown() {
+        try {
+            perform(MoveReleaseDown.class);
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {
