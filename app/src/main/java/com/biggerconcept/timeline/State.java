@@ -1,12 +1,12 @@
 package com.biggerconcept.timeline;
 
+import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.ui.helpers.Date;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
 import java.util.ResourceBundle;
-import javafx.scene.control.Tab;
 
 /**
  * Application State
@@ -22,6 +22,7 @@ public class State {
     private ResourceBundle bundle;
     private String selectedPreferenceTabName;
     private boolean showCounts;
+    private Content reportContent;
     
     public State(MainController controller, ResourceBundle rb) {
         mainController = controller;
@@ -54,6 +55,14 @@ public class State {
         return showCounts;
     }
     
+    public Content getReportContent() {
+        if (reportContent == null) {
+            reportContent = defaultReportContent();
+        }
+        
+        return reportContent;
+    }
+    
     public boolean hasSelectedPreferenceTab() {
         return getSelectedPreferenceTabName() != "";
     }
@@ -76,6 +85,10 @@ public class State {
     
     public void setShowCounts(boolean value) {
         showCounts = value;
+    }
+    
+    public void setReportContent(Content value) {
+        reportContent = value;
     }
     
     public void setSelectedPreferenceTabName(String value) {
@@ -121,5 +134,13 @@ public class State {
     
     public void toggleCounts() {
         showCounts = !showCounts;
+    }
+    
+    private Content defaultReportContent() {
+        Content content = new Content();
+        
+        // TODO: Add timeline sections here
+        
+        return content;
     }
 }

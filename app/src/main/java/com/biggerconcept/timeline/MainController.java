@@ -452,7 +452,12 @@ public class MainController implements Initializable {
             reportMenuSeparator.setVisible(false);
         }
         
-        ReportMenuBuilder.build(state.bundle(), reportsMenuButton, reports);
+        ReportMenuBuilder.build(
+                state.bundle(),
+                reportsMenuButton, 
+                reports, 
+                state.getReportContent()
+        );
     }
     
     /**
