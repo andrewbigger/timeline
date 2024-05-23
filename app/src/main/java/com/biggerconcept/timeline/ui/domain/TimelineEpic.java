@@ -196,7 +196,13 @@ public class TimelineEpic {
         if (getEpic().hasAssignedSprints()) {
             int epicSize = getEpic().getSize(prefs.asProjectusPreferences());
             int numberOfSprints = getEpic().getAssignedSprints().size();
-            float size = epicSize / numberOfSprints;
+            float size;
+            
+            if (numberOfSprints == 1) {
+                size = epicSize;
+            } else {
+                size = epicSize / numberOfSprints;
+            }
             
             for (int i : getEpic().getAssignedSprints()) {
                 sprints.add(new Sprint(i, (int) size));
@@ -205,8 +211,9 @@ public class TimelineEpic {
             // Ensure remainder is accounted for in first sprint.
             int remainder = epicSize % numberOfSprints;
             
-            if (remainder == 1) {
-                sprints.get(1).addPoints(1);
+            // Put remainder on start sprint
+            if (numberOfSprints > 1 && remainder > 0) {
+                sprints.get(0).addPoints(remainder);
             }
             
             addSprints(sprints);
