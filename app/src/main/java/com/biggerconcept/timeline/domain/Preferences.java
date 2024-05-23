@@ -18,32 +18,32 @@ public class Preferences {
     /**
      * Default sprint size number.
      */
-    private static final int DEFAULT_SPRINT_LENGTH = 2;
+    protected static final int DEFAULT_SPRINT_LENGTH = 2;
     
     /**
      * Example sprint for reference sprint one
      */
-    private static final Sprint DEFAULT_REF_SPRINT_ONE = new Sprint("1", 20);
+    protected static final Sprint DEFAULT_REF_SPRINT_ONE = new Sprint("1", 20);
     
     /**
      * Example sprint for reference sprint two
      */
-    private static final Sprint DEFAULT_REF_SPRINT_TWO = new Sprint("2", 18);
+    protected static final Sprint DEFAULT_REF_SPRINT_TWO = new Sprint("2", 18);
     
     /**
      * Example sprint for reference sprint three
      */
-    private static final Sprint DEFAULT_REF_SPRINT_THREE = new Sprint("3", 22);
+    protected static final Sprint DEFAULT_REF_SPRINT_THREE = new Sprint("3", 22);
     
     /**
      * Example sprint for reference sprint four
      */
-    private static final Sprint DEFAULT_REF_SPRINT_FOUR = new Sprint("4", 12);
+    protected static final Sprint DEFAULT_REF_SPRINT_FOUR = new Sprint("4", 12);
     
     /**
      * Default start sprint number
      */
-    private static final int DEFAULT_START_SPRINT_NUMBER = 1;
+    protected static final int DEFAULT_START_SPRINT_NUMBER = 1;
     
     /**
      * Set size for an extra small task.

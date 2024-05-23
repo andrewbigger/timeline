@@ -104,3 +104,7 @@
 .release {
   -fx-text-fill: #f79a3e;
 }
+
+.current {
+  -fx-background-color: #daeded;
+}

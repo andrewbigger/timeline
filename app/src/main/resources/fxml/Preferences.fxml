@@ -271,7 +271,7 @@
                   </VBox>
                </content>
             </Tab>
-            <Tab text="Reports">
+            <Tab fx:id="reportsTab" text="Reports">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>

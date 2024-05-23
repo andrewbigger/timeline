@@ -61,12 +61,6 @@ public class EpicsTimelineTable {
     public static final String SPRINT_COL_STYLE = "-fx-alignment: CENTER;";
    
     /**
-     * Style for current sprint column.
-     */
-    public static final String CURRENT_SPRINT_COL_STYLE = 
-            "-fx-background-color: #daeded; -fx-alignment: CENTER;";
-    
-    /**
      * Application resource bundle.
      */
     private final ResourceBundle bundle;
@@ -265,7 +259,7 @@ public class EpicsTimelineTable {
                     sprintNumber,
                     documentPreferences
             )) {
-                data.getTableColumn().setStyle(CURRENT_SPRINT_COL_STYLE);
+                data.getTableColumn().getStyleClass().add("current");
             }
             
             return new SimpleStringProperty(

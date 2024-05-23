@@ -243,7 +243,7 @@ public class Document {
      * @param target epic to remove.
      */
     public void removeFromShelf(Epic target) {
-        shelf.remove(target);
+        getShelf().remove(target);
     }
     
     /**
@@ -252,8 +252,8 @@ public class Document {
      * @param target epic to move
      */
     public void commitToEpic(Epic target) {
-        epics.add(target);
-        shelf.remove(target);
+        getEpics().add(target);
+        getShelf().remove(target);
     }
     
     /**
@@ -262,8 +262,8 @@ public class Document {
      * @param target epic to move
      */
     public void unCommitToEpic(Epic target) {
-        shelf.add(target);
-        epics.remove(target);
+        getShelf().add(target);
+        getEpics().remove(target);
     }
     
     /**
@@ -404,12 +404,22 @@ public class Document {
         
         return available;
     }
+
+    /**
+     * Adds an epic to the set.
+     * 
+     * @param epic epic to add
+     */
+    public void addEpic(Epic epic) {
+        getEpics().add(epic);
+    }
     
     /**
      * Returns true if given epic is in the set.
      * 
      * @param set set of epics to search through
      * @param epic epic to search for
+     * 
      * @return whether epic is in the set
      */
     private boolean hasEpic(ArrayList<Epic> set, Epic epic) {

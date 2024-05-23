@@ -20,6 +20,7 @@ import com.biggerconcept.timeline.actions.epic.EditShelfEpic;
 import com.biggerconcept.timeline.actions.epic.EpicCommit;
 import com.biggerconcept.timeline.actions.epic.ExportEpic;
 import com.biggerconcept.timeline.actions.epic.MoveEpicDown;
+import com.biggerconcept.timeline.actions.epic.MoveEpicUp;
 import com.biggerconcept.timeline.actions.epic.MoveShelfEpicDown;
 import com.biggerconcept.timeline.actions.epic.MoveShelfEpicUp;
 import com.biggerconcept.timeline.actions.epic.RemoveShelfEpic;
@@ -307,7 +308,6 @@ public class MainController implements Initializable {
     @FXML
     public Button newFileButton;
     
-        
     /**
      * Report dropdown separator
      */
@@ -642,7 +642,7 @@ public class MainController implements Initializable {
         
         judgementComboBox
                 .getSelectionModel()
-                .select(state.getOpenDocument().getJudgement());
+                .select((Assessment) state.getOpenDocument().getJudgement());
     }
     
     /**
@@ -889,7 +889,7 @@ public class MainController implements Initializable {
     @FXML
     private void handleMoveEpicUp() {
         try {
-            perform(EditRelease.class);
+            perform(MoveEpicUp.class);
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {

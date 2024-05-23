@@ -981,4 +981,24 @@ parts:
     title: "Number view button tooltip"
     value: "Toggles sprint count view on the timeline"
     variants: {}
+- translation:
+    key: "epic.dialogs.scope.manage.scope"
+    title: "Manage scope dialog title"
+    value: "Scope"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.actions.save"
+    title: "Save scope action label"
+    value: "Save"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.actions.cancel"
+    title: "Cancel scope action label"
+    value: "Cancel"
+    variants: {}
+- translation:
+    key: "epic.dialogs.scope.title"
+    title: "Title for scope dialog"
+    value: "Manage Scope"
+    variants: {}
 sourceLanguage: "en"

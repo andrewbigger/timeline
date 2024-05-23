@@ -296,10 +296,11 @@ public class TimelineEpic {
         TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
         int weekNumber = now.get(woy);
         
-        int sprintNumber = weekNumber / prefs.getSprintLength() + prefs.getStartSprintNumber();
+        int sprintNumber = prefs.getStartSprintNumber() + 
+                (weekNumber / prefs.getSprintLength());
         
         for (Sprint s : getSprints()) {
-            if (number == sprintNumber) {
+            if (number == sprintNumber - 1) {
                 return true;
             }
         }

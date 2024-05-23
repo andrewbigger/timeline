@@ -6,6 +6,11 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
+import java.nio.file.WatchKey;
+import java.nio.file.WatchService;
 import java.util.ResourceBundle;
 
 /**
@@ -142,5 +147,5 @@ public class State {
         // TODO: Add timeline sections here
         
         return content;
-    }
+    }  
 }
