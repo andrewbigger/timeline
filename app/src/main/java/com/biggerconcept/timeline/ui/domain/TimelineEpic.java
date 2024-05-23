@@ -176,6 +176,12 @@ public class TimelineEpic {
     /**
      * Builds a set of occupied sprints based on epic data.
      * 
+     * First we check whether sprints have been assigned to the epic. When
+     * they are, those sprints are added and the function exits early.
+     * 
+     * In the event that sprints have not been assigned, then the timeline
+     * will calculate the sprints using the reference sprint data.
+     * 
      * @param prefs document preferences
      * @param startSprintNumber first sprint to start epic
      * @param startSprintCommitment amount of points already committed in start sprint
@@ -185,14 +191,23 @@ public class TimelineEpic {
             int startSprintNumber,
             int startSprintCommitment
     ) {
+        ArrayList<Sprint> sprints = new ArrayList<Sprint>();
+        
+        if (getEpic().hasAssignedSprints()) {
+            for (int i : getEpic().getAssignedSprints()) {
+                sprints.add(new Sprint(i));
+            }
+            
+            addSprints(sprints);
+            return;
+        }
+        
         // epic points
         int points = getEpic().calculateTotalPoints(
                 prefs.asProjectusPreferences()
         );
         // maximum number of points in each sprint
         int pointsPerSprint = prefs.calculateAveragePointsPerSprint();
-        
-        ArrayList<Sprint> sprints = new ArrayList<Sprint>();
         
         int pointsAfterFirst = points;
         Sprint startSprint = new Sprint(startSprintNumber, startSprintCommitment);

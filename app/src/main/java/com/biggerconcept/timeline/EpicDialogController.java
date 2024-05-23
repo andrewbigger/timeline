@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
@@ -151,6 +152,18 @@ public class EpicDialogController implements Initializable {
     public ListView scopeListView;
     
     /**
+     * Start sprint selector combo box
+     */
+    @FXML
+    public ComboBox startSprintComboBox;
+    
+    /**
+     * End sprint selector combo box
+     */
+    @FXML
+    public ComboBox endSprintComboBox;
+    
+    /**
      * Initializer for the dialog window
      * 
      * @param url url for dialog window
@@ -238,6 +251,7 @@ public class EpicDialogController implements Initializable {
      */
     private void mapDocumentToWindow() throws CloneNotSupportedException {
         mapDetailsToWindow();
+        mapSprintsToWindow();
         mapScopeToWindow();
         mapTasksToWindow();
         mapOutlookToWindow();
@@ -251,6 +265,40 @@ public class EpicDialogController implements Initializable {
     private void mapDetailsToWindow() {
         epicName.setText(state.getOpenEpic().getName());
         epicSummary.setText(state.getOpenEpic().getSummary());
+    }
+    
+    /**
+     * Maps sprint options to window
+     */
+    private void mapSprintsToWindow() {
+        startSprintComboBox.getItems().clear();
+        endSprintComboBox.getItems().clear();
+        
+        int startSprint = state.getViewYear().getStartSprint();
+        int endSprint = state.getViewYear().lastSprint(
+                state.getOpenDocument().getPreferences()
+        );
+        
+        startSprintComboBox.getItems().add("");
+        endSprintComboBox.getItems().add("");
+        
+        for (int i = startSprint; i < endSprint; i++) {
+            startSprintComboBox.getItems().add(i);
+            endSprintComboBox.getItems().add(i);
+        }
+        
+        if (state.getOpenEpic().hasAssignedSprints()) {
+            startSprintComboBox.getSelectionModel().select(
+                    String.valueOf(state.getOpenEpic().getStartSprint())
+            );
+            
+            endSprintComboBox.getSelectionModel().select(
+                    String.valueOf(state.getOpenEpic().getEndSprint())
+            );
+        } else {
+            startSprintComboBox.getSelectionModel().select(0);
+            endSprintComboBox.getSelectionModel().select(0);
+        }
     }
     
     /**
@@ -286,14 +334,27 @@ public class EpicDialogController implements Initializable {
     
     /**
      * Maps epic for serialization.
-     * 
-     * @return 
      */
     private void mapWindowToDocument() {
         state.getOpenDocument().rebuildIdentifiers();
         
         state.getOpenEpic().setName(epicName.getText());
         state.getOpenEpic().setSummary(epicSummary.getText());
+        
+        mapWindowToSprints();
+    }
+    
+    /**
+     * Maps sprint selections to the document.
+     */
+    private void mapWindowToSprints() {
+        Integer startSprint = getStartSprint();
+        Integer endSprint = getEndSprint();
+        
+        if (startSprint > 0 && endSprint > 0) {
+            state.getOpenEpic().setStartSprint(startSprint);
+            state.getOpenEpic().setEndSprint(endSprint);
+        }
     }
     
     /**
@@ -589,6 +650,63 @@ public class EpicDialogController implements Initializable {
     }
     
     /**
+     * Ensures that start sprint is before end sprint
+     * 
+     * When start sprint is after end sprint, the end sprint will be
+     * adjusted to be equivalent to the start sprint.
+     */
+    @FXML
+    private void handleChangeStartSprint() {
+        Integer startSprint = getStartSprint();
+        Integer endSprint = getEndSprint();
+        
+        if (startSprint > endSprint) {
+            if (startSprint == 0) {
+                endSprintComboBox.getSelectionModel().select(0);
+            } else {
+                endSprintComboBox.getSelectionModel().select(startSprint);
+            }
+        }
+        
+        mapWindowToSprints();
+        mapOutlookToWindow();
+    }
+    
+    /**
+     * Ensures that the end sprint is after the start sprint
+     * 
+     * When the end sprint is less than the start sprint, the end sprint
+     * will be adjusted to be equivalent to the start sprint.
+     */
+    @FXML
+    private void handleChangeEndSprint() {
+        Integer startSprint = getStartSprint();
+        Integer endSprint = getEndSprint();
+        
+        if (endSprint < startSprint) {
+            if (startSprint == 0) {
+                endSprintComboBox.getSelectionModel().select(0);
+            } else {
+                endSprintComboBox.getSelectionModel().select(startSprint);
+            }
+        }
+        
+        mapWindowToSprints();
+        mapOutlookToWindow();
+    }
+    
+    /**
+     * Clears selected sprints
+     */
+    @FXML
+    private void handleClearSelectedSprints() {
+        state.getOpenEpic().setStartSprint(0);
+        state.getOpenEpic().setEndSprint(0);
+        mapSprintsToWindow();
+        mapOutlookToWindow();
+    }
+    
+    /**
      * Cancels the modification of edit.
      */
     @FXML
@@ -628,7 +746,18 @@ public class EpicDialogController implements Initializable {
         }
     }
 
+    /**
+     * Calculates number of weeks.
+     * 
+     * When the sprint has assigned sprints, the number of sprints that
+     * were taken is calculated and returned.
+     * 
+     * Otherwise the duration is calculated based on reference sprint data.
+     * 
+     * @return number of weeks
+     */
     private int calculateWeeks() {
+        // Calculate number of weeks required for epic
         int totalPoints = state.getOpenEpic().calculateTotalPoints(
                 state.getOpenDocument().getPreferences().asProjectusPreferences()
         );
@@ -645,6 +774,79 @@ public class EpicDialogController implements Initializable {
             weeks = 1;
         }
         
+        // When sprints are assigned, calculate the number of weeks
+        // if it the calculation is greater than one sprint, 
+        // use the assigned sprint length
+        
+        if (state.getOpenEpic().hasAssignedSprints()) {
+            int sprints = state.getOpenEpic().getEndSprint() - 
+                    state.getOpenEpic().getStartSprint();
+            
+            if (sprints == 0) {
+                return weeks;
+            }
+            
+            return sprints * state
+                    .getOpenDocument()
+                    .getPreferences()
+                    .getSprintLength();
+        }
+        
+        // Return calculation by default
         return weeks;
+    }
+    
+    /**
+     * Returns the selected start sprint.
+     * 
+     * If there is nothing selected, then zero is returned by default
+     * 
+     * @return start sprint selection
+     */
+    private Integer getStartSprint() {
+        Object selection = startSprintComboBox
+                            .getSelectionModel()
+                            .getSelectedItem();
+        
+        if (selection == null) {
+            return 0;
+        }
+        
+        if (selection == startSprintComboBox.getItems().get(0)) {
+            return 0;
+        }
+        
+        try {
+            return (Integer) selection;
+        } catch (ClassCastException e) {
+            return 0;
+        }
+    }
+    
+    /**
+     * Returns the selected end sprint.
+     * 
+     * If there is nothing selected, then zero is returned by default
+     * 
+     * @return end sprint selection
+     */
+    private Integer getEndSprint() {
+        Object selection = endSprintComboBox
+                            .getSelectionModel()
+                            .getSelectedItem();
+        
+        if (selection == null) {
+            return 0;
+        }
+        
+        if (selection == endSprintComboBox.getItems().get(0).toString()) {
+            return 0;
+        }
+        
+        try {
+            return (Integer) selection;
+        } catch (ClassCastException e) {
+            return 0;
+        }
     }
 }

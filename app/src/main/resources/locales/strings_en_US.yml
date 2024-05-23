@@ -1001,4 +1001,29 @@ parts:
     title: "Title for scope dialog"
     value: "Manage Scope"
     variants: {}
+- translation:
+    key: "dialogs.epic.assignedSprints.title"
+    title: "Label for assigned sprints title"
+    value: "Assigned sprints"
+    variants: {}
+- translation:
+    key: "dialogs.epic.assignedSprints.start"
+    title: "Label for start sprint combo box"
+    value: "Start"
+    variants: {}
+- translation:
+    key: "dialogs.epic.assignedSprints.end"
+    title: "Label for end sprint combo box"
+    value: "End"
+    variants: {}
+- translation:
+    key: "actions.clear"
+    title: "Generic clear action"
+    value: "Clear"
+    variants: {}
+- translation:
+    key: "errors.epic.save"
+    title: "Error message when unable to save epic"
+    value: "Unable to save epic"
+    variants: {}
 sourceLanguage: "en"

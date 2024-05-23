@@ -82,7 +82,7 @@ public class Year {
    public int getStartSprint() {
        return startSprint;
    }
-  
+
    /**
     * Getter for last day
     * 
