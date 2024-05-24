@@ -1031,4 +1031,124 @@ parts:
     title: "Generic label for browse action"
     value: "Browse"
     variants: {}
+- translation:
+    key: "reports.template.fileTypeName"
+    title: "Type name for template files"
+    value: "Template File"
+    variants: {}
+- translation:
+    key: "reports.errors.noGen.title"
+    title: "Title for inability to generate report"
+    value: "Unable to generate report"
+    variants: {}
+- translation:
+    key: "reports.errors.noGen.missingName"
+    title: "Detail message when report is missing name"
+    value: "Please provide a name for the report"
+    variants: {}
+- translation:
+    key: "reports.errors.noGen.missingLocation"
+    title: "Detail message when location is not specified"
+    value: "Please provide a location to save the report to"
+    variants: {}
+- translation:
+    key: "toolbar.reports.title"
+    title: "Title for reports Toolbar"
+    value: "Reports"
+    variants: {}
+- translation:
+    key: "toolbar.reports.tooltip"
+    title: "Tooltip for reports menu"
+    value: "Export report based on timeline data"
+    variants: {}
+- translation:
+    key: "reports.builder.name"
+    title: "Label for report name field"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.builder.description"
+    title: "Label for report builder description field"
+    value: "Description"
+    variants: {}
+- translation:
+    key: "reports.builder.paragraphs.title"
+    title: "Report builder paragraphs title"
+    value: "Paragraphs"
+    variants: {}
+- translation:
+    key: "reports.builder.sections.title"
+    title: "Report builder section title"
+    value: "Sections"
+    variants: {}
+- translation:
+    key: "reports.builder.tooltips.add"
+    title: "Tooltip for add item"
+    value: "Add element to report"
+    variants: {}
+- translation:
+    key: "reports.builder.tooltips.edit"
+    title: "Tooltip for edit element button"
+    value: "Edit report element"
+    variants: {}
+- translation:
+    key: "reports.builder.tooltips.remove"
+    title: "Tooltip for remove element button"
+    value: "Remove element from report"
+    variants: {}
+- translation:
+    key: "reports.builder.tooltips.moveUp"
+    title: "Tooltip for move element up button"
+    value: "Move selected element up"
+    variants: {}
+- translation:
+    key: "reports.builder.tooltips.moveDown"
+    title: "Tooltip for move report element down"
+    value: "Move selected element down"
+    variants: {}
+- translation:
+    key: "preferences.reports.title"
+    title: "Title for reports preferences"
+    value: "Reports"
+    variants: {}
+- translation:
+    key: "preferences.reports.description"
+    title: "Description for reports tab"
+    value: "These are your configured reports"
+    variants: {}
+- translation:
+    key: "reports.export.name"
+    title: "Report export name field label"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.export.format"
+    title: "Format field label"
+    value: "Format"
+    variants: {}
+- translation:
+    key: "reports.export.location"
+    title: "Label for save location field"
+    value: "Save Location"
+    variants: {}
+- translation:
+    key: "reports.export.customTemplate"
+    title: "Label for custom template checkbox"
+    value: "Custom Template"
+    variants: {}
+- translation:
+    key: "reports.export.templateFile"
+    title: "Label for template file field"
+    value: "Template File"
+    variants: {}
+- translation:
+    key: "dialogs.paragraph.manage"
+    title: "Manage paragraph dialog title"
+    value: "Manage Paragraph"
+    variants: {}
+- translation:
+    key: "dialogs.paragraph.content"
+    title: "Manage paragraph dialog content field label"
+    value: "Content"
+    variants: {}
 sourceLanguage: "en"

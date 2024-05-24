@@ -271,11 +271,11 @@
                   </VBox>
                </content>
             </Tab>
-            <Tab fx:id="reportsTab" text="Reports">
+            <Tab fx:id="reportsTab" text="%preferences.reports.title">
                <content>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Label text="Reports">
+                        <Label text="%preferences.reports.title">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -283,7 +283,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
-                        <Label text="These are your configured reports">
+                        <Label text="%preferences.reports.description">
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin></Label>
