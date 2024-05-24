@@ -1,11 +1,14 @@
 package com.biggerconcept.timeline.domain;
 
-import com.biggerconcept.appengine.reports.Report;
+import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.ui.helpers.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.biggerconcept.projectus.domain.Sprint;
 import com.biggerconcept.projectus.domain.Size;
+import com.biggerconcept.timeline.reports.Report;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -121,7 +124,8 @@ public class Preferences {
      * Configured reports
      */
     @JsonInclude(Include.NON_NULL)
-    private ArrayList<Report> reports;
+    @JsonDeserialize(contentAs=Report.class)
+    private ArrayList<IReport> reports;
 
     /**
     * Returns estimate for given task size.
@@ -309,7 +313,7 @@ public class Preferences {
      * 
      * @return reports
      */
-    public ArrayList<Report> getReports() {
+    public ArrayList<IReport> getReports() {
         if (reports == null) {
             reports = new ArrayList<>();
         }
@@ -495,7 +499,7 @@ public class Preferences {
      * 
      * @param value new reports array
      */
-    public void setReports(ArrayList<Report> value) {
+    public void setReports(ArrayList<IReport> value) {
         reports = value;
     }
     

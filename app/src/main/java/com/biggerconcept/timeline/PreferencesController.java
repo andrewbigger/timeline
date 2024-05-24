@@ -2,13 +2,15 @@ package com.biggerconcept.timeline;
 
 import com.biggerconcept.appengine.IPreferencesController;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
-import com.biggerconcept.appengine.reports.Report;
+import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.ui.dialogs.ReportBuilderDialog;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.appengine.ui.helpers.Date;
 import com.biggerconcept.projectus.domain.Sprint;
+import com.biggerconcept.timeline.reports.Element;
+import com.biggerconcept.timeline.reports.Report;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -370,7 +372,7 @@ public class PreferencesController
     private void mapReportsToWindow() {
         reportsListView.getItems().clear();
         
-        for (Report r : currentPreferences.getReports()) {
+        for (IReport r : currentPreferences.getReports()) {
             reportsListView.getItems().add(r);
         }
     }
@@ -478,7 +480,8 @@ public class PreferencesController
     private void handleAddReport() {
         try {
             ReportBuilderDialog.open(
-                    this, 
+                    this,
+                    Element.availableContent(),
                     new Report("New Report"), 
                     currentPreferences.getReports(),
                     true,
@@ -540,7 +543,8 @@ public class PreferencesController
             }
             
             ReportBuilderDialog.open(
-                    this, 
+                    this,
+                    Element.availableContent(),
                     selected, 
                     currentPreferences.getReports(),
                     false,
@@ -548,6 +552,8 @@ public class PreferencesController
             );
             
             mapPreferencesToWindow();
+        } catch (NoChoiceMadeException ncm) {
+            // do nothing
         } catch (Exception e) {
             ErrorAlert.show(
                     bundle,
