@@ -485,7 +485,7 @@ public class PreferencesController
                     new Report("New Report"), 
                     currentPreferences.getReports(),
                     true,
-                    this.getClass().getResource("/fxml/ReportBuilder.fxml")
+                    com.biggerconcept.appengine.Engine.class.getResource("/fxml/ReportBuilder.fxml")
             );
             
             mapPreferencesToWindow();

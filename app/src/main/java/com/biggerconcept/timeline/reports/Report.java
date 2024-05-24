@@ -28,13 +28,8 @@ public class Report extends com.biggerconcept.appengine.reports.Report implement
         this.elements = new ArrayList<>();
     }
     
-    public Report(String name, Format format) {
-        super(name, format);
-        this.elements = new ArrayList<>();
-    }
-    
-    public Report(String name, Format format, String description) {
-        super(name, format, description);
+    public Report(String name, String description) {
+        super(name, description);
         this.elements = new ArrayList<>();
     }
     
