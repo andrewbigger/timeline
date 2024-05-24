@@ -4,9 +4,11 @@ import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.elements.IElement;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
+import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
@@ -51,10 +53,15 @@ public class Element
         return content;
     }
 
-
     @Override
     public IElementEditorDialog editorDialog(ResourceBundle rb, IReport report) 
             throws IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported.");
+    }
+
+    @Override
+    public void insertInto(Doc document, HashMap<String, String> vars) 
+            throws IOException {
+        throw new UnsupportedOperationException("Not supported.");
     }
 }

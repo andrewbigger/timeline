@@ -19,8 +19,9 @@ public class Heading1Element extends Element {
         this.type = Doc.ParagraphType.h1;
     }
     
-    public void insertInto(Doc document) {
-        document.h1((String) getArgs());
+    public void insertInto(Doc document, HashMap<String, String> vars) 
+            throws IOException {
+        document.h1(compile(getArgs(), vars));
     }
     
     public IElementEditorDialog editorDialog(ResourceBundle rb, IReport report)

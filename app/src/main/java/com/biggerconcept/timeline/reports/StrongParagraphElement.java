@@ -6,6 +6,7 @@ import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
@@ -19,8 +20,9 @@ public class StrongParagraphElement extends Element {
         this.type = Doc.ParagraphType.strong;
     }
     
-    public void insertInto(Doc document) {
-        document.strong((String) getArgs());
+    public void insertInto(Doc document, HashMap<String, String> vars) 
+            throws IOException {
+        document.strong(compile(getArgs(), vars));
     }
     
     public IElementEditorDialog editorDialog(ResourceBundle rb, IReport report)

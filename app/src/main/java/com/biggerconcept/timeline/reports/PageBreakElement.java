@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.reports;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import java.util.HashMap;
 
 /**
  * Inserts a new line into a report
@@ -13,7 +14,7 @@ public class PageBreakElement extends Element {
         this.type = Doc.ParagraphType.br;
     }
     
-    public void insertInto(Doc document) {
+    public void insertInto(Doc document, HashMap<String, String> vars) {
         document.br();
     }
     

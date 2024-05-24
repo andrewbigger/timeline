@@ -1,6 +1,8 @@
 package com.biggerconcept.timeline.reports;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * Inserts a new line into a report
@@ -13,7 +15,7 @@ public class NewLineElement extends Element {
         this.type = Doc.ParagraphType.nl;
     }
     
-    public void insertInto(Doc document) {
+    public void insertInto(Doc document, HashMap<String, String> vars) {
         document.nl();
     }
     

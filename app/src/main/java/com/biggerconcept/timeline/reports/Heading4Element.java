@@ -5,6 +5,7 @@ import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
@@ -18,8 +19,9 @@ public class Heading4Element extends Element {
         this.type = Doc.ParagraphType.h4;
     }
     
-    public void insertInto(Doc document) {
-        document.h4((String) getArgs());
+    public void insertInto(Doc document, HashMap<String, String> vars) 
+            throws IOException {
+        document.h4(compile(getArgs(), vars));
     }
     
     public IElementEditorDialog editorDialog(ResourceBundle rb, IReport report)
