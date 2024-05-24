@@ -3,7 +3,6 @@ package com.biggerconcept.timeline;
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.appengine.reports.IReport;
-import com.biggerconcept.appengine.reports.Report;
 import com.biggerconcept.appengine.reports.ui.menus.ReportMenuBuilder;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
 import com.biggerconcept.timeline.actions.Action;
@@ -512,8 +511,7 @@ public class MainController implements Initializable {
         ReportMenuBuilder.build(
                 state.bundle(),
                 reportsMenuButton, 
-                reports, 
-                state.getReportContent()
+                reports
         );
     }
     

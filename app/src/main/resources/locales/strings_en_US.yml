@@ -1026,4 +1026,9 @@ parts:
     title: "Error message when unable to save epic"
     value: "Unable to save epic"
     variants: {}
+- translation:
+    key: "actions.browse"
+    title: "Generic label for browse action"
+    value: "Browse"
+    variants: {}
 sourceLanguage: "en"

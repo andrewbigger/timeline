@@ -30,7 +30,7 @@
                   <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" />
                   <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="7.0" visible="false" />
-                  <MenuButton id="reportsMenuButton" fx:id="reportsMenuButton" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="55.0" text="Reports" visible="false">
+                  <MenuButton id="reportsMenuButton" fx:id="reportsMenuButton" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="55.0" text="Reports">
                      <padding>
                         <Insets left="35.0" />
                      </padding>
