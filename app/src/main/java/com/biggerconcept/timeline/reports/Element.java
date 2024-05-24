@@ -5,6 +5,7 @@ import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.elements.IElement;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.timeline.domain.Document;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.io.IOException;
@@ -28,7 +29,10 @@ import java.util.ResourceBundle;
     @JsonSubTypes.Type(value = StrongParagraphElement.class, name = "strong"),
     @JsonSubTypes.Type(value = SubtitleParagraphElement.class, name = "subtitle"),
     @JsonSubTypes.Type(value = TitleElement.class, name = "title"),
-    @JsonSubTypes.Type(value = TableOfContentsElement.class, name = "toc")
+    @JsonSubTypes.Type(value = TableOfContentsElement.class, name = "toc"),
+    @JsonSubTypes.Type(value = ShelfTableElement.class, name = "shelf_epics_table"),
+    @JsonSubTypes.Type(value = ReleaseTableElement.class, name = "releases_table"),
+    @JsonSubTypes.Type(value = NotesElement.class, name = "notes"),
 })
 public class Element
         extends com.biggerconcept.appengine.reports.elements.Element 
@@ -49,8 +53,21 @@ public class Element
         content.addParagraph(new PageBreakElement());
         
         content.addSection(new TableOfContentsElement());
+        content.addSection(new ShelfTableElement());
+        content.addSection(new ReleaseTableElement());
+        content.addSection(new NotesElement());
         
         return content;
+    }
+    
+    private Document document;
+    
+    protected Document getDocument() {
+        return document;
+    }
+    
+    public void setDocument(Document document) {
+        this.document = document;
     }
 
     @Override

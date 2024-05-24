@@ -1,11 +1,13 @@
 package com.biggerconcept.timeline.actions.document;
 
 import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
+import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.ui.dialogs.OpenFileDialog;
 import com.biggerconcept.timeline.App;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.actions.Action;
 import com.biggerconcept.timeline.domain.Document;
+import com.biggerconcept.timeline.reports.Report;
 import java.io.File;
 import java.io.IOException;
 import javafx.stage.Stage;

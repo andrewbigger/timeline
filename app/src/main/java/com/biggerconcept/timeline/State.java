@@ -1,11 +1,13 @@
 package com.biggerconcept.timeline;
 
+import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.ui.helpers.Date;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
+import com.biggerconcept.timeline.reports.Report;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
@@ -123,10 +125,12 @@ public class State {
     
     public void mapDocumentToWindow() throws CloneNotSupportedException {
         mainController().mapDocumentToWindow();
+        setReportDocument();
     }
     
     public void mapWindowToDocument() {
         mainController().mapWindowToDocument();
+        setReportDocument();
     }
     
     public void releaseOpenEpic() {
@@ -139,6 +143,13 @@ public class State {
     
     public void toggleCounts() {
         showCounts = !showCounts;
+    }
+    
+    public void setReportDocument() {
+        for (IReport r : openDocument.getPreferences().getReports()) {
+            Report rpt = (Report) r;
+            rpt.setDocument(openDocument);
+        }
     }
     
     private Content defaultReportContent() {

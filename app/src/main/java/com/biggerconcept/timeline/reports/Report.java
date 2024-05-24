@@ -1,11 +1,12 @@
 package com.biggerconcept.timeline.reports;
 
-import com.biggerconcept.appengine.reports.Formats.Format;
 import com.biggerconcept.appengine.reports.IReport;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
 import com.biggerconcept.appengine.reports.elements.IElement;
+import com.biggerconcept.timeline.domain.Document;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -14,7 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * 
  * @author Andrew Bigger
  */
-public class Report extends com.biggerconcept.appengine.reports.Report implements IReport {
+public class Report extends com.biggerconcept.appengine.reports.Report implements IReport {    
     @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, property = "className")
     private ArrayList<IElement> elements;
     
@@ -40,6 +41,15 @@ public class Report extends com.biggerconcept.appengine.reports.Report implement
        }
        
        return elements;
+    }
+    
+    @JsonIgnore
+    public void setDocument(Document value) {
+        for (IElement e : elements) {
+            Element target = (Element) e;
+            
+            target.setDocument(value);
+        }
     }
 
     public void setElements(ArrayList<IElement> value) {
