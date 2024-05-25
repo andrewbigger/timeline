@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class NotesElement extends Element {
     public NotesElement() {
         super();
-         this.type = ParagraphType.p;
+        this.type = ParagraphType.p;
     }
     
     public void insertInto(Doc document, HashMap<String, String> vars) 

@@ -12,12 +12,6 @@ import java.util.HashMap;
  * @author Andrew Bigger
  */
 public class ReleaseTableElement extends Element {
-    public ReleaseTableElement() {
-        super();
-        // this.type = Doc.ParagraphType.table;
-        // this.name = "release-table";
-    }
-    
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         ArrayList<Release> releases = getDocument().getReleases();
@@ -50,7 +44,7 @@ public class ReleaseTableElement extends Element {
     /**
      * Creates a table body for an epic.
      * 
-     * @param epics epics to build table body for
+     * @param releases releases to include in table body
      * 
      * @return epic body table as array list of array list.
     */

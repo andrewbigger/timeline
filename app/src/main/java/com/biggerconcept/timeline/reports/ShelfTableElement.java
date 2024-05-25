@@ -11,13 +11,7 @@ import java.util.HashMap;
  * 
  * @author Andrew Bigger
  */
-public class ShelfTableElement extends Element {
-    public ShelfTableElement() {
-        super();
-        // this.type = Doc.ParagraphType.table;
-        // this.name = "shelf-epics-table";
-    }
-    
+public class ShelfTableElement extends Element {    
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         ArrayList<Epic> shelfEpics = getDocument().getShelf();

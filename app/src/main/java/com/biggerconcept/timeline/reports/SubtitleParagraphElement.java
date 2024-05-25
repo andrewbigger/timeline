@@ -21,7 +21,7 @@ public class SubtitleParagraphElement extends Element {
     
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
-        document.subtitle(compile(getArgs(), vars));
+        document.subtitle(compile(getArgs().toString(), vars));
     }
     
     public IElementEditorDialog editorDialog(ResourceBundle rb, IReport report)
