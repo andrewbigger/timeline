@@ -30,9 +30,7 @@ import java.util.ResourceBundle;
     @JsonSubTypes.Type(value = SubtitleParagraphElement.class, name = "subtitle"),
     @JsonSubTypes.Type(value = TitleElement.class, name = "title"),
     @JsonSubTypes.Type(value = TableOfContentsElement.class, name = "toc"),
-    @JsonSubTypes.Type(value = ShelfTableElement.class, name = "shelf_epics_table"),
-    @JsonSubTypes.Type(value = ReleaseTableElement.class, name = "releases_table"),
-    @JsonSubTypes.Type(value = NotesElement.class, name = "notes"),
+    @JsonSubTypes.Type(value = ShelfTableElement.class, name = "table")
 })
 public class Element
         extends com.biggerconcept.appengine.reports.elements.Element 
@@ -81,4 +79,5 @@ public class Element
             throws IOException {
         throw new UnsupportedOperationException("Not supported.");
     }
+
 }

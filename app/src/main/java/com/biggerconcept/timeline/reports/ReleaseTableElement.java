@@ -14,7 +14,8 @@ import java.util.HashMap;
 public class ReleaseTableElement extends Element {
     public ReleaseTableElement() {
         super();
-        this.type = Doc.ParagraphType.releases_table;
+        // this.type = Doc.ParagraphType.table;
+        // this.name = "release-table";
     }
     
     public void insertInto(Doc document, HashMap<String, String> vars) 

@@ -14,7 +14,8 @@ import java.util.HashMap;
 public class ShelfTableElement extends Element {
     public ShelfTableElement() {
         super();
-        this.type = Doc.ParagraphType.shelf_epics_table;
+        // this.type = Doc.ParagraphType.table;
+        // this.name = "shelf-epics-table";
     }
     
     public void insertInto(Doc document, HashMap<String, String> vars) 
