@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.reports;
 
 import com.biggerconcept.appengine.reports.IReport;
+import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
@@ -24,8 +25,11 @@ public class Heading1Element extends Element {
         document.h1(compile(getArgs(), vars));
     }
     
-    public IElementEditorDialog editorDialog(ResourceBundle rb, IReport report)
-        throws IOException {
-        return ParagraphDialog.create(rb, report, this);
+    public IElementEditorDialog editorDialog(
+            ResourceBundle rb,
+            IReport report,
+            Content content
+    ) throws IOException {
+        return ParagraphDialog.create(rb, report, this, content);
     }
 }

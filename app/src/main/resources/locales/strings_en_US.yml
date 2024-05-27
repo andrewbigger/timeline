@@ -1151,4 +1151,19 @@ parts:
     title: "Manage paragraph dialog content field label"
     value: "Content"
     variants: {}
+- translation:
+    key: "dialogs.paragraph.variables.title"
+    title: "Label for variables table"
+    value: "Variables"
+    variants: {}
+- translation:
+    key: "dialogs.paragraph.variables.name"
+    title: "Label for name column"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "dialogs.paragraph.variables.syntax"
+    title: "Label for syntax column"
+    value: "Syntax"
+    variants: {}
 sourceLanguage: "en"

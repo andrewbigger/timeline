@@ -69,8 +69,11 @@ public class Element
     }
 
     @Override
-    public IElementEditorDialog editorDialog(ResourceBundle rb, IReport report) 
-            throws IOException {
+    public IElementEditorDialog editorDialog(
+            ResourceBundle rb, 
+            IReport report,
+            Content content
+    ) throws IOException {
         throw new UnsupportedOperationException("Not supported.");
     }
 
