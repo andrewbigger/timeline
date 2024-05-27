@@ -30,7 +30,6 @@ import com.biggerconcept.timeline.actions.release.RemoveRelease;
 import com.biggerconcept.timeline.actions.release.EditRelease;
 import com.biggerconcept.timeline.actions.release.MoveReleaseDown;
 import com.biggerconcept.timeline.actions.release.MoveReleaseUp;
-import com.biggerconcept.timeline.reports.Report;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ReleasesTable;
@@ -512,7 +511,8 @@ public class MainController implements Initializable {
         ReportMenuBuilder.build(
                 state.bundle(),
                 reportsMenuButton, 
-                reports
+                reports,
+                state.getReportContent()
         );
     }
     

@@ -5,7 +5,9 @@ import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.elements.IElement;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Document;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.io.IOException;
@@ -36,7 +38,7 @@ public class Element
         extends com.biggerconcept.appengine.reports.elements.Element 
         implements Cloneable, IElement {
     
-    public static Content availableContent() {
+    public static Content availableContent(State state) {
         Content content = new Content();
         
         content.addParagraph(new TitleElement());
@@ -55,19 +57,57 @@ public class Element
         content.addSection(new ReleaseTableElement());
         content.addSection(new NotesElement());
         
+        content.addVariable(
+                "velocity", 
+                Variables.velocity(state)
+        );
+        
+        content.addVariable(
+                "used_sprints", 
+                Variables.usedSprints(state)
+        );
+        
+        content.addVariable(
+                "total_sprints",
+                Variables.totalSprints(state)
+        );
+        
+        content.addVariable(
+                "committed_points", 
+                Variables.committedPoints(state)
+        );
+        
+        content.addVariable(
+                "available_points", 
+                Variables.availablePoints(state)
+        );
+        
+        content.addVariable(
+                "judgement", 
+                Variables.judgement(state)
+        );
+        
         return content;
     }
     
-    private Document document;
+    @JsonIgnore
+    private State state;
     
-    protected Document getDocument() {
-        return document;
+    @JsonIgnore
+    public State getState() {
+        return state;
     }
     
-    public void setDocument(Document document) {
-        this.document = document;
+    @JsonIgnore
+    public Document getDocument() {
+        return state.getOpenDocument();
     }
-
+    
+    @JsonIgnore
+    public void setState(State value) {
+        state = value;
+    }
+    
     @Override
     public IElementEditorDialog editorDialog(
             ResourceBundle rb, 

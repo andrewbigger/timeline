@@ -481,7 +481,7 @@ public class PreferencesController
         try {
             ReportBuilderDialog.open(
                     this,
-                    Element.availableContent(),
+                    Element.availableContent(state),
                     new Report("New Report"), 
                     currentPreferences.getReports(),
                     true,
@@ -544,7 +544,7 @@ public class PreferencesController
             
             ReportBuilderDialog.open(
                     this,
-                    Element.availableContent(),
+                    Element.availableContent(state),
                     selected, 
                     currentPreferences.getReports(),
                     false,

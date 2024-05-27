@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
 import com.biggerconcept.appengine.reports.elements.IElement;
+import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Document;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -44,11 +45,11 @@ public class Report extends com.biggerconcept.appengine.reports.Report implement
     }
     
     @JsonIgnore
-    public void setDocument(Document value) {
+    public void setState(State value) {
         for (IElement e : elements) {
             Element target = (Element) e;
             
-            target.setDocument(value);
+            target.setState(value);
         }
     }
 

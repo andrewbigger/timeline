@@ -7,12 +7,8 @@ import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
+import com.biggerconcept.timeline.reports.Element;
 import com.biggerconcept.timeline.reports.Report;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
 import java.util.ResourceBundle;
 
 /**
@@ -29,7 +25,6 @@ public class State {
     private ResourceBundle bundle;
     private String selectedPreferenceTabName;
     private boolean showCounts;
-    private Content reportContent;
     
     public State(MainController controller, ResourceBundle rb) {
         mainController = controller;
@@ -63,11 +58,11 @@ public class State {
     }
     
     public Content getReportContent() {
-        if (reportContent == null) {
-            reportContent = defaultReportContent();
-        }
+//        if (reportContent == null) {
+//            reportContent = Element.availableContent(this);
+//        }
         
-        return reportContent;
+        return Element.availableContent(this);
     }
     
     public boolean hasSelectedPreferenceTab() {
@@ -92,10 +87,6 @@ public class State {
     
     public void setShowCounts(boolean value) {
         showCounts = value;
-    }
-    
-    public void setReportContent(Content value) {
-        reportContent = value;
     }
     
     public void setSelectedPreferenceTabName(String value) {
@@ -148,15 +139,8 @@ public class State {
     public void setReportDocument() {
         for (IReport r : openDocument.getPreferences().getReports()) {
             Report rpt = (Report) r;
-            rpt.setDocument(openDocument);
+            rpt.setState(this);
         }
     }
-    
-    private Content defaultReportContent() {
-        Content content = new Content();
-        
-        // TODO: Add timeline sections here
-        
-        return content;
-    }  
+
 }
