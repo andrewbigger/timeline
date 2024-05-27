@@ -67,6 +67,10 @@ public class Variables {
         }
     }
     
+    public static String viewYear(State state) {
+        return state.getViewYear().getName();
+    }
+    
     public static String judgement(State state) {
         return state.getOpenDocument().getJudgement().toString();
     }

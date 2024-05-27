@@ -87,6 +87,11 @@ public class Element
                 Variables.judgement(state)
         );
         
+        content.addVariable(
+                "view_year", 
+                Variables.viewYear(state)
+        );
+        
         return content;
     }
     
