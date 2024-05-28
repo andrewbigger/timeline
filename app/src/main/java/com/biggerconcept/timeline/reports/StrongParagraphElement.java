@@ -5,7 +5,7 @@ import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
+import com.biggerconcept.timeline.State;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -18,6 +18,10 @@ import java.util.ResourceBundle;
 public class StrongParagraphElement extends Element {
     public StrongParagraphElement() {
         super();
+    }
+    
+    public StrongParagraphElement(State state) {
+        super(state);
         this.type = Doc.ParagraphType.strong;
     }
     

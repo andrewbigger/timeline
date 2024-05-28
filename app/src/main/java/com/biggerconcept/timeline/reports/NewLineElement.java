@@ -1,7 +1,7 @@
 package com.biggerconcept.timeline.reports;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
-import java.io.IOException;
+import com.biggerconcept.timeline.State;
 import java.util.HashMap;
 
 /**
@@ -12,6 +12,10 @@ import java.util.HashMap;
 public class NewLineElement extends Element {
     public NewLineElement() {
         super();
+    }
+    
+    public NewLineElement(State state) {
+        super(state);
         this.type = Doc.ParagraphType.nl;
     }
     

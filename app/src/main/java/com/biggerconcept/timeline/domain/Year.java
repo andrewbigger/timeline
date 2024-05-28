@@ -211,6 +211,47 @@ public class Year {
    }
    
    /**
+    * Returns number of sprints available in a quarter.
+    * 
+    * @param prefs document preferences
+    * 
+    * @return number of sprints available in the quarter
+    */
+   public int countAvailableSprintsPerQuarter(Preferences prefs) {
+       return countAvailableSprints(prefs) / 4;
+   }
+   
+   /**
+    * Returns first sprint in given quarter
+    * 
+    * @param quarter quarter number
+    * @param prefs document preferences
+    * 
+    * @return sprint number at beginning of quarter
+    */
+   public int firstSprintInQuarter(int quarter, Preferences prefs) {
+       if (quarter == 1) {
+            return getStartSprint();
+        }
+        
+        return ((quarter - 1) * countAvailableSprintsPerQuarter(prefs)) 
+                + getStartSprint();
+   }
+   
+   /**
+    * Returns the last sprint in the quarter.
+    * 
+    * @param quarter quarter number
+    * @param prefs document preferences
+    * 
+    * @return last sprint number for the quarter
+    */
+   public int lastSprintInQuarter(int quarter, Preferences prefs) {
+       return firstSprintInQuarter(quarter, prefs) 
+               + (countAvailableSprintsPerQuarter(prefs) - 1);
+   }
+   
+   /**
     * Returns number of available points in the year.
     * 
     * @param prefs document preferences

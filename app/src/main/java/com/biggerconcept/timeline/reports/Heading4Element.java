@@ -5,6 +5,7 @@ import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.timeline.State;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -17,6 +18,10 @@ import java.util.ResourceBundle;
 public class Heading4Element extends Element {
     public Heading4Element() {
         super();
+    }
+    
+    public Heading4Element(State state) {
+        super(state);
         this.type = Doc.ParagraphType.h4;
     }
     

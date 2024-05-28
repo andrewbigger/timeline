@@ -6,6 +6,7 @@ import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
+import com.biggerconcept.timeline.State;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -18,6 +19,10 @@ import java.util.ResourceBundle;
 public class ParagraphElement extends Element {
     public ParagraphElement() {
         super();
+    }
+    
+    public ParagraphElement(State state) {
+        super(state);
         this.type = ParagraphType.p;
     }
     

@@ -317,6 +317,34 @@ public class TimelineEpic {
     }
     
     /**
+     * Returns true if this epic has a sprint in the given quarter.
+     * 
+     * @param year view year
+     * @param quarter quarter to check
+     * @param prefs document preferences
+     * 
+     * @return whether epic has sprint in given quarter
+     */
+    public boolean hasSprintInQuarter(
+            Year year, 
+            int quarter, 
+            Preferences prefs
+    ) {
+        int startSprint = year.firstSprintInQuarter(quarter, prefs);
+        int endSprint = year.lastSprintInQuarter(quarter, prefs);
+        
+        for (int i = startSprint; i < endSprint + 1; i++) {
+            for (Sprint s : getSprints()) {
+                if (s.getNumber() == i) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    } 
+    
+    /**
      * Returns true if given sprint is the current sprint.
      * 
      * @param number sprint number

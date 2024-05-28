@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.reports;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Release;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +13,14 @@ import java.util.HashMap;
  * @author Andrew Bigger
  */
 public class ReleaseTableElement extends Element {
+    public ReleaseTableElement() {
+        super();
+    }
+    
+    public ReleaseTableElement(State state) {
+        super(state);
+    }
+    
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         ArrayList<Release> releases = getDocument().getReleases();
@@ -33,10 +42,22 @@ public class ReleaseTableElement extends Element {
     private ArrayList<String> headers() {
         ArrayList<String> headers = new ArrayList<>();
         
-        // TODO: Translations
-        headers.add("#");
-        headers.add("Name");
-        headers.add("Description");
+        headers.add(
+                getState()
+                        .bundle()
+                        .getString("reports.elements.releaseTable.number")
+        );
+        
+        headers.add(
+                getState()
+                        .bundle()
+                        .getString("reports.elements.releaseTable.name")
+        );
+        headers.add(
+                getState()
+                        .bundle()
+                        .getString("reports.elements.releaseTable.description")
+        );
         
         return headers;
     }

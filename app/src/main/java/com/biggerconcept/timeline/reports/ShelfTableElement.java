@@ -2,6 +2,7 @@ package com.biggerconcept.timeline.reports;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.timeline.State;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +12,15 @@ import java.util.HashMap;
  * 
  * @author Andrew Bigger
  */
-public class ShelfTableElement extends Element {    
+public class ShelfTableElement extends Element {
+    public ShelfTableElement() {
+        super();
+    }
+    
+    public ShelfTableElement(State state) {
+        super(state);
+    }
+    
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         ArrayList<Epic> shelfEpics = getDocument().getShelf();
@@ -32,11 +41,24 @@ public class ShelfTableElement extends Element {
      */
     private ArrayList<String> headers() {
         ArrayList<String> headers = new ArrayList<>();
+
+        headers.add(
+                getState()
+                        .bundle()
+                        .getString("reports.elements.shelfTable.number")
+        );
         
-        // TODO: Translations
-        headers.add("#");
-        headers.add("Name");
-        headers.add("Size");
+        headers.add(
+                getState()
+                        .bundle()
+                        .getString("reports.elements.shelfTable.name")
+        );
+        
+        headers.add(
+                getState()
+                        .bundle()
+                        .getString("reports.elements.shelfTable.size")
+        );
         
         return headers;
     }

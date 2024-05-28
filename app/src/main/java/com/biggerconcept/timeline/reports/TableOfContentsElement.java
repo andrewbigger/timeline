@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.reports;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.timeline.State;
 import java.util.HashMap;
 
 /**
@@ -11,6 +12,10 @@ import java.util.HashMap;
 public class TableOfContentsElement extends Element {
     public TableOfContentsElement() {
         super();
+    }
+    
+    public TableOfContentsElement(State state) {
+        super(state);
         this.type = Doc.ParagraphType.toc;
     }
     

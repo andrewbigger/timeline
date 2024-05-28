@@ -41,21 +41,22 @@ public class Element
     public static Content availableContent(State state) {
         Content content = new Content();
         
-        content.addParagraph(new TitleElement());
-        content.addParagraph(new Heading1Element());
-        content.addParagraph(new Heading2Element());
-        content.addParagraph(new Heading3Element());
-        content.addParagraph(new Heading4Element());
-        content.addParagraph(new SubtitleParagraphElement());
-        content.addParagraph(new ParagraphElement());
-        content.addParagraph(new StrongParagraphElement());
-        content.addParagraph(new NewLineElement());
-        content.addParagraph(new PageBreakElement());
+        content.addParagraph(new TitleElement(state));
+        content.addParagraph(new Heading1Element(state));
+        content.addParagraph(new Heading2Element(state));
+        content.addParagraph(new Heading3Element(state));
+        content.addParagraph(new Heading4Element(state));
+        content.addParagraph(new SubtitleParagraphElement(state));
+        content.addParagraph(new ParagraphElement(state));
+        content.addParagraph(new StrongParagraphElement(state));
+        content.addParagraph(new NewLineElement(state));
+        content.addParagraph(new PageBreakElement(state));
         
-        content.addSection(new TableOfContentsElement());
-        content.addSection(new ShelfTableElement());
-        content.addSection(new ReleaseTableElement());
-        content.addSection(new NotesElement());
+        content.addSection(new TableOfContentsElement(state));
+        content.addSection(new ShelfTableElement(state));
+        content.addSection(new ReleaseTableElement(state));
+        content.addSection(new NotesElement(state));
+        content.addSection(new EpicsTimelineTableElement(state));
         
         content.addVariable(
                 "velocity", 
@@ -98,8 +99,17 @@ public class Element
     @JsonIgnore
     private State state;
     
+    public Element() {
+        super();
+    }
+    
+    public Element(State state) {
+        super();
+        this.state = state;
+    }
+    
     @JsonIgnore
-    public State getState() {
+    public State getState() {        
         return state;
     }
     

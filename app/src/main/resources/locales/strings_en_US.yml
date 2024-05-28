@@ -1166,4 +1166,83 @@ parts:
     title: "Label for syntax column"
     value: "Syntax"
     variants: {}
+- translation:
+    key: "reports.elements.releaseTable.number"
+    title: "Release table number column header"
+    value: "#"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseTable.name"
+    title: "Release table name column header"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseTable.description"
+    title: "Release column description column header"
+    variants: {}
+- translation:
+    key: "reports.elements.shelfTable.number"
+    title: "Shelf table number column header"
+    value: "#"
+    variants: {}
+- translation:
+    key: "reports.elements.shelfTable.name"
+    title: "Shelf table name column header"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.elements.shelfTable.size"
+    title: "Shelf table size column header"
+    value: "Size"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTimelineTable.q1.title"
+    title: "Title for Q1"
+    value: "Q1"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTimelineTable.q1.dates"
+    title: "Date range for Q1"
+    value: "Jan - Mar"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTimelineTable.q2.title"
+    title: "Title for Q2"
+    value: "Q2"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTimelineTable.q2.dates"
+    title: "Date range for Q2"
+    value: "Apr - Jun"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTimelineTable.q3.title"
+    title: "Title for Q3"
+    value: "Q3"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTimelineTable.q3.dates"
+    title: "Date range for Q3"
+    value: "Jul - Sep"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTimelineTable.q4.title"
+    title: "Title for Q4"
+    value: "Q4"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTimelineTable.q4.dates"
+    title: "Date range for Q4"
+    value: "Oct - Dec"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTimelineTable.name"
+    title: "Label for name column"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTimelineTable.estimate"
+    title: "Label for estimate column"
+    value: "Estimate"
+    variants: {}
 sourceLanguage: "en"
