@@ -12,9 +12,11 @@ public class JudgementTest {
 
     @Test
     public void testAssessmentEnumValues() {
-        assertEquals(3, Judgement.Assessment.values().length);
+        assertEquals(5, Judgement.Assessment.values().length);
         assertArrayEquals(new Judgement.Assessment[] {
                 Judgement.Assessment.NONE,
+                Judgement.Assessment.DRAFT,
+                Judgement.Assessment.RFC,
                 Judgement.Assessment.ACCEPTED,
                 Judgement.Assessment.REJECTED
         }, Judgement.Assessment.values());

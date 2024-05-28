@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.biggerconcept.projectus.domain.Sprint;
 import com.biggerconcept.projectus.domain.Size;
 import com.biggerconcept.timeline.reports.Report;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.time.LocalDate;
 import java.util.ArrayList;

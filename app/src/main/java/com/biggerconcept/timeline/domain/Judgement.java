@@ -16,6 +16,8 @@ public class Judgement {
      */
     public static enum Assessment {
         NONE,
+        DRAFT,
+        RFC,
         ACCEPTED,
         REJECTED,
     }
