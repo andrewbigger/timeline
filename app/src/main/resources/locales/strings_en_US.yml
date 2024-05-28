@@ -1290,4 +1290,24 @@ parts:
     title: "Label for name column"
     value: "Name"
     variants: {}
+- translation:
+    key: "reports.elements.epicsTable.number"
+    title: "Label for the identifier column"
+    value: "#"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTable.name"
+    title: "Label for the epic name column"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTable.description"
+    title: "Label for the epic description column"
+    value: "Summary"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsTable.estimate"
+    title: "Epic estimate column"
+    value: "Estimate"
+    variants: {}
 sourceLanguage: "en"

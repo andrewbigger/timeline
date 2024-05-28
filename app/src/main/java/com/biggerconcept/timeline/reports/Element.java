@@ -54,10 +54,11 @@ public class Element
         
         content.addSection(new TableOfContentsElement(state));
         content.addSection(new ShelfTableElement(state));
-        content.addSection(new ReleaseTableElement(state));
-        content.addSection(new NotesElement(state));
+        content.addSection(new EpicsTableElement(state));
         content.addSection(new EpicsTimelineTableElement(state));
+        content.addSection(new ReleaseTableElement(state));
         content.addSection(new ReleaseTimelineTableElement(state));
+        content.addSection(new NotesElement(state));
         
         content.addVariable(
                 "velocity", 
