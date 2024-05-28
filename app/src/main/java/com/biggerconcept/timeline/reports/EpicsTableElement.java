@@ -3,7 +3,6 @@ package com.biggerconcept.timeline.reports;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.State;
-import com.biggerconcept.timeline.domain.Release;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,14 +13,30 @@ import java.util.HashMap;
  * @author Andrew Bigger
  */
 public class EpicsTableElement extends Element {
+    /**
+     * Default constructor
+     */
     public EpicsTableElement() {
         super();
     }
     
+    /**
+     * State based constructor.
+     * 
+     * @param state application state.
+     */
     public EpicsTableElement(State state) {
         super(state);
     }
     
+    /**
+     * Inserts epic table into report document.
+     * 
+     * @param document report document
+     * @param vars content variables
+     * 
+     * @throws IOException when unable to read file
+     */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         ArrayList<Epic> epics = getDocument().getEpics();

@@ -16,20 +16,47 @@ import java.util.ResourceBundle;
  * @author Andrew Bigger
  */
 public class Heading2Element extends Element {
+    /**
+     * Default constructor
+     */
     public Heading2Element() {
         super();
     }
     
+    /**
+     * Application state constructor
+     * 
+     * @param state application state
+     */
     public Heading2Element(State state) {
         super(state);
         this.type = Doc.ParagraphType.h2;
     }
     
+    /**
+     * Inserts a h2 into a report document.
+     * 
+     * @param document report document
+     * @param vars content variables
+     * 
+     * @throws IOException when unable to write file
+     */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         document.h2(compile(getArgs(), vars));
     }
     
+    /**
+     * Constructs and instantiates an editor dialog for h2 paragraph.
+     * 
+     * @param rb application resource bundle
+     * @param report current report
+     * @param content content variables
+     * 
+     * @return editor dialog
+     * 
+     * @throws IOException when unable to read file from disk
+     */
     public IElementEditorDialog editorDialog(
             ResourceBundle rb, 
             IReport report,

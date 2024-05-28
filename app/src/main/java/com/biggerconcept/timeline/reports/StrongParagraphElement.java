@@ -16,20 +16,47 @@ import java.util.ResourceBundle;
  * @author Andrew Bigger
  */
 public class StrongParagraphElement extends Element {
+    /**
+     * Default constructor
+     */
     public StrongParagraphElement() {
         super();
     }
     
+    /**
+     * Application state constructor
+     * 
+     * @param state application state
+     */
     public StrongParagraphElement(State state) {
         super(state);
         this.type = Doc.ParagraphType.strong;
     }
     
+    /**
+     * Inserts a strong paragraph into a report document.
+     * 
+     * @param document report document
+     * @param vars content variables
+     * 
+     * @throws IOException when unable to write file
+     */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         document.strong(compile(getArgs(), vars));
     }
     
+    /**
+     * Constructs and instantiates an editor dialog for strong paragraph.
+     * 
+     * @param rb application resource bundle
+     * @param report current report
+     * @param content content variables
+     * 
+     * @return editor dialog
+     * 
+     * @throws IOException when unable to read file from disk
+     */
     public IElementEditorDialog editorDialog(
             ResourceBundle rb, 
             IReport report,

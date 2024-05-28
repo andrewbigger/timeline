@@ -14,19 +14,38 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Inserts a heading into a report
+ * Inserts an epics timeline table section into a report
  * 
  * @author Andrew Bigger
  */
 public class EpicsTimelineTableElement extends Element {
+    /**
+     * Default constructor
+     */
     public EpicsTimelineTableElement() {
         super();
     }
     
+    /**
+     * Application state constructor.
+     * 
+     * @param state application state
+     */
     public EpicsTimelineTableElement(State state) {
         super(state);
     }
     
+    /**
+     * Inserts an epic timeline table into the report document.
+     * 
+     * The timeline is broken down into quarters so it can easily fit
+     * on an A4 page.
+     * 
+     * @param document report document
+     * @param vars content variables
+     * 
+     * @throws IOException when unable to write to document
+     */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         ResourceBundle bundle = getState().bundle();
@@ -94,12 +113,20 @@ public class EpicsTimelineTableElement extends Element {
         document.table(headers(4), body(4));
     }
     
+    /**
+     * Element modifiable. Indicates whether to allow the presentation of a
+     * editor dialog in the report builder.
+     * 
+     * This element is not modifiable, so no editor dialog will be called for.
+     * 
+     * @return false
+     */
     public boolean modifiable() {
         return false;
     }
     
     /**
-     * Creates a header row array for the epic table.
+     * Creates a header row array for the epic timeline table.
      * 
      * @param half half of year
      * 
@@ -132,7 +159,9 @@ public class EpicsTimelineTableElement extends Element {
     }
     
     /**
-     * Creates a table body for an epic.
+     * Creates a table body for an epic timeline table.
+     * 
+     * @param quarter year quarter
      * 
      * @return epic body table as array list of array list.
     */
@@ -174,11 +203,21 @@ public class EpicsTimelineTableElement extends Element {
         return rows;
     }
     
+    /**
+     * Constructs a timeline.
+     * 
+     * When the state is not set, an empty timeline will be returned to avoid
+     * a crash when writing the report.
+     * 
+     * @return epic timeline
+     * 
+     * @throws CloneNotSupportedException when unable to clone objects
+     */
     private Timeline timeline() throws CloneNotSupportedException {
         if (getState() == null) {
             return new Timeline(
-                    new ArrayList<Epic>(),
-                    new ArrayList<Release>(),
+                    new ArrayList<>(),
+                    new ArrayList<>(),
                     Preferences.defaultPreferences()
             );
         }

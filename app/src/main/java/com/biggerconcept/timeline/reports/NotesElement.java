@@ -12,20 +12,42 @@ import java.util.HashMap;
  * @author Andrew Bigger
  */
 public class NotesElement extends Element {
+    /**
+     * Default constructor
+     */
     public NotesElement() {
         super();
     }
     
+    /**
+     * Application state constructor
+     * 
+     * @param state application state
+     */
     public NotesElement(State state) {
         super(state);
         this.type = ParagraphType.p;
     }
     
+    /**
+     * Inserts a new line into a report document.
+     * 
+     * @param document report document
+     * @param vars content variables
+     */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         document.p(compile(getDocument().getNotes(), vars));
     }
     
+    /**
+     * Element modifiable. Indicates whether to allow the presentation of a
+     * editor dialog in the report builder.
+     * 
+     * This element is not modifiable, so no editor dialog will be called for.
+     * 
+     * @return false
+     */
     public boolean modifiable() {
         return false;
     }

@@ -13,14 +13,30 @@ import java.util.HashMap;
  * @author Andrew Bigger
  */
 public class ShelfTableElement extends Element {
+    /**
+     * Default constructor
+     */
     public ShelfTableElement() {
         super();
     }
     
+    /**
+     * Application state constructor.
+     * 
+     * @param state application state
+     */
     public ShelfTableElement(State state) {
         super(state);
     }
     
+     /**
+     * Inserts an shelf table into the report document.
+     * 
+     * @param document report document
+     * @param vars content variables
+     * 
+     * @throws IOException when unable to write to document
+     */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         ArrayList<Epic> shelfEpics = getDocument().getShelf();
@@ -28,12 +44,20 @@ public class ShelfTableElement extends Element {
         document.table(headers(), body(shelfEpics));
     }
     
+    /**
+     * Element modifiable. Indicates whether to allow the presentation of a
+     * editor dialog in the report builder.
+     * 
+     * This element is not modifiable, so no editor dialog will be called for.
+     * 
+     * @return false
+     */
     public boolean modifiable() {
         return false;
     }
     
     /**
-     * Creates a header row array for the epic table.
+     * Creates a header row array for the shelf epic table.
      * 
      * @param bundle application resource bundle
      * 
@@ -64,9 +88,9 @@ public class ShelfTableElement extends Element {
     }
     
     /**
-     * Creates a table body for an epic.
+     * Creates a table body for a shelf epic table.
      * 
-     * @param epics epics to build table body for
+     * @param epics epics to build table body with
      * 
      * @return epic body table as array list of array list.
     */

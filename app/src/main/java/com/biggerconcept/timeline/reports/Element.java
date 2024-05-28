@@ -38,6 +38,14 @@ public class Element
         extends com.biggerconcept.appengine.reports.elements.Element 
         implements Cloneable, IElement {
     
+    /**
+     * Constructs set of paragraphs, sections and variables for
+     * the report builder.
+     * 
+     * @param state application state
+     * 
+     * @return source content
+     */
     public static Content availableContent(State state) {
         Content content = new Content();
         
@@ -98,33 +106,78 @@ public class Element
         return content;
     }
     
+    /**
+     * Pointer to application state.
+     */
     @JsonIgnore
     private State state;
     
+    /**
+     * Default constructor.
+     */
     public Element() {
         super();
     }
     
+    /**
+     * State based constructor.
+     * 
+     * @param state application state
+     */
     public Element(State state) {
         super();
         this.state = state;
     }
     
+    /**
+     * Getter for state.
+     * 
+     * This is not to be serialized to document as it
+     * will create circular dependencies.
+     * 
+     * @return application state
+     */
     @JsonIgnore
     public State getState() {        
         return state;
     }
     
+    /**
+     * Getter for open document.
+     * 
+     * This will retrieve the open document from application state.
+     * 
+     * @return current document.
+     */
     @JsonIgnore
     public Document getDocument() {
         return state.getOpenDocument();
     }
     
+    /**
+     * Setter for state.
+     * 
+     * @param value new application state
+     */
     @JsonIgnore
     public void setState(State value) {
         state = value;
     }
     
+    /**
+     * Constructs and returns an editor dialog for the current element.
+     *
+     * This will throw an unsupported operation exception if not overridden
+     * in the child element.
+     * 
+     * @param rb Application resource bundle
+     * @param report Active report
+     * @param content Report content
+     * 
+     * @return Editor dialog
+     * 
+     * @throws IOException when unable to read from file
+     */
     @Override
     public IElementEditorDialog editorDialog(
             ResourceBundle rb, 
@@ -134,6 +187,19 @@ public class Element
         throw new UnsupportedOperationException("Not supported.");
     }
 
+    /**
+     * Insertion callback.
+     * 
+     * This will insert the element into the report document.
+     * 
+     * This will throw an UnsupportedOperationException if it is not
+     * overridden in the child element.
+     * 
+     * @param document report document
+     * @param vars content variables
+     * 
+     * @throws IOException if unable to read file
+     */
     @Override
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {

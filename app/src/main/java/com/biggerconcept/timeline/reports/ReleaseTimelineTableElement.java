@@ -19,14 +19,28 @@ import java.util.ResourceBundle;
  * @author Andrew Bigger
  */
 public class ReleaseTimelineTableElement extends Element {
+    /**
+     * Default constructor
+     */
     public ReleaseTimelineTableElement() {
         super();
     }
     
+    /**
+     * Application state constructor
+     * 
+     * @param state application state
+     */
     public ReleaseTimelineTableElement(State state) {
         super(state);
     }
     
+    /**
+     * Inserts a release timeline table into a report document.
+     * 
+     * @param document report document
+     * @param vars content variables
+     */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         ResourceBundle bundle = getState().bundle();
@@ -94,14 +108,22 @@ public class ReleaseTimelineTableElement extends Element {
         document.table(headers(4), body(4));
     }
     
+    /**
+     * Element modifiable. Indicates whether to allow the presentation of a
+     * editor dialog in the report builder.
+     * 
+     * This element is not modifiable, so no editor dialog will be called for.
+     * 
+     * @return false
+     */
     public boolean modifiable() {
         return false;
     }
     
     /**
-     * Creates a header row array for the epic table.
+     * Creates a header row array for the release timeline table.
      * 
-     * @param half half of year
+     * @param quarter quarter of year
      * 
      * @return headers as an array list
      */
@@ -128,9 +150,11 @@ public class ReleaseTimelineTableElement extends Element {
     }
     
     /**
-     * Creates a table body for an epic.
+     * Creates a table body for a release timeline table.
      * 
-     * @return epic body table as array list of array list.
+     * @param quarter quarter of year
+     * 
+     * @return release timeline table body as array list of array list.
     */
     public ArrayList<ArrayList<String>> body(int quarter) {
         ArrayList<ArrayList<String>> rows = new ArrayList();
@@ -169,6 +193,16 @@ public class ReleaseTimelineTableElement extends Element {
         return rows;
     }
     
+    /**
+     * Constructs a timeline.
+     * 
+     * When the state is not set, an empty timeline will be returned to avoid
+     * a crash when writing the report.
+     * 
+     * @return epic timeline
+     * 
+     * @throws CloneNotSupportedException when unable to clone objects
+     */
     private Timeline timeline() throws CloneNotSupportedException {
         if (getState() == null) {
             return new Timeline(

@@ -13,14 +13,30 @@ import java.util.HashMap;
  * @author Andrew Bigger
  */
 public class ReleaseTableElement extends Element {
+    /**
+     * Default constructor
+     */
     public ReleaseTableElement() {
         super();
     }
     
+    /**
+     * Application state constructor
+     * 
+     * @param state application state
+     */
     public ReleaseTableElement(State state) {
         super(state);
     }
     
+    /**
+     * Inserts a release table into a report document.
+     * 
+     * @param document report document
+     * @param vars content variables
+     * 
+     * @throws IOException when unable to write file
+     */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
         ArrayList<Release> releases = getDocument().getReleases();
@@ -28,12 +44,20 @@ public class ReleaseTableElement extends Element {
         document.table(headers(), body(releases));
     }
     
+    /**
+     * Element modifiable. Indicates whether to allow the presentation of a
+     * editor dialog in the report builder.
+     * 
+     * This element is not modifiable, so no editor dialog will be called for.
+     * 
+     * @return false
+     */
     public boolean modifiable() {
         return false;
     }
     
     /**
-     * Creates a header row array for the epic table.
+     * Creates a header row array for the release table.
      * 
      * @param bundle application resource bundle
      * 
@@ -63,11 +87,11 @@ public class ReleaseTableElement extends Element {
     }
     
     /**
-     * Creates a table body for an epic.
+     * Creates a table body for releases.
      * 
      * @param releases releases to include in table body
      * 
-     * @return epic body table as array list of array list.
+     * @return release table body table as array list of array list.
     */
     public ArrayList<ArrayList<String>> body(
             ArrayList<Release> releases
