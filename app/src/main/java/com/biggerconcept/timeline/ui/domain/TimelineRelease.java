@@ -120,4 +120,31 @@ public class TimelineRelease {
         return getSprintNumber() > year.getStartSprint() &&
                 getSprintNumber() < year.lastSprint(prefs);
     }
+    
+    /**
+     * Returns true if the release sprint is in the given quarter.
+     * 
+     * @param year view year
+     * @param quarter quarter to check
+     * @param prefs document preferences
+     * 
+     * @return whether epic has sprint in given quarter
+     */
+    public boolean isSprintInQuarter(
+            Year year, 
+            int quarter, 
+            Preferences prefs
+    ) {
+        int startSprint = year.firstSprintInQuarter(quarter, prefs);
+        int endSprint = year.lastSprintInQuarter(quarter, prefs);
+        
+        for (int i = startSprint; i < endSprint + 1; i++) {
+            if (getSprintNumber() == i) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    
 }

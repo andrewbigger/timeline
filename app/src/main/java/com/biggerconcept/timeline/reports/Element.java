@@ -57,6 +57,7 @@ public class Element
         content.addSection(new ReleaseTableElement(state));
         content.addSection(new NotesElement(state));
         content.addSection(new EpicsTimelineTableElement(state));
+        content.addSection(new ReleaseTimelineTableElement(state));
         
         content.addVariable(
                 "velocity", 

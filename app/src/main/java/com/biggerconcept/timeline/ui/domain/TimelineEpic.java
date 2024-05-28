@@ -342,7 +342,7 @@ public class TimelineEpic {
         }
         
         return false;
-    } 
+    }
     
     /**
      * Returns true if given sprint is the current sprint.

@@ -1245,4 +1245,49 @@ parts:
     title: "Label for estimate column"
     value: "Estimate"
     variants: {}
+- translation:
+    key: "reports.elements.releaseTimelineTable.q1.title"
+    title: "Title for Q1"
+    value: "Q1"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseTimelineTable.q1.dates"
+    title: "Date range for Q1"
+    value: "Jan - Mar"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseTimelineTable.q2.title"
+    title: "Title for Q2"
+    value: "Q2"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseTimelineTable.q2.dates"
+    title: "Date range for Q2"
+    value: "Apr - Jun"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseTimelineTable.q3.title"
+    title: "Title for Q3"
+    value: "Q3"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseTimelineTable.q3.dates"
+    title: "Date range for Q3"
+    value: "Jul - Sep"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseTimelineTable.q4.title"
+    title: "Title for Q4"
+    value: "Q4"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseTimelineTable.q4.dates"
+    title: "Date range for Q4"
+    value: "Oct - Dec"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseTimelineTable.name"
+    title: "Label for name column"
+    value: "Name"
+    variants: {}
 sourceLanguage: "en"
