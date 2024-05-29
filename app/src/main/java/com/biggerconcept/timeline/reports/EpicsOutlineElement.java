@@ -2,29 +2,27 @@ package com.biggerconcept.timeline.reports;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.appengine.serializers.helpers.Paragraphs;
+import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
-import com.biggerconcept.timeline.ui.domain.Sprint;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.domain.TimelineEpic;
-import com.biggerconcept.timeline.ui.domain.TimelineRelease;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.UUID;
 
 /**
  * Inserts a release outline into a report
  * 
  * @author Andrew Bigger
  */
-public class ReleaseOutlineElement extends Element {
+public class EpicsOutlineElement extends Element {
     /**
      * Default constructor
      */
-    public ReleaseOutlineElement() {
+    public EpicsOutlineElement() {
         super();
     }
     
@@ -33,7 +31,7 @@ public class ReleaseOutlineElement extends Element {
      * 
      * @param state application state
      */
-    public ReleaseOutlineElement(State state) {
+    public EpicsOutlineElement(State state) {
         super(state);
     }
     
@@ -53,83 +51,42 @@ public class ReleaseOutlineElement extends Element {
             Timeline tl = Timeline.fromState(getState());
             Year viewYear = getState().getViewYear();
             
-            ArrayList<TimelineRelease> releases = 
-                    tl.getReleasesInYear(viewYear);
+            ArrayList<TimelineEpic> epics = 
+                    tl.getEpicsInYear(viewYear);
             
-            for (TimelineRelease tr : releases) {
-                
-                UUID lastEpicID = tr.getRelease().lastEpicId();
-                
-                TimelineEpic lastEpic = tl.findEpic(lastEpicID);
-                
-                document.h3(
-                        getState()
-                            .bundle()
-                            .getString("reports.elements.releaseOutline.release")
-                                + tr.getRelease().getNumber()
-                                + " - " 
-                                + tr.getName()
-                );
-                
-                if (lastEpic != null) {
-                    Sprint scheduledLastSprint = lastEpic.getLastSprint();
-                    
-                    document.strong(
-                            getState()
-                                    .bundle()
-                                    .getString(
-                                            "reports.elements.releaseOutline.target"
-                                    )
-                    );
-                    
-                    document.p(
-                            "Q" 
-                            + tl.quarterForSprint(
-                                    prefs, 
-                                    viewYear, 
-                                    scheduledLastSprint
-                            )
-                    );
-                    
-                    document.nl();
-                }
+            for (TimelineEpic te : epics) {
+                document.h3(te.getName());
                 
                 document.strong(
                         getState()
                                 .bundle()
                                 .getString(
-                                        "reports.elements.releaseOutline.mission"
+                                        "reports.elements.epicsOutline.description"
                                 )
                 );
-
-                Paragraphs.insert(document, tr.getRelease().getDescription());
+                
+                Paragraphs.insert(document, te.getEpic().getSummary());
                 document.nl();
                 
                 document.strong(
                         getState()
                                 .bundle()
                                 .getString(
-                                        "reports.elements.releaseOutline.scope"
+                                        "reports.elements.epicsOutline.scope"
                                 )
                 );
-                document.ol(tr.releaseScope(openDocument));
+                document.ol(te.getEpic().getScope().getIncluded());
                 document.nl();
                 
                 document.strong(
                         getState()
                                 .bundle()
                                 .getString(
-                                        "reports.elements.releaseOutline.includedEpics"
+                                        "reports.elements.epicsOutline.tasks"
                                 )
                 );
                 
-                document.table(
-                        EpicsTableElement.headers(getState().bundle()),
-                        EpicsTableElement.body(
-                                prefs, 
-                                tr.includedEpics(openDocument)
-                        )
-                );
+                document.table(headers(), body(te.getEpic().getTasks()));
 
                 document.br();
             }
@@ -150,6 +107,60 @@ public class ReleaseOutlineElement extends Element {
      */
     public boolean modifiable() {
         return false;
+    }
+    
+    /**
+     * Creates a header row array for the epic tasks table.
+     * 
+     * @param bundle application resource bundle
+     * 
+     * @return headers as an array list
+     */
+    private ArrayList<String> headers() {
+        ArrayList<String> headers = new ArrayList<>();
+        
+        headers.add(
+                getState()
+                        .bundle()
+                        .getString("reports.elements.tasksTable.number")
+        );
+        
+        headers.add(
+                getState()
+                        .bundle()
+                        .getString("reports.elements.tasksTable.name")
+        );
+        
+        headers.add(
+                getState()
+                        .bundle()
+                        .getString("reports.elements.tasksTable.size")
+        );
+        
+        return headers;
+    }
+    
+    /**
+     * Creates a table body for an epic task table.
+     * 
+     * @param tasks tasks to include in table body
+     * 
+     * @return epic task table as array list of array list.
+    */
+    private ArrayList<ArrayList<String>> body(ArrayList<Task> tasks) {
+        ArrayList<ArrayList<String>> rows = new ArrayList();
+        
+        for (Task t : tasks) {
+            ArrayList<String> row = new ArrayList<>();
+            
+            row.add(String.valueOf(t.getIdentifier()));
+            row.add(t.getName());
+            row.add(t.getSize().name());
+            
+            rows.add(row);
+        }
+        
+        return rows;
     }
 
 }

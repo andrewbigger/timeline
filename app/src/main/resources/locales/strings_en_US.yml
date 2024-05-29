@@ -1310,4 +1310,59 @@ parts:
     title: "Epic estimate column"
     value: "Estimate"
     variants: {}
+- translation:
+    key: "reports.elements.tasksTable.number"
+    title: "Task number column header"
+    value: "#"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksTable.name"
+    title: "Task name column header"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "reports.elements.tasksTable.size"
+    title: "Task size header column"
+    value: "Size"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsOutline.description"
+    title: "Label for description section in epics outline element"
+    value: "Description"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsOutline.scope"
+    title: "Label for epic scope section in epic outline section"
+    value: "Scope"
+    variants: {}
+- translation:
+    key: "reports.elements.epicsOutline.tasks"
+    title: "Label for tasks section in epics outline section"
+    value: "Tasks"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseOutline.release"
+    title: "Label for release"
+    value: "Release"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseOutline.target"
+    title: "Label for release outline target heading"
+    value: "Target"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseOutline.mission"
+    title: "Heading for release outline mission"
+    value: "Mission"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseOutline.scope"
+    title: "Heading for release scope section"
+    value: "Scope"
+    variants: {}
+- translation:
+    key: "reports.elements.releaseOutline.includedEpics"
+    title: "Label for included epics section in release outline"
+    value: "Included Epics"
+    variants: {}
 sourceLanguage: "en"
