@@ -1,5 +1,6 @@
 package com.biggerconcept.timeline.domain;
 
+import com.biggerconcept.timeline.ui.domain.Sprint;
 import java.time.LocalDate;
 import java.util.ArrayList;
 

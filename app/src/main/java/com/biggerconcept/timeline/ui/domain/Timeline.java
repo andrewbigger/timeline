@@ -1,12 +1,14 @@
 package com.biggerconcept.timeline.ui.domain;
 
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Release;
 import com.biggerconcept.timeline.domain.Year;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * In memory representation of a timeline for presentation.
@@ -38,6 +40,33 @@ public class Timeline {
      * Timeline start date
      */
     private LocalDate start;
+    
+    /**
+     * Constructs a timeline from application state.
+     * 
+     * When the state is not set, an empty timeline will be returned to avoid
+     * a crash when writing the report.
+     * 
+     * @return epic timeline
+     * 
+     * @throws CloneNotSupportedException when unable to clone objects
+     */
+    public static Timeline fromState(State state)
+        throws CloneNotSupportedException {
+        if (state == null) {
+            return new Timeline(
+                    new ArrayList<Epic>(),
+                    new ArrayList<Release>(),
+                    Preferences.defaultPreferences()
+            );
+        }
+        
+        return new Timeline(
+                state.getOpenDocument().getEpics(),
+                state.getOpenDocument().getReleases(),
+                state.getOpenDocument().getPreferences()
+        );
+    }
     
     /**
      * Full constructor for timeline
@@ -283,6 +312,110 @@ public class Timeline {
     public int countUsedSprintsInYear(Year year) {
         HashMap<Integer, Sprint> yearSprints = getUniqueSprintsInYear(year);
         return yearSprints.size();
+    }
+    
+    /**
+     * Returns scheduled quarter for sprint.
+     * 
+     * This iterates over each quarter and evaluates whether the sprint number 
+     * is less than than the last sprint for the quarter. When this is true
+     * that means that the sprint is scheduled in that quarter, so that quarter
+     * can be returned.
+     * 
+     * When the sprint is scheduled outside of the view year, -1 is returned to
+     * the caller to indicate that the sprint quarter cannot be determined.
+     * 
+     * @param prefs document preferences
+     * @param year view year
+     * @param sprint sprint to evaluate
+     * 
+     * @return quarter for sprint.
+     */
+    public int quarterForSprint(Preferences prefs, Year year, Sprint sprint) {
+        for (int q = 1; q < 5; q++) {
+            int lastSprintForQuarter = year.lastSprintInQuarter(q, prefs);
+            
+            if (sprint.getNumber() < lastSprintForQuarter + 1) {
+                return q;
+            }
+        }
+        
+        return -1;
+    }
+    
+    /**
+     * Finds timeline epic by epic ID.
+     * 
+     * Iterates over the timeline epics and compares the given ID with the 
+     * epic ID. When the epic is found it is returned to the caller.
+     * 
+     * In the event that the epic is not found, null will be returned.
+     * 
+     * @param id epic id
+     * 
+     * @return found epic
+     */
+    public TimelineEpic findEpic(UUID id) {
+        for (TimelineEpic te : getEpics()) {
+            if (te.getEpic().getId().toString().equals(id.toString())) {
+                return te;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Finds timeline epic in year by ID
+     * 
+     * Iterates over the epics scheduled in the given year. If the ID of the
+     * epic matches the given epic ID, then that epic will be returned to the
+     * caller.
+     * 
+     * In the event that the epic is not found, null will be returned.
+     * 
+     * @param year year to scope search to
+     * @param id epic ID
+     * 
+     * @return found epic
+     */
+    public TimelineEpic findEpicInYear(Year year, UUID id) {
+        for (TimelineEpic te : getEpicsInYear(year)) {
+            if (te.getEpic().getId() == id) {
+                return te;
+            }
+        }
+        
+        return null;
+    }
+    
+    /**
+     * Check for epic.
+     * 
+     * Looks for epic that matches the given ID. If it is found, true will be 
+     * returned, otherwise false will be returned.
+     * 
+     * @param id epic ID
+     * 
+     * @return whether epic is in the timeline
+     */
+    public boolean hasEpic(UUID id) {
+        return findEpic(id) != null;
+    }
+    
+    /**
+     * Check for epic scoped by year.
+     * 
+     * Looks for the epic that matches the given id scoped by view year. If
+     * it is found, true will be returned. Otherwise false will be returned.
+     * 
+     * @param year year to scope search to
+     * @param id epic ID to search for
+     * 
+     * @return whether epic is scheduled within the year
+     */
+    public boolean hasEpicInYear(Year year, UUID id) {
+        return findEpicInYear(year, id) != null;
     }
     
     /**

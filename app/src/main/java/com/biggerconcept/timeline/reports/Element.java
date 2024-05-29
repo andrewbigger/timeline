@@ -66,6 +66,7 @@ public class Element
         content.addSection(new EpicsTimelineTableElement(state));
         content.addSection(new ReleaseTableElement(state));
         content.addSection(new ReleaseTimelineTableElement(state));
+        content.addSection(new ReleaseOutlineElement(state));
         content.addSection(new NotesElement(state));
         
         content.addVariable(

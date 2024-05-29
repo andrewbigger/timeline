@@ -1,10 +1,8 @@
 package com.biggerconcept.timeline.reports;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Preferences;
-import com.biggerconcept.timeline.domain.Release;
 import com.biggerconcept.timeline.domain.Year;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.domain.TimelineEpic;
@@ -175,7 +173,8 @@ public class EpicsTimelineTableElement extends Element {
         int lastSprint = viewYear.lastSprintInQuarter(quarter, prefs);
         
         try {
-            ArrayList<TimelineEpic> epics = timeline().getEpics();
+            ArrayList<TimelineEpic> epics = 
+                    Timeline.fromState(getState()).getEpics();
             
             for (TimelineEpic te : epics) {
                 if (te.hasSprintInQuarter(viewYear, quarter, prefs) == true) {
@@ -201,32 +200,6 @@ public class EpicsTimelineTableElement extends Element {
         }
         
         return rows;
-    }
-    
-    /**
-     * Constructs a timeline.
-     * 
-     * When the state is not set, an empty timeline will be returned to avoid
-     * a crash when writing the report.
-     * 
-     * @return epic timeline
-     * 
-     * @throws CloneNotSupportedException when unable to clone objects
-     */
-    private Timeline timeline() throws CloneNotSupportedException {
-        if (getState() == null) {
-            return new Timeline(
-                    new ArrayList<>(),
-                    new ArrayList<>(),
-                    Preferences.defaultPreferences()
-            );
-        }
-        
-        return new Timeline(
-                getState().getOpenDocument().getEpics(),
-                getState().getOpenDocument().getReleases(),
-                getState().getOpenDocument().getPreferences()
-        );
     }
 
 }

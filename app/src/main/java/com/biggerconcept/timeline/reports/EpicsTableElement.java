@@ -3,9 +3,11 @@ package com.biggerconcept.timeline.reports;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.State;
+import com.biggerconcept.timeline.domain.Preferences;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 /**
  * Inserts a release table into a report
@@ -41,7 +43,10 @@ public class EpicsTableElement extends Element {
             throws IOException {
         ArrayList<Epic> epics = getDocument().getEpics();
         
-        document.table(headers(), body(epics));
+        document.table(
+                headers(getState().bundle()), 
+                body(getState().getOpenDocument().getPreferences(), epics)
+        );
     }
     
     public boolean modifiable() {
@@ -55,24 +60,21 @@ public class EpicsTableElement extends Element {
      * 
      * @return headers as an array list
      */
-    private ArrayList<String> headers() {
+    public static ArrayList<String> headers(ResourceBundle bundle) {
         ArrayList<String> headers = new ArrayList<>();
         
         headers.add(
-                getState()
-                        .bundle()
-                        .getString("reports.elements.epicsTable.number")
+                bundle
+                    .getString("reports.elements.epicsTable.number")
         );
         
         headers.add(
-                getState()
-                        .bundle()
-                        .getString("reports.elements.epicsTable.name")
+                bundle
+                    .getString("reports.elements.epicsTable.name")
         );
         headers.add(
-                getState()
-                        .bundle()
-                        .getString("reports.elements.epicsTable.estimate")
+                bundle
+                    .getString("reports.elements.epicsTable.estimate")
         );
         
         return headers;
@@ -85,7 +87,8 @@ public class EpicsTableElement extends Element {
      * 
      * @return epic body table as array list of array list.
     */
-    public ArrayList<ArrayList<String>> body(
+    public static ArrayList<ArrayList<String>> body(
+            Preferences prefs,
             ArrayList<Epic> epics
     ) {
         ArrayList<ArrayList<String>> rows = new ArrayList();
@@ -97,10 +100,7 @@ public class EpicsTableElement extends Element {
             row.add(e.getName());
             row.add(String.valueOf(
                     e.getSize(
-                            getState()
-                                    .getOpenDocument()
-                                    .getPreferences()
-                                    .asProjectusPreferences()
+                            prefs.asProjectusPreferences()
                     )
             ));
             

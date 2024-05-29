@@ -1,5 +1,7 @@
 package com.biggerconcept.timeline.ui.domain;
 
+import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Release;
 import com.biggerconcept.timeline.domain.Year;
@@ -145,6 +147,43 @@ public class TimelineRelease {
         }
         
         return false;
+    }
+    
+    /**
+     * Combines included epic scope into single list.
+     * 
+     * @param doc document with epics
+     * 
+     * @return release scope
+     */
+    public ArrayList<String> releaseScope(Document doc) {
+        ArrayList<String> scope = new ArrayList<>();
+        
+        for (Epic e : getRelease().epics(doc)) {
+            for (String s : e.getScope().getIncluded()) {
+                scope.add(s);
+            }
+        }
+        
+        return scope;
+    }
+    
+    /**
+     * Compiles a list of epic names for included epics within
+     * the release
+     * 
+     * @param doc document with epic definitions
+     * 
+     * @return epic names
+     */
+    public ArrayList<Epic> includedEpics(Document doc) {
+        ArrayList<Epic> epics = new ArrayList<>();
+        
+        for (Epic e : getRelease().epics(doc)) {
+            epics.add(e);
+        }
+        
+        return epics;
     }
     
 }
