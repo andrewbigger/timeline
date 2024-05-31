@@ -66,6 +66,7 @@ public class ReleaseOutlineElement extends Element {
                         getState()
                             .bundle()
                             .getString("reports.elements.releaseOutline.release")
+                                + " "
                                 + tr.getRelease().getNumber()
                                 + " - " 
                                 + tr.getName()

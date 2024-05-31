@@ -58,10 +58,6 @@ public class State {
     }
     
     public Content getReportContent() {
-//        if (reportContent == null) {
-//            reportContent = Element.availableContent(this);
-//        }
-        
         return Element.availableContent(this);
     }
     

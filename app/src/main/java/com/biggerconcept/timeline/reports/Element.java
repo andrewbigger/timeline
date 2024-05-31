@@ -105,6 +105,36 @@ public class Element
                 Variables.viewYear(state)
         );
         
+        content.addVariable(
+                "xs_task_size", 
+                Variables.xsTaskSize(state)
+        );
+        
+        content.addVariable(
+                "s_task_size", 
+                Variables.sTaskSize(state)
+        );
+        
+        content.addVariable(
+                "m_task_size", 
+                Variables.mTaskSize(state)
+        );
+        
+        content.addVariable(
+                "l_task_size", 
+                Variables.lTaskSize(state)
+        );
+        
+        content.addVariable(
+                "xl_task_size", 
+                Variables.xlTaskSize(state)
+        );
+        
+        content.addVariable(
+                "sprint_length", 
+                Variables.sprintLength(state)
+        );
+        
         return content;
     }
     

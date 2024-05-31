@@ -152,6 +152,126 @@ public class Variables {
     }
     
     /**
+     * Returns extra small task size number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return extra small task size
+     */
+    public static String xsTaskSize(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getExtraSmallTaskSize()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns small task size number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return small task size
+     */
+    public static String sTaskSize(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getSmallTaskSize()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns medium task size number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return medium task size
+     */
+    public static String mTaskSize(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getMediumTaskSize()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns large task size number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return large task size
+     */
+    public static String lTaskSize(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getLargeTaskSize()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns extra large task size number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return extra large task size
+     */
+    public static String xlTaskSize(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getExtraLargeTaskSize()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns sprint length number as a variable
+     * 
+     * @param state application state
+     * 
+     * @return sprint length
+     */
+    public static String sprintLength(State state) {
+        try {
+            return String.valueOf(
+                    state
+                            .getOpenDocument()
+                            .getPreferences()
+                            .getSprintLength()
+            );
+        } catch (Exception ex) {
+            return "";
+        }
+    }
+    
+    /**
      * Constructs a timeline.
      * 
      * When the state is not set, an empty timeline will be returned to avoid
