@@ -1,6 +1,5 @@
 package com.biggerconcept.timeline.actions.application;
 
-import com.biggerconcept.timeline.MainController;
 import com.biggerconcept.timeline.PreferencesController;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.actions.Action;
