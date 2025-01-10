@@ -14,6 +14,7 @@ import javafx.stage.Stage;
  * @author Andrew Bigger
  */
 public class MoveReleaseUp implements Action {
+    @Override
     public void perform(State state, Stage window) 
             throws NoChoiceMadeException, CloneNotSupportedException {
         ObservableList<Release> items = state.mainController().releasesTableView

@@ -411,7 +411,7 @@ public class TimelineEpic {
      * @return last sprint
      */
     public Sprint getLastSprint() {
-        if (sprints.size() == 0) {
+        if (sprints.isEmpty()) {
             return null;
         }
         
@@ -424,7 +424,7 @@ public class TimelineEpic {
      * @return last sprint
      */
     public Sprint getFirstSprint() {
-        if (sprints.size() == 0) {
+        if (sprints.isEmpty()) {
             return null;
         }
         

@@ -690,10 +690,14 @@ public class Timeline {
                     s.getPoints()
             );
             
-            addSprints(te.getSprints());
-            s = getUniqueSprints().get(te.getLastSprint().getNumber());
+            if (te.getLastSprint() == null) {                
+                continue;
+            }
             
-            addReleases(te, s);   
+            addSprints(te.getSprints());
+            
+            s = getUniqueSprints().get(te.getLastSprint().getNumber());
+            addReleases(te, s);
         }
     }
 }

@@ -234,6 +234,15 @@ public class Preferences {
     }
     
     /**
+     * Getter for start year
+     * 
+     * @return document start date
+     */
+    public Year startYear() {
+        return new Year(Date.fromEpoch(getStart()).getYear());
+    }
+    
+    /**
      * Getter for start sprint number.
      * 
      * @return start sprint number

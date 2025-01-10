@@ -31,10 +31,7 @@ public class State {
         bundle = rb;
         openDocument = new Document();
         viewYear = Year.DEFAULT;
-        startYear = new Year(
-                Date.fromEpoch(openDocument.getPreferences().getStart()),
-                openDocument.getPreferences().getStartSprintNumber()
-        );
+        startYear = openDocument.getPreferences().startYear();
     }
     
     public Document getOpenDocument() {
@@ -71,6 +68,8 @@ public class State {
     
     public void setOpenDocument(Document value) {
         openDocument = value;
+        startYear = openDocument.getPreferences().startYear();
+        viewYear = startYear;
     }
     
     public void setOpenEpic(Epic value) {
