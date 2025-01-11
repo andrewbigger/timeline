@@ -599,7 +599,7 @@ public class EpicDialogController implements Initializable {
             );
             
             addScope.show(window());
-            mapDocumentToWindow();
+            mapScopeToWindow();
         } catch (Exception e) {
             ErrorAlert.show(
                     bundle,
@@ -637,7 +637,7 @@ public class EpicDialogController implements Initializable {
                 state.getOpenEpic().getScope().getIncluded().remove(item);
             }
             
-            mapDocumentToWindow();
+            mapScopeToWindow();
         } catch (NoChoiceMadeException ncm) {
             // do nothing
         } catch (Exception e) {

@@ -83,6 +83,7 @@ public class EpicsTableElement extends Element {
     /**
      * Creates a table body for an epic.
      * 
+     * @param prefs document preferences
      * @param epics epics to include in table body
      * 
      * @return epic body table as array list of array list.

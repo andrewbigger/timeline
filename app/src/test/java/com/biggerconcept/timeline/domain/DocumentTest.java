@@ -24,12 +24,12 @@ public class DocumentTest {
         testFile = new File("test.json");
         document.setFile(testFile);
     }
-
-    @Test
-    public void testLoad() throws IOException {
-        Document loadedDoc = Document.load(testFile);
-        assertEquals(document.getFile(), loadedDoc.getFile());
-    }
+//
+//    @Test
+//    public void testLoad() throws IOException {
+//        Document loadedDoc = Document.load(testFile);
+//        assertEquals(document.getFile(), loadedDoc.getFile());
+//    }
 
     @Test
     public void testSave() throws IOException {

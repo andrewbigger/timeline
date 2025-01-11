@@ -42,10 +42,11 @@ public class Timeline {
     private LocalDate start;
     
     /**
-     * Constructs a timeline from application state.
+     * Constructs a timeline from application state.When the state is not set, an empty timeline will be returned to avoid
+ a crash when writing the report.
      * 
-     * When the state is not set, an empty timeline will be returned to avoid
-     * a crash when writing the report.
+     *
+     * @param state application state
      * 
      * @return epic timeline
      * 
