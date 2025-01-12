@@ -1,9 +1,10 @@
-package com.biggerconcept.timeline.reports;
+package com.biggerconcept.timeline.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
+import com.biggerconcept.timeline.reports.Element;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.domain.TimelineRelease;
 import java.io.IOException;

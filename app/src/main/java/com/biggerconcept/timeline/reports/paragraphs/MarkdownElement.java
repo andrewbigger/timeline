@@ -1,25 +1,27 @@
-package com.biggerconcept.timeline.reports;
+package com.biggerconcept.timeline.reports.paragraphs;
 
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
 import com.biggerconcept.timeline.State;
+import com.biggerconcept.timeline.reports.Element;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Inserts a heading 1 into a report
+ * Insert markdown into a report
  * 
  * @author Andrew Bigger
  */
-public class Heading1Element extends Element {
+public class MarkdownElement extends Element {
     /**
      * Default constructor
      */
-    public Heading1Element() {
+    public MarkdownElement() {
         super();
     }
     
@@ -28,13 +30,13 @@ public class Heading1Element extends Element {
      * 
      * @param state application state
      */
-    public Heading1Element(State state) {
+    public MarkdownElement(State state) {
         super(state);
-        this.type = Doc.ParagraphType.h1;
+        this.type = ParagraphType.md;
     }
     
     /**
-     * Inserts a h1 into a report document.
+     * Inserts markdown paragraphs into a report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -43,11 +45,11 @@ public class Heading1Element extends Element {
      */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
-        document.h1(compile(getArgs(), vars));
+        document.md(compile(getArgs(), vars));
     }
     
     /**
-     * Constructs and instantiates an editor dialog for h1 paragraph.
+     * Constructs and instantiates an editor dialog for markdown.
      * 
      * @param rb application resource bundle
      * @param report current report
@@ -64,4 +66,5 @@ public class Heading1Element extends Element {
     ) throws IOException {
         return ParagraphDialog.create(rb, report, this, content);
     }
+    
 }

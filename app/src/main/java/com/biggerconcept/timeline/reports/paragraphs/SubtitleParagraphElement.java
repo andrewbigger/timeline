@@ -1,4 +1,4 @@
-package com.biggerconcept.timeline.reports;
+package com.biggerconcept.timeline.reports.paragraphs;
 
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
@@ -6,20 +6,21 @@ import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.timeline.State;
+import com.biggerconcept.timeline.reports.Element;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Inserts a heading 3 into a report
+ * Inserts a subtitle paragraph into a report
  * 
  * @author Andrew Bigger
  */
-public class Heading3Element extends Element {
+public class SubtitleParagraphElement extends Element {
     /**
      * Default constructor
      */
-    public Heading3Element() {
+    public SubtitleParagraphElement() {
         super();
     }
     
@@ -28,13 +29,13 @@ public class Heading3Element extends Element {
      * 
      * @param state application state
      */
-    public Heading3Element(State state) {
+    public SubtitleParagraphElement(State state) {
         super(state);
-        this.type = Doc.ParagraphType.h3;
+        this.type = Doc.ParagraphType.subtitle;
     }
     
     /**
-     * Inserts a h3 into a report document.
+     * Inserts a subtitle paragraph into a report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -43,11 +44,11 @@ public class Heading3Element extends Element {
      */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
-        document.h3(compile(getArgs(), vars));
+        document.subtitle(compile(getArgs().toString(), vars));
     }
     
     /**
-     * Constructs and instantiates an editor dialog for h3 paragraph.
+     * Constructs and instantiates an editor dialog for subtitle paragraph.
      * 
      * @param rb application resource bundle
      * @param report current report

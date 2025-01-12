@@ -1,19 +1,20 @@
-package com.biggerconcept.timeline.reports;
+package com.biggerconcept.timeline.reports.paragraphs;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.timeline.State;
+import com.biggerconcept.timeline.reports.Element;
 import java.util.HashMap;
 
 /**
- * Inserts a table of contents into a report
+ * Inserts a new line into a report
  * 
  * @author Andrew Bigger
  */
-public class TableOfContentsElement extends Element {
+public class PageBreakElement extends Element {
     /**
      * Default constructor
      */
-    public TableOfContentsElement() {
+    public PageBreakElement() {
         super();
     }
     
@@ -22,19 +23,19 @@ public class TableOfContentsElement extends Element {
      * 
      * @param state application state
      */
-    public TableOfContentsElement(State state) {
+    public PageBreakElement(State state) {
         super(state);
-        this.type = Doc.ParagraphType.toc;
+        this.type = Doc.ParagraphType.br;
     }
     
     /**
-     * Inserts a table of contents into a report document.
+     * Inserts a new line into a report document.
      * 
      * @param document report document
      * @param vars content variables
      */
     public void insertInto(Doc document, HashMap<String, String> vars) {
-        document.toc();
+        document.br();
     }
     
     /**

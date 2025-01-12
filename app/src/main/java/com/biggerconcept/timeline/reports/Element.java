@@ -1,5 +1,26 @@
 package com.biggerconcept.timeline.reports;
 
+import com.biggerconcept.timeline.reports.paragraphs.Heading1Element;
+import com.biggerconcept.timeline.reports.paragraphs.ParagraphElement;
+import com.biggerconcept.timeline.reports.paragraphs.CodeElement;
+import com.biggerconcept.timeline.reports.paragraphs.StrongParagraphElement;
+import com.biggerconcept.timeline.reports.paragraphs.Heading4Element;
+import com.biggerconcept.timeline.reports.paragraphs.Heading3Element;
+import com.biggerconcept.timeline.reports.paragraphs.SubtitleParagraphElement;
+import com.biggerconcept.timeline.reports.paragraphs.NewLineElement;
+import com.biggerconcept.timeline.reports.paragraphs.PageBreakElement;
+import com.biggerconcept.timeline.reports.paragraphs.TitleElement;
+import com.biggerconcept.timeline.reports.paragraphs.Heading2Element;
+import com.biggerconcept.timeline.reports.paragraphs.MarkdownElement;
+import com.biggerconcept.timeline.reports.sections.ReleaseTimelineTableElement;
+import com.biggerconcept.timeline.reports.sections.EpicsTimelineTableElement;
+import com.biggerconcept.timeline.reports.sections.NotesElement;
+import com.biggerconcept.timeline.reports.sections.EpicsTableElement;
+import com.biggerconcept.timeline.reports.sections.EpicsOutlineElement;
+import com.biggerconcept.timeline.reports.sections.TableOfContentsElement;
+import com.biggerconcept.timeline.reports.sections.ReleaseTableElement;
+import com.biggerconcept.timeline.reports.sections.ShelfTableElement;
+import com.biggerconcept.timeline.reports.sections.ReleaseOutlineElement;
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.elements.IElement;

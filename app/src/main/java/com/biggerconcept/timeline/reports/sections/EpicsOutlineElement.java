@@ -1,12 +1,12 @@
-package com.biggerconcept.timeline.reports;
+package com.biggerconcept.timeline.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.appengine.serializers.helpers.Paragraphs;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
+import com.biggerconcept.timeline.reports.Element;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.domain.TimelineEpic;
 import java.io.IOException;
@@ -65,7 +65,7 @@ public class EpicsOutlineElement extends Element {
                                 )
                 );
                 
-                Paragraphs.insert(document, te.getEpic().getSummary());
+                document.md(te.getEpic().getSummary());
                 document.nl();
                 
                 document.strong(

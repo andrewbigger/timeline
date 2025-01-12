@@ -1,4 +1,4 @@
-package com.biggerconcept.timeline.reports;
+package com.biggerconcept.timeline.reports.paragraphs;
 
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
@@ -7,20 +7,23 @@ import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
 import com.biggerconcept.timeline.State;
+import com.biggerconcept.timeline.reports.Element;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Insert markdown into a report
+ * Inserts a code block into a report
  * 
  * @author Andrew Bigger
  */
-public class MarkdownElement extends Element {
+public class CodeElement extends Element {
     /**
      * Default constructor
      */
-    public MarkdownElement() {
+    public CodeElement() {
         super();
     }
     
@@ -29,13 +32,13 @@ public class MarkdownElement extends Element {
      * 
      * @param state application state
      */
-    public MarkdownElement(State state) {
+    public CodeElement(State state) {
         super(state);
-        this.type = ParagraphType.md;
+        this.type = ParagraphType.code;
     }
     
     /**
-     * Inserts markdown paragraphs into a report document.
+     * Inserts a paragraph into a report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -44,11 +47,15 @@ public class MarkdownElement extends Element {
      */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
-        document.md(compile(getArgs(), vars));
+        
+        ArrayList<String> lines = new ArrayList();
+        lines.addAll(Arrays.asList(compile(getArgs(), vars).split("\n")));
+         
+        document.code(lines);
     }
     
     /**
-     * Constructs and instantiates an editor dialog for markdown.
+     * Constructs and instantiates an editor dialog for a paragraph.
      * 
      * @param rb application resource bundle
      * @param report current report
@@ -59,11 +66,10 @@ public class MarkdownElement extends Element {
      * @throws IOException when unable to read file from disk
      */
     public IElementEditorDialog editorDialog(
-            ResourceBundle rb,
+            ResourceBundle rb, 
             IReport report,
             Content content
     ) throws IOException {
         return ParagraphDialog.create(rb, report, this, content);
     }
-    
 }

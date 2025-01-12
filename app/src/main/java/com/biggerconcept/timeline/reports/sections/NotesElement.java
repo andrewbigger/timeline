@@ -1,19 +1,22 @@
-package com.biggerconcept.timeline.reports;
+package com.biggerconcept.timeline.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
 import com.biggerconcept.timeline.State;
+import com.biggerconcept.timeline.reports.Element;
+import java.io.IOException;
 import java.util.HashMap;
 
 /**
- * Inserts a new line into a report
+ * Inserts a notes into a report
  * 
  * @author Andrew Bigger
  */
-public class PageBreakElement extends Element {
+public class NotesElement extends Element {
     /**
      * Default constructor
      */
-    public PageBreakElement() {
+    public NotesElement() {
         super();
     }
     
@@ -22,9 +25,9 @@ public class PageBreakElement extends Element {
      * 
      * @param state application state
      */
-    public PageBreakElement(State state) {
+    public NotesElement(State state) {
         super(state);
-        this.type = Doc.ParagraphType.br;
+        this.type = ParagraphType.p;
     }
     
     /**
@@ -33,8 +36,9 @@ public class PageBreakElement extends Element {
      * @param document report document
      * @param vars content variables
      */
-    public void insertInto(Doc document, HashMap<String, String> vars) {
-        document.br();
+    public void insertInto(Doc document, HashMap<String, String> vars) 
+            throws IOException {
+        document.md(compile(getDocument().getNotes(), vars));
     }
     
     /**

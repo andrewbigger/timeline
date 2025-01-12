@@ -1,8 +1,9 @@
-package com.biggerconcept.timeline.reports;
+package com.biggerconcept.timeline.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Release;
+import com.biggerconcept.timeline.reports.Element;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
