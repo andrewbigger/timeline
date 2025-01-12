@@ -12,15 +12,15 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 /**
- * Inserts a paragraph into a report
+ * Insert markdown into a report
  * 
  * @author Andrew Bigger
  */
-public class ParagraphElement extends Element {
+public class MarkdownElement extends Element {
     /**
      * Default constructor
      */
-    public ParagraphElement() {
+    public MarkdownElement() {
         super();
     }
     
@@ -29,13 +29,13 @@ public class ParagraphElement extends Element {
      * 
      * @param state application state
      */
-    public ParagraphElement(State state) {
+    public MarkdownElement(State state) {
         super(state);
-        this.type = ParagraphType.p;
+        this.type = ParagraphType.md;
     }
     
     /**
-     * Inserts a paragraph into a report document.
+     * Inserts markdown paragraphs into a report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -44,12 +44,11 @@ public class ParagraphElement extends Element {
      */
     public void insertInto(Doc document, HashMap<String, String> vars) 
             throws IOException {
-        
-        document.p(compile(getArgs(), vars));
+        document.md(compile(getArgs(), vars));
     }
     
     /**
-     * Constructs and instantiates an editor dialog for a paragraph.
+     * Constructs and instantiates an editor dialog for markdown.
      * 
      * @param rb application resource bundle
      * @param report current report
@@ -60,10 +59,11 @@ public class ParagraphElement extends Element {
      * @throws IOException when unable to read file from disk
      */
     public IElementEditorDialog editorDialog(
-            ResourceBundle rb, 
+            ResourceBundle rb,
             IReport report,
             Content content
     ) throws IOException {
         return ParagraphDialog.create(rb, report, this, content);
     }
+    
 }
