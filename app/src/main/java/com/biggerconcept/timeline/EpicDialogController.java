@@ -51,6 +51,11 @@ public class EpicDialogController implements Initializable {
     private ArrayList<Epic> targetSet;
     
     /**
+     * Target epic for the dialog session
+     */
+    private Epic target;
+    
+    /**
      * Whether the epic is a new epic
      */
     private boolean isNew;
@@ -226,6 +231,7 @@ public class EpicDialogController implements Initializable {
         this.state = state;
         this.state.setOpenEpic(epic);
         this.targetSet = targetSet;
+        this.target = epic;
         this.isNew = isNew;
         
         mapDocumentToWindow();
@@ -263,8 +269,8 @@ public class EpicDialogController implements Initializable {
      * Maps epic details to the window
      */
     private void mapDetailsToWindow() {
-        epicName.setText(state.getOpenEpic().getName());
-        epicSummary.setText(state.getOpenEpic().getSummary());
+        epicName.setText(target.getName());
+        epicSummary.setText(target.getSummary());
     }
     
     /**
@@ -287,13 +293,13 @@ public class EpicDialogController implements Initializable {
             endSprintComboBox.getItems().add(i);
         }
         
-        if (state.getOpenEpic().hasAssignedSprints()) {
+        if (target.hasAssignedSprints()) {
             startSprintComboBox.getSelectionModel().select(
-                    String.valueOf(state.getOpenEpic().getStartSprint())
+                    String.valueOf(target.getStartSprint())
             );
             
             endSprintComboBox.getSelectionModel().select(
-                    String.valueOf(state.getOpenEpic().getEndSprint())
+                    String.valueOf(target.getEndSprint())
             );
         } else {
             startSprintComboBox.getSelectionModel().select(0);
@@ -306,7 +312,7 @@ public class EpicDialogController implements Initializable {
      */
     private void mapScopeToWindow() {
         scopeListView.getItems().clear();
-        for (String scope : state.getOpenEpic().getScope().getIncluded()) {
+        for (String scope : target.getScope().getIncluded()) {
             scopeListView.getItems().add(scope);
         }
     }
@@ -317,9 +323,9 @@ public class EpicDialogController implements Initializable {
     private void mapTasksToWindow() {
         TasksTable tasksTable = new TasksTable(
             state.bundle(),
-            state.getOpenEpic().getTasks(),
+            target.getTasks(),
             state.getOpenDocument().getPreferences().asProjectusPreferences(),
-            state.getOpenEpic().getIdentifier()
+            target.getIdentifier()
         );
         tasksTable.bind(tasksTableView);
     }
@@ -338,8 +344,8 @@ public class EpicDialogController implements Initializable {
     private void mapWindowToDocument() {
         state.getOpenDocument().rebuildIdentifiers();
         
-        state.getOpenEpic().setName(epicName.getText());
-        state.getOpenEpic().setSummary(epicSummary.getText());
+        target.setName(epicName.getText());
+        target.setSummary(epicSummary.getText());
         
         mapWindowToSprints();
     }
@@ -352,8 +358,8 @@ public class EpicDialogController implements Initializable {
         Integer endSprint = getEndSprint();
         
         if (startSprint > 0 && endSprint > 0) {
-            state.getOpenEpic().setStartSprint(startSprint);
-            state.getOpenEpic().setEndSprint(endSprint);
+            target.setStartSprint(startSprint);
+            target.setEndSprint(endSprint);
         }
     }
     
@@ -365,12 +371,12 @@ public class EpicDialogController implements Initializable {
         try {
             ArrayList<Task> empty = new ArrayList<>();
             Task newTask = new Task();
-            newTask.setIdentifier(state.getOpenEpic().getStories().size() + 1);
+            newTask.setIdentifier(target.getStories().size() + 1);
             empty.add(newTask);
             
             TaskDialog addTask = new TaskDialog(
                     state.bundle(),
-                    state.getOpenEpic(),
+                    target,
                     empty,
                     false
             );
@@ -409,7 +415,7 @@ public class EpicDialogController implements Initializable {
             
             if (answer == ButtonType.YES) {
                 for (Task t: items) {
-                    state.getOpenEpic().removeTask(t);
+                    target.removeTask(t);
                 }
             }
             
@@ -446,7 +452,7 @@ public class EpicDialogController implements Initializable {
             Epic chosenEpic = pickEpic.show(window());
             
             for (Task t : items) {
-                state.getOpenEpic().removeTask(t);
+                target.removeTask(t);
                 chosenEpic.addTask(t);
             }
             
@@ -487,7 +493,7 @@ public class EpicDialogController implements Initializable {
             }
             
             Collections.swap(
-                    state.getOpenEpic().getTasks(),
+                    target.getTasks(),
                     selectedIndex,
                     targetIndex
             );
@@ -534,7 +540,7 @@ public class EpicDialogController implements Initializable {
             }
             
             Collections.swap(
-                    state.getOpenEpic().getTasks(),
+                    target.getTasks(),
                     selectedIndex,
                     targetIndex
             );
@@ -568,7 +574,7 @@ public class EpicDialogController implements Initializable {
             
             TaskDialog manageTask = new TaskDialog(
                     state.bundle(),
-                    state.getOpenEpic(),
+                    target,
                     items,
                     items.size() > 1
             );
@@ -594,7 +600,7 @@ public class EpicDialogController implements Initializable {
         try {
             ScopeDialog addScope = new ScopeDialog(
                     bundle,
-                    state.getOpenEpic().getScope().getIncluded(),
+                    target.getScope().getIncluded(),
                     ""
             );
             
@@ -634,7 +640,7 @@ public class EpicDialogController implements Initializable {
             );
             
             if (answer == ButtonType.YES) {
-                state.getOpenEpic().getScope().getIncluded().remove(item);
+                target.getScope().getIncluded().remove(item);
             }
             
             mapScopeToWindow();
@@ -700,8 +706,8 @@ public class EpicDialogController implements Initializable {
      */
     @FXML
     private void handleClearSelectedSprints() {
-        state.getOpenEpic().setStartSprint(0);
-        state.getOpenEpic().setEndSprint(0);
+        target.setStartSprint(0);
+        target.setEndSprint(0);
         mapSprintsToWindow();
         mapOutlookToWindow();
     }
@@ -730,7 +736,7 @@ public class EpicDialogController implements Initializable {
     private void handleSaveEpic() {
         try {
             if (isNew == true) {
-                targetSet.add(state.getOpenEpic());
+                targetSet.add(target);
             }
             
             mapWindowToDocument();
@@ -758,7 +764,7 @@ public class EpicDialogController implements Initializable {
      */
     private int calculateWeeks() {
         // Calculate number of weeks required for epic
-        int totalPoints = state.getOpenEpic().calculateTotalPoints(
+        int totalPoints = target.calculateTotalPoints(
                 state.getOpenDocument().getPreferences().asProjectusPreferences()
         );
         
@@ -778,9 +784,9 @@ public class EpicDialogController implements Initializable {
         // if it the calculation is greater than one sprint, 
         // use the assigned sprint length
         
-        if (state.getOpenEpic().hasAssignedSprints()) {
-            int sprints = state.getOpenEpic().getEndSprint() - 
-                    state.getOpenEpic().getStartSprint();
+        if (target.hasAssignedSprints()) {
+            int sprints = target.getEndSprint() - 
+                    target.getStartSprint();
             
             if (sprints == 0) {
                 return weeks;

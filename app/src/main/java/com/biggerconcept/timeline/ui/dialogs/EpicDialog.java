@@ -20,6 +20,8 @@ import javafx.stage.StageStyle;
  * @author Andrew Bigger
  */
 public class EpicDialog {
+    private Epic visibleEpic;
+    
     /**
      * Opens the epic dialog
      * 
