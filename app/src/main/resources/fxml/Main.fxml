@@ -16,6 +16,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -197,6 +198,56 @@
                            </center>
                         </BorderPane>
                      </content></Tab>
+                  <Tab text="%tabs.documents.label">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <top>
+                              <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <items>
+                                    <Button fx:id="addGroupButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddGroup" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="addGroupButton" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="addDocumentButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddDocument" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="addArticleButton" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="removeNodeButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleRemoveNode" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="removeButton" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="editNodeButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleEditNode" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="editButton" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="moveNodeButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveNode" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="moveButton" />
+                                       </styleClass>
+                                    </Button>
+                                 </items>
+                              </ToolBar>
+                           </top>
+                           <center>
+                              <TreeView fx:id="documentTreeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </Tab>
               </tabs>
             </TabPane>
             <SplitPane dividerPositions="0.791268758526603" minHeight="400.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">

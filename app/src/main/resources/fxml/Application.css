@@ -17,6 +17,14 @@
   -fx-background-image: url('../icons/AddIcon.png');
 }
 
+.addArticleButton {
+  -fx-background-image: url('../icons/AddArticleIcon.png');
+}
+
+.addGroupButton {
+  -fx-background-image: url('../icons/AddGroupIcon.png');
+}
+
 .removeButton {
   -fx-background-image: url('../icons/RemoveIcon.png');
 }

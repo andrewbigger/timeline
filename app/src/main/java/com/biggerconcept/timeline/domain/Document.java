@@ -1,5 +1,6 @@
 package com.biggerconcept.timeline.domain;
 
+import com.biggerconcept.doctree.domain.Group;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.timeline.domain.Judgement.Assessment;
@@ -59,6 +60,12 @@ public class Document {
      */
     @JsonInclude(Include.NON_NULL)
     private ArrayList<Release> releases;
+    
+    /**
+     * Root document node
+     */
+    @JsonInclude(Include.NON_NULL)
+    private Group documents;
     
     /**
      * Last epic number
@@ -192,6 +199,19 @@ public class Document {
     }
     
     /**
+     * Getter for root document group.
+     * 
+     * @return root document group
+     */
+    public Group getDocuments() {
+        if (documents == null) {
+            documents = new Group("/");
+        }
+        
+        return documents;
+    }
+    
+    /**
      * Getter for last epic identifier.
      * 
      * @return identifier for last epic
@@ -291,6 +311,15 @@ public class Document {
      */
     public void setReleases(ArrayList<Release> value) {
         releases = value;
+    }
+    
+    /**
+     * Setter for root documentation group.
+     * 
+     * @param value root documentation group
+     */
+    public void setDocumentation(Group value) {
+        documents = value;
     }
 
     /**

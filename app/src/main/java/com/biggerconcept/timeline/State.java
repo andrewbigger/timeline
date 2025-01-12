@@ -3,6 +3,7 @@ package com.biggerconcept.timeline;
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.ui.helpers.Date;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.domain.Preferences;
@@ -10,6 +11,8 @@ import com.biggerconcept.timeline.domain.Year;
 import com.biggerconcept.timeline.reports.Element;
 import com.biggerconcept.timeline.reports.Report;
 import java.util.ResourceBundle;
+import java.util.UUID;
+import javafx.scene.control.TreeItem;
 
 /**
  * Application State
@@ -136,6 +139,33 @@ public class State {
             Report rpt = (Report) r;
             rpt.setState(this);
         }
+    }
+    
+    public Node getSelectedDocumentNode() {
+        TreeItem<Node> selected = (TreeItem) mainController().documentTreeView
+                .getSelectionModel()
+                .getSelectedItem();
+        
+        if (selected == null) {
+            return getDocumentRoot();
+        }
+        
+        return selected.getValue();
+    }
+    
+    public Node getDocumentRoot() {
+        return getOpenDocument().getDocuments();
+    }
+    
+    public Node getSelectedDocumentNodeParent() {
+        TreeItem<Node> selected = (TreeItem) mainController().documentTreeView
+                .getSelectionModel()
+                .getSelectedItem();
+        
+        TreeItem<Node> selectedParent = selected.getParent();
+        
+        Node parent = selectedParent.getValue();
+        return parent;
     }
 
 }

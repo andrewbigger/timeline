@@ -1365,4 +1365,74 @@ parts:
     title: "Label for included epics section in release outline"
     value: "Included Epics"
     variants: {}
+- translation:
+    key: "tabs.documents.label"
+    title: "Label for the documents tab"
+    value: "Documents"
+    variants: {}
+- translation:
+    key: "tabs.documents.tooltip"
+    title: "Tootlip for the documents tab"
+    value: "Project documents"
+    variants: {}
+- translation:
+    key: "documents.addGroup.tooltip"
+    title: "Tooltip for add group button"
+    value: "Add Group"
+    variants: {}
+- translation:
+    key: "documents.addDocument.tooltip"
+    title: "Tooltip for add document button"
+    value: "Add Document"
+    variants: {}
+- translation:
+    key: "documents.removeNode.tooltip"
+    title: "Tooltip for remove node button"
+    value: "Remove selected item from the document tree"
+    variants: {}
+- translation:
+    key: "documents.editNode.tooltip"
+    title: "Tooltip for edit node button"
+    value: "Edit selected document tree item"
+    variants: {}
+- translation:
+    key: "dialogs.documents.group.manage"
+    title: "Manage group dialog title"
+    value: "Manage Group"
+    variants: {}
+- translation:
+    key: "dialogs.documents.group.name"
+    title: "Name attribute label"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "dialogs.documents.article.manage"
+    title: "Manage article dialog title"
+    value: "Manage Document"
+    variants: {}
+- translation:
+    key: "dialogs.documents.article.name"
+    title: "Article name attribute label"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "dialogs.documents.article.content"
+    title: "Article content attribute label"
+    value: "Content"
+    variants: {}
+- translation:
+    key: "dialogs.documents.node.move"
+    title: "Move node dialog title"
+    value: "Move"
+    variants: {}
+- translation:
+    key: "dialogs.documents.node.groups"
+    title: "Label for groups"
+    value: "Groups"
+    variants: {}
+- translation:
+    key: "documents.moveNode.tooltip"
+    title: "Move node tooltip"
+    value: "Move selected document tree item"
+    variants: {}
 sourceLanguage: "en"

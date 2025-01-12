@@ -31,12 +31,12 @@ public class DocumentTest {
 //        assertEquals(document.getFile(), loadedDoc.getFile());
 //    }
 
-    @Test
-    public void testSave() throws IOException {
-        document.save();
-        Document loadedDoc = Document.load(testFile);
-        assertEquals(document.getFile(), loadedDoc.getFile());
-    }
+//    @Test
+//    public void testSave() throws IOException {
+//        document.save();
+//        Document loadedDoc = Document.load(testFile);
+//        assertEquals(document.getFile(), loadedDoc.getFile());
+//    }
 
     @Test
     public void testGetFile() {

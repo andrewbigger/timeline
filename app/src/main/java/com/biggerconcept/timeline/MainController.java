@@ -5,8 +5,14 @@ import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.ui.menus.ReportMenuBuilder;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.doctree.ui.DocumentTreeView;
 import com.biggerconcept.timeline.actions.Action;
 import com.biggerconcept.timeline.actions.application.OpenPreferences;
+import com.biggerconcept.timeline.actions.docs.AddDocument;
+import com.biggerconcept.timeline.actions.docs.AddGroup;
+import com.biggerconcept.timeline.actions.docs.EditNode;
+import com.biggerconcept.timeline.actions.docs.MoveNode;
+import com.biggerconcept.timeline.actions.docs.RemoveNode;
 import com.biggerconcept.timeline.actions.document.CreateDocument;
 import com.biggerconcept.timeline.actions.document.OpenDocument;
 import com.biggerconcept.timeline.actions.document.SaveDocument;
@@ -50,6 +56,7 @@ import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -321,6 +328,42 @@ public class MainController implements Initializable {
     public MenuButton reportsMenuButton;
     
     /**
+     * Add document group button
+     */
+    @FXML
+    public Button addGroupButton;
+    
+    /**
+     * Add document button
+     */
+    @FXML
+    public Button addDocumentButton;
+    
+    /**
+     * Remove document tree node button
+     */
+    @FXML
+    public Button removeNodeButton;
+    
+    /**
+     * Edit document node button
+     */
+    @FXML
+    public Button editNodeButton;
+    
+    /**
+     * Move node button
+     */
+    @FXML
+    public Button moveNodeButton;
+    
+    /**
+     * Document tree view
+     */
+    @FXML
+    public TreeView documentTreeView;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url main window FXML
@@ -449,6 +492,21 @@ public class MainController implements Initializable {
         moveReleaseDownButton.setTooltip(
                 new Tooltip(state.bundle().getString("releases.moveDown.tooltip"))
         );
+        addGroupButton.setTooltip(
+                new Tooltip(state.bundle().getString("documents.addGroup.tooltip"))
+        );
+        addDocumentButton.setTooltip(
+                new Tooltip(state.bundle().getString("documents.addDocument.tooltip"))
+        );
+        removeNodeButton.setTooltip(
+                new Tooltip(state.bundle().getString("documents.removeNode.tooltip"))
+        );
+        editNodeButton.setTooltip(
+                new Tooltip(state.bundle().getString("documents.editNode.tooltip"))
+        );
+        moveNodeButton.setTooltip(
+                new Tooltip(state.bundle().getString("documents.moveNode.tooltip"))
+        );
     }
     
     /**
@@ -493,6 +551,7 @@ public class MainController implements Initializable {
         mapOutlookToWindow(timeline);
         mapAssessmentsToWindow();
         mapNotesToWindow();
+        mapDocumentsToWindow();
     }
     
     /**
@@ -650,6 +709,16 @@ public class MainController implements Initializable {
      */
     private void mapNotesToWindow() {
         notesTextArea.setText(state.getOpenDocument().getNotes());
+    }
+    
+    /**
+     * Maps documents to window.
+     */
+    private void mapDocumentsToWindow() {
+        DocumentTreeView.bind(
+                documentTreeView, 
+                state.getOpenDocument().getDocuments()
+        );
     }
     
     /**
@@ -1127,6 +1196,86 @@ public class MainController implements Initializable {
             ErrorAlert.show(
                     state.bundle(),
                     state.bundle().getString("errors.new"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Adds a document group to the documentation tree.
+     */
+    @FXML
+    private void handleAddGroup() {
+        try {
+            perform(AddGroup.class);
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Adds a document to the documentation tree.
+     */
+    @FXML
+    private void handleAddDocument() {
+        try {
+            perform(AddDocument.class);
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Removes a node from the documentation tree.
+     */
+    @FXML
+    private void handleRemoveNode() {
+        try {
+            perform(RemoveNode.class);
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Edits the selected node in the documentation tree
+     */
+    @FXML
+    private void handleEditNode() {
+        try {
+            perform(EditNode.class);
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Moves the selected node in the documentation tree
+     */
+    @FXML
+    private void handleMoveNode() {
+        try {
+            perform(MoveNode.class);
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
                     e
             );
         }
