@@ -153,7 +153,8 @@ public class EpicsTimelineTable {
                 FXCollections.observableArrayList(
                         timeline.getEpicsInYear(viewYear)
                 ),
-                cols
+                cols,
+                false
         );
     }
 

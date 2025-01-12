@@ -143,7 +143,8 @@ public class ReleasesTimelineTable {
                 FXCollections.observableArrayList(
                         timeline.getReleasesInYear(viewYear)
                 ),
-                cols
+                cols,
+                false
         );
     }
 

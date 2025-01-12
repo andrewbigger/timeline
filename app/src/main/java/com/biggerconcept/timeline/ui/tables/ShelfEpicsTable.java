@@ -89,7 +89,8 @@ public class ShelfEpicsTable {
                 Arrays.asList(
                         nameCol(), 
                         estimateCol()
-                )
+                ),
+                false
         );
     }
     

@@ -33,7 +33,8 @@ import java.util.ResourceBundle;
     @JsonSubTypes.Type(value = TitleElement.class, name = "title"),
     @JsonSubTypes.Type(value = TableOfContentsElement.class, name = "toc"),
     @JsonSubTypes.Type(value = ShelfTableElement.class, name = "table"),
-    @JsonSubTypes.Type(value = MarkdownElement.class, name="md")
+    @JsonSubTypes.Type(value = MarkdownElement.class, name="md"),
+    @JsonSubTypes.Type(value = CodeElement.class, name="code")
 })
 public class Element
         extends com.biggerconcept.appengine.reports.elements.Element 
@@ -57,6 +58,7 @@ public class Element
         content.addParagraph(new Heading4Element(state));
         content.addParagraph(new SubtitleParagraphElement(state));
         content.addParagraph(new ParagraphElement(state));
+        content.addParagraph(new CodeElement(state));
         content.addParagraph(new MarkdownElement(state));
         content.addParagraph(new StrongParagraphElement(state));
         content.addParagraph(new NewLineElement(state));

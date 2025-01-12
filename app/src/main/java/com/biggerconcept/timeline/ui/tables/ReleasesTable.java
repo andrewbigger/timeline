@@ -71,7 +71,8 @@ public class ReleasesTable {
                 Arrays.asList(
                         numberCol(),
                         nameCol()
-                )
+                ),
+                false
         );
     }
     

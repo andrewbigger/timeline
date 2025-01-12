@@ -110,7 +110,8 @@ public class TasksTable {
                     nameCol(), 
                     sizeCol(), 
                     estimateCol()
-               )
+               ),
+               false
        );
    }
    
