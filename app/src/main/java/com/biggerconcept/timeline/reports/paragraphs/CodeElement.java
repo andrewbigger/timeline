@@ -38,7 +38,7 @@ public class CodeElement extends Element {
     }
     
     /**
-     * Inserts a paragraph into a report document.
+     * Inserts a code block into a report document.
      * 
      * @param document report document
      * @param vars content variables
@@ -50,12 +50,12 @@ public class CodeElement extends Element {
         
         ArrayList<String> lines = new ArrayList();
         lines.addAll(Arrays.asList(compile(getArgs(), vars).split("\n")));
-         
+        
         document.code(lines);
     }
     
     /**
-     * Constructs and instantiates an editor dialog for a paragraph.
+     * Constructs and instantiates an editor dialog for a code block.
      * 
      * @param rb application resource bundle
      * @param report current report
