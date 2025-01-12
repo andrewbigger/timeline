@@ -4,6 +4,7 @@ import com.biggerconcept.appengine.ui.dialogs.StandardDialog;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Size.TaskSize;
 import com.biggerconcept.projectus.domain.Task;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -247,6 +248,20 @@ public class TaskDialog {
         return wrapper;
     }
     
+     /**
+     * Replaces visible tasks with given task.
+     * 
+     * This is necessary in navigation mode to avoid apply targeting the 
+     * first selected task.
+     * 
+     * @param t task to set
+     */
+    private void setVisibleTask(Task t) {
+        visibleTask = t;
+        currentTasks = new ArrayList();
+        currentTasks.add(t);
+    }
+    
     /**
      * Builds previous action button.
      * 
@@ -265,7 +280,7 @@ public class TaskDialog {
         if (bulk == false) {
             prevTaskBtn.setOnAction((ActionEvent event) -> {
                 applyToTask(visibleTask);
-                visibleTask = parentEpic.getPrevTask(visibleTask);
+                setVisibleTask(parentEpic.getPrevTask(visibleTask));
                 mapTaskToDialog();
             });
 
@@ -296,7 +311,7 @@ public class TaskDialog {
         if (bulk == false) {
             nextTaskBtn.setOnAction((ActionEvent event) -> {
                 applyToTask(visibleTask);
-                visibleTask = parentEpic.getNextTask(visibleTask);
+                setVisibleTask(parentEpic.getNextTask(visibleTask));
                 mapTaskToDialog();
             });
             
@@ -315,10 +330,8 @@ public class TaskDialog {
      */
     private void mapTaskToDialog() {
         if (bulk == false) {
-            Task currentTask = visibleTask;
-            
-            nameField.setText(currentTask.getName());
-            sizeField.getSelectionModel().select(currentTask.getSize());
+            nameField.setText(visibleTask.getName());
+            sizeField.getSelectionModel().select(visibleTask.getSize());
         }
     }
 }
