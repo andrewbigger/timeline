@@ -19,8 +19,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1793.0" stylesheets="@Application.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1793.0" stylesheets="@Application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.MainController">
    <top>
       <BorderPane fx:id="toolbarBorderPane" prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <center>
@@ -367,6 +368,9 @@
                            <VBox.margin>
                               <Insets bottom="5.0" />
                            </VBox.margin>
+                           <font>
+                              <Font name="Menlo Regular" size="13.0" />
+                           </font>
                         </TextArea>
                      </children>
                      <padding>
