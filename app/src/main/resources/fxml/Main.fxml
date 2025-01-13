@@ -198,7 +198,7 @@
                            </center>
                         </BorderPane>
                      </content></Tab>
-                  <Tab text="%tabs.documents.label">
+                  <Tab text="%tabs.resources.label">
                      <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                            <top>
@@ -243,7 +243,7 @@
                               </ToolBar>
                            </top>
                            <center>
-                              <TreeView fx:id="documentTreeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                              <TreeView fx:id="resourcesTreeView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                      </content>

@@ -142,7 +142,7 @@ public class State {
     }
     
     public Node getSelectedDocumentNode() {
-        TreeItem<Node> selected = (TreeItem) mainController().documentTreeView
+        TreeItem<Node> selected = (TreeItem) mainController().resourcesTreeView
                 .getSelectionModel()
                 .getSelectedItem();
         
@@ -154,11 +154,11 @@ public class State {
     }
     
     public Node getDocumentRoot() {
-        return getOpenDocument().getDocuments();
+        return getOpenDocument().getResources();
     }
     
     public Node getSelectedDocumentNodeParent() {
-        TreeItem<Node> selected = (TreeItem) mainController().documentTreeView
+        TreeItem<Node> selected = (TreeItem) mainController().resourcesTreeView
                 .getSelectionModel()
                 .getSelectedItem();
         

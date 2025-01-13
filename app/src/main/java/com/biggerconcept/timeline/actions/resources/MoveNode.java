@@ -1,10 +1,11 @@
-package com.biggerconcept.timeline.actions.docs;
+package com.biggerconcept.timeline.actions.resources;
 
 import com.biggerconcept.doctree.domain.Article;
 import com.biggerconcept.doctree.domain.Group;
 import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.doctree.ui.dialogs.ArticleDialog;
 import com.biggerconcept.doctree.ui.dialogs.GroupDialog;
+import com.biggerconcept.doctree.ui.dialogs.MoveNodeDialog;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.actions.Action;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import javafx.stage.Stage;
  * 
  * @author Andrew Bigger
  */
-public class EditNode implements Action {
+public class MoveNode implements Action {
     public void perform(State state, Stage window) throws IOException, CloneNotSupportedException {       
        Node item = state.getSelectedDocumentNode();
        
@@ -26,27 +27,14 @@ public class EditNode implements Action {
        }
        
        Node parent = state.getSelectedDocumentNodeParent();
-        
-        switch (item.getType()) {
-            case GROUP:
-                GroupDialog gd = new GroupDialog(
-                        state.bundle(),
-                        (Group) item,
-                        (Group) parent
-                );
-                
-                gd.show(window);
-                
-                break;
-            case ARTICLE:                
-                ArticleDialog ad = new ArticleDialog(
-                        state.bundle(),
-                        (Article) item,
-                        (Group) parent
-                );
-                
-                ad.show(window);
-                break;
-        }
+       
+       MoveNodeDialog mn = new MoveNodeDialog(
+               state.bundle(),
+               item,
+               parent,
+               state.getDocumentRoot()
+       );
+       
+       mn.show(window);
     }
 }

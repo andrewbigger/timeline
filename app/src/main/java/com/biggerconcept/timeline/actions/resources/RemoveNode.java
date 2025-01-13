@@ -1,4 +1,4 @@
-package com.biggerconcept.timeline.actions.docs;
+package com.biggerconcept.timeline.actions.resources;
 
 import com.biggerconcept.doctree.domain.Node;
 import static com.biggerconcept.doctree.domain.Node.NodeType.GROUP;

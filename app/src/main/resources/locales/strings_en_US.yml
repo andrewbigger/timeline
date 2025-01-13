@@ -1366,78 +1366,78 @@ parts:
     value: "Included Epics"
     variants: {}
 - translation:
-    key: "tabs.documents.label"
-    title: "Label for the documents tab"
-    value: "Documents"
+    key: "tabs.resources.label"
+    title: "Label for the resources tab"
+    value: "Resources"
     variants: {}
 - translation:
-    key: "tabs.documents.tooltip"
-    title: "Tootlip for the documents tab"
-    value: "Project documents"
+    key: "tabs.resources.tooltip"
+    title: "Tootlip for the resources tab"
+    value: "Project resources"
     variants: {}
 - translation:
-    key: "documents.addGroup.tooltip"
+    key: "resources.addGroup.tooltip"
     title: "Tooltip for add group button"
     value: "Add Group"
     variants: {}
 - translation:
-    key: "documents.addDocument.tooltip"
+    key: "resources.addDocument.tooltip"
     title: "Tooltip for add document button"
     value: "Add Document"
     variants: {}
 - translation:
-    key: "documents.removeNode.tooltip"
+    key: "resources.removeNode.tooltip"
     title: "Tooltip for remove node button"
-    value: "Remove selected item from the document tree"
+    value: "Remove selected item from the resource tree"
     variants: {}
 - translation:
-    key: "documents.editNode.tooltip"
+    key: "resources.editNode.tooltip"
     title: "Tooltip for edit node button"
-    value: "Edit selected document tree item"
+    value: "Edit selected resource"
     variants: {}
 - translation:
-    key: "dialogs.documents.group.manage"
+    key: "dialogs.resources.group.manage"
     title: "Manage group dialog title"
     value: "Manage Group"
     variants: {}
 - translation:
-    key: "dialogs.documents.group.name"
+    key: "dialogs.resources.group.name"
     title: "Name attribute label"
     value: "Name"
     variants: {}
 - translation:
-    key: "dialogs.documents.article.manage"
+    key: "dialogs.resources.article.manage"
     title: "Manage article dialog title"
     value: "Manage Document"
     variants: {}
 - translation:
-    key: "dialogs.documents.article.name"
+    key: "dialogs.resources.article.name"
     title: "Article name attribute label"
     value: "Name"
     variants: {}
 - translation:
-    key: "dialogs.documents.article.content"
+    key: "dialogs.resources.article.content"
     title: "Article content attribute label"
     value: "Content"
     variants: {}
 - translation:
-    key: "dialogs.documents.node.move"
+    key: "dialogs.resources.node.move"
     title: "Move node dialog title"
-    value: "Move"
+    value: "Move Resource"
     variants: {}
 - translation:
-    key: "dialogs.documents.node.groups"
+    key: "dialogs.resources.node.groups"
     title: "Label for groups"
     value: "Groups"
     variants: {}
 - translation:
-    key: "documents.moveNode.tooltip"
+    key: "resources.moveNode.tooltip"
     title: "Move node tooltip"
-    value: "Move selected document tree item"
+    value: "Move selected resource"
     variants: {}
 - translation:
-    key: "reports.builder.documents.title"
+    key: "reports.builder.resources.title"
     title: "Documents section title"
-    value: "Documents"
+    value: "Resources"
     variants: {}
 sourceLanguage: "en"

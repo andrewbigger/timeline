@@ -5,14 +5,14 @@ import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.ui.menus.ReportMenuBuilder;
 import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
-import com.biggerconcept.doctree.ui.DocumentTreeView;
+import com.biggerconcept.doctree.ui.ResourcesTreeView;
 import com.biggerconcept.timeline.actions.Action;
 import com.biggerconcept.timeline.actions.application.OpenPreferences;
-import com.biggerconcept.timeline.actions.docs.AddDocument;
-import com.biggerconcept.timeline.actions.docs.AddGroup;
-import com.biggerconcept.timeline.actions.docs.EditNode;
-import com.biggerconcept.timeline.actions.docs.MoveNode;
-import com.biggerconcept.timeline.actions.docs.RemoveNode;
+import com.biggerconcept.timeline.actions.resources.AddDocument;
+import com.biggerconcept.timeline.actions.resources.AddGroup;
+import com.biggerconcept.timeline.actions.resources.EditNode;
+import com.biggerconcept.timeline.actions.resources.MoveNode;
+import com.biggerconcept.timeline.actions.resources.RemoveNode;
 import com.biggerconcept.timeline.actions.document.CreateDocument;
 import com.biggerconcept.timeline.actions.document.OpenDocument;
 import com.biggerconcept.timeline.actions.document.SaveDocument;
@@ -340,28 +340,28 @@ public class MainController implements Initializable {
     public Button addDocumentButton;
     
     /**
-     * Remove document tree node button
+     * Remove resource button
      */
     @FXML
     public Button removeNodeButton;
     
     /**
-     * Edit document node button
+     * Edit resource button
      */
     @FXML
     public Button editNodeButton;
     
     /**
-     * Move node button
+     * Move resource button
      */
     @FXML
     public Button moveNodeButton;
     
     /**
-     * Document tree view
+     * Resources tree view
      */
     @FXML
-    public TreeView documentTreeView;
+    public TreeView resourcesTreeView;
     
     /**
      * Initializes the main window.
@@ -493,19 +493,19 @@ public class MainController implements Initializable {
                 new Tooltip(state.bundle().getString("releases.moveDown.tooltip"))
         );
         addGroupButton.setTooltip(
-                new Tooltip(state.bundle().getString("documents.addGroup.tooltip"))
+                new Tooltip(state.bundle().getString("resources.addGroup.tooltip"))
         );
         addDocumentButton.setTooltip(
-                new Tooltip(state.bundle().getString("documents.addDocument.tooltip"))
+                new Tooltip(state.bundle().getString("resources.addDocument.tooltip"))
         );
         removeNodeButton.setTooltip(
-                new Tooltip(state.bundle().getString("documents.removeNode.tooltip"))
+                new Tooltip(state.bundle().getString("resources.removeNode.tooltip"))
         );
         editNodeButton.setTooltip(
-                new Tooltip(state.bundle().getString("documents.editNode.tooltip"))
+                new Tooltip(state.bundle().getString("resources.editNode.tooltip"))
         );
         moveNodeButton.setTooltip(
-                new Tooltip(state.bundle().getString("documents.moveNode.tooltip"))
+                new Tooltip(state.bundle().getString("resources.moveNode.tooltip"))
         );
     }
     
@@ -551,7 +551,7 @@ public class MainController implements Initializable {
         mapOutlookToWindow(timeline);
         mapAssessmentsToWindow();
         mapNotesToWindow();
-        mapDocumentsToWindow();
+        mapResourcesToWindow();
     }
     
     /**
@@ -714,10 +714,9 @@ public class MainController implements Initializable {
     /**
      * Maps documents to window.
      */
-    private void mapDocumentsToWindow() {
-        DocumentTreeView.bind(
-                documentTreeView, 
-                state.getOpenDocument().getDocuments()
+    private void mapResourcesToWindow() {
+        ResourcesTreeView.bind(resourcesTreeView, 
+                state.getOpenDocument().getResources()
         );
     }
     
@@ -1266,7 +1265,7 @@ public class MainController implements Initializable {
     }
     
     /**
-     * Moves the selected node in the documentation tree
+     * Moves the selected node in the resources tree
      */
     @FXML
     private void handleMoveNode() {

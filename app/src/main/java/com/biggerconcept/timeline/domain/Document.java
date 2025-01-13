@@ -63,7 +63,7 @@ public class Document {
     private ArrayList<Release> releases;
     
     /**
-     * Root document node
+     * Root resources node
      */
     @JsonInclude(Include.NON_NULL)
     @JsonTypeInfo(
@@ -71,7 +71,7 @@ public class Document {
             include = JsonTypeInfo.As.PROPERTY,
             property = "className"
     )
-    private Group documents;
+    private Group resources;
     
     /**
      * Last epic number
@@ -205,16 +205,16 @@ public class Document {
     }
     
     /**
-     * Getter for root document group.
+     * Getter for root resources group.
      * 
-     * @return root document group
+     * @return root resources group
      */
-    public Group getDocuments() {
-        if (documents == null) {
-            documents = new Group("/");
+    public Group getResources() {
+        if (resources == null) {
+            resources = new Group("/");
         }
         
-        return documents;
+        return resources;
     }
     
     /**
@@ -320,12 +320,12 @@ public class Document {
     }
     
     /**
-     * Setter for root documentation group.
+     * Setter for project resources.
      * 
-     * @param value root documentation group
+     * @param value root resource folder
      */
-    public void setDocumentation(Group value) {
-        documents = value;
+    public void setResources(Group value) {
+        resources = value;
     }
 
     /**
