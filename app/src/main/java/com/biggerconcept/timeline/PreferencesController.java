@@ -545,7 +545,7 @@ public class PreferencesController
             ReportBuilderDialog.open(
                     this,
                     Element.availableContent(state),
-                    selected, 
+                    selected,
                     currentPreferences.getReports(),
                     false,
                     this.getClass().getResource("/fxml/ReportBuilder.fxml")

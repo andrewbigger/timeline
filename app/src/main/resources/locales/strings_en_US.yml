@@ -1435,4 +1435,9 @@ parts:
     title: "Move node tooltip"
     value: "Move selected document tree item"
     variants: {}
+- translation:
+    key: "reports.builder.documents.title"
+    title: "Documents section title"
+    value: "Documents"
+    variants: {}
 sourceLanguage: "en"

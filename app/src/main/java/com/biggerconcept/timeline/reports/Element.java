@@ -160,6 +160,8 @@ public class Element
                 Variables.sprintLength(state)
         );
         
+        content.setDocumentRoot(state.getDocumentRoot());
+        
         return content;
     }
     

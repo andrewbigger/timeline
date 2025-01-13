@@ -7,6 +7,7 @@ import com.biggerconcept.timeline.domain.Judgement.Assessment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
@@ -65,6 +66,11 @@ public class Document {
      * Root document node
      */
     @JsonInclude(Include.NON_NULL)
+    @JsonTypeInfo(
+            use = JsonTypeInfo.Id.CLASS,
+            include = JsonTypeInfo.As.PROPERTY,
+            property = "className"
+    )
     private Group documents;
     
     /**
