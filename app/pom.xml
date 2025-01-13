@@ -121,7 +121,7 @@
                             <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <executable>javapackager</executable>
+                            <executable>${JAVA_HOME}/bin/javapackager</executable>
                             <arguments>
                                 <argument>-deploy</argument>
                                 <argument>-native</argument>
