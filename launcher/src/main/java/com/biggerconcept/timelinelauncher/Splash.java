@@ -8,6 +8,8 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -201,6 +203,16 @@ public class Splash implements UIProvider {
         VBox header = new VBox(10);
         header.setAlignment(Pos.CENTER);
         header.setPrefSize(300, 500);
+        
+        BorderPane icon = new BorderPane();
+        icon.setCenter(
+                new ImageView(
+                        new Image(
+                                getClass()
+                                        .getResourceAsStream("/SplashHeader.png")
+                        )
+                )
+        );
 
         Label titleLabel = new Label(title);
         titleLabel.getStyleClass().add("title");
@@ -209,7 +221,7 @@ public class Splash implements UIProvider {
         Label statusLabel = new Label(status);
         statusLabel.setId("statusLabel");
         
-        header.getChildren().addAll(titleLabel, statusLabel, indicator);
+        header.getChildren().addAll(icon, titleLabel, statusLabel, indicator);
         
         return header;
     }

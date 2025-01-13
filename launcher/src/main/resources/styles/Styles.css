@@ -1,16 +1,16 @@
 .splash {
   -fx-font-family: Helvetica Neue, Helvetica, sans-serif;
-  -fx-background-color: linear-gradient(#4DBA4D, #87C846);
+  -fx-background-color: #FFF;
 }
 
 .splash #titleLabel {
   -fx-font-size: 36px;
-  -fx-text-fill: #FFF;
+  -fx-text-fill: #000;
 }
 
 .splash #statusLabel {
   -fx-font-size: 15px;
-  -fx-text-fill: #FDCC52;
+  -fx-text-fill: #A81897;
 }
 
 .splash .prog {
@@ -20,7 +20,7 @@
 
 .splash .progress-bar {
   -fx-pref-width: 200px;
-  -fx-accent: #FDCC52;
+  -fx-accent: #A81897;
 }
 
 .splash .footer {
