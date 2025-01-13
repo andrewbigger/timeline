@@ -78,10 +78,10 @@ public class Element
         content.addParagraph(new Heading3Element(state));
         content.addParagraph(new Heading4Element(state));
         content.addParagraph(new SubtitleParagraphElement(state));
+        content.addParagraph(new StrongParagraphElement(state));
         content.addParagraph(new ParagraphElement(state));
         content.addParagraph(new CodeElement(state));
         content.addParagraph(new MarkdownElement(state));
-        content.addParagraph(new StrongParagraphElement(state));
         content.addParagraph(new NewLineElement(state));
         content.addParagraph(new PageBreakElement(state));
         
