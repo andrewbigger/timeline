@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.reports.Element;
@@ -38,7 +39,7 @@ public class ShelfTableElement extends Element {
      * 
      * @throws IOException when unable to write to document
      */
-    public void insertInto(Doc document, HashMap<String, String> vars) 
+    public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
             throws IOException {
         ArrayList<Epic> shelfEpics = getDocument().getShelf();
         

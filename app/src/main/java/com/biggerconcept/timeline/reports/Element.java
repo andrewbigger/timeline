@@ -26,6 +26,7 @@ import com.biggerconcept.appengine.reports.elements.Content;
 import com.biggerconcept.appengine.reports.elements.IElement;
 import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Document;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -160,7 +161,7 @@ public class Element
                 Variables.sprintLength(state)
         );
         
-        content.setDocumentRoot(state.getDocumentRoot());
+        content.setResourcesRoot(state.getDocumentRoot());
         
         return content;
     }
@@ -256,11 +257,12 @@ public class Element
      * 
      * @param document report document
      * @param vars content variables
+     * @param root root node
      * 
      * @throws IOException if unable to read file
      */
     @Override
-    public void insertInto(Doc document, HashMap<String, String> vars) 
+    public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
             throws IOException {
         throw new UnsupportedOperationException("Not supported.");
     }

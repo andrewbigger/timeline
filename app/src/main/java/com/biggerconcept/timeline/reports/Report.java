@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
 import com.biggerconcept.appengine.reports.elements.IElement;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.reports.resources.ArticleElement;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -24,11 +25,17 @@ public class Report extends com.biggerconcept.appengine.reports.Report implement
     private ArrayList<IElement> elements;
     
     /**
+     * Application state.
+     */
+    private State state;
+    
+    /**
      * Default constructor
      */
     public Report() {
         super();
         this.elements = new ArrayList<>();
+        this.state = null;
     }
     
     /**
@@ -39,6 +46,7 @@ public class Report extends com.biggerconcept.appengine.reports.Report implement
     public Report(String name) {
         super(name);
         this.elements = new ArrayList<>();
+        this.state = null;
     }
     
     /**
@@ -50,6 +58,7 @@ public class Report extends com.biggerconcept.appengine.reports.Report implement
     public Report(String name, String description) {
         super(name, description);
         this.elements = new ArrayList<>();
+        this.state = null;
     }
     
     /**
@@ -73,6 +82,8 @@ public class Report extends com.biggerconcept.appengine.reports.Report implement
      */
     @JsonIgnore
     public void setState(State value) {
+        state = value;
+        
         for (IElement e : elements) {
             if (isLinkedNodeElement(e)) {
                 e = adaptLinkedNodeElement(value, e);
@@ -226,9 +237,19 @@ public class Report extends com.biggerconcept.appengine.reports.Report implement
     * @return adapted report element
     */
    private Element adaptLinkedNodeElement(State state, IElement element) {
-       switch(element.getNode().getType()) {
+       if (state == null) {
+           return null;
+       }
+       
+       Node found = state.getDocumentRoot().findById(element.getNodeId());
+       
+       if (found == null) {
+           return null;
+       }
+       
+       switch(found.getType()) {
            case ARTICLE:
-               return new ArticleElement(state, element.getNode());
+               return new ArticleElement(state, found.getId());
        }
        
        return null;

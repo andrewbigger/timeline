@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
@@ -45,7 +46,7 @@ public class EpicsTimelineTableElement extends Element {
      * 
      * @throws IOException when unable to write to document
      */
-    public void insertInto(Doc document, HashMap<String, String> vars) 
+    public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
             throws IOException {
         ResourceBundle bundle = getState().bundle();
         document.strong(

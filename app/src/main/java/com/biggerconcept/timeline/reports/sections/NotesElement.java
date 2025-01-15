@@ -2,6 +2,7 @@ package com.biggerconcept.timeline.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
 import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.reports.Element;
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class NotesElement extends Element {
      * @param document report document
      * @param vars content variables
      */
-    public void insertInto(Doc document, HashMap<String, String> vars) 
+    public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
             throws IOException {
         document.md(compile(getDocument().getNotes(), vars));
     }

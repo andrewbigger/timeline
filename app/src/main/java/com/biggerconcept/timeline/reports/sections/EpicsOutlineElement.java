@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Document;
@@ -43,7 +44,7 @@ public class EpicsOutlineElement extends Element {
      * 
      * @throws IOException when unable to write file
      */
-    public void insertInto(Doc document, HashMap<String, String> vars) 
+    public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
             throws IOException {
         try {
             Document openDocument = getState().getOpenDocument();

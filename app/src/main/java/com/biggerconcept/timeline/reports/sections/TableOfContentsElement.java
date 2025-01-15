@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.reports.Element;
 import java.util.HashMap;
@@ -34,7 +35,7 @@ public class TableOfContentsElement extends Element {
      * @param document report document
      * @param vars content variables
      */
-    public void insertInto(Doc document, HashMap<String, String> vars) {
+    public void insertInto(Doc document, HashMap<String, String> vars, Node root) {
         document.toc();
     }
     

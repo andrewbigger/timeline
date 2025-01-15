@@ -8,6 +8,7 @@ import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.reports.Element;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.UUID;
 
 /**
  * Insert linked node into a report
@@ -36,12 +37,12 @@ public class ArticleElement extends Element {
      * Full constructor.
      * 
      * @param state application state
-     * @param node linked node
+     * @param nodeId linked node ID
      */
-    public ArticleElement(State state, Node node) {
+    public ArticleElement(State state, UUID nodeId) {
         super(state);
         this.type = ParagraphType.md;
-        this.node = node;
+        this.nodeId = nodeId;
     }
     
     /**
@@ -53,13 +54,30 @@ public class ArticleElement extends Element {
      * @throws IOException when unable to write file
      */
     @Override
-    public void insertInto(Doc document, HashMap<String, String> vars) 
+    public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
             throws IOException {
-        try {
-            Article article = (Article) this.node;
-            document.md(compile(article.getContent(), vars));
-        } catch(Exception ex) {
+        Article article = root.findArticleById(getNodeId());
+
+        if (article == null) {
             return;
+        }
+
+        document.md(compile(article.getContent(), vars));
+    }
+    
+    /**
+     * Overrides the getArgs method to provide preview of content
+     * 
+     * @return article content.
+     */
+    @Override
+    public String previewContent() {
+        try {
+            Article article = getRoot().findArticleById(getNodeId());
+            
+            return article.getContent();
+        } catch (Exception ex) {
+            return getName();
         }
     }
     

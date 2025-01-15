@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.reports.sections;
 
 import com.biggerconcept.appengine.serializers.documents.Doc;
+import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Release;
 import com.biggerconcept.timeline.reports.Element;
@@ -38,7 +39,7 @@ public class ReleaseTableElement extends Element {
      * 
      * @throws IOException when unable to write file
      */
-    public void insertInto(Doc document, HashMap<String, String> vars) 
+    public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
             throws IOException {
         ArrayList<Release> releases = getDocument().getReleases();
         
