@@ -13,9 +13,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
+
 import com.biggerconcept.timeline.ui.domain.TimelineEpic;
 
 /**
@@ -53,7 +57,7 @@ public class EpicsTimelineTable {
     /**
      * Width of sprint cell.
      */
-    public static final int SPRINT_CELL_WIDTH = 30;
+    public static final int SPRINT_CELL_WIDTH = 45;
     
     /**
      * Style for sprint column.
@@ -233,7 +237,7 @@ public class EpicsTimelineTable {
         s.setMinWidth(SPRINT_CELL_WIDTH);
         s.setMaxWidth(SPRINT_CELL_WIDTH);
         s.setStyle(SPRINT_COL_STYLE);
-        
+
         s.setCellValueFactory(data -> {
             String value = "";
             

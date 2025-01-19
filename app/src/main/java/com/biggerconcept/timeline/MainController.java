@@ -317,12 +317,6 @@ public class MainController implements Initializable {
     public Button newFileButton;
     
     /**
-     * Report dropdown separator
-     */
-    @FXML
-    public SeparatorMenuItem reportMenuSeparator;
-    
-    /**
      * Reports menu button
      */
     @FXML
@@ -572,10 +566,6 @@ public class MainController implements Initializable {
                 .getOpenDocument()
                 .getPreferences()
                 .getReports();
-        
-        if (reports.isEmpty()) {
-            reportMenuSeparator.setVisible(false);
-        }
         
         ReportMenuBuilder.build(
                 state.bundle(),

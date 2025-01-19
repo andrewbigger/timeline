@@ -51,7 +51,7 @@ public class ReleasesTimelineTable {
     /**
      * Width of sprint cell.
      */
-    public static final int SPRINT_CELL_WIDTH = 30;
+    public static final int SPRINT_CELL_WIDTH = 45;
     
     /**
      * Style for sprint column.

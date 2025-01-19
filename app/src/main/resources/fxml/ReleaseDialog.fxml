@@ -21,6 +21,9 @@
                <VBox.margin>
                   <Insets bottom="3.0" />
                </VBox.margin>
+               <font>
+                  <Font name="SansSerif" size="13.0" style="bold" />
+               </font>
             </Label>
             <TextField fx:id="releaseNameTextField">
                <VBox.margin>
@@ -31,6 +34,9 @@
                <VBox.margin>
                   <Insets bottom="3.0" />
                </VBox.margin>
+               <font>
+                  <Font name="SansSerif" size="13.0" style="bold" />
+               </font>
             </Label>
             <TextArea fx:id="releaseDescriptionTextArea" prefHeight="106.0" prefWidth="600.0" wrapText="true">
                <VBox.margin>
@@ -44,15 +50,18 @@
                <VBox.margin>
                   <Insets bottom="3.0" />
                </VBox.margin>
+               <font>
+                  <Font name="SansSerif" size="13.0" style="bold" />
+               </font>
             </Label>
             <HBox prefHeight="32.0" prefWidth="580.0">
                <children>
-                  <ComboBox fx:id="epicChooserComboBox" prefWidth="150.0">
+                  <ComboBox fx:id="epicChooserComboBox" prefHeight="34.0" prefWidth="504.0">
                      <HBox.margin>
                         <Insets right="5.0" />
                      </HBox.margin>
                   </ComboBox>
-                <Button fx:id="addEpicButton" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddEpicToRelease" prefWidth="25.0">
+                <Button fx:id="addEpicButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleAddEpicToRelease" prefWidth="34.0">
                      <styleClass>
                         <String fx:value="iconButton" />
                         <String fx:value="smallIcon" />
@@ -62,7 +71,7 @@
                         <Insets right="5.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="removeEpicButton" minWidth="25.0" mnemonicParsing="false" onAction="#handleRemoveEpicFromRelease" prefWidth="25.0">
+                  <Button fx:id="removeEpicButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleRemoveEpicFromRelease" prefWidth="34.0">
                      <styleClass>
                         <String fx:value="iconButton" />
                         <String fx:value="smallIcon" />
@@ -74,7 +83,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
                <VBox.margin>
-                  <Insets bottom="3.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </HBox>
             <ListView fx:id="epicsListView" prefHeight="200.0" prefWidth="200.0">
@@ -91,7 +100,7 @@
             <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelRelease" prefWidth="100.0" text="%actions.cancel" BorderPane.alignment="CENTER" />
          </left>
          <right>
-            <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSaveRelease" prefWidth="100.0" text="%actions.save" BorderPane.alignment="CENTER" />
+            <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSaveRelease" prefWidth="100.0" text="%actions.apply" BorderPane.alignment="CENTER" />
          </right>
          <padding>
             <Insets bottom="5.0" top="5.0" />

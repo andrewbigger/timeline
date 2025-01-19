@@ -18,14 +18,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="preferencesBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="600.0" stylesheets="fxml/Application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.PreferencesController">
+<BorderPane fx:id="preferencesBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="598.0" prefWidth="600.0" stylesheets="fxml/Application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.PreferencesController">
    <bottom>
       <BorderPane prefHeight="33.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
             <Button fx:id="cancelPreferencesButton" cancelButton="true" mnemonicParsing="false" onMouseClicked="#handleCancelPreferences" prefWidth="100.0" text="%actions.cancel" BorderPane.alignment="CENTER" />
          </left>
          <right>
-            <Button fx:id="savePreferencesButton" defaultButton="true" mnemonicParsing="false" onMouseClicked="#handleSavePreferences" prefWidth="100.0" text="%actions.save" BorderPane.alignment="CENTER" />
+            <Button fx:id="savePreferencesButton" defaultButton="true" mnemonicParsing="false" onMouseClicked="#handleSavePreferences" prefWidth="100.0" text="%actions.apply" BorderPane.alignment="CENTER" />
          </right>
          <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -41,54 +41,63 @@
                      <children>
                         <Label text="%preferences.estimates.startDate.title">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="SansSerif" size="14.0" style="bold"/>
                            </font>
                            <padding>
                               <Insets bottom="5.0" />
                            </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </Label>
                         <Label text="%preferences.estimates.startDate.description">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
                         <DatePicker fx:id="startDatePicker">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </DatePicker>
                         <Label text="%preferences.estimates.startSprint.title">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="SansSerif" size="14.0" style="bold"/>
                            </font>
                            <padding>
                               <Insets bottom="5.0" />
                            </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </Label>
                         <Label text="%preferences.estimates.startSprint.description">
                            <VBox.margin>
-                              <Insets bottom="3.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
                         <TextField fx:id="startSprintNumberTextField">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </TextField>
                         <Label text="%preferences.estimates.referenceSprints.title">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="SansSerif" size="14.0" style="bold"/>
                            </font>
                            <padding>
                               <Insets bottom="5.0" />
                            </padding>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </Label>
                         <Label text="%preferences.estimates.referenceSprints.description">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <GridPane>
+                        <GridPane prefHeight="243.0" prefWidth="580.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -201,18 +210,24 @@
                            <children>
                               <Label fx:id="exammpleSettingLabel" text="%preferences.tasks.sizing.title">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="SansSerif" size="14.0" style="bold" />
                                  </font>
                                  <padding>
                                     <Insets bottom="5.0" />
                                  </padding>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </Label>
                               <Label fx:id="exampleSettingDescriptionLabel" text="%preferences.tasks.sizing.description">
                                  <padding>
                                     <Insets bottom="5.0" />
                                  </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
                               </Label>
-                              <GridPane>
+                              <GridPane prefHeight="216.0" prefWidth="580.0">
                                  <columnConstraints>
                                     <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="61.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="524.0" minWidth="10.0" prefWidth="519.0" />
@@ -252,15 +267,15 @@
                      <children>
                         <Label text="%preferences.sprint.size.title">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="SansSerif" size="14.0" style="bold"/>
                            </font>
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                         <Label text="%preferences.sprint.size.description">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
                         <ComboBox fx:id="sprintSizeComboBox" prefWidth="150.0" />
@@ -277,19 +292,19 @@
                      <children>
                         <Label text="%preferences.reports.title">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="Helvetica Neue Bold" size="14.0" />
                            </font>
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                         <Label text="%preferences.reports.description">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin></Label>
                         <HBox prefHeight="30.0" prefWidth="580.0">
                            <children>
-                              <Button fx:id="addReportButton" mnemonicParsing="false" onAction="#handleAddReport" prefWidth="25.0">
+                              <Button fx:id="addReportButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleAddReport" prefWidth="34.0">
                                  <HBox.margin>
                                     <Insets right="5.0" />
                                  </HBox.margin>
@@ -299,7 +314,7 @@
                                     <String fx:value="addButton" />
                                  </styleClass>
                               </Button>
-                              <Button fx:id="removeReportButton" mnemonicParsing="false" onAction="#handleRemoveReport" prefWidth="25.0">
+                              <Button fx:id="removeReportButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleRemoveReport" prefWidth="34.0">
                                  <HBox.margin>
                                     <Insets right="5.0" />
                                  </HBox.margin>
@@ -309,7 +324,7 @@
                                     <String fx:value="removeButton" />
                                  </styleClass>
                               </Button>
-                              <Button fx:id="editReportButton" mnemonicParsing="false" onAction="#handleEditReport" prefWidth="25.0">
+                              <Button fx:id="editReportButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleEditReport" prefWidth="34.0">
                                  <styleClass>
                                     <String fx:value="iconButton" />
                                     <String fx:value="smallIcon" />
@@ -318,69 +333,10 @@
                               </Button>
                            </children>
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </HBox>
-                        <ListView fx:id="reportsListView" prefHeight="400.0" prefWidth="580.0" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-               </content>
-            </Tab>
-            <Tab fx:id="reportsTab1" text="%preferences.reports.title">
-               <content>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <Label text="%preferences.reports.title">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <Label text="%preferences.reports.description">
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </Label>
-                        <HBox prefHeight="30.0" prefWidth="580.0">
-                           <children>
-                              <Button fx:id="addReportButton1" mnemonicParsing="false" onAction="#handleAddReport" prefWidth="25.0">
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
-                                 <styleClass>
-                                    <String fx:value="iconButton" />
-                                    <String fx:value="smallIcon" />
-                                    <String fx:value="addButton" />
-                                 </styleClass>
-                              </Button>
-                              <Button fx:id="removeReportButton1" mnemonicParsing="false" onAction="#handleRemoveReport" prefWidth="25.0">
-                                 <HBox.margin>
-                                    <Insets right="5.0" />
-                                 </HBox.margin>
-                                 <styleClass>
-                                    <String fx:value="iconButton" />
-                                    <String fx:value="smallIcon" />
-                                    <String fx:value="removeButton" />
-                                 </styleClass>
-                              </Button>
-                              <Button fx:id="editReportButton1" mnemonicParsing="false" onAction="#handleEditReport" prefWidth="25.0">
-                                 <styleClass>
-                                    <String fx:value="iconButton" />
-                                    <String fx:value="smallIcon" />
-                                    <String fx:value="editButton" />
-                                 </styleClass>
-                              </Button>
-                           </children>
-                           <VBox.margin>
-                              <Insets bottom="5.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <ListView fx:id="reportsListView1" prefHeight="400.0" prefWidth="580.0" />
+                        <ListView fx:id="reportsListView" prefHeight="400.0" prefWidth="580.0" style="-fx-border-width: 0;" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -394,7 +350,7 @@
                      <children>
                         <Label text="%preferences.company.title">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="SansSerif" size="14.0" style="bold"/>
                            </font>
                            <VBox.margin>
                               <Insets bottom="5.0" />
@@ -402,22 +358,22 @@
                         </Label>
                         <Label text="%preferences.company.description">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
                         <Label text="%preferences.company.name">
                            <VBox.margin>
-                              <Insets bottom="3.0" />
+                              <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
                         <TextField fx:id="defaultCompanyName">
                            <VBox.margin>
-                              <Insets bottom="5.0" />
+                              <Insets bottom="10.0" />
                            </VBox.margin>
                         </TextField>
                         <Label text="%preferences.company.defaultDomain">
                            <VBox.margin>
-                              <Insets bottom="3.0" />
+                              <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
                         <TextField fx:id="defaultCompanyDomain" />

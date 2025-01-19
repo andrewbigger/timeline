@@ -1,4 +1,4 @@
-package com.biggerconcept.timelinelauncher;
+package com.biggerconcept.timeline.launcher;
 
 import fxlauncher.FXManifest;
 import fxlauncher.UIProvider;

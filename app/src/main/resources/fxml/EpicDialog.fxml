@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="epicEditorBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.EpicDialogController">
+<BorderPane fx:id="epicEditorBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.EpicDialogController">
    <bottom>
       <BorderPane prefHeight="38.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
@@ -27,10 +27,13 @@
          <right>
             <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="234.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="saveEpicButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSaveEpic" prefWidth="100.0" text="%actions.save" />
+                  <Button fx:id="saveEpicButton" defaultButton="true" mnemonicParsing="false" onAction="#handleSaveEpic" prefWidth="100.0" text="%actions.apply" />
                </children>
             </HBox>
          </right>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
       </BorderPane>
    </bottom>
    <padding>
@@ -41,28 +44,40 @@
          <children>
             <Label text="%dialogs.epic.name">
                <VBox.margin>
-                  <Insets bottom="3.0" />
+                  <Insets bottom="5.0" />
                </VBox.margin>
+               <font>
+                  <Font name="Helvetica" size="13.0" style="bold" />
+               </font>
             </Label>
             <TextField fx:id="epicName">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TextField>
             <Label text="%dialogs.epic.summary">
                <VBox.margin>
-                  <Insets bottom="3.0" />
+                  <Insets bottom="5.0" />
                </VBox.margin>
+               <font>
+                  <Font name="Helvetica" size="13.0" style="bold" />
+               </font>
             </Label>
             <TextArea fx:id="epicSummary" prefHeight="123.0" prefWidth="580.0" wrapText="true">
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
                <font>
                   <Font name="Menlo Regular" size="13.0" />
                </font>
             </TextArea>
-            <Label text="%dialogs.epic.assignedSprints.title" />
+            <Label text="%dialogs.epic.assignedSprints.title">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Helvetica" size="13.0" style="bold" />
+               </font></Label>
             <HBox alignment="CENTER_LEFT" prefHeight="33.0" prefWidth="807.0">
                <children>
                   <Label text="%dialogs.epic.assignedSprints.start">
@@ -102,14 +117,14 @@
                            <top>
                               <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <items>
-                                    <Button fx:id="addScopeButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddScope" prefWidth="25.0">
+                                    <Button fx:id="addScopeButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleAddScope" prefWidth="34.0">
                                        <styleClass>
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />
                                           <String fx:value="addButton" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="removeScopeButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleRemoveScope" prefWidth="25.0">
+                                    <Button fx:id="removeScopeButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleRemoveScope" prefWidth="34.0">
                                        <styleClass>
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />
@@ -131,35 +146,35 @@
                            <top>
                               <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                  <items>
-                                    <Button fx:id="addTaskButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddTask" prefWidth="25.0">
+                                    <Button fx:id="addTaskButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleAddTask" prefWidth="34.0">
                                        <styleClass>
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />
                                           <String fx:value="addButton" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="removeTaskButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleRemoveTask" prefWidth="25.0">
+                                    <Button fx:id="removeTaskButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleRemoveTask" prefWidth="34.0">
                                        <styleClass>
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />
                                           <String fx:value="removeButton" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="moveTaskUpButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveTaskUp" prefWidth="25.0">
+                                    <Button fx:id="moveTaskUpButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleMoveTaskUp" prefWidth="34.0">
                                        <styleClass>
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />
                                           <String fx:value="moveUpButton" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="moveTaskDownButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveTaskDown" prefWidth="25.0">
+                                    <Button fx:id="moveTaskDownButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleMoveTaskDown" prefWidth="34.0">
                                        <styleClass>
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />
                                           <String fx:value="moveDownButton" />
                                        </styleClass>
                                     </Button>
-                                    <Button fx:id="moveTaskButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleMoveTask" prefWidth="25.0">
+                                    <Button fx:id="moveTaskButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleMoveTask" prefWidth="34.0">
                                        <styleClass>
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />
@@ -167,7 +182,7 @@
                                        </styleClass>
                                     </Button>
                                     <Separator orientation="VERTICAL" prefHeight="5.0" prefWidth="0.0" />
-                                    <Button fx:id="editTaskButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleEditTask" prefWidth="25.0">
+                                    <Button fx:id="editTaskButton" maxWidth="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleEditTask" prefWidth="34.0">
                                        <styleClass>
                                           <String fx:value="iconButton" />
                                           <String fx:value="smallIcon" />
@@ -185,7 +200,7 @@
                   </Tab>
               </tabs>
                <VBox.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="10.0" />
                </VBox.margin>
             </TabPane>
             <VBox prefHeight="0.0" prefWidth="580.0">

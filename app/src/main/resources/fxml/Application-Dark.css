@@ -1,6 +1,5 @@
 .root{
-  -fx-font-family: "SansSerif";
-  -fx-font-weight: 600;
+  -fx-font-family: "Helvetica Neue, sans-serif";
 }
 
 .main-toolbar-button {
@@ -23,15 +22,15 @@
 }
 
 .addArticleButton {
-  -fx-background-image: url('../icons/AddArticleIcon.png');
+  -fx-background-image: url('../icons/AddArticleIcon-Light.png');
 }
 
 .addGroupButton {
-  -fx-background-image: url('../icons/AddGroupIcon.png');
+  -fx-background-image: url('../icons/AddGroupIcon-Light.png');
 }
 
 .addContactButton {
-  -fx-background-image: url('../icons/AddContactIcon.png');
+  -fx-background-image: url('../icons/AddContactIcon-Light.png');
 }
 
 .removeButton {
@@ -39,19 +38,19 @@
 }
 
 .moveUpButton {
-  -fx-background-image: url('../icons/MoveUpIcon.png');
+  -fx-background-image: url('../icons/MoveUpIcon-Light.png');
 }
 
 .moveDownButton {
-  -fx-background-image: url('../icons/MoveDownIcon.png');
+  -fx-background-image: url('../icons/MoveDownIcon-Light.png');
 }
 
 .moveLeftButton {
-  -fx-background-image: url('../icons/MoveLeftIcon.png');
+  -fx-background-image: url('../icons/MoveLeftIcon-Light.png');
 }
 
 .moveRightButton {
-  -fx-background-image: url('../icons/MoveRightIcon.png');
+  -fx-background-image: url('../icons/MoveRightIcon-Light.png');
 }
 
 .editButton {
@@ -59,7 +58,7 @@
 }
 
 .moveButton {
-  -fx-background-image: url('../icons/MoveIcon.png');
+  -fx-background-image: url('../icons/MoveIcon-Light.png');
 }
 
 .tickButton {
@@ -71,155 +70,158 @@
 }
 
 .importButton {
-  -fx-background-image: url('../icons/ImportIcon.png');
+  -fx-background-image: url('../icons/ImportIcon-Light.png');
 }
 
 .projectusButton {
-  -fx-background-image: url('../icons/projectusIcon.png');
+  -fx-background-image: url('../icons/ProjectusIcon-Light.png');
 }
 
 .hashButton {
-  -fx-background-image: url('../icons/HashIcon.png');
+  -fx-background-image: url('../icons/HashIcon-Light.png');
 }
 
 #openFileButton {
-  -fx-background-image:url('../icons/OpenFileIcon.png');
+  -fx-background-image:url('../icons/OpenFileIcon-Light.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #saveFileButton {
-  -fx-background-image: url('../icons/SaveFileIcon.png');
+  -fx-background-image: url('../icons/SaveFileIcon-Light.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #newFileButton {
-  -fx-background-image: url('../icons/NewFileIcon.png');
+  -fx-background-image: url('../icons/NewFileIcon-Light.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #reportsMenuButton {
-  -fx-background-image: url('../icons/ReportsIcon.png');
+  -fx-background-image: url('../icons/ReportsIcon-Light.png');
   -fx-background-position: left center;
   -fx-background-repeat: no-repeat;
 }
 
 .pastSprint {
-  -fx-text-fill: #17494d !important;
+  -fx-text-fill: #daeded;
 }
 
 .futureSprint {
-  -fx-text-fill: #90bbbb !important;
+  -fx-text-fill: #97bfbf;
 }
 
 .release {
-  -fx-text-fill: #f79a3e !important;
+  -fx-text-fill: #f79a3e;
 }
 
 .current {
-  -fx-background-color: #daeded;
+  -fx-background-color: #063940;
 }
 
 .notes {
-  -fx-background-color: #fff7d4 !important;
+  -fx-background-color: #3f2e00;
 }
 
 .yearIndicator {
-  -fx-border-color:  #D4DAE1;
+  -fx-border-color:  rgb(48,	54,	61);
 }
+
+
 
 /* Begin Atlanta FX */
 
+
 .root {
-  -color-dark: #1b1f24;
+  -color-dark: #010409;
   -color-light: #ffffff;
-  -color-base-0: #f6f8fa;
-  -color-base-1: #eaeef2;
-  -color-base-2: #d0d7de;
-  -color-base-3: #afb8c1;
-  -color-base-4: #8c959f;
-  -color-base-5: #6e7781;
-  -color-base-6: #57606a;
-  -color-base-7: #424a53;
-  -color-base-8: #32383f;
-  -color-base-9: #24292f;
-  -color-accent-0: #ddf4ff;
-  -color-accent-1: #b6e3ff;
-  -color-accent-2: #80ccff;
-  -color-accent-3: #54aeff;
-  -color-accent-4: #218bff;
-  -color-accent-5: #0969da;
-  -color-accent-6: #0550ae;
-  -color-accent-7: #033d8b;
-  -color-accent-8: #0a3069;
-  -color-accent-9: #002155;
-  -color-success-0: #dafbe1;
-  -color-success-1: #aceebb;
-  -color-success-2: #6fdd8b;
-  -color-success-3: #4ac26b;
-  -color-success-4: #2da44e;
-  -color-success-5: #1a7f37;
-  -color-success-6: #116329;
-  -color-success-7: #044f1e;
-  -color-success-8: #003d16;
-  -color-success-9: #002d11;
-  -color-warning-0: #fff8c5;
-  -color-warning-1: #fae17d;
-  -color-warning-2: #eac54f;
-  -color-warning-3: #d4a72c;
-  -color-warning-4: #bf8700;
-  -color-warning-5: #9a6700;
-  -color-warning-6: #7d4e00;
-  -color-warning-7: #633c01;
-  -color-warning-8: #4d2d00;
-  -color-warning-9: #3b2300;
-  -color-danger-0: #ffebe9;
-  -color-danger-1: #ffcecb;
-  -color-danger-2: #ffaba8;
-  -color-danger-3: #ff8182;
-  -color-danger-4: #fa4549;
-  -color-danger-5: #cf222e;
-  -color-danger-6: #a40e26;
-  -color-danger-7: #82071e;
-  -color-danger-8: #660018;
-  -color-danger-9: #4c0014;
-  -color-fg-default: #24292f;
-  -color-fg-muted: #57606a;
-  -color-fg-subtle: #6e7781;
+  -color-base-0: #f0f6fc;
+  -color-base-1: #c9d1d9;
+  -color-base-2: #b1bac4;
+  -color-base-3: #8b949e;
+  -color-base-4: #6e7681;
+  -color-base-5: #484f58;
+  -color-base-6: #30363d;
+  -color-base-7: #21262d;
+  -color-base-8: #161b22;
+  -color-base-9: #0d1117;
+  -color-accent-0: #cae8ff;
+  -color-accent-1: #a5d6ff;
+  -color-accent-2: #79c0ff;
+  -color-accent-3: #58a6ff;
+  -color-accent-4: #388bfd;
+  -color-accent-5: #1f6feb;
+  -color-accent-6: #1158c7;
+  -color-accent-7: #0d419d;
+  -color-accent-8: #0c2d6b;
+  -color-accent-9: #051d4d;
+  -color-success-0: #aff5b4;
+  -color-success-1: #7ee787;
+  -color-success-2: #56d364;
+  -color-success-3: #3fb950;
+  -color-success-4: #2ea043;
+  -color-success-5: #238636;
+  -color-success-6: #196c2e;
+  -color-success-7: #0f5323;
+  -color-success-8: #033a16;
+  -color-success-9: #04260f;
+  -color-warning-0: #f8e3a1;
+  -color-warning-1: #f2cc60;
+  -color-warning-2: #e3b341;
+  -color-warning-3: #d29922;
+  -color-warning-4: #bb8009;
+  -color-warning-5: #9e6a03;
+  -color-warning-6: #845306;
+  -color-warning-7: #693e00;
+  -color-warning-8: #4b2900;
+  -color-warning-9: #341a00;
+  -color-danger-0: #ffdcd7;
+  -color-danger-1: #ffc1ba;
+  -color-danger-2: #ffa198;
+  -color-danger-3: #ff7b72;
+  -color-danger-4: #f85149;
+  -color-danger-5: #da3633;
+  -color-danger-6: #b62324;
+  -color-danger-7: #8e1519;
+  -color-danger-8: #67060c;
+  -color-danger-9: #490202;
+  -color-fg-default: #c9d1d9;
+  -color-fg-muted: #8b949e;
+  -color-fg-subtle: #6e7681;
   -color-fg-emphasis: #ffffff;
-  -color-bg-default: #ffffff;
-  -color-bg-overlay: #ffffff;
-  -color-bg-subtle: #f6f8fa;
-  -color-bg-inset: #f6f8fa;
-  -color-border-default: #d0d7de;
-  -color-border-muted: #d0d7de;
-  -color-border-subtle: rgb(221, 221, 222);
-  -color-shadow-default: #d0d7de;
-  -color-neutral-emphasis-plus: #24292f;
-  -color-neutral-emphasis: #6e7781;
-  -color-neutral-muted: rgba(175, 184, 193, 0.2);
-  -color-neutral-subtle: rgba(234, 238, 242, 0.5);
-  -color-accent-fg: #0969da;
-  -color-accent-emphasis: #0969da;
-  -color-accent-muted: rgba(84, 174, 255, 0.4);
-  -color-accent-subtle: #ddf4ff;
-  -color-warning-fg: #9a6700;
-  -color-warning-emphasis: #bf8700;
-  -color-warning-muted: rgba(212, 167, 44, 0.4);
-  -color-warning-subtle: #fff8c5;
-  -color-success-fg: #1a7f37;
-  -color-success-emphasis: #2da44e;
-  -color-success-muted: rgba(74, 194, 107, 0.4);
-  -color-success-subtle: #dafbe1;
-  -color-danger-fg: #cf222e;
-  -color-danger-emphasis: #cf222e;
-  -color-danger-muted: rgba(255, 129, 130, 0.4);
-  -color-danger-subtle: #ffebe9;
+  -color-bg-default: #0d1117;
+  -color-bg-overlay: #0d1117;
+  -color-bg-subtle: #161b22;
+  -color-bg-inset: #010409;
+  -color-border-default: #30363d;
+  -color-border-muted: #21262d;
+  -color-border-subtle: rgb(36, 40, 46);
+  -color-shadow-default: #010409;
+  -color-neutral-emphasis-plus: #6e7681;
+  -color-neutral-emphasis: #6e7681;
+  -color-neutral-muted: rgba(110, 118, 129, 0.4);
+  -color-neutral-subtle: rgba(110, 118, 129, 0.1);
+  -color-accent-fg: #58a6ff;
+  -color-accent-emphasis: #1f6feb;
+  -color-accent-muted: rgba(56, 139, 253, 0.4);
+  -color-accent-subtle: rgba(56, 139, 253, 0.15);
+  -color-warning-fg: #d29922;
+  -color-warning-emphasis: #9e6a03;
+  -color-warning-muted: rgba(187, 128, 9, 0.4);
+  -color-warning-subtle: rgba(187, 128, 9, 0.15);
+  -color-success-fg: #3fb950;
+  -color-success-emphasis: #238636;
+  -color-success-muted: rgba(46, 160, 67, 0.4);
+  -color-success-subtle: rgba(46, 160, 67, 0.15);
+  -color-danger-fg: #f85149;
+  -color-danger-emphasis: #da3633;
+  -color-danger-muted: rgba(248, 81, 73, 0.4);
+  -color-danger-subtle: rgba(248, 81, 73, 0.15);
   -color-chart-1: #f3622d;
   -color-chart-2: #fba71b;
   -color-chart-3: #57b757;
@@ -275,17 +277,17 @@ Text {
 
 .title-1 {
   -fx-font-size: 2em;
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
 }
 
 .title-2 {
   -fx-font-size: 1.75em;
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
 }
 
 .title-3 {
   -fx-font-size: 1.5em;
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
 }
 
 .title-4 {
@@ -295,7 +297,7 @@ Text {
 
 .text-caption {
   -fx-font-size: 1em;
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
 }
 
 .text-small {
@@ -331,11 +333,11 @@ Text {
 }
 
 .text-bold {
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
 }
 
 .text-bold {
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
 }
 
 .text-normal {
@@ -574,7 +576,7 @@ Text {
   -color-button-bg: -color-bg-subtle;
   -color-button-fg: -color-fg-default;
   -color-button-border: -color-border-default;
-  -color-button-bg-hover: -color-base-1;
+  -color-button-bg-hover: -color-base-6;
   -color-button-fg-hover: -color-button-fg;
   -color-button-border-hover: -color-button-border;
   -color-button-bg-focused: -color-button-bg;
@@ -668,7 +670,7 @@ Text {
 .button.button-outlined {
   -color-button-bg: -color-bg-default;
   -color-button-fg: -color-fg-default;
-  -color-button-bg-hover: -color-base-1;
+  -color-button-bg-hover: -color-base-6;
   -color-button-fg-hover: -color-button-fg;
 }
 .button:default, .button.accent {
@@ -702,7 +704,7 @@ Text {
   -color-button-bg-hover: -color-success-emphasis;
   -color-button-fg-hover: -color-fg-emphasis;
   -color-button-border-hover: -color-success-emphasis;
-  -color-button-bg-focused: -color-success-5;
+  -color-button-bg-focused: -color-success-6;
   -color-button-fg-focused: -color-fg-emphasis;
   -color-button-border-focused: -color-success-emphasis;
   -color-button-bg-pressed: -color-success-emphasis;
@@ -1369,7 +1371,7 @@ Text {
   -fx-background-radius: 4px, 3px;
   -fx-spacing: 10px;
   -fx-padding: 1em;
-  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 6px, 0.3, 0, 2);
+  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 8px, 0.6, 0, 2);
 }
 .color-palette > .color-picker-grid {
   -fx-padding: 0.5px;
@@ -1594,7 +1596,7 @@ Text {
   -fx-border-radius: 4px, 3px;
   -fx-background-radius: 4px, 3px;
   -fx-padding: 5px 5px 5px 5px;
-  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 6px, 0.3, 0, 2);
+  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 8px, 0.6, 0, 2);
 }
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
   -fx-cell-size: 0;
@@ -1609,7 +1611,7 @@ Text {
   -fx-fill: -color-fg-default;
 }
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:hover {
-  -fx-background-color: -color-base-1;
+  -fx-background-color: -color-base-7;
   -fx-text-fill: -color-fg-default;
 }
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:hover .font-icon, .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:hover .ikonli-font-icon {
@@ -1617,7 +1619,7 @@ Text {
   -fx-fill: -color-fg-default;
 }
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected, .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected:hover {
-  -fx-background-color: -color-base-2;
+  -fx-background-color: -color-base-6;
   -fx-text-fill: -color-fg-default;
 }
 .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected .font-icon, .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected .ikonli-font-icon, .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected:hover .font-icon, .combo-box-popup > .list-view > .virtual-flow > .clipped-container > .sheet > .list-cell:filled:selected:hover .ikonli-font-icon {
@@ -1787,9 +1789,9 @@ Text {
 .list-view {
   -color-cell-bg: -color-bg-default;
   -color-cell-fg: -color-fg-default;
-  -color-cell-bg-selected: -color-base-1;
+  -color-cell-bg-selected: -color-base-6;
   -color-cell-fg-selected: -color-fg-default;
-  -color-cell-bg-selected-focused: -color-base-1;
+  -color-cell-bg-selected-focused: -color-base-6;
   -color-cell-fg-selected-focused: -color-fg-default;
   -color-cell-bg-odd: -color-bg-subtle;
   -color-cell-border: -color-border-default;
@@ -1835,9 +1837,9 @@ Text {
 .table-view {
   -color-cell-bg: -color-bg-default;
   -color-cell-fg: -color-fg-default;
-  -color-cell-bg-selected: -color-base-1;
+  -color-cell-bg-selected: -color-base-6;
   -color-cell-fg-selected: -color-fg-default;
-  -color-cell-bg-selected-focused: -color-base-1;
+  -color-cell-bg-selected-focused: -color-base-6;
   -color-cell-fg-selected-focused: -color-fg-default;
   -color-cell-bg-odd: -color-bg-subtle;
   -color-cell-border: -color-border-default;
@@ -1871,7 +1873,7 @@ Text {
   -fx-background-insets: 0;
   -fx-size: 40px;
   -fx-padding: 0;
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
   -fx-border-color: -color-cell-border;
   -fx-border-width: 0 1 1 0;
 }
@@ -1996,9 +1998,9 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .tree-view {
   -color-cell-bg: -color-bg-default;
   -color-cell-fg: -color-fg-default;
-  -color-cell-bg-selected: -color-base-1;
+  -color-cell-bg-selected: -color-base-6;
   -color-cell-fg-selected: -color-fg-default;
-  -color-cell-bg-selected-focused: -color-base-1;
+  -color-cell-bg-selected-focused: -color-base-6;
   -color-cell-fg-selected-focused: -color-fg-default;
   -color-cell-bg-odd: -color-bg-subtle;
   -color-cell-border: -color-border-default;
@@ -2062,9 +2064,9 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .tree-table-view {
   -color-cell-bg: -color-bg-default;
   -color-cell-fg: -color-fg-default;
-  -color-cell-bg-selected: -color-base-1;
+  -color-cell-bg-selected: -color-base-6;
   -color-cell-fg-selected: -color-fg-default;
-  -color-cell-bg-selected-focused: -color-base-1;
+  -color-cell-bg-selected-focused: -color-base-6;
   -color-cell-fg-selected-focused: -color-fg-default;
   -color-cell-bg-odd: -color-bg-subtle;
   -color-cell-border: -color-border-default;
@@ -2098,7 +2100,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-background-insets: 0;
   -fx-size: 40px;
   -fx-padding: 0;
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
   -fx-border-color: -color-cell-border;
   -fx-border-width: 0 1 1 0;
 }
@@ -2241,7 +2243,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .combo-box-popup > .date-picker-popup {
-  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 6px, 0.3, 0, 2);
+  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 8px, 0.6, 0, 2);
   -fx-background-radius: 4px, 3px;
 }
 
@@ -2352,7 +2354,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .date-picker-popup > .calendar-grid > .today {
   -fx-background-color: -color-date-today-bg;
   -fx-text-fill: -color-date-today-fg;
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
 }
 
 .calendar {
@@ -2537,7 +2539,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-background-insets: 0;
 }
 .html-editor .toggle-button {
-  -color-button-bg-selected: -color-base-1;
+  -color-button-bg-selected: -color-base-6;
   -color-button-border-focused: transparent;
 }
 
@@ -2798,7 +2800,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-background-color: transparent;
 }
 .menu-bar > .container > .menu-button:hover, .menu-bar > .container > .menu-button:focused, .menu-bar > .container > .menu-button:showing {
-  -fx-background-color: -color-base-1, -color-base-1;
+  -fx-background-color: -color-base-6, -color-base-6;
 }
 
 .menu {
@@ -2843,7 +2845,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-padding: 0 0 0 0.5em;
 }
 .menu-item:focused {
-  -fx-background-color: -color-base-1, -color-base-1;
+  -fx-background-color: -color-base-7, -color-base-7;
 }
 .menu-item:focused > .label {
   -fx-text-fill: -color-fg-default;
@@ -2890,7 +2892,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-text-fill: -color-fg-muted;
 }
 .caption-menu-item > .label > .text {
-  -fx-font-weight: bolder;
+  -fx-font-weight: bold;
 }
 
 .context-menu {
@@ -2898,14 +2900,14 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-background-insets: 0, 1;
   -fx-padding: 5px 5px 5px 5px;
   -fx-background-radius: 4px, 3px;
-  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 6px, 0.3, 0, 2);
+  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 8px, 0.6, 0, 2);
 }
 .context-menu > .scroll-arrow {
   -fx-padding: 0.5em;
   -fx-background-color: transparent;
 }
 .context-menu > .scroll-arrow:hover {
-  -fx-background-color: -color-base-1;
+  -fx-background-color: -color-base-7;
   -fx-text-fill: -color-fg-default;
 }
 .context-menu .separator:horizontal {
@@ -2928,7 +2930,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -color-button-bg: -color-bg-subtle;
   -color-button-fg: -color-fg-default;
   -color-button-border: -color-border-default;
-  -color-button-bg-hover: -color-base-1;
+  -color-button-bg-hover: -color-base-6;
   -color-button-fg-hover: -color-button-fg;
   -color-button-border-hover: -color-button-border;
   -color-button-bg-focused: -color-button-bg;
@@ -3101,7 +3103,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .split-menu-button.button-outlined {
   -color-button-bg: -color-bg-default;
   -color-button-fg: -color-fg-default;
-  -color-button-bg-hover: -color-base-1;
+  -color-button-bg-hover: -color-base-6;
   -color-button-fg-hover: -color-button-fg;
 }
 .menu-button.accent,
@@ -3139,7 +3141,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -color-button-bg-hover: -color-success-emphasis;
   -color-button-fg-hover: -color-fg-emphasis;
   -color-button-border-hover: -color-success-emphasis;
-  -color-button-bg-focused: -color-success-5;
+  -color-button-bg-focused: -color-success-6;
   -color-button-fg-focused: -color-fg-emphasis;
   -color-button-border-focused: -color-success-emphasis;
   -color-button-bg-pressed: -color-success-emphasis;
@@ -3347,7 +3349,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .modal-pane {
-  -color-modal-pane-overlay: rgba(0, 0, 0, 0.32);
+  -color-modal-pane-overlay: rgba(255, 255, 255, 0.2);
 }
 .modal-pane > .scroll-pane > .viewport > * > .scrollable-content {
   -fx-background-color: -color-modal-pane-overlay;
@@ -3574,7 +3576,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 
 .popover {
   -fx-background-color: -color-bg-overlay;
-  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 6px, 0.3, 0, 2);
+  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 8px, 0.6, 0, 2);
 }
 .popover > .border {
   -fx-stroke: -color-border-default;
@@ -3866,15 +3868,15 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 }
 
 .slider {
-  -color-slider-thumb: -color-accent-emphasis;
-  -color-slider-thumb-border: -color-accent-emphasis;
+  -color-slider-thumb: -color-fg-default;
+  -color-slider-thumb-border: -color-fg-default;
   -color-slider-track: -color-border-muted;
   -color-slider-track-progress: -color-accent-emphasis;
   -color-slider-tick: -color-fg-muted;
 }
 .slider.large {
-  -color-slider-thumb: -color-fg-emphasis;
-  -color-slider-thumb-border: -color-accent-emphasis;
+  -color-slider-thumb: -color-fg-default;
+  -color-slider-thumb-border: -color-fg-default;
 }
 .slider > .thumb {
   -fx-background-color: -color-slider-thumb-border, -color-slider-thumb;
@@ -3993,7 +3995,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-padding: 10px;
 }
 .spinner > .increment-arrow-button:hover {
-  -fx-background-color: -color-base-2;
+  -fx-background-color: -color-base-6;
 }
 .spinner > .increment-arrow-button > .increment-arrow {
   -fx-background-color: -color-fg-default;
@@ -4009,7 +4011,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-padding: 10px;
 }
 .spinner > .decrement-arrow-button:hover {
-  -fx-background-color: -color-base-2;
+  -fx-background-color: -color-base-6;
 }
 .spinner > .decrement-arrow-button > .decrement-arrow {
   -fx-background-color: -color-fg-default;
@@ -4567,7 +4569,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -color-button-bg: -color-bg-subtle;
   -color-button-fg: -color-fg-default;
   -color-button-border: -color-border-default;
-  -color-button-bg-hover: -color-base-1;
+  -color-button-bg-hover: -color-base-6;
   -color-button-fg-hover: -color-button-fg;
   -color-button-border-hover: -color-button-border;
   -color-button-bg-focused: -color-button-bg;
@@ -4714,7 +4716,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .tool-bar > .container > .menu-button,
 .tool-bar > .container > .split-menu-button {
   -color-button-bg: -color-bg-subtle;
-  -color-button-bg-hover: -color-base-2;
+  -color-button-bg-hover: -color-base-6;
   -color-button-border-hover: -color-accent-muted;
   -color-button-border-focused: -color-accent-muted;
   -fx-background-insets: 0;
@@ -4733,7 +4735,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
 .tool-bar > .container .toggle-button {
   -color-button-bg: -color-bg-subtle;
   -color-button-border-hover: -color-accent-muted;
-  -color-button-bg-selected: -color-base-2;
+  -color-button-bg-selected: -color-base-6;
   -color-button-fg-selected: -color-fg-default;
   -fx-background-insets: 0;
   -fx-effect: none;
@@ -4743,7 +4745,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-background-color: -color-button-border-hover, -color-bg-subtle;
 }
 .tool-bar > .container .toggle-button:hover:selected {
-  -fx-background-color: -color-button-border-hover, -color-base-2;
+  -fx-background-color: -color-button-border-hover, -color-base-6;
 }
 .tool-bar > .container .breadcrumbs {
   -fx-background-color: -color-border-default, -color-bg-default;
@@ -4760,7 +4762,7 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-cursor: default;
 }
 .tool-bar > .container .breadcrumbs > .hyperlink:hover {
-  -fx-background-color: -color-base-2;
+  -fx-background-color: -color-base-6;
   -fx-background-radius: 4px, 3px;
 }
 .tool-bar > .tool-bar-overflow-button {
@@ -4801,5 +4803,5 @@ Add support for NO_HEADER tweak in tables .table-view.no-header > .column-header
   -fx-font-weight: normal;
   -fx-padding: 8px 12px 8px 12px;
   -fx-opacity: 0.85;
-  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 6px, 0.3, 0, 2);
+  -fx-effect: dropshadow(three-pass-box, -color-shadow-default, 8px, 0.6, 0, 2);
 }

@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import com.biggerconcept.appengine.platform.OperatingSystem;
+
 import javafx.stage.FileChooser.ExtensionFilter;
 
 /**
@@ -49,7 +52,7 @@ public class App extends Application {
      * @throws IOException when unable to load fxml
      */
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) throws IOException {        
         ResourceBundle bundle = ResourceBundle.getBundle("strings", EN_US);
         
         Parent root = FXMLLoader.load(
@@ -58,8 +61,17 @@ public class App extends Application {
         );
         
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/fxml/Main.css");
-        
+
+        if (OperatingSystem.isDarkMode()) {
+            Application.setUserAgentStylesheet(
+                    getClass().getResource("/fxml/Application-Dark.css").toString()
+            );
+        } else {
+            Application.setUserAgentStylesheet(
+                    getClass().getResource("/fxml/Application.css").toString()
+            );
+        }
+
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
         stage.setMinHeight(600);

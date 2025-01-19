@@ -59,9 +59,9 @@
      inkscape:cx="7.3904712"
      inkscape:cy="13.35709"
      inkscape:window-x="970"
-     inkscape:window-y="153"
+     inkscape:window-y="125"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg9441"
+     inkscape:current-layer="g3"
      inkscape:pagecheckerboard="0"
      inkscape:document-rotation="0"
      inkscape:showpageshadow="2"
@@ -70,18 +70,22 @@
      id="g3"
      transform="translate(0,-1.2265249)"
      style="stroke:#000000;stroke-opacity:1">
-    <circle
-       style="fill:none;stroke:#000000;stroke-width:3;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers;stroke-opacity:1"
-       id="path3"
-       cx="22.5"
-       cy="15.187757"
-       r="5.5684962" />
-    <rect
-       style="fill:none;stroke:#000000;stroke-width:2.81409;stroke-linejoin:round;stroke-dasharray:none;paint-order:stroke fill markers;stroke-opacity:1"
-       id="rect3"
-       width="21.907843"
-       height="11.712332"
-       x="11.546079"
-       y="26.214413" />
+    <g
+       id="g1"
+       transform="translate(0,3.2162889)">
+      <circle
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:6;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="path3"
+         cx="22.5"
+         cy="11.113603"
+         r="4.6985421" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:6;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+         id="rect3"
+         width="18.485228"
+         height="9.8825397"
+         x="13.257386"
+         y="24.722872" />
+    </g>
   </g>
 </svg>

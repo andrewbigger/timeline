@@ -1,6 +1,5 @@
 package com.biggerconcept.timelinelauncher;
 
-import com.biggerconcept.timelinelauncher.Splash;
 import fxlauncher.FXManifest;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import javafx.scene.Parent;
@@ -10,6 +9,9 @@ import javafx.stage.Stage;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
+
+import com.biggerconcept.timeline.launcher.Splash;
+
 import static org.testfx.api.FxAssert.verifyThat;
 
 public class SplashUpdateFeature extends ApplicationTest {
