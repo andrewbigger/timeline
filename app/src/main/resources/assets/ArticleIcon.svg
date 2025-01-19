@@ -67,8 +67,8 @@
      inkscape:showpageshadow="2"
      inkscape:deskcolor="#d1d1d1" />
   <path
-     style="fill:#ffffff;stroke:#000000;stroke-width:3;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers;fill-opacity:1"
-     d="M 10.984003,9.8991633 V 35.392899 H 33.223219 V 17.764252 L 25.290328,9.8313608 Z"
+     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:6;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+     d="M 11.380392,9.7870331 V 35.280769 H 33.619608 V 17.652122 L 25.686717,9.7192306 Z"
      id="path1"
      sodipodi:nodetypes="cccccc" />
 </svg>

@@ -41,7 +41,7 @@
                      <children>
                         <Label text="%preferences.estimates.startDate.title">
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                            <padding>
                               <Insets bottom="5.0" />
@@ -62,7 +62,7 @@
                         </DatePicker>
                         <Label text="%preferences.estimates.startSprint.title">
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                            <padding>
                               <Insets bottom="5.0" />
@@ -83,7 +83,7 @@
                         </TextField>
                         <Label text="%preferences.estimates.referenceSprints.title">
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                            <padding>
                               <Insets bottom="5.0" />
@@ -97,7 +97,7 @@
                               <Insets bottom="10.0" />
                            </VBox.margin>
                         </Label>
-                        <GridPane prefHeight="243.0" prefWidth="580.0">
+                        <GridPane prefHeight="203.0" prefWidth="580.0">
                            <columnConstraints>
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -210,7 +210,7 @@
                            <children>
                               <Label fx:id="exammpleSettingLabel" text="%preferences.tasks.sizing.title">
                                  <font>
-                                    <Font name="SansSerif" size="14.0" style="bold" />
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                                  <padding>
                                     <Insets bottom="5.0" />
@@ -267,10 +267,10 @@
                      <children>
                         <Label text="%preferences.sprint.size.title">
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label text="%preferences.sprint.size.description">
@@ -292,10 +292,10 @@
                      <children>
                         <Label text="%preferences.reports.title">
                            <font>
-                              <Font name="Helvetica Neue Bold" size="14.0" />
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                            <VBox.margin>
-                              <Insets />
+                              <Insets bottom="5.0" />
                            </VBox.margin>
                         </Label>
                         <Label text="%preferences.reports.description">
@@ -350,7 +350,7 @@
                      <children>
                         <Label text="%preferences.company.title">
                            <font>
-                              <Font name="SansSerif" size="14.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                            <VBox.margin>
                               <Insets bottom="5.0" />
