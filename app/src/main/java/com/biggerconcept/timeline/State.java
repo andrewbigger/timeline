@@ -2,7 +2,6 @@ package com.biggerconcept.timeline;
 
 import com.biggerconcept.appengine.reports.IReport;
 import com.biggerconcept.appengine.reports.elements.Content;
-import com.biggerconcept.appengine.ui.helpers.Date;
 import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Document;
@@ -11,7 +10,6 @@ import com.biggerconcept.timeline.domain.Year;
 import com.biggerconcept.timeline.reports.Element;
 import com.biggerconcept.timeline.reports.Report;
 import java.util.ResourceBundle;
-import java.util.UUID;
 import javafx.scene.control.TreeItem;
 
 /**

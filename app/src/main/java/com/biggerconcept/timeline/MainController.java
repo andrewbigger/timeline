@@ -36,6 +36,7 @@ import com.biggerconcept.timeline.actions.release.RemoveRelease;
 import com.biggerconcept.timeline.actions.release.EditRelease;
 import com.biggerconcept.timeline.actions.release.MoveReleaseDown;
 import com.biggerconcept.timeline.actions.release.MoveReleaseUp;
+import com.biggerconcept.timeline.actions.resources.AddContact;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ReleasesTable;
@@ -364,6 +365,12 @@ public class MainController implements Initializable {
     public TreeView resourcesTreeView;
     
     /**
+     * Add contact button
+     */
+    @FXML
+    public Button addContactButton;
+    
+    /**
      * Initializes the main window.
      * 
      * @param url main window FXML
@@ -506,6 +513,9 @@ public class MainController implements Initializable {
         );
         moveNodeButton.setTooltip(
                 new Tooltip(state.bundle().getString("resources.moveNode.tooltip"))
+        );
+        addContactButton.setTooltip(
+                new Tooltip(state.bundle().getString("resources.addContact.tooltip"))
         );
     }
     
@@ -1223,6 +1233,22 @@ public class MainController implements Initializable {
     private void handleAddDocument() {
         try {
             perform(AddDocument.class);
+        } catch (Exception e) {
+            ErrorAlert.show(
+                    state.bundle(),
+                    state.bundle().getString("errors.generic"),
+                    e
+            );
+        }
+    }
+    
+    /**
+     * Adds a document to the documentation tree.
+     */
+    @FXML
+    private void handleAddContact() {
+        try {
+            perform(AddContact.class);
         } catch (Exception e) {
             ErrorAlert.show(
                     state.bundle(),

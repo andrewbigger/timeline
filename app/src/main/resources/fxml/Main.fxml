@@ -218,6 +218,13 @@
                                           <String fx:value="addArticleButton" />
                                        </styleClass>
                                     </Button>
+                                    <Button fx:id="addContactButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleAddContact" prefWidth="25.0">
+                                       <styleClass>
+                                          <String fx:value="iconButton" />
+                                          <String fx:value="smallIcon" />
+                                          <String fx:value="addContactButton" />
+                                       </styleClass>
+                                    </Button>
                                     <Button fx:id="removeNodeButton" maxWidth="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#handleRemoveNode" prefWidth="25.0">
                                        <styleClass>
                                           <String fx:value="iconButton" />

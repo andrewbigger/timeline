@@ -1440,4 +1440,79 @@ parts:
     title: "Documents section title"
     value: "Resources"
     variants: {}
+- translation:
+    key: "preferences.company.title"
+    title: "Title of the company preferences tab"
+    value: "Company"
+    variants: {}
+- translation:
+    key: "preferences.company.description"
+    title: "Company preferences description"
+    value: "Below are your company details. These are used for content generation."
+    variants: {}
+- translation:
+    key: "preferences.company.name"
+    title: "Name attribute label"
+    value: "Name"
+    variants: {}
+- translation:
+    key: "preferences.company.defaultDomain"
+    title: "Default domain label"
+    value: "Default Domain"
+    variants: {}
+- translation:
+    key: "dialogs.contacts.contact.firstName"
+    title: "First name label"
+    value: "Given name"
+    variants: {}
+- translation:
+    key: "dialogs.contacts.contact.lastName"
+    title: "Last name label"
+    value: "Surname"
+    variants: {}
+- translation:
+    key: "dialogs.contacts.contact.userName"
+    title: "Username label"
+    value: "Username"
+    variants: {}
+- translation:
+    key: "dialogs.contacts.contact.company"
+    title: "Company label"
+    value: "Company"
+    variants: {}
+- translation:
+    key: "dialogs.contacts.contact.team"
+    title: "Team label"
+    value: "Team"
+    variants: {}
+- translation:
+    key: "dialogs.contacts.contact.position"
+    title: "Position label"
+    value: "Role"
+    variants: {}
+- translation:
+    key: "dialogs.contacts.contact.email"
+    title: "Email label"
+    value: "eMail Address"
+    variants: {}
+- translation:
+    key: "dialogs.contacts.contact.im"
+    title: "IM label"
+    value: "IM Handle"
+    variants: {}
+- translation:
+    key: "dialogs.contacts.contact.phone"
+    title: "Phone label"
+    value: "Phone Number"
+    variants: {}
+- translation:
+    key: "dialogs.contacts.contact.manage"
+    title: "Manage contact dialog title"
+    value: "Manage contact"
+    variants: {}
+- translation:
+    key: "resources.addContact.tooltip"
+    title: "Tooltip for add content button"
+    value: "Add Contact"
+    variants: {}
 sourceLanguage: "en"

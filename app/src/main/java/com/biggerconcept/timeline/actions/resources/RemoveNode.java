@@ -36,6 +36,9 @@ public class RemoveNode implements Action {
             case ARTICLE:
                 parent.remove(item);
                 break;
+            case CONTACT:
+                parent.remove(item);
+                break;
         }
     }
 }

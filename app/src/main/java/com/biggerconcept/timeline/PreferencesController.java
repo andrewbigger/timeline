@@ -202,6 +202,24 @@ public class PreferencesController
      */
     @FXML
     public Tab reportsTab;
+    
+    /**
+     * Company tab
+     */
+    @FXML
+    public Tab companyTab;
+    
+    /**
+     * Default company name text field
+     */
+    @FXML
+    public TextField defaultCompanyName;
+    
+    /**
+     * Default company domain text field
+     */
+    @FXML
+    public TextField defaultCompanyDomain;
 
     
     /**
@@ -281,6 +299,7 @@ public class PreferencesController
         mapEstimatePreferencesToWindow();
         mapSprintPreferencesToWindow();
         mapReportsToWindow();
+        mapCompanyToWindow();
     }
     
     /**
@@ -377,6 +396,11 @@ public class PreferencesController
         }
     }
     
+    private void mapCompanyToWindow() {
+        defaultCompanyName.setText(currentPreferences.getDefaultCompany());
+        defaultCompanyDomain.setText(currentPreferences.getDefaultDomain());
+    }
+    
     /**
      * Maps window content to new document object for serialization.
      */
@@ -385,6 +409,7 @@ public class PreferencesController
         mapWindowToTaskPreferences();
         mapWindowToEstimatePreferences();
         mapWindowToSprintPreferences();
+        mapWindowToCompany();
         
         currentDocument.setPreferences(currentPreferences);
     }
@@ -463,6 +488,14 @@ public class PreferencesController
                                 .toString()
                 )
         );
+    }
+    
+    /**
+     * Maps company settings to preferences.
+     */
+    private void mapWindowToCompany() {
+        currentPreferences.setDefaultCompany(defaultCompanyName.getText());
+        currentPreferences.setDefaultDomain(defaultCompanyDomain.getText());
     }
     
     /**

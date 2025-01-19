@@ -120,6 +120,18 @@ public class Preferences {
     private int startSprintNumber;
     
     /**
+     * Default company name
+     */
+    @JsonInclude(Include.NON_NULL)
+    private String defaultCompany;
+    
+    /**
+     * Default company domain
+     */
+    @JsonInclude(Include.NON_NULL)
+    private String defaultDomain;
+    
+    /**
      * Configured reports
      */
     @JsonInclude(Include.NON_NULL)
@@ -171,6 +183,9 @@ public class Preferences {
         
         p.sprintLength = DEFAULT_SPRINT_LENGTH;
         p.startSprintNumber = DEFAULT_START_SPRINT_NUMBER;
+        
+        p.defaultCompany = "";
+        p.defaultDomain = "";
         
         return p;
     }
@@ -327,6 +342,27 @@ public class Preferences {
         }
         
         return reports;
+    }
+    
+    /**
+     * Getter for default company.
+     * 
+     * @return default company name
+     */
+    public String getDefaultCompany() {
+        if (defaultCompany == null) {
+            defaultCompany = "";
+        }
+        
+        return defaultCompany;
+    }
+    
+    public String getDefaultDomain() {
+        if (defaultDomain == null) {
+            defaultDomain = "";
+        }
+        
+        return defaultDomain;
     }
     
     /**
@@ -509,6 +545,24 @@ public class Preferences {
      */
     public void setReports(ArrayList<IReport> value) {
         reports = value;
+    }
+    
+    /**
+     * Setter for default company.
+     * 
+     * @param value default company name
+     */
+    public void setDefaultCompany(String value) {
+        defaultCompany = value;
+    }
+    
+    /**
+     * Setter for default domain.
+     * 
+     * @param value default domain
+     */
+    public void setDefaultDomain(String value) {
+        defaultDomain = value;
     }
     
     /**

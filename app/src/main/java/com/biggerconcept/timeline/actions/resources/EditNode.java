@@ -1,9 +1,11 @@
 package com.biggerconcept.timeline.actions.resources;
 
 import com.biggerconcept.doctree.domain.Article;
+import com.biggerconcept.doctree.domain.Contact;
 import com.biggerconcept.doctree.domain.Group;
 import com.biggerconcept.doctree.domain.Node;
 import com.biggerconcept.doctree.ui.dialogs.ArticleDialog;
+import com.biggerconcept.doctree.ui.dialogs.ContactDialog;
 import com.biggerconcept.doctree.ui.dialogs.GroupDialog;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.actions.Action;
@@ -46,6 +48,17 @@ public class EditNode implements Action {
                 );
                 
                 ad.show(window);
+                break;
+            case CONTACT:
+                ContactDialog cd = new ContactDialog(
+                
+                        state.bundle(),
+                        (Contact) item,
+                        (Group) parent,
+                        state.getReportContent()
+                );
+                
+                cd.show(window);
                 break;
         }
     }

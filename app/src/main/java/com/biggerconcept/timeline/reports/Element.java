@@ -163,6 +163,14 @@ public class Element
         
         content.setResourcesRoot(state.getDocumentRoot());
         
+        content.setDefaultCompany(
+                state.getOpenDocument().getPreferences().getDefaultCompany()
+        );
+        
+        content.setDefaultDomain(
+                state.getOpenDocument().getPreferences().getDefaultDomain()
+        );
+        
         return content;
     }
     

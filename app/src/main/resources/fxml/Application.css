@@ -25,6 +25,10 @@
   -fx-background-image: url('../icons/AddGroupIcon.png');
 }
 
+.addContactButton {
+  -fx-background-image: url('../icons/AddContactIcon.png');
+}
+
 .removeButton {
   -fx-background-image: url('../icons/RemoveIcon.png');
 }
