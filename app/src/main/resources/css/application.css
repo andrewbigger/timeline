@@ -1,0 +1,129 @@
+.main-toolbar-button {
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+.iconButton {
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+.smallIcon {
+  -fx-background-size: 25px 25px;
+}
+
+.addButton {
+  -fx-background-image: url('../icons/AddIcon.png');
+}
+
+.addArticleButton {
+  -fx-background-image: url('../icons/AddArticleIcon.png');
+}
+
+.addGroupButton {
+  -fx-background-image: url('../icons/AddGroupIcon.png');
+}
+
+.addContactButton {
+  -fx-background-image: url('../icons/AddContactIcon.png');
+}
+
+.removeButton {
+  -fx-background-image: url('../icons/RemoveIcon.png');
+}
+
+.moveUpButton {
+  -fx-background-image: url('../icons/MoveUpIcon.png');
+}
+
+.moveDownButton {
+  -fx-background-image: url('../icons/MoveDownIcon.png');
+}
+
+.moveLeftButton {
+  -fx-background-image: url('../icons/MoveLeftIcon.png');
+}
+
+.moveRightButton {
+  -fx-background-image: url('../icons/MoveRightIcon.png');
+}
+
+.editButton {
+  -fx-background-image: url('../icons/EditIcon.png');
+}
+
+.moveButton {
+  -fx-background-image: url('../icons/MoveIcon.png');
+}
+
+.tickButton {
+  -fx-background-image: url('../icons/TickIcon16x16.png');
+}
+
+.crossButton {
+  -fx-background-image: url('../icons/CrossIcon16x16.png')
+}
+
+.importButton {
+  -fx-background-image: url('../icons/ImportIcon.png');
+}
+
+.projectusButton {
+  -fx-background-image: url('../icons/projectusIcon.png');
+}
+
+.hashButton {
+  -fx-background-image: url('../icons/HashIcon.png');
+}
+
+#openFileButton {
+  -fx-background-image:url('../icons/OpenFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#saveFileButton {
+  -fx-background-image: url('../icons/SaveFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#newFileButton {
+  -fx-background-image: url('../icons/NewFileIcon.png');
+  -fx-background-position: center center;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+#reportsMenuButton {
+  -fx-background-image: url('../icons/ReportsIcon.png');
+  -fx-background-position: left center;
+  -fx-background-repeat: no-repeat;
+}
+
+.pastSprint {
+  -fx-text-fill: #17494d !important;
+}
+
+.futureSprint {
+  -fx-text-fill: #90bbbb !important;
+}
+
+.release {
+  -fx-text-fill: #f79a3e !important;
+}
+
+.current {
+  -fx-background-color: #daeded;
+}
+
+.notes {
+  -fx-background-color: #fff7d4 !important;
+}
+
+.yearIndicator {
+  -fx-border-color:  #D4DAE1;
+}

@@ -11,6 +11,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import com.biggerconcept.appengine.platform.OperatingSystem;
+import com.biggerconcept.doctree.ui.Theme;
 
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -61,16 +62,7 @@ public class App extends Application {
         );
         
         Scene scene = new Scene(root);
-
-        if (OperatingSystem.isDarkMode()) {
-            Application.setUserAgentStylesheet(
-                    getClass().getResource("/fxml/Application-Dark.css").toString()
-            );
-        } else {
-            Application.setUserAgentStylesheet(
-                    getClass().getResource("/fxml/Application.css").toString()
-            );
-        }
+        Theme.apply(getClass(), scene);
 
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
