@@ -6,7 +6,7 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.input.KeyCodeCombination?>
 
-<MenuBar fx:id="mainMenu" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.MenuController">
+<MenuBar fx:id="mainMenu" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.MenuController">
    <menus>
       <Menu fx:id="fileMenu" mnemonicParsing="false" text="%menu.file.label">
          <items>
@@ -187,6 +187,11 @@
             <MenuItem fx:id="viewHelpMenuItem" mnemonicParsing="false" onAction="#handleViewHelp" text="%menu.help.view">
                <accelerator>
                   <KeyCodeCombination alt="UP" code="H" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+               </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleScreenshot" text="Unspecified Action" visible="false">
+               <accelerator>
+                  <KeyCodeCombination alt="DOWN" code="S" control="UP" meta="DOWN" shift="UP" shortcut="UP" />
                </accelerator>
             </MenuItem>
          </items>

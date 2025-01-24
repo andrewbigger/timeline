@@ -21,7 +21,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1793.0" style="-fx-border-width: 0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1793.0" style="-fx-border-width: 0;" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.MainController">
    <top>
       <BorderPane fx:id="toolbarBorderPane" prefHeight="40.0" prefWidth="1793.0" style="-fx-border-width: 0;" BorderPane.alignment="CENTER">
          <center>
@@ -363,7 +363,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="SansSerif" size="13.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                         </Label>
                         <HBox prefHeight="0.0" prefWidth="542.0">
@@ -387,7 +387,7 @@
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                                  <font>
-                                    <Font name="SansSerif" size="13.0" style="bold"/>
+                                    <Font name="SansSerif" size="13.0" style="bold" />
                                  </font>
                               </Label>
                               <ProgressBar id="commitmentProgress" fx:id="commitmentProgress" maxWidth="1.7976931348623157E308" prefHeight="13.0" prefWidth="468.0" progress="0.0">
@@ -419,7 +419,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="SansSerif" size="13.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                         </Label>
                         <ComboBox fx:id="judgementComboBox" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="241.0">
@@ -441,7 +441,7 @@
                               <Insets bottom="5.0" />
                            </VBox.margin>
                            <font>
-                              <Font name="SansSerif" size="13.0" style="bold"/>
+                              <Font name="SansSerif" size="13.0" style="bold" />
                            </font>
                         </Label>
                         <TextArea fx:id="notesTextArea" prefHeight="251.0" prefWidth="194.0" style="-fx-border-radius: 3;" styleClass="notes">
