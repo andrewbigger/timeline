@@ -91,7 +91,7 @@
         <dependency>
             <groupId>org.testfx</groupId>
             <artifactId>testfx-junit</artifactId>
-            <version>4.0.4-alpha</version>
+            <version>4.0.18</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>

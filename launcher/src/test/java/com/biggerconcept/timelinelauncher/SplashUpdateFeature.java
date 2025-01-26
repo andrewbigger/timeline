@@ -13,6 +13,8 @@ import org.testfx.matcher.base.NodeMatchers;
 import com.biggerconcept.timeline.launcher.Splash;
 
 import static org.testfx.api.FxAssert.verifyThat;
+import static org.testfx.matcher.base.NodeMatchers.isVisible;
+import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 public class SplashUpdateFeature extends ApplicationTest {
     
@@ -42,22 +44,22 @@ public class SplashUpdateFeature extends ApplicationTest {
     public void test_SplashHeaderContents() {
         System.out.println("Splash screen has expected content in header");
         
-        verifyThat("#titleLabel", NodeMatchers.hasText(Splash.APP_NAME));
-        verifyThat("#statusLabel", NodeMatchers.hasText(Splash.UPDATE_STATUS));
+        verifyThat("#titleLabel", hasText(Splash.APP_NAME));
+        verifyThat("#statusLabel", hasText(Splash.UPDATE_STATUS));
     }
     
     @Test
     public void test_SplashProgressIndicator() {
         System.out.println("Splash screen has progress indicator");
         
-        verifyThat("#updateProgressBar", NodeMatchers.isVisible());
+        verifyThat("#updateProgressBar", isVisible());
     }
     
     @Test
     public void test_SplashFooterContents() {
         System.out.println("Splash screen has expected content in footer");
         
-        verifyThat("#footerLabel", NodeMatchers.hasText(Splash.FOOTER_TEXT));
+        verifyThat("#footerLabel", hasText(Splash.FOOTER_TEXT));
     }
 
 }

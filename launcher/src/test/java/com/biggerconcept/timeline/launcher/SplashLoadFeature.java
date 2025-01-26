@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 import org.testfx.matcher.base.NodeMatchers;
 import static org.testfx.api.FxAssert.verifyThat;
+import static org.testfx.matcher.base.NodeMatchers.isVisible;
+import static org.testfx.matcher.control.LabeledMatchers.hasText;
 
 public class SplashLoadFeature extends ApplicationTest {
     
@@ -38,22 +40,22 @@ public class SplashLoadFeature extends ApplicationTest {
     public void test_SplashHeaderContents() {
         System.out.println("Splash screen has expected content in header");
         
-        verifyThat("#titleLabel", NodeMatchers.hasText(Splash.APP_NAME));
-        verifyThat("#statusLabel", NodeMatchers.hasText(Splash.LOAD_STATUS));
+        verifyThat("#titleLabel", hasText(Splash.APP_NAME));
+        verifyThat("#statusLabel", hasText(Splash.LOAD_STATUS));
     }
     
     @Test
     public void test_SplashProgressIndicator() {
         System.out.println("Splash screen has progress indicator");
         
-        verifyThat("#loadIndicator", NodeMatchers.isVisible());
+        verifyThat("#loadIndicator", isVisible());
     }
     
     @Test
     public void test_SplashFooterContents() {
         System.out.println("Splash screen has expected content in footer");
         
-        verifyThat("#footerLabel", NodeMatchers.hasText(Splash.FOOTER_TEXT));
+        verifyThat("#footerLabel", hasText(Splash.FOOTER_TEXT));
     }
 
 }
