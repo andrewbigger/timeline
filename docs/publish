@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+APPLICATION_NAME="timeline"
+APPLICATON_REPO_PATH="$HOME/Code/andrewbigger/timeline/docs"
+APPLICATION_HERO_IMAGE_PATH="$APPLICATON_REPO_PATH/assets/base/timeline-open-epic-window.png"
+
+SOURCE_CONTENT_PATH="$APPLICATON_REPO_PATH/content"
+SOURCE_ASSETS_PATH="$APPLICATON_REPO_PATH/assets"
+SOURCE_IMAGES_PATH="$SOURCE_ASSETS_PATH/compiled"
+
+DOCS_REPO_PATH="$HOME/Code/biggerconcept/docs-biggerconcept-com"
+
+DOCS_CONTENT_PATH="$DOCS_REPO_PATH/content/$APPLICATION_NAME"
+DOCS_IMAGES_PATH="$DOCS_REPO_PATH/public/images/$APPLICATION_NAME"
+
+BC_COM_REPO_PATH="$HOME/Code/biggerconcept/biggerconcept-com"
+HERO_IMAGE_TARGET_PATH="$BC_COM_REPO_PATH/static/images/$APPLICATION_NAME/hero.png"
+
+_help() {
+  echo
+  echo "publish"
+  echo
+  echo "Assemble and publish documentation"
+  echo
+  echo "Usage:"
+  echo "publish [command]"
+  echo
+  echo "Available Commands:"
+  echo "  docs    Synchronizes documentation with docs.biggerconcept.com repo"
+  echo ""
+  echo "  clean          Removes documentation content and images from docs.biggerconcept.com repo"
+  echo "  clean_content  Removes documentation content from docs.biggerconcept.com repo"
+  echo "  clean_images   Removes documentation images from docs.biggerconcept.com repo"
+  echo ""
+  echo "  images         Synchronizes images with images.biggerconcept.com repo"
+  echo "  content        Synchronizes content with content.biggerconcept.com repo"
+  echo ""
+  echo "  compile_images Compiles annotated images"
+  echo "  update_hero    Updates hero image in biggerconcept.com repo"
+  echo "  help           Prints usage instructions"
+  echo
+}
+
+_docs() {
+    _clean
+    _images
+    _content
+}
+
+_clean() {
+    _clean_content
+    _clean_images
+}
+
+_clean_content() {
+    rm -rf $DOCS_CONTENT_PATH
+}
+
+_clean_images() {
+    rm -rf $DOCS_IMAGES_PATH
+}
+
+_images() {
+    _clean_images
+    cp -r $SOURCE_IMAGES_PATH $DOCS_IMAGES_PATH
+}
+
+_content() {
+    _clean_content
+    cp -r $SOURCE_CONTENT_PATH $DOCS_CONTENT_PATH
+}
+
+_compile_images() {
+    cd $SOURCE_ASSETS_PATH && $HOME/Code/andrewbigger/docimg/bin/docimg compile
+}
+
+case "$1" in
+docs) _docs;;
+clean) _clean;;
+clean_content) _clean_content;;
+clean_images) _clean_images;;
+images) _images;;
+content) _content;;
+compile_images) _compile_images;;
+update_hero) cp $APPLICATION_HERO_IMAGE_PATH $HERO_IMAGE_TARGET_PATH;;
+help) _help;;
+*) _help;;
+esac

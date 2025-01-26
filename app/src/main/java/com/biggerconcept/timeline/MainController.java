@@ -37,11 +37,14 @@ import com.biggerconcept.timeline.actions.release.EditRelease;
 import com.biggerconcept.timeline.actions.release.MoveReleaseDown;
 import com.biggerconcept.timeline.actions.release.MoveReleaseUp;
 import com.biggerconcept.timeline.actions.resources.AddContact;
+import com.biggerconcept.timeline.domain.Document;
 import com.biggerconcept.timeline.ui.domain.Timeline;
 import com.biggerconcept.timeline.ui.tables.EpicsTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ReleasesTable;
 import com.biggerconcept.timeline.ui.tables.ReleasesTimelineTable;
 import com.biggerconcept.timeline.ui.tables.ShelfEpicsTable;
+import java.io.File;
+import java.io.IOException;
 import javafx.scene.control.Button;
 import java.net.URL;
 import java.util.ArrayList;
@@ -53,7 +56,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Tooltip;
@@ -1133,6 +1135,23 @@ public class MainController implements Initializable {
                     e
             );
         }
+    }
+    
+    /**
+     * Directly opens a given document.
+     * 
+     * @param documentFile document to open
+     * 
+     * @throws IOException when unable to open document.
+     */
+    public void openDocument(File documentFile) 
+            throws IOException, CloneNotSupportedException {
+        Document doc = Document.load(documentFile);
+        
+        state.setOpenDocument(doc);
+        state.getViewYear()
+                .setStartSprint(doc.getPreferences().getStartSprintNumber());
+        state.mapDocumentToWindow();
     }
     
     /**
