@@ -3,6 +3,12 @@
   -fx-background-position: center center;
 }
 
+.toolpane {
+  -fx-background-color: #f6f8fa;
+  -fx-border-color:  #d0d7de;
+  -fx-border-width: 0 0 1px 0;
+}
+
 .iconButton {
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;

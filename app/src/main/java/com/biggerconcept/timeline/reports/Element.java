@@ -271,8 +271,6 @@ public class Element
      */
     @Override
     public void insertInto(Doc document, HashMap<String, String> vars, Node root) 
-            throws IOException {
-        throw new UnsupportedOperationException("Not supported.");
-    }
+            throws IOException {}
 
 }

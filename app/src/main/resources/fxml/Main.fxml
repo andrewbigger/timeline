@@ -14,6 +14,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -24,8 +25,20 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="500.0" minWidth="1500.0" prefHeight="800.0" prefWidth="1793.0" style="-fx-border-width: 0;" stylesheets="@../css/application.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.biggerconcept.timeline.MainController">
    <top>
       <BorderPane fx:id="toolbarBorderPane" prefHeight="40.0" prefWidth="1793.0" style="-fx-border-width: 0;" BorderPane.alignment="CENTER">
-         <center>
-            <ToolBar prefHeight="40.0" prefWidth="200.0" style="-fx-border-width: 0;" styleClass="mainToolbar" BorderPane.alignment="CENTER">
+         <right>
+            <ToolBar prefHeight="63.0" prefWidth="210.0" BorderPane.alignment="CENTER">
+               <items>
+                  <TextField promptText="Search" />
+               </items>
+               <padding>
+                  <Insets left="20.0" />
+               </padding></ToolBar>
+         </right>
+         <opaqueInsets>
+            <Insets top="-5.0" />
+         </opaqueInsets>
+         <left>
+            <ToolBar prefHeight="63.0" prefWidth="415.0" style="-fx-border-width: 0;" styleClass="mainToolbar" BorderPane.alignment="CENTER">
               <items>
                   <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="55.0" prefWidth="55.0" />
                   <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" />
@@ -41,11 +54,11 @@
                   </MenuButton>
               </items>
             </ToolBar>
-         </center>
-         <right>
-            <ToolBar prefHeight="65.0" prefWidth="186.0" BorderPane.alignment="CENTER">
-               <items>
-                  <HBox alignment="CENTER" prefHeight="55.0" prefWidth="172.0" spacing="5.0">
+         </left>
+         <center>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="toolpane" BorderPane.alignment="CENTER">
+               <center>
+                  <HBox alignment="CENTER" prefHeight="55.0" prefWidth="1061.0" spacing="5.0" BorderPane.alignment="CENTER">
                      <children>
                         <Button fx:id="prevYearButton" maxHeight="34.0" maxWidth="34.0" minHeight="34.0" minWidth="34.0" mnemonicParsing="false" onAction="#handleShowPrevYear" prefHeight="34.0" prefWidth="25.0">
                            <styleClass>
@@ -67,11 +80,12 @@
                         </Button>
                      </children>
                   </HBox>
-               </items></ToolBar>
-         </right>
-         <opaqueInsets>
-            <Insets top="-5.0" />
-         </opaqueInsets>
+               </center>
+               <right>
+                  <HBox prefHeight="62.0" prefWidth="121.0" BorderPane.alignment="CENTER" />
+               </right>
+            </BorderPane>
+         </center>
       </BorderPane>
    </top>
    <center>
