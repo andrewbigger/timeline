@@ -7,6 +7,8 @@ app_name="Timeline"
 installer_name="Timeline"
 installer_version="1.0.0"
 
+min=("fxlauncher.jar" "based-1.0.0.jar" "appengine.jar" "app.xml")
+
 source "$PWD/.env"
 
 _help() {
@@ -20,6 +22,7 @@ _help() {
   echo
   echo "Available Commands:"
   echo "  jars                      Publishes application jars to $dist_bucket"
+  echo "  min                       Publishes minimum application jars to $dist_bucket"
   echo ""
   echo "  dmg                       Pushes macos dmg to $dist_bucket"
   echo "  pkg                       Pushes macos pkg to $dist_bucket"
@@ -29,6 +32,16 @@ _help() {
   echo "  version                   Prints release utility version"
   echo "  help                      Prints help text"
   echo
+}
+
+_min() {
+  echo "Publishing min jars to $dist_bucket"
+
+  for file in "${min[@]}";
+  do
+    echo $file
+    aws s3 cp "$PWD/app/target/app/$file" "s3://$dist_bucket/release/$app_id/$(basename $file)" --acl $dist_acl
+  done
 }
 
 _jars() {
@@ -83,6 +96,7 @@ _version() {
 
 case "$1" in
 jars) _jars;;
+min) _min;;
 dmg) _dmg;;
 pkg) _pkg;;
 deb) _deb;;
