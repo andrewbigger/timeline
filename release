@@ -7,7 +7,7 @@ app_name="Timeline"
 installer_name="Timeline"
 installer_version="1.0.0"
 
-min=("fxlauncher.jar" "based-1.0.0.jar" "appengine.jar" "app.xml")
+min=("fxlauncher.jar" "timeline-1.0.0.jar" "sdk.jar" "app.xml")
 
 source "$PWD/.env"
 
