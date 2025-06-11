@@ -4,8 +4,13 @@ import com.biggerconcept.sdk.ui.tables.StandardTable;
 import com.biggerconcept.sdk.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Preferences;
+import com.biggerconcept.projectus.domain.Task;
+import com.biggerconcept.projectus.ui.dialogs.TaskDialog;
+import com.biggerconcept.timeline.State;
+import com.biggerconcept.timeline.actions.epic.EditShelfEpic;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -38,6 +43,11 @@ public class ShelfEpicsTable {
     public static final int ESTIMATE_COL_MIN_WIDTH = 80;
     
     /**
+     * Application state
+     */
+    private final State state;
+    
+    /**
      * Application resource bundle.
      */
     private final ResourceBundle bundle;
@@ -55,15 +65,18 @@ public class ShelfEpicsTable {
     /**
      * Constructor for currentEpics table view model.
      * 
+     * @param state application state
      * @param rb application resource bundle
      * @param preferences document documentPreferences
      * @param epics epic list
      */
     public ShelfEpicsTable(
+            State state,
             ResourceBundle rb, 
             Preferences preferences, 
             ArrayList<Epic> epics
      ) {
+        this.state = state;
         bundle = rb;
         documentPreferences = preferences;
         currentEpics = epics;
@@ -92,6 +105,17 @@ public class ShelfEpicsTable {
                 ),
                 false
         );
+        
+        view.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                try {
+                    state.mainController().perform(EditShelfEpic.class);
+                } catch (Exception ex) {
+                    // ignore
+                    System.out.println(ex.getStackTrace());
+                }
+            }
+        });
     }
     
     /**

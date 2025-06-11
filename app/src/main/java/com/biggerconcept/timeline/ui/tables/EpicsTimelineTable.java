@@ -3,6 +3,8 @@ package com.biggerconcept.timeline.ui.tables;
 import com.biggerconcept.sdk.ui.tables.StandardTable;
 import com.biggerconcept.sdk.ui.tables.StandardTableColumn;
 import com.biggerconcept.timeline.State;
+import com.biggerconcept.timeline.actions.epic.EditEpic;
+import com.biggerconcept.timeline.actions.epic.EditShelfEpic;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;
 import com.biggerconcept.timeline.ui.domain.Sprint;
@@ -13,12 +15,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.geometry.Pos;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.util.Callback;
 
 import com.biggerconcept.timeline.ui.domain.TimelineEpic;
 
@@ -160,6 +159,17 @@ public class EpicsTimelineTable {
                 cols,
                 false
         );
+        
+        view.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                try {
+                    state.mainController().perform(EditEpic.class);
+                } catch (Exception ex) {
+                    // ignore
+                    System.out.println(ex.getStackTrace());
+                }
+            }
+        });
     }
 
     /**

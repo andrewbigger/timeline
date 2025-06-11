@@ -3,6 +3,7 @@ package com.biggerconcept.timeline.ui.tables;
 import com.biggerconcept.sdk.ui.tables.StandardTable;
 import com.biggerconcept.sdk.ui.tables.StandardTableColumn;
 import com.biggerconcept.timeline.State;
+import com.biggerconcept.timeline.actions.release.EditRelease;
 import com.biggerconcept.timeline.domain.Release;
 import java.util.Arrays;
 import javafx.beans.property.SimpleStringProperty;
@@ -74,6 +75,17 @@ public class ReleasesTable {
                 ),
                 false
         );
+        
+        view.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                try {
+                    state.mainController().perform(EditRelease.class);
+                } catch (Exception ex) {
+                    // ignore
+                    System.out.println(ex.getStackTrace());
+                }
+            }
+        });
     }
     
     /**

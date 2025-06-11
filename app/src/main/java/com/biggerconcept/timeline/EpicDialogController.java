@@ -245,7 +245,7 @@ public class EpicDialogController implements Initializable {
      * 
      * @return 
      */
-    private Stage window() {
+    public Stage window() {
         Stage stage = (Stage) saveEpicButton.getScene().getWindow();
         return stage;
     }
@@ -320,8 +320,10 @@ public class EpicDialogController implements Initializable {
     /**
      * Maps tasks to tasks table view
      */
-    private void mapTasksToWindow() {
+    public void mapTasksToWindow() {
         TasksTable tasksTable = new TasksTable(
+            state,
+            this,
             state.bundle(),
             target.getTasks(),
             state.getOpenDocument().getPreferences().asProjectusPreferences(),
@@ -330,7 +332,7 @@ public class EpicDialogController implements Initializable {
         tasksTable.bind(tasksTableView);
     }
     
-    private void mapOutlookToWindow() {
+    public void mapOutlookToWindow() {
          outlookLabel.setText(
                 String.valueOf(
                         calculateWeeks()
@@ -574,7 +576,7 @@ public class EpicDialogController implements Initializable {
             
             TaskDialog manageTask = new TaskDialog(
                     state.bundle(),
-                    target,
+                    state.getOpenEpic(),
                     items,
                     items.size() > 1
             );

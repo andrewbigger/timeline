@@ -523,7 +523,7 @@ public class MainController implements Initializable {
      * 
      * @return 
      */
-    private Stage window() {
+    public Stage window() {
         Scene scene = (Scene) newFileButton.getScene();
         
         if (scene != null) {
@@ -634,6 +634,7 @@ public class MainController implements Initializable {
      */
     private void mapShelfToWindow() {
         ShelfEpicsTable epicsTable = new ShelfEpicsTable(
+                state,
                 state.bundle(),
                 state.getOpenDocument().getPreferences().asProjectusPreferences(),
                 state.getOpenDocument().getShelf()
@@ -717,8 +718,11 @@ public class MainController implements Initializable {
      * Maps documents to window.
      */
     private void mapResourcesToWindow() {
-        ResourcesTreeView.bind(resourcesTreeView, 
-                state.getOpenDocument().getResources()
+        ResourcesTreeView.bind(
+                resourcesTreeView, 
+                state.getOpenDocument().getResources(),
+                window(),
+                state.bundle()
         );
     }
     
@@ -1315,7 +1319,7 @@ public class MainController implements Initializable {
         }
     }
     
-    private void perform(Class action) 
+    public void perform(Class action) 
             throws Exception {
         Action act = (Action) action.newInstance();
         act.perform(state, window());
