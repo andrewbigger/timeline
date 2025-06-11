@@ -394,6 +394,12 @@ public class PreferencesController
         for (IReport r : currentPreferences.getReports()) {
             reportsListView.getItems().add(r);
         }
+        
+        reportsListView.setOnMousePressed(event -> {
+            if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+                handleEditReport();
+            }
+        });
     }
     
     private void mapCompanyToWindow() {
