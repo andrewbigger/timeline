@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
-
-import com.biggerconcept.sdk.platform.OperatingSystem;
 import com.biggerconcept.sdk.ui.Theme;
 
 import javafx.stage.FileChooser.ExtensionFilter;
