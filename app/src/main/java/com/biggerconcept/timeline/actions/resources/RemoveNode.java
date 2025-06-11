@@ -1,7 +1,7 @@
 package com.biggerconcept.timeline.actions.resources;
 
-import com.biggerconcept.doctree.domain.Node;
-import static com.biggerconcept.doctree.domain.Node.NodeType.GROUP;
+import com.biggerconcept.sdk.doctree.domain.Node;
+import static com.biggerconcept.sdk.doctree.domain.Node.NodeType.GROUP;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.actions.Action;
 import javafx.stage.Stage;

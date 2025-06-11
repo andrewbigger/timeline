@@ -1,9 +1,9 @@
 package com.biggerconcept.timeline.actions.resources;
 
-import com.biggerconcept.doctree.domain.Group;
-import com.biggerconcept.doctree.domain.Node;
-import com.biggerconcept.doctree.domain.Node.NodeType;
-import com.biggerconcept.doctree.ui.dialogs.GroupDialog;
+import com.biggerconcept.sdk.doctree.domain.Group;
+import com.biggerconcept.sdk.doctree.domain.Node;
+import com.biggerconcept.sdk.doctree.domain.Node.NodeType;
+import com.biggerconcept.sdk.doctree.ui.dialogs.GroupDialog;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.actions.Action;
 import java.io.IOException;

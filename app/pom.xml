@@ -329,11 +329,6 @@
             <version>1.9</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>projectus</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>com.github.jknack</groupId>
             <artifactId>handlebars</artifactId>
             <version>4.3.1</version>
@@ -345,7 +340,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>doctree</artifactId>
+            <artifactId>projectus</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

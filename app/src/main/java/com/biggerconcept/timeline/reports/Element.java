@@ -21,12 +21,12 @@ import com.biggerconcept.timeline.reports.sections.TableOfContentsElement;
 import com.biggerconcept.timeline.reports.sections.ReleaseTableElement;
 import com.biggerconcept.timeline.reports.sections.ShelfTableElement;
 import com.biggerconcept.timeline.reports.sections.ReleaseOutlineElement;
-import com.biggerconcept.appengine.reports.IReport;
-import com.biggerconcept.appengine.reports.elements.Content;
-import com.biggerconcept.appengine.reports.elements.IElement;
-import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
-import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.doctree.domain.Node;
+import com.biggerconcept.sdk.reports.IReport;
+import com.biggerconcept.sdk.reports.elements.Content;
+import com.biggerconcept.sdk.reports.elements.IElement;
+import com.biggerconcept.sdk.reports.ui.dialogs.IElementEditorDialog;
+import com.biggerconcept.sdk.serializers.documents.Doc;
+import com.biggerconcept.sdk.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Document;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -59,7 +59,7 @@ import java.util.ResourceBundle;
     @JsonSubTypes.Type(value = CodeElement.class, name="code")
 })
 public class Element
-        extends com.biggerconcept.appengine.reports.elements.Element 
+        extends com.biggerconcept.sdk.reports.elements.Element 
         implements Cloneable, IElement {
     
     /**

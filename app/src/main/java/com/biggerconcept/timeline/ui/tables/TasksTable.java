@@ -1,7 +1,7 @@
 package com.biggerconcept.timeline.ui.tables;
 
-import com.biggerconcept.appengine.ui.tables.StandardTable;
-import com.biggerconcept.appengine.ui.tables.StandardTableColumn;
+import com.biggerconcept.sdk.ui.tables.StandardTable;
+import com.biggerconcept.sdk.ui.tables.StandardTableColumn;
 import com.biggerconcept.projectus.domain.Preferences;
 import com.biggerconcept.projectus.domain.Task;
 import java.util.ArrayList;

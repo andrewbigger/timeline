@@ -1,16 +1,11 @@
 package com.biggerconcept.docs;
 
-import com.biggerconcept.appengine.ui.Theme;
-import com.biggerconcept.appengine.ui.helpers.Date;
-import com.biggerconcept.snapporazi.DocImg;
+import com.biggerconcept.sdk.ui.Theme;
+import com.biggerconcept.sdk.snapporazi.DocImg;
 import com.biggerconcept.timeline.App;
 import com.biggerconcept.timeline.MainController;
-import com.biggerconcept.timeline.domain.Document;
-import com.biggerconcept.projectus.domain.Epic;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import javafx.application.Platform;

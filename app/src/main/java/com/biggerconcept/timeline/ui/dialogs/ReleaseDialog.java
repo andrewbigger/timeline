@@ -1,6 +1,6 @@
 package com.biggerconcept.timeline.ui.dialogs;
 
-import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.sdk.ui.dialogs.ErrorAlert;
 import com.biggerconcept.timeline.ReleaseDialogController;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Release;

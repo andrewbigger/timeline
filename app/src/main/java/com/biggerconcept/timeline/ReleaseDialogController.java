@@ -1,7 +1,7 @@
 package com.biggerconcept.timeline;
 
-import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
-import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.sdk.exceptions.NoChoiceMadeException;
+import com.biggerconcept.sdk.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.domain.Release;
 import java.net.URL;

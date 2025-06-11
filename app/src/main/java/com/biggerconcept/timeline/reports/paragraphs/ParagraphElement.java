@@ -1,12 +1,12 @@
 package com.biggerconcept.timeline.reports.paragraphs;
 
-import com.biggerconcept.appengine.reports.IReport;
-import com.biggerconcept.appengine.reports.elements.Content;
-import com.biggerconcept.appengine.reports.ui.dialogs.IElementEditorDialog;
-import com.biggerconcept.appengine.reports.ui.dialogs.ParagraphDialog;
-import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
-import com.biggerconcept.doctree.domain.Node;
+import com.biggerconcept.sdk.reports.IReport;
+import com.biggerconcept.sdk.reports.elements.Content;
+import com.biggerconcept.sdk.reports.ui.dialogs.IElementEditorDialog;
+import com.biggerconcept.sdk.reports.ui.dialogs.ParagraphDialog;
+import com.biggerconcept.sdk.serializers.documents.Doc;
+import com.biggerconcept.sdk.serializers.documents.Doc.ParagraphType;
+import com.biggerconcept.sdk.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.reports.Element;
 import java.io.IOException;

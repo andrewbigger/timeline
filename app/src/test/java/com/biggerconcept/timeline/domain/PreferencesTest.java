@@ -3,7 +3,7 @@ package com.biggerconcept.timeline.domain;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.biggerconcept.appengine.ui.helpers.Date;
+import com.biggerconcept.sdk.ui.helpers.Date;
 import com.biggerconcept.projectus.domain.Size;
 
 import java.time.LocalDate;

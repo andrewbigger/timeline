@@ -1,6 +1,6 @@
 package com.biggerconcept.timeline.actions.epic;
 
-import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
+import com.biggerconcept.sdk.exceptions.NoChoiceMadeException;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.ui.dialogs.EpicDialog;
 import com.biggerconcept.timeline.State;

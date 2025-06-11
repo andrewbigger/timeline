@@ -1,8 +1,8 @@
 package com.biggerconcept.timeline.reports.sections;
 
-import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.appengine.serializers.documents.Doc.ParagraphType;
-import com.biggerconcept.doctree.domain.Node;
+import com.biggerconcept.sdk.serializers.documents.Doc;
+import com.biggerconcept.sdk.serializers.documents.Doc.ParagraphType;
+import com.biggerconcept.sdk.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.reports.Element;
 import java.io.IOException;

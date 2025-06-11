@@ -1,6 +1,6 @@
 package com.biggerconcept.timeline.domain;
 
-import com.biggerconcept.doctree.domain.Group;
+import com.biggerconcept.sdk.doctree.domain.Group;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.projectus.domain.Task;
 import com.biggerconcept.timeline.domain.Judgement.Assessment;

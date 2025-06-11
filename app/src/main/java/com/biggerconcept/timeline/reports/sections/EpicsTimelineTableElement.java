@@ -1,7 +1,7 @@
 package com.biggerconcept.timeline.reports.sections;
 
-import com.biggerconcept.appengine.serializers.documents.Doc;
-import com.biggerconcept.doctree.domain.Node;
+import com.biggerconcept.sdk.serializers.documents.Doc;
+import com.biggerconcept.sdk.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Preferences;
 import com.biggerconcept.timeline.domain.Year;

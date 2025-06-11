@@ -1,6 +1,6 @@
 package com.biggerconcept.timeline.actions.release;
 
-import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
+import com.biggerconcept.sdk.exceptions.NoChoiceMadeException;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.actions.Action;
 import com.biggerconcept.timeline.domain.Release;
@@ -24,7 +24,7 @@ public class RemoveRelease implements Action {
             throw new NoChoiceMadeException();
         }
         
-        ButtonType answer = com.biggerconcept.appengine.ui.dialogs.YesNoPrompt.show(
+        ButtonType answer = com.biggerconcept.sdk.ui.dialogs.YesNoPrompt.show(
                 Alert.AlertType.CONFIRMATION,
                 state.bundle().getString("releases.dialogs.remove.title"),
                 state.bundle().getString("releases.dialogs.remove.description")

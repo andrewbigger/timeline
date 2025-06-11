@@ -1,6 +1,6 @@
 package com.biggerconcept.timeline.ui.dialogs;
 
-import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.sdk.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.domain.Epic;
 import com.biggerconcept.timeline.EpicDialogController;
 import com.biggerconcept.timeline.State;

@@ -1,11 +1,11 @@
 package com.biggerconcept.timeline.reports;
 
-import com.biggerconcept.appengine.reports.IReport;
+import com.biggerconcept.sdk.reports.IReport;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.UUID;
-import com.biggerconcept.appengine.reports.elements.IElement;
-import com.biggerconcept.doctree.domain.Node;
+import com.biggerconcept.sdk.reports.elements.IElement;
+import com.biggerconcept.sdk.doctree.domain.Node;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.reports.resources.ArticleElement;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
  * 
  * @author Andrew Bigger
  */
-public class Report extends com.biggerconcept.appengine.reports.Report implements IReport {    
+public class Report extends com.biggerconcept.sdk.reports.Report implements IReport {    
     /**
      * List of elements
      */

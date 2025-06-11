@@ -1,8 +1,8 @@
 package com.biggerconcept.timeline;
 
-import com.biggerconcept.appengine.exceptions.NoChoiceMadeException;
-import com.biggerconcept.appengine.platform.OperatingSystem;
-import com.biggerconcept.appengine.ui.dialogs.ErrorAlert;
+import com.biggerconcept.sdk.exceptions.NoChoiceMadeException;
+import com.biggerconcept.sdk.platform.OperatingSystem;
+import com.biggerconcept.sdk.ui.dialogs.ErrorAlert;
 import com.biggerconcept.timeline.actions.Action;
 import com.biggerconcept.timeline.actions.application.ExitApplication;
 import com.biggerconcept.timeline.actions.application.OpenAboutDialog;
