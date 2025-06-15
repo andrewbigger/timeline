@@ -56,13 +56,13 @@
          <center>
             <ToolBar prefWidth="415.0" style="-fx-border-width: 0;" styleClass="mainToolbar" BorderPane.alignment="CENTER">
               <items>
-                  <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="55.0" prefWidth="55.0" />
-                  <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="55.0" prefWidth="55.0" />
-                  <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="55.0" prefWidth="55.0" />
+                  <Button id="newFileButton" fx:id="newFileButton" mnemonicParsing="false" onMouseClicked="#handleCreateNewDocument" prefHeight="40.0" prefWidth="40.0" styleClass="smallIcon" />
+                  <Button id="openFileButton" fx:id="openFileButton" mnemonicParsing="false" onMouseClicked="#handleOpenDocument" prefHeight="40.0" prefWidth="40.0" styleClass="smallIcon" />
+                  <Button id="saveFileButton" fx:id="saveFileButton" mnemonicParsing="false" onMouseClicked="#handleSaveDocument" prefHeight="40.0" prefWidth="40.0" styleClass="smallIcon" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="9.0" />
-                  <MenuButton id="reportsMenuButton" fx:id="reportsMenuButton" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="55.0" text="%toolbar.reports.title">
+                  <MenuButton id="reportsMenuButton" fx:id="reportsMenuButton" alignment="CENTER_RIGHT" mnemonicParsing="false" prefHeight="40.0" prefWidth="110.0" styleClass="smallIcon" text="%toolbar.reports.title">
                      <padding>
-                        <Insets left="35.0" />
+                        <Insets left="10.0" />
                      </padding>
                      <items>
                         <MenuItem id="configure" fx:id="configureReportsMenuItem" mnemonicParsing="false" onAction="#handleOpenReportsConfig" text="Configure New Report" />
