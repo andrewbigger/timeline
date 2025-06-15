@@ -1,6 +1,5 @@
 package com.biggerconcept.timeline;
 
-import static com.biggerconcept.projectus.App.config;
 import com.biggerconcept.sdk.preferences.Config;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
