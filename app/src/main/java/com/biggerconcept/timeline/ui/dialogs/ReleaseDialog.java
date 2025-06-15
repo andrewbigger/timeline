@@ -1,6 +1,7 @@
 package com.biggerconcept.timeline.ui.dialogs;
 
 import com.biggerconcept.sdk.ui.dialogs.ErrorAlert;
+import com.biggerconcept.timeline.App;
 import com.biggerconcept.timeline.ReleaseDialogController;
 import com.biggerconcept.timeline.State;
 import com.biggerconcept.timeline.domain.Release;
@@ -61,8 +62,15 @@ public class ReleaseDialog {
             );
         
             Stage stage = new Stage();
+            Scene scene = new Scene(releaseWindow);
+            
+            if (App.config().isTrue("darkMode")) {
+                scene.getStylesheets().add("/css/application.dark.css");
+            } else {
+                scene.getStylesheets().add("/css/application.css");
+            }
         
-            stage.setScene(new Scene(releaseWindow));
+            stage.setScene(scene);
             stage.setTitle(release.getName());
             stage.initStyle(StageStyle.DECORATED);
             stage.resizableProperty().setValue(false);

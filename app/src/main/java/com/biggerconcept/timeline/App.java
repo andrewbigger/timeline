@@ -1,5 +1,7 @@
 package com.biggerconcept.timeline;
 
+import static com.biggerconcept.projectus.App.config;
+import com.biggerconcept.sdk.preferences.Config;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,6 +12,7 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import com.biggerconcept.sdk.ui.Theme;
+import com.biggerconcept.sdk.ui.Ui;
 
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -60,12 +63,18 @@ public class App extends Application {
         );
         
         Scene scene = new Scene(root);
-        Theme.apply(getClass(), scene);
+        
+        if (config().isTrue("darkMode")) {
+            Theme.applyDark(getClass(), scene);
+        } else {
+            Theme.apply(getClass(), scene);
+        }
 
         stage.setTitle(bundle.getString("application.name"));
         stage.setScene(scene);
-        stage.setMinHeight(600);
-        stage.setMinWidth(1500);
+        
+        Ui.applyDefaultDimensions(stage);
+        
         stage.show();
     }
 
@@ -78,6 +87,15 @@ public class App extends Application {
      */
     public static void main(String[] args) {
         launch();
+    }
+    
+    /**
+     * Global application configuration
+     * 
+     * @return application configuration
+     */
+    public static Config config() {
+        return Config.load("com.biggerconcept.Timeline");
     }
 
 }

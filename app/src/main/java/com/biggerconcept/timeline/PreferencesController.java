@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -220,6 +221,12 @@ public class PreferencesController
      */
     @FXML
     public TextField defaultCompanyDomain;
+    
+    /**
+     * Dark mode enabled checkbox
+     */
+    @FXML
+    private CheckBox darkModeCheckBox;
 
     
     /**
@@ -300,6 +307,7 @@ public class PreferencesController
         mapSprintPreferencesToWindow();
         mapReportsToWindow();
         mapCompanyToWindow();
+        mapThemeToWindow();
     }
     
     /**
@@ -402,9 +410,24 @@ public class PreferencesController
         });
     }
     
+    /**
+     * Maps company settings to window
+     */
     private void mapCompanyToWindow() {
         defaultCompanyName.setText(currentPreferences.getDefaultCompany());
         defaultCompanyDomain.setText(currentPreferences.getDefaultDomain());
+    }
+    
+    /**
+     * Maps theme settings to preference window
+     */
+    private void mapThemeToWindow() {
+        boolean darkModeEnabled = state.getOpenDocument()
+                .getPreferences()
+                .getApplicationSettings()
+                .isTrue("darkMode");
+        
+        darkModeCheckBox.setSelected(darkModeEnabled);
     }
     
     /**
@@ -418,6 +441,10 @@ public class PreferencesController
         mapWindowToCompany();
         
         currentDocument.setPreferences(currentPreferences);
+        
+        state.getOpenDocument().getPreferences().getApplicationSettings().set("darkMode", 
+                darkModeCheckBox.isSelected()
+        );
     }
     
     /**

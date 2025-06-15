@@ -2,6 +2,7 @@ package com.biggerconcept.timeline.ui.dialogs;
 
 import com.biggerconcept.sdk.ui.dialogs.ErrorAlert;
 import com.biggerconcept.projectus.domain.Epic;
+import com.biggerconcept.timeline.App;
 import com.biggerconcept.timeline.EpicDialogController;
 import com.biggerconcept.timeline.State;
 import java.io.IOException;
@@ -65,8 +66,16 @@ public class EpicDialog {
             );
         
             Stage stage = new Stage();
+            
+            Scene scene = new Scene(epicWindow);
+            
+            if (App.config().isTrue("darkMode")) {
+                scene.getStylesheets().add("/css/application.dark.css");
+            } else {
+                scene.getStylesheets().add("/css/application.css");
+            }
         
-            stage.setScene(new Scene(epicWindow));
+            stage.setScene(scene);
             stage.setTitle(epic.getName());
             stage.initStyle(StageStyle.DECORATED);
             stage.resizableProperty().setValue(false);

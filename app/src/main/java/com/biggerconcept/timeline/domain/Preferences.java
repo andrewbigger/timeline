@@ -1,12 +1,15 @@
 package com.biggerconcept.timeline.domain;
 
+import com.biggerconcept.timeline.App;
 import com.biggerconcept.sdk.reports.IReport;
 import com.biggerconcept.sdk.ui.helpers.Date;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.biggerconcept.projectus.domain.Sprint;
 import com.biggerconcept.projectus.domain.Size;
+import com.biggerconcept.sdk.preferences.Config;
 import com.biggerconcept.timeline.reports.Report;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -137,6 +140,12 @@ public class Preferences {
     @JsonInclude(Include.NON_NULL)
     @JsonDeserialize(contentAs=Report.class)
     private ArrayList<IReport> reports;
+    
+     /**
+     * Application settings
+     */
+    @JsonIgnore
+    private Config applicationSettings;
 
     /**
     * Returns estimate for given task size.
@@ -188,6 +197,26 @@ public class Preferences {
         p.defaultDomain = "";
         
         return p;
+    }
+    
+    /**
+     * Default constructor.
+     */
+    public Preferences() {
+        this.applicationSettings = App.config();
+    }
+    
+    /**
+     * Getter for application settings
+     * 
+     * @return application settings
+     */
+    public Config getApplicationSettings() {
+        if (applicationSettings == null) {
+            applicationSettings = App.config();
+        }
+        
+        return applicationSettings;
     }
     
     /**
@@ -363,6 +392,15 @@ public class Preferences {
         }
         
         return defaultDomain;
+    }
+    
+    /**
+     * Setter for application settings
+     * 
+     * @return application settings
+     */
+    public Config setApplicationSettings() {
+        return applicationSettings;
     }
     
     /**

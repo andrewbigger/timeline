@@ -18,15 +18,15 @@
 }
 
 .addArticleButton {
-  -fx-background-image: url('../icons/AddArticleIcon-Light.png');
+  -fx-background-image: url('../icons/dark/AddArticleIcon.png');
 }
 
 .addGroupButton {
-  -fx-background-image: url('../icons/AddGroupIcon-Light.png');
+  -fx-background-image: url('../icons/dark/AddGroupIcon.png');
 }
 
 .addContactButton {
-  -fx-background-image: url('../icons/AddContactIcon-Light.png');
+  -fx-background-image: url('../icons/dark/AddContactIcon.png');
 }
 
 .removeButton {
@@ -34,19 +34,19 @@
 }
 
 .moveUpButton {
-  -fx-background-image: url('../icons/MoveUpIcon-Light.png');
+  -fx-background-image: url('../icons/dark/MoveUpIcon.png');
 }
 
 .moveDownButton {
-  -fx-background-image: url('../icons/MoveDownIcon-Light.png');
+  -fx-background-image: url('../icons/dark/MoveDownIcon.png');
 }
 
 .moveLeftButton {
-  -fx-background-image: url('../icons/MoveLeftIcon-Light.png');
+  -fx-background-image: url('../icons/dark/MoveLeftIcon.png');
 }
 
 .moveRightButton {
-  -fx-background-image: url('../icons/MoveRightIcon-Light.png');
+  -fx-background-image: url('../icons/dark/MoveRightIcon.png');
 }
 
 .editButton {
@@ -54,7 +54,7 @@
 }
 
 .moveButton {
-  -fx-background-image: url('../icons/MoveIcon-Light.png');
+  -fx-background-image: url('../icons/dark/MoveIcon.png');
 }
 
 .tickButton {
@@ -66,40 +66,40 @@
 }
 
 .importButton {
-  -fx-background-image: url('../icons/ImportIcon-Light.png');
+  -fx-background-image: url('../icons/dark/ImportIcon.png');
 }
 
 .projectusButton {
-  -fx-background-image: url('../icons/ProjectusIcon-Light.png');
+  -fx-background-image: url('../icons/dark/ProjectusIcon.png');
 }
 
 .hashButton {
-  -fx-background-image: url('../icons/HashIcon-Light.png');
+  -fx-background-image: url('../icons/dark/HashIcon.png');
 }
 
 #openFileButton {
-  -fx-background-image:url('../icons/OpenFileIcon-Light.png');
+  -fx-background-image:url('../icons/dark/OpenIcon.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #saveFileButton {
-  -fx-background-image: url('../icons/SaveFileIcon-Light.png');
+  -fx-background-image: url('../icons/dark/SaveIcon.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #newFileButton {
-  -fx-background-image: url('../icons/NewFileIcon-Light.png');
+  -fx-background-image: url('../icons/dark/NewFileIcon.png');
   -fx-background-position: center center;
   -fx-background-repeat: no-repeat;
   -fx-background-position: center center;
 }
 
 #reportsMenuButton {
-  -fx-background-image: url('../icons/ReportsIcon-Light.png');
+  -fx-background-image: url('../icons/dark/ReportsIcon.png');
   -fx-background-position: left center;
   -fx-background-repeat: no-repeat;
 }
@@ -124,6 +124,7 @@
   -fx-background-color: #3f2e00;
 }
 
-.yearIndicator {
-  -fx-border-color:  rgb(48,	54,	61);
+.year-indicator {
+  -fx-border-color: rgb(45,51,58);
+  -fx-border-radius: 3;
 }
